@@ -994,6 +994,37 @@ input[type="range"]::-moz-range-thumb {
   background: var(--bull-green);
 }
 
+/* Vertical timeline variant for content-rich steps */
+.steps-vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.steps-vertical .step {
+  flex-direction: row;
+  align-items: flex-start;
+  position: relative;
+}
+
+.steps-vertical .step-dot {
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.steps-vertical .step-line {
+  display: none;
+}
+
+.steps-vertical .step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  bottom: calc(-1 * var(--space-sm));
+  width: 2px;
+  background: var(--border-color);
+}
+
 /* --- Tag/Badge --- */
 .tag {
   display: inline-flex;
@@ -1206,6 +1237,11 @@ input[type="range"]::-moz-range-thumb {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding-bottom: var(--space-sm);
+  }
+
+  .steps-vertical {
+    overflow-x: visible;
+    padding-bottom: 0;
   }
 
   .calc-result {
