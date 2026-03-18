@@ -1,0 +1,1293 @@
+<!-- MODULE 15: Advanced Portfolio & Risk Optimization -->
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/><path d="M2 20h20"/></svg>
+    MODULE 15
+  </div>
+  <h1>Advanced Portfolio &amp; Risk Optimization</h1>
+  <p>This capstone module takes you beyond basic risk management into the quantitative frameworks used by professional portfolio managers, prop traders, and hedge funds. You will learn the mathematics of optimal position sizing, Monte Carlo simulation, tail risk measurement, and how to build a sustainable, scalable trading business. This is graduate-level material &mdash; the concepts that separate surviving traders from thriving ones.</p>
+</div>
+
+<!-- ========== 15.1 ADVANCED POSITION SIZING ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.1</span> Beyond the 1% Rule: Advanced Position Sizing</h2>
+  <p>In earlier modules, you learned the foundational 1% rule &mdash; never risk more than 1% of your account on a single trade. This rule has saved countless accounts from ruin. But it is a blunt instrument. Professional traders and quantitative researchers like Ed Thorp, Ralph Vince, and Van Tharp have developed far more sophisticated frameworks that dynamically optimize position size based on your actual edge. Understanding these methods is the difference between merely surviving and truly optimizing your returns.</p>
+
+  <div class="concept-card">
+    <h3>The Kelly Criterion: Optimal Growth Mathematics</h3>
+    <p>The Kelly Criterion was developed by John L. Kelly Jr. at Bell Labs in 1956 and later popularized by Ed Thorp, who used it to beat blackjack and then the stock market. It answers a deceptively simple question: <strong>given a known edge, what fraction of your bankroll should you bet to maximize long-term growth?</strong></p>
+
+    <p>The basic Kelly formula for a simple win/loss outcome is:</p>
+
+    <div class="info-box info">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <div class="info-box-content">
+        <strong>Kelly Criterion Formula</strong>
+        <p><strong>f* = (bp &minus; q) / b</strong></p>
+        <p>Where: <strong>f*</strong> = fraction of capital to risk, <strong>b</strong> = ratio of average win to average loss (reward-to-risk), <strong>p</strong> = probability of winning, <strong>q</strong> = probability of losing (1 &minus; p).</p>
+      </div>
+    </div>
+
+    <h4>Worked Example: Calculating Full Kelly</h4>
+    <p>Suppose your trading system has the following verified statistics over 200+ trades:</p>
+    <ul class="feature-list">
+      <li>Win rate: 55% (p = 0.55, q = 0.45)</li>
+      <li>Average win: $600</li>
+      <li>Average loss: $400</li>
+      <li>Reward-to-risk ratio (b): $600 / $400 = 1.5</li>
+    </ul>
+    <p><strong>f* = (1.5 &times; 0.55 &minus; 0.45) / 1.5 = (0.825 &minus; 0.45) / 1.5 = 0.375 / 1.5 = 0.25</strong></p>
+    <p>Full Kelly says you should risk 25% of your capital on each trade. That sounds aggressive &mdash; and it is. This is the <em>mathematically optimal</em> fraction for maximum long-term compounding, but it comes with stomach-churning drawdowns along the way.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Why Full Kelly Is Dangerous in Practice</h3>
+    <p>Full Kelly maximizes the <em>geometric growth rate</em> of your account, but it assumes you know your exact edge with perfect precision. In reality:</p>
+    <ul class="feature-list">
+      <li><strong>Your edge estimate is uncertain</strong> &mdash; A 55% win rate based on 200 trades has significant sampling error. The true win rate could be anywhere from 50% to 60%.</li>
+      <li><strong>Markets are non-stationary</strong> &mdash; Your edge changes over time as market conditions shift. The edge you measured in a trending market may vanish in a choppy one.</li>
+      <li><strong>Drawdowns are severe</strong> &mdash; Full Kelly can produce 50&ndash;80% drawdowns even with a genuine edge. Most humans cannot psychologically endure this.</li>
+      <li><strong>Ruin risk with estimation error</strong> &mdash; If your true edge is even slightly worse than estimated, full Kelly can lead to ruin. Ralph Vince demonstrated this extensively in his research on <em>optimal f</em>.</li>
+    </ul>
+
+    <p>As Ed Thorp himself has written: <em>&ldquo;In practice, it is wise to bet less than Kelly. If your estimated edge turns out to be wrong, overbetting is far more costly than underbetting.&rdquo;</em></p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Fractional Kelly: The Professional Approach</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Kelly Fraction</th>
+          <th>Risk per Trade (example)</th>
+          <th>Growth Rate vs. Full Kelly</th>
+          <th>Max Drawdown (typical)</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Full Kelly (1.0)</strong></td>
+          <td>25.0%</td>
+          <td>100%</td>
+          <td>50&ndash;80%</td>
+          <td>Theoretical only</td>
+        </tr>
+        <tr>
+          <td><strong>Half Kelly (0.5)</strong></td>
+          <td>12.5%</td>
+          <td>75%</td>
+          <td>25&ndash;40%</td>
+          <td>Aggressive prop traders</td>
+        </tr>
+        <tr>
+          <td><strong>Third Kelly (0.33)</strong></td>
+          <td>8.3%</td>
+          <td>56%</td>
+          <td>15&ndash;25%</td>
+          <td>Experienced traders</td>
+        </tr>
+        <tr>
+          <td><strong>Quarter Kelly (0.25)</strong></td>
+          <td>6.25%</td>
+          <td>44%</td>
+          <td>10&ndash;18%</td>
+          <td>Most day traders</td>
+        </tr>
+        <tr>
+          <td><strong>Tenth Kelly (0.1)</strong></td>
+          <td>2.5%</td>
+          <td>19%</td>
+          <td>5&ndash;10%</td>
+          <td>Conservative / new traders</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The key insight from Van Tharp&rsquo;s research: <strong>Half Kelly gives you 75% of the growth rate with roughly half the drawdown.</strong> Quarter Kelly gives you 44% of the growth rate with dramatically reduced risk of ruin. For most retail day traders, quarter Kelly is the sweet spot &mdash; you capture meaningful compounding while keeping drawdowns survivable.</p>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>The Cardinal Rule of Position Sizing</strong>
+      <p>Never use full Kelly. If you only remember one thing from this section, remember this: <strong>you need at least 200&ndash;300 trades of data before your Kelly estimate is reliable, and even then you should use at most half Kelly.</strong> Nassim Taleb argues in <em>Fooled by Randomness</em> that most traders vastly overestimate their edge due to survivorship bias and short sample sizes. When in doubt, size smaller.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>Ralph Vince&rsquo;s Optimal f and the Danger Zone</h3>
+    <p>Ralph Vince extended Kelly&rsquo;s work in his books <em>Portfolio Management Formulas</em> and <em>The Mathematics of Money Management</em>. His key finding: <strong>there is an asymmetry between overbetting and underbetting.</strong> If optimal f is 25%, then betting 50% (double optimal) will actually <em>lose money</em> over time, while betting 12.5% (half optimal) still makes money &mdash; just slower. The penalty for overbetting is ruin; the penalty for underbetting is merely reduced returns. Always err on the side of underbetting.</p>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Dynamic Kelly: Adjusting in Real Time</h3>
+    <p>Static Kelly assumes your edge never changes. In reality, your edge fluctuates with market conditions, your own psychology, and strategy decay. <strong>Dynamic Kelly</strong> recalculates the optimal fraction using a rolling window of recent trades, ensuring your position sizing adapts to your current performance.</p>
+    <ul class="feature-list">
+      <li><strong>Rolling window:</strong> Recalculate your Kelly fraction every 50&ndash;100 trades using only recent results. This captures changes in your edge before they become catastrophic.</li>
+      <li><strong>Drawdown adjustment:</strong> When your account drawdown exceeds 15%, automatically halve your Kelly fraction. At 25% drawdown, reduce to quarter Kelly. This is a survival mechanism &mdash; when you are losing, the probability that your edge has degraded is high.</li>
+      <li><strong>Regime-dependent Kelly:</strong> Use different Kelly fractions for different market regimes:
+        <ul style="margin-top:0.5rem;">
+          <li><strong>Low volatility (VIX &lt; 15):</strong> Use Half Kelly &mdash; conditions are favorable but breakouts are rare. Size = Base Kelly &times; 1.0</li>
+          <li><strong>Normal volatility (VIX 15&ndash;25):</strong> Use Quarter to Half Kelly &mdash; standard conditions. Size = Base Kelly &times; 0.75</li>
+          <li><strong>High volatility (VIX &gt; 25):</strong> Use Quarter Kelly or less &mdash; elevated uncertainty. Size = Base Kelly &times; 0.50</li>
+          <li><strong>Crisis (VIX &gt; 35):</strong> Minimum size or sit out entirely. Size = Base Kelly &times; 0.25</li>
+        </ul>
+      </li>
+    </ul>
+    <p><strong>Formula:</strong> <code>Size<sub>regime</sub> = Base Kelly Fraction &times; Regime Factor &times; Drawdown Factor</code></p>
+    <p>Where Drawdown Factor = 1.0 if DD &lt; 10%, 0.5 if DD 10&ndash;20%, 0.25 if DD &gt; 20%.</p>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Leverage and the Kelly Criterion</h3>
+    <p>Leverage dramatically changes the Kelly math &mdash; and most traders who use margin fail to account for this. The effective Kelly fraction <em>multiplied by your leverage ratio</em> gives you your true capital exposure.</p>
+    <ul class="feature-list">
+      <li><strong>Formula:</strong> <code>Effective Kelly = Kelly Fraction &times; Leverage Ratio</code></li>
+      <li><strong>Worked example:</strong> Your Kelly fraction is 10% (Quarter Kelly on a Full Kelly of 40%). You use 4:1 margin (PDT day trading buying power). Your effective exposure is 10% &times; 4 = <strong>40%</strong> &mdash; which is Full Kelly. You think you are being conservative, but your leverage has pushed you to the maximum-risk optimal fraction.</li>
+      <li><strong>The leverage trap:</strong> Most traders using margin are inadvertently running at Full Kelly or beyond, which explains why leveraged accounts have significantly higher blow-up rates. If you use 4:1 margin, you need to use <em>one-quarter</em> of the Kelly fraction you would use in a cash account.</li>
+      <li><strong>Safe leverage guideline:</strong> For most day traders, effective Kelly (Kelly &times; leverage) should never exceed 20% of total account equity on any single position. This means if you use 4:1 margin, your Kelly fraction should be capped at 5%.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 15.2 MONTE CARLO SIMULATION ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.2</span> Monte Carlo Simulation for Traders</h2>
+  <p>Monte Carlo simulation is one of the most powerful tools in a quantitative trader&rsquo;s arsenal. Named after the famous casino, it uses random sampling to model the probability of different outcomes. For traders, this means taking your actual trade statistics and generating thousands of possible equity curves to understand the <em>range of futures</em> your system might produce.</p>
+
+  <div class="concept-card">
+    <h3>Why Monte Carlo Matters</h3>
+    <p>Your historical equity curve is just <em>one</em> possible path through the probability space. If you reshuffled the order of your trades, you would get a completely different equity curve &mdash; with different drawdowns, different peak-to-trough patterns, and different ending values. Monte Carlo simulation does exactly this: it takes your set of actual trade results and resamples them thousands of times to show you the full distribution of possible outcomes.</p>
+
+    <ul class="feature-list">
+      <li><strong>Best case scenario</strong> &mdash; What happens if your winning trades cluster together? Your equity curve soars early.</li>
+      <li><strong>Worst case scenario</strong> &mdash; What happens if your losing trades cluster together? You face deep drawdowns that test your psychology.</li>
+      <li><strong>Expected case</strong> &mdash; The median outcome across all simulations gives you a realistic expectation.</li>
+      <li><strong>Confidence intervals</strong> &mdash; You can say with 95% confidence that your maximum drawdown will not exceed X%, or your annual return will be between Y% and Z%.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Monte Carlo Simulation &mdash; 100 Equity Curves from Same Trade Statistics</h3>
+    <svg viewBox="0 0 800 400" width="100%" style="max-width:800px">
+      <!-- Background grid -->
+      <defs>
+        <linearGradient id="mcBestGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#10b981" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#10b981" stop-opacity="0.3"/>
+        </linearGradient>
+        <linearGradient id="mcWorstGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ef4444" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#ef4444" stop-opacity="0.3"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Axes -->
+      <line x1="60" y1="20" x2="60" y2="360" stroke="#475569" stroke-width="1"/>
+      <line x1="60" y1="360" x2="780" y2="360" stroke="#475569" stroke-width="1"/>
+
+      <!-- Y-axis labels -->
+      <text x="55" y="360" text-anchor="end" fill="#94a3b8" font-size="11">$25K</text>
+      <text x="55" y="275" text-anchor="end" fill="#94a3b8" font-size="11">$50K</text>
+      <text x="55" y="190" text-anchor="end" fill="#94a3b8" font-size="11">$75K</text>
+      <text x="55" y="105" text-anchor="end" fill="#94a3b8" font-size="11">$100K</text>
+      <text x="55" y="28" text-anchor="end" fill="#94a3b8" font-size="11">$125K</text>
+
+      <!-- X-axis labels -->
+      <text x="60" y="380" text-anchor="middle" fill="#94a3b8" font-size="11">0</text>
+      <text x="240" y="380" text-anchor="middle" fill="#94a3b8" font-size="11">100</text>
+      <text x="420" y="380" text-anchor="middle" fill="#94a3b8" font-size="11">200</text>
+      <text x="600" y="380" text-anchor="middle" fill="#94a3b8" font-size="11">300</text>
+      <text x="780" y="380" text-anchor="middle" fill="#94a3b8" font-size="11">400 trades</text>
+
+      <!-- Grid lines -->
+      <line x1="60" y1="275" x2="780" y2="275" stroke="#334155" stroke-width="0.5" stroke-dasharray="4"/>
+      <line x1="60" y1="190" x2="780" y2="190" stroke="#334155" stroke-width="0.5" stroke-dasharray="4"/>
+      <line x1="60" y1="105" x2="780" y2="105" stroke="#334155" stroke-width="0.5" stroke-dasharray="4"/>
+
+      <!-- 95th percentile band (light green area) -->
+      <path d="M60,360 Q200,320 300,260 Q400,200 500,140 Q600,90 700,50 L780,30 L780,70 Q700,100 600,150 Q500,200 400,240 Q300,280 200,310 Q120,340 60,360 Z" fill="#10b981" fill-opacity="0.08"/>
+
+      <!-- 5th percentile band (light red area) -->
+      <path d="M60,360 Q150,355 240,345 Q360,330 480,320 Q600,310 700,300 L780,290 L780,340 Q700,345 600,350 Q480,355 360,358 Q240,360 60,360 Z" fill="#ef4444" fill-opacity="0.08"/>
+
+      <!-- Simulated equity curves (faded) -->
+      <polyline points="60,360 150,340 240,310 330,275 420,235 510,200 600,165 690,120 780,80" stroke="#10b981" stroke-width="1" fill="none" opacity="0.15"/>
+      <polyline points="60,360 150,350 240,330 330,305 420,280 510,250 600,230 690,195 780,155" stroke="#10b981" stroke-width="1" fill="none" opacity="0.15"/>
+      <polyline points="60,360 150,355 240,345 330,340 420,320 510,310 600,295 690,275 780,250" stroke="#3b82f6" stroke-width="1" fill="none" opacity="0.15"/>
+      <polyline points="60,360 150,358 240,355 330,350 420,340 510,335 600,320 690,310 780,295" stroke="#f59e0b" stroke-width="1" fill="none" opacity="0.15"/>
+      <polyline points="60,360 150,345 240,320 330,290 420,260 510,240 600,210 690,175 780,135" stroke="#10b981" stroke-width="1" fill="none" opacity="0.15"/>
+      <polyline points="60,360 150,352 240,340 330,325 420,305 510,285 600,260 690,235 780,210" stroke="#3b82f6" stroke-width="1" fill="none" opacity="0.15"/>
+      <polyline points="60,360 150,356 240,350 330,348 420,345 510,340 600,335 690,325 780,315" stroke="#f59e0b" stroke-width="1" fill="none" opacity="0.15"/>
+      <polyline points="60,360 150,348 240,332 330,310 420,285 510,260 600,235 690,205 780,170" stroke="#10b981" stroke-width="1" fill="none" opacity="0.15"/>
+      <polyline points="60,360 150,357 240,352 330,345 420,335 510,328 600,315 690,300 780,280" stroke="#3b82f6" stroke-width="1" fill="none" opacity="0.15"/>
+      <polyline points="60,360 150,354 240,342 330,328 420,310 510,290 600,270 690,245 780,220" stroke="#3b82f6" stroke-width="1" fill="none" opacity="0.15"/>
+
+      <!-- 95th percentile curve (best case) -->
+      <polyline points="60,360 150,338 240,305 330,268 420,225 510,188 600,150 690,105 780,60" stroke="#10b981" stroke-width="2.5" fill="none" opacity="0.8"/>
+      <text x="782" y="55" fill="#10b981" font-size="11" font-weight="600">95th %ile</text>
+
+      <!-- Median curve -->
+      <polyline points="60,360 150,350 240,335 330,315 420,290 510,268 600,242 690,215 780,185" stroke="#3b82f6" stroke-width="2.5" fill="none" opacity="0.9"/>
+      <text x="782" y="180" fill="#3b82f6" font-size="11" font-weight="600">Median</text>
+
+      <!-- 5th percentile curve (worst case) -->
+      <polyline points="60,360 150,358 240,352 330,348 420,340 510,335 600,325 690,315 780,300" stroke="#ef4444" stroke-width="2.5" fill="none" opacity="0.8"/>
+      <text x="782" y="295" fill="#ef4444" font-size="11" font-weight="600">5th %ile</text>
+
+      <!-- Starting point -->
+      <circle cx="60" cy="360" r="4" fill="#e2e8f0"/>
+      <text x="60" y="395" text-anchor="middle" fill="#e2e8f0" font-size="10">Start: $25K</text>
+
+      <!-- Title -->
+      <text x="420" y="15" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="600">Same System, Different Trade Sequences</text>
+    </svg>
+  </div>
+
+  <div class="concept-card">
+    <h3>How to Run a Monte Carlo Simulation</h3>
+    <p>You do not need a PhD to run Monte Carlo. Here is the process, step by step:</p>
+    <ol>
+      <li><strong>Collect your trade results</strong> &mdash; You need at least 100 actual trade results (P&amp;L values). More is better. 200+ trades gives meaningful results.</li>
+      <li><strong>Randomly resample with replacement</strong> &mdash; Randomly pick trades from your pool (allowing repeats) to create a simulated sequence of the same length as your original data.</li>
+      <li><strong>Calculate the equity curve</strong> &mdash; Start with your account balance and apply each simulated trade sequentially.</li>
+      <li><strong>Record key metrics</strong> &mdash; Ending balance, maximum drawdown, longest losing streak, Sharpe ratio.</li>
+      <li><strong>Repeat 10,000 times</strong> &mdash; Each run produces a different equity curve. Collect all the metrics.</li>
+      <li><strong>Analyze the distribution</strong> &mdash; Look at the 5th, 25th, 50th, 75th, and 95th percentiles of each metric.</li>
+    </ol>
+  </div>
+
+  <div class="concept-card">
+    <h3>Interpreting Monte Carlo Results</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>5th Percentile</th>
+          <th>25th Percentile</th>
+          <th>Median (50th)</th>
+          <th>75th Percentile</th>
+          <th>95th Percentile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Ending Balance</strong></td>
+          <td>$31,200</td>
+          <td>$38,500</td>
+          <td>$45,800</td>
+          <td>$55,200</td>
+          <td>$72,400</td>
+        </tr>
+        <tr>
+          <td><strong>Max Drawdown</strong></td>
+          <td>&minus;22.5%</td>
+          <td>&minus;16.8%</td>
+          <td>&minus;12.3%</td>
+          <td>&minus;8.7%</td>
+          <td>&minus;5.1%</td>
+        </tr>
+        <tr>
+          <td><strong>Longest Losing Streak</strong></td>
+          <td>14 trades</td>
+          <td>10 trades</td>
+          <td>8 trades</td>
+          <td>6 trades</td>
+          <td>4 trades</td>
+        </tr>
+        <tr>
+          <td><strong>Annual Return</strong></td>
+          <td>24.8%</td>
+          <td>54.0%</td>
+          <td>83.2%</td>
+          <td>120.8%</td>
+          <td>189.6%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>The crucial column is the <strong>5th percentile</strong> &mdash; this represents the &ldquo;bad luck&rdquo; scenario that you should plan for. If you cannot survive the 5th percentile max drawdown psychologically and financially, you are sizing too large.</p>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Free Monte Carlo Tools</strong>
+      <p>You do not need to code this yourself. Tools like <strong>Edgewonk</strong>, <strong>TraderVue</strong>, and even free Python scripts can run Monte Carlo simulations on your trade data. Export your trades to CSV, import them, and get results in seconds. The critical input is having enough real trades to simulate from &mdash; at least 100, ideally 200+.</p>
+    </div>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Sequence Risk and Monte Carlo Limitations</h3>
+    <p>Standard Monte Carlo simulation uses <strong>IID (independent, identically distributed) resampling</strong> &mdash; it assumes each trade is independent of all others. While useful, this assumption <em>understates sequence risk</em> for compounding accounts in several important ways:</p>
+    <ul class="feature-list">
+      <li><strong>Serial correlation:</strong> In reality, trades are not independent. Winning and losing streaks are often clustered because market regimes persist for days or weeks. IID resampling breaks up these clusters, producing more &ldquo;average&rdquo; looking paths than reality.</li>
+      <li><strong>Compounding asymmetry:</strong> In a compounding account, a 10-trade losing streak at the beginning of your career (when capital is smallest) is mathematically less damaging than the same streak after years of growth (when capital is largest). But <em>psychologically</em>, the early streak is more likely to cause you to quit entirely. IID simulation cannot capture this human element.</li>
+      <li><strong>Block bootstrap alternative:</strong> Instead of resampling individual trades, resample <em>blocks</em> of consecutive trades (e.g., 5&ndash;10 trade blocks). This preserves the serial correlation structure of your actual results, producing more realistic simulations that account for regime persistence.</li>
+      <li><strong>Practical implication:</strong> If your Monte Carlo shows a 5th percentile max drawdown of 20%, expect the real-world worst case to be 25&ndash;30% due to sequence effects that IID simulation understates. Build your risk tolerance around 1.3&ndash;1.5&times; the Monte Carlo 5th percentile, not the number itself.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 15.3 CORRELATION RISK ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.3</span> Correlation Risk: The Hidden Position Size Multiplier</h2>
+  <p>One of the most dangerous and least understood risks in day trading is <strong>correlation</strong>. If you are long three semiconductor stocks simultaneously, you do not have three independent positions &mdash; you have one large bet on semiconductors. During stress events, correlations spike to near 1.0, meaning your &ldquo;diversified&rdquo; positions all move against you at the same time. Nassim Taleb describes this in <em>The Black Swan</em>: diversification fails precisely when you need it most.</p>
+
+  <div class="concept-card">
+    <h3>Understanding Portfolio Heat</h3>
+    <p><strong>Portfolio heat</strong> is the total amount of capital at risk across all open positions. It accounts for correlation &mdash; two correlated positions generate more heat than two uncorrelated ones.</p>
+
+    <h4>Example: The Illusion of Diversification</h4>
+    <p>You risk 1% on each of these three trades, thinking you have 3% total risk:</p>
+    <ul class="feature-list">
+      <li>Long NVDA (semiconductors) &mdash; 1% risk</li>
+      <li>Long AMD (semiconductors) &mdash; 1% risk</li>
+      <li>Long AVGO (semiconductors) &mdash; 1% risk</li>
+    </ul>
+    <p>Your <em>nominal</em> portfolio heat is 3%. But the correlation between these stocks is typically 0.75&ndash;0.90. During a sector selloff, they all drop together. Your <em>effective</em> portfolio heat is closer to <strong>2.7% &times; volatility multiplier</strong> &mdash; nearly the same as having a single 2.7% position.</p>
+
+    <p>Compare that to three uncorrelated trades:</p>
+    <ul class="feature-list">
+      <li>Long NVDA (semiconductors) &mdash; 1% risk</li>
+      <li>Short ZM (software/cloud, different sector dynamics) &mdash; 1% risk</li>
+      <li>Long XLE (energy ETF) &mdash; 1% risk</li>
+    </ul>
+    <p>Here the correlations are near zero or even negative. Your effective portfolio heat is truly close to 3% independent risk units &mdash; and the probability of all three losing simultaneously is much lower.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Correlation Matrix: What Spikes During Stress</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Sector Pair</th>
+          <th>Normal Correlation</th>
+          <th>Stress Correlation</th>
+          <th>Danger Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Same Sector Stocks</td>
+          <td>0.60&ndash;0.80</td>
+          <td>0.90&ndash;0.98</td>
+          <td style="color:#ef4444;font-weight:700">Extreme</td>
+        </tr>
+        <tr>
+          <td>Tech vs. Growth</td>
+          <td>0.50&ndash;0.70</td>
+          <td>0.80&ndash;0.95</td>
+          <td style="color:#ef4444;font-weight:700">High</td>
+        </tr>
+        <tr>
+          <td>SPY vs. QQQ</td>
+          <td>0.85&ndash;0.92</td>
+          <td>0.95&ndash;0.99</td>
+          <td style="color:#ef4444;font-weight:700">Extreme</td>
+        </tr>
+        <tr>
+          <td>Tech vs. Energy</td>
+          <td>0.20&ndash;0.40</td>
+          <td>0.50&ndash;0.70</td>
+          <td style="color:#f59e0b;font-weight:700">Moderate</td>
+        </tr>
+        <tr>
+          <td>Long vs. Short (same stock)</td>
+          <td>&minus;1.00</td>
+          <td>&minus;1.00</td>
+          <td style="color:#10b981;font-weight:700">Hedged</td>
+        </tr>
+        <tr>
+          <td>Equities vs. Bonds</td>
+          <td>&minus;0.30 to 0.10</td>
+          <td>&minus;0.50 to 0.60</td>
+          <td style="color:#f59e0b;font-weight:700">Unpredictable</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Max Correlated Exposure Rules</h3>
+    <p>Professional risk managers enforce these limits. As a day trader, adopt them:</p>
+    <ul class="feature-list">
+      <li><strong>Single stock:</strong> Never risk more than 1&ndash;2% of capital on one name.</li>
+      <li><strong>Sector concentration:</strong> Never have more than 3% total risk in a single sector (e.g., all tech stocks combined).</li>
+      <li><strong>Direction concentration:</strong> Never have more than 5% total risk on the same market direction (all long or all short).</li>
+      <li><strong>Total portfolio heat:</strong> Never exceed 6% total risk across all open positions combined.</li>
+      <li><strong>Correlation check:</strong> Before adding a new position, mentally answer: &ldquo;If my existing positions all go against me, does this new trade make it worse or hedge it?&rdquo;</li>
+    </ul>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>The &ldquo;It Cannot Happen&rdquo; Trap</strong>
+      <p>Every major trading blowup in history involved concentrated, correlated positions. Long-Term Capital Management (LTCM) had &ldquo;diversified&rdquo; positions across global bond markets &mdash; until the Russian debt crisis made all correlations go to 1.0 simultaneously. As Nassim Taleb warns: <em>the events that destroy you are precisely the ones you believe are impossible.</em> Always assume correlations will spike at the worst possible moment.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 15.4 VALUE AT RISK ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.4</span> Value at Risk (VaR) &amp; Expected Shortfall</h2>
+  <p>Value at Risk (VaR) is the most widely used risk metric in professional finance. It answers the question: <strong>&ldquo;What is the maximum I am likely to lose over a given time period with a specified confidence level?&rdquo;</strong> Despite its popularity, VaR has serious limitations that every trader must understand. After the 2008 financial crisis, regulators increasingly favor Expected Shortfall (CVaR) as a more honest measure of tail risk.</p>
+
+  <div class="concept-card">
+    <h3>Three Methods of Calculating VaR</h3>
+
+    <h4>1. Parametric (Variance-Covariance) VaR</h4>
+    <p>Assumes returns are normally distributed. Simple but flawed &mdash; real market returns have fat tails.</p>
+    <div class="info-box info">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <div class="info-box-content">
+        <strong>Parametric VaR Formula</strong>
+        <p><strong>VaR = Portfolio Value &times; z-score &times; &sigma; &times; &radic;t</strong></p>
+        <p>For 95% confidence: z = 1.65. For 99% confidence: z = 2.33. &sigma; = daily standard deviation of returns. t = time horizon in days.</p>
+      </div>
+    </div>
+    <p><strong>Example:</strong> $50,000 portfolio, daily &sigma; = 1.5%, 95% confidence, 1-day horizon:</p>
+    <p>VaR = $50,000 &times; 1.65 &times; 0.015 &times; 1 = <strong>$1,237.50</strong></p>
+    <p>Interpretation: There is a 95% chance your daily loss will not exceed $1,237.50. Equivalently, on about 1 in 20 trading days, you can expect to lose <em>more</em> than this amount.</p>
+
+    <h4>2. Historical VaR</h4>
+    <p>Uses your actual historical returns instead of assuming a distribution. Take your last 250 daily returns, sort them from worst to best, and the 5th percentile value is your 95% VaR. No distribution assumptions needed. More realistic than parametric VaR, but limited by the historical period you choose.</p>
+
+    <h4>3. Conditional VaR (CVaR / Expected Shortfall)</h4>
+    <p>CVaR answers the question parametric VaR ignores: <strong>&ldquo;When I do breach my VaR, how bad does it get?&rdquo;</strong> It is the average loss in the worst X% of scenarios.</p>
+    <p>If your 95% VaR is $1,237, your CVaR might be $2,100 &mdash; meaning that on the 1-in-20 bad days, the <em>average</em> loss is $2,100, not just $1,237. This is critically important because VaR tells you the boundary of the &ldquo;normal bad&rdquo; zone, but CVaR tells you what to expect <em>inside the danger zone</em>.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>VaR Comparison Table</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Pros</th>
+          <th>Cons</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Parametric VaR</strong></td>
+          <td>Simple, fast to calculate</td>
+          <td>Assumes normal distribution; underestimates tail risk</td>
+          <td>Quick estimates, low-volatility portfolios</td>
+        </tr>
+        <tr>
+          <td><strong>Historical VaR</strong></td>
+          <td>No distribution assumptions; captures fat tails in data</td>
+          <td>Limited by history; cannot predict unprecedented events</td>
+          <td>Portfolios with sufficient history</td>
+        </tr>
+        <tr>
+          <td><strong>CVaR / Expected Shortfall</strong></td>
+          <td>Measures average loss in tail; sub-additive (handles correlation properly)</td>
+          <td>Harder to calculate; requires more data</td>
+          <td>Professional risk management; regulatory compliance</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Why VaR Can Be Dangerously Misleading</strong>
+      <p>Nassim Taleb has been one of VaR&rsquo;s most vocal critics. His arguments: (1) VaR gives a false sense of security &mdash; it tells you about the boundary of normal losses but says nothing about catastrophic losses beyond that boundary. (2) VaR is not &ldquo;sub-additive&rdquo; &mdash; the VaR of a combined portfolio can actually be <em>higher</em> than the sum of individual VaRs, which violates common sense. (3) VaR optimizes for the &ldquo;seen&rdquo; risks and ignores &ldquo;unseen&rdquo; risks (Black Swans). Always supplement VaR with stress testing and CVaR.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>Practical VaR for Day Traders</h3>
+    <p>You do not need to compute VaR with a spreadsheet every morning. Instead, internalize these practical rules derived from VaR thinking:</p>
+    <ul class="feature-list">
+      <li><strong>Know your daily dollar risk</strong> &mdash; At any moment, you should know the maximum you could lose if all your stops hit simultaneously. This is your &ldquo;daily VaR.&rdquo;</li>
+      <li><strong>Plan for 2&ndash;3&times; your VaR</strong> &mdash; Gaps, slippage, and correlation spikes mean your actual worst-case loss is typically 2&ndash;3 times your calculated VaR. Budget accordingly.</li>
+      <li><strong>Set a daily loss limit</strong> &mdash; Your daily loss limit should be your informal VaR. If you lose that amount, stop trading for the day. No exceptions.</li>
+      <li><strong>Track realized vs. expected VaR</strong> &mdash; If your actual losses regularly exceed your calculated VaR, your model inputs (volatility, correlation) are wrong. Recalibrate.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 15.5 TAIL RISK HEDGING ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.5</span> Tail Risk Hedging Strategies</h2>
+  <p>VaR and CVaR measure tail risk; <strong>tail risk hedging</strong> is the practice of protecting against it. The core idea is simple: spend a small, predictable amount to insure against catastrophic losses that would otherwise end your trading career. Think of it as the fire insurance for your portfolio.</p>
+
+  <div class="concept-card reveal">
+    <h3>Systematic Put Buying</h3>
+    <p>The most straightforward tail hedge: allocate 1&ndash;2% of your account per month to buy out-of-the-money (OTM) SPY or SPX puts.</p>
+    <ul class="feature-list">
+      <li><strong>Strike selection:</strong> Buy puts 10&ndash;15% out of the money with 30&ndash;45 days to expiration. These are cheap enough to afford monthly but will increase 5&ndash;20x in a severe crash.</li>
+      <li><strong>Cost:</strong> Expect to &ldquo;waste&rdquo; this premium in 10 out of 12 months. The 1&ndash;2 months where the hedge pays off should more than compensate for the cumulative cost.</li>
+      <li><strong>When to roll:</strong> Roll puts monthly, 1 week before expiration. If VIX spikes above 30 and your puts are profitable, take partial profits &mdash; the premium has expanded and you can buy cheaper protection when VIX normalizes.</li>
+      <li><strong>Position size:</strong> The total portfolio hedge should protect against a 10&ndash;15% portfolio decline. Multiply your portfolio delta by 0.10&ndash;0.15 to determine how many put contracts you need.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>VIX Call Spreads as Portfolio Insurance</h3>
+    <p>An alternative to SPY puts: buy VIX call spreads. VIX call spreads benefit from volatility expansion without requiring a directional bet on the market.</p>
+    <ul class="feature-list">
+      <li><strong>Structure:</strong> Buy VIX calls at a strike of 20&ndash;25, sell calls at 40&ndash;50. Net cost is typically $1.00&ndash;$3.00 per spread.</li>
+      <li><strong>Payoff:</strong> If VIX spikes from 15 to 35 (a moderate crash), the spread can pay $10&ndash;$15, a 5&ndash;10x return on premium.</li>
+      <li><strong>Advantage over puts:</strong> VIX call spreads are cheaper than SPY puts for the same notional protection, and they benefit even if the market drops gradually (unlike puts, which need a sharp move before theta decay).</li>
+      <li><strong>Disadvantage:</strong> VIX options have their own complexities (they are priced off VIX futures, not spot VIX). VIX can spike and your calls may not move as much as expected if the term structure is in contango.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>When to Hedge vs. When to Skip</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>Hedge?</th>
+          <th>Reasoning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>VIX below 15, market calm</td>
+          <td><strong>Yes</strong> &mdash; this is when hedges are cheapest</td>
+          <td>Insurance is cheapest when no one thinks they need it. Buy protection when others are complacent.</td>
+        </tr>
+        <tr>
+          <td>VIX 15&ndash;25, normal conditions</td>
+          <td><strong>Moderate</strong> &mdash; smaller hedge</td>
+          <td>Protection is moderately priced. Maintain a baseline hedge but do not overpay.</td>
+        </tr>
+        <tr>
+          <td>VIX above 30, elevated fear</td>
+          <td><strong>Take profits on existing hedges</strong></td>
+          <td>Hedges are expensive to initiate at high VIX. If you already have them, monetize. Wait for VIX to normalize before reloading.</td>
+        </tr>
+        <tr>
+          <td>Concentrated portfolio</td>
+          <td><strong>Yes</strong> &mdash; larger hedge</td>
+          <td>A portfolio concentrated in one sector or highly correlated positions has elevated tail risk and needs more insurance.</td>
+        </tr>
+        <tr>
+          <td>Fully diversified, small positions</td>
+          <td><strong>Optional</strong> &mdash; diversification is its own hedge</td>
+          <td>If no single position exceeds 2% risk and sectors are balanced, diversification provides natural tail protection.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>The Nassim Taleb Approach</strong>
+      <p>Nassim Taleb&rsquo;s Universa fund systematically buys deep OTM puts, accepting small, predictable losses in exchange for massive payoffs during tail events. The fund gained 3,612% in March 2020 during the COVID crash. While this extreme approach is not suitable for most day traders, the principle &mdash; <strong>spend a small, known amount to protect against unknown, catastrophic losses</strong> &mdash; is the foundation of robust risk management. Even allocating 1% of your account to tail hedges can make the difference between surviving a crash and being wiped out.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 15.6 DRAWDOWN MANAGEMENT ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.6</span> Drawdown Management Science</h2>
+  <p>Drawdowns are the silent killers of trading careers. Not because the losses are unrecoverable mathematically, but because they are unrecoverable <em>psychologically</em>. Understanding drawdown science &mdash; the mathematics of how drawdowns compound, how long recovery takes, and when to modify your approach &mdash; is the difference between a career trader and someone who blows up in year two.</p>
+
+  <div class="concept-card">
+    <h3>Maximum Drawdown vs. Average Drawdown</h3>
+    <p><strong>Maximum drawdown (MDD)</strong> is the largest peak-to-trough decline in your equity curve. <strong>Average drawdown</strong> is the mean of all drawdown periods. Both matter, but they tell different stories:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Drawdown %</th>
+          <th>Gain Needed to Recover</th>
+          <th>Recovery Difficulty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5%</td>
+          <td>5.3%</td>
+          <td style="color:#10b981;font-weight:700">Easy</td>
+        </tr>
+        <tr>
+          <td>10%</td>
+          <td>11.1%</td>
+          <td style="color:#10b981;font-weight:700">Manageable</td>
+        </tr>
+        <tr>
+          <td>20%</td>
+          <td>25.0%</td>
+          <td style="color:#f59e0b;font-weight:700">Challenging</td>
+        </tr>
+        <tr>
+          <td>30%</td>
+          <td>42.9%</td>
+          <td style="color:#f59e0b;font-weight:700">Difficult</td>
+        </tr>
+        <tr>
+          <td>40%</td>
+          <td>66.7%</td>
+          <td style="color:#ef4444;font-weight:700">Very Difficult</td>
+        </tr>
+        <tr>
+          <td>50%</td>
+          <td>100.0%</td>
+          <td style="color:#ef4444;font-weight:700">Severe</td>
+        </tr>
+        <tr>
+          <td>75%</td>
+          <td>300.0%</td>
+          <td style="color:#ef4444;font-weight:700">Catastrophic</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>The asymmetry is devastating: a 50% loss requires a 100% gain just to get back to breakeven. This mathematical reality is why drawdown management is the single most important skill for long-term survival.</p>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Equity Curve with Progressive Drawdown Management</h3>
+    <svg viewBox="0 0 800 380" width="100%" style="max-width:800px">
+      <!-- Axes -->
+      <line x1="60" y1="20" x2="60" y2="340" stroke="#475569" stroke-width="1"/>
+      <line x1="60" y1="340" x2="760" y2="340" stroke="#475569" stroke-width="1"/>
+
+      <!-- Y-axis labels -->
+      <text x="55" y="340" text-anchor="end" fill="#94a3b8" font-size="10">$0</text>
+      <text x="55" y="260" text-anchor="end" fill="#94a3b8" font-size="10">$25K</text>
+      <text x="55" y="180" text-anchor="end" fill="#94a3b8" font-size="10">$50K</text>
+      <text x="55" y="100" text-anchor="end" fill="#94a3b8" font-size="10">$75K</text>
+      <text x="55" y="30" text-anchor="end" fill="#94a3b8" font-size="10">$100K</text>
+
+      <!-- Peak line -->
+      <line x1="60" y1="80" x2="760" y2="80" stroke="#3b82f6" stroke-width="0.5" stroke-dasharray="6,3" opacity="0.4"/>
+      <text x="762" y="76" fill="#3b82f6" font-size="9" opacity="0.6">Peak</text>
+
+      <!-- Drawdown zones -->
+      <!-- 5% DD zone -->
+      <rect x="60" y="80" width="700" height="16" fill="#f59e0b" fill-opacity="0.05"/>
+      <text x="762" y="92" fill="#f59e0b" font-size="8" opacity="0.5">&minus;5%</text>
+      <!-- 10% DD zone -->
+      <rect x="60" y="96" width="700" height="16" fill="#f59e0b" fill-opacity="0.08"/>
+      <text x="762" y="108" fill="#f59e0b" font-size="8" opacity="0.6">&minus;10%</text>
+      <!-- 20% DD zone -->
+      <rect x="60" y="112" width="700" height="32" fill="#ef4444" fill-opacity="0.05"/>
+      <text x="762" y="132" fill="#ef4444" font-size="8" opacity="0.6">&minus;20%</text>
+
+      <!-- Equity curve WITHOUT management (blows up) -->
+      <polyline points="60,260 100,230 150,195 200,160 250,130 290,100 330,80 370,110 400,145 430,185 460,230 490,275 520,310 550,330 580,338" stroke="#ef4444" stroke-width="2" fill="none" opacity="0.5" stroke-dasharray="4,2"/>
+      <text x="582" y="335" fill="#ef4444" font-size="9" opacity="0.7">No management</text>
+
+      <!-- Equity curve WITH management (recovers) -->
+      <polyline points="60,260 100,230 150,195 200,160 250,130 290,100 330,80 370,100 400,118 420,125 440,120 460,112 490,100 520,88 550,75 590,65 630,55 670,48 710,42 750,38" stroke="#10b981" stroke-width="2.5" fill="none"/>
+      <text x="752" y="34" fill="#10b981" font-size="9" font-weight="600">With management</text>
+
+      <!-- Annotation: size reduction point -->
+      <line x1="370" y1="100" x2="370" y2="55" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2"/>
+      <text x="372" y="50" fill="#f59e0b" font-size="9" font-weight="600">Cut size 50%</text>
+
+      <!-- Annotation: resume point -->
+      <line x1="490" y1="100" x2="490" y2="55" stroke="#10b981" stroke-width="1" stroke-dasharray="2"/>
+      <text x="492" y="50" fill="#10b981" font-size="9" font-weight="600">New highs &rarr; restore size</text>
+
+      <!-- X-axis -->
+      <text x="400" y="365" text-anchor="middle" fill="#94a3b8" font-size="11">Time (Trading Days)</text>
+    </svg>
+  </div>
+
+  <div class="concept-card">
+    <h3>Progressive Position Sizing Protocol</h3>
+    <p>Rather than using a fixed position size regardless of account health, professional traders scale their size based on where they are relative to their equity peak. This is sometimes called &ldquo;anti-martingale&rdquo; sizing:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Drawdown Level</th>
+          <th>Position Size Adjustment</th>
+          <th>Rationale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0&ndash;5% from peak</td>
+          <td>100% normal size</td>
+          <td>Normal fluctuation; trade with full conviction</td>
+        </tr>
+        <tr>
+          <td>5&ndash;10% from peak</td>
+          <td>75% of normal size</td>
+          <td>Yellow zone; reduce risk to slow the bleeding</td>
+        </tr>
+        <tr>
+          <td>10&ndash;15% from peak</td>
+          <td>50% of normal size</td>
+          <td>Orange zone; preserve capital for recovery</td>
+        </tr>
+        <tr>
+          <td>15&ndash;20% from peak</td>
+          <td>25% of normal size</td>
+          <td>Red zone; minimal trading, maximum review</td>
+        </tr>
+        <tr>
+          <td>20%+ from peak</td>
+          <td>STOP trading live</td>
+          <td>Go to paper trading; conduct full strategy audit</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The logic is simple but powerful: by reducing size as you draw down, you slow the drawdown&rsquo;s acceleration. A 20% drawdown at full size might only become a 12% drawdown with progressive scaling. More importantly, you preserve capital so that when your edge returns, you have enough to recover.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Recovery Time Analysis</h3>
+    <p>Beyond the magnitude of drawdowns, recovery <em>time</em> is critically important. A system with a 15% max drawdown that recovers in 2 weeks is far better than one with a 10% max drawdown that takes 3 months to recover.</p>
+    <ul class="feature-list">
+      <li><strong>Track your average recovery time</strong> &mdash; How many trading days does it take to make a new equity high after each drawdown?</li>
+      <li><strong>Set a time-based stop</strong> &mdash; If you have been in drawdown for more than 2&times; your average recovery time, something has changed. Stop and review.</li>
+      <li><strong>Recovery time increases non-linearly with drawdown depth</strong> &mdash; A 10% drawdown might take 20 days to recover. A 20% drawdown might take 80 days. A 30% drawdown might take 200 days. The relationship is roughly exponential.</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The 20% Rule</strong>
+      <p>If you ever hit a 20% drawdown from peak, stop trading with real money immediately. No exceptions, no &ldquo;I&rsquo;ll make it back.&rdquo; Switch to paper trading, conduct a full strategy audit, and do not return to live trading until you have identified what changed and proven on paper that your system still works. This single rule has saved more trading careers than any other.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 15.7 PERFORMANCE ATTRIBUTION ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.7</span> Performance Attribution: Dissecting Your P&amp;L</h2>
+  <p>Performance attribution is the process of decomposing your trading results to understand <em>where</em> your edge comes from &mdash; and equally important, where it does not. Just as a doctor runs blood tests to diagnose a patient, you must run your P&amp;L through multiple analytical lenses to separate skill from luck, real edge from fortunate timing.</p>
+
+  <div class="concept-card">
+    <h3>The Five Lenses of Attribution</h3>
+
+    <h4>1. By Strategy</h4>
+    <p>If you trade multiple setups (breakouts, pullbacks, reversals, gap plays), separate your P&amp;L by strategy type. Most traders discover that 70&ndash;80% of their profits come from just one or two strategies, while the rest are breakeven or losing. This is the Pareto principle at work. <strong>Cut the losers; focus on the winners.</strong></p>
+
+    <h4>2. By Time of Day</h4>
+    <p>Break your results into time blocks: pre-market (4:00&ndash;9:30), opening drive (9:30&ndash;10:30), mid-morning (10:30&ndash;12:00), lunch (12:00&ndash;14:00), and power hour (14:00&ndash;16:00). Most day traders find their edge is concentrated in the opening 60&ndash;90 minutes. Afternoon trades often have lower win rates and worse risk/reward.</p>
+
+    <h4>3. By Market Condition</h4>
+    <p>Classify each trading day as trending, range-bound, or volatile, and then analyze your performance in each regime. A breakout trader may be highly profitable in trending markets but give it all back in ranges. A mean-reversion trader may thrive in ranges but get destroyed in trends. Knowing which conditions favor your approach lets you adjust size or sit out when conditions are unfavorable.</p>
+
+    <h4>4. By Holding Period</h4>
+    <p>Are your quick scalps (under 5 minutes) profitable? What about your swing holds (30+ minutes)? Separate P&amp;L by holding duration. You may find that your best trades are the ones you hold the longest, or the opposite. Let the data tell you your optimal holding period.</p>
+
+    <h4>5. By Market Cap / Sector</h4>
+    <p>Do you trade small-caps and large-caps equally well? Do you have an edge in tech but lose money in financials? Sector and size attribution reveals hidden strengths and weaknesses that aggregated P&amp;L masks.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Is Your Edge Real? Statistical Significance Testing</h3>
+    <p>A positive track record does not necessarily mean you have an edge. It might be luck. Here is how to test whether your results are statistically significant:</p>
+
+    <h4>The t-Test for Trading Results</h4>
+    <p>The t-statistic measures how many standard errors your average trade return is above zero:</p>
+
+    <div class="info-box info">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <div class="info-box-content">
+        <strong>t-Statistic Formula</strong>
+        <p><strong>t = (Average Trade P&amp;L) / (Standard Deviation of Trade P&amp;L / &radic;N)</strong></p>
+        <p>Where N = number of trades. A t-statistic above 2.0 indicates your results are statistically significant at the 95% confidence level (roughly speaking, there is less than a 5% probability that your profits are due to chance).</p>
+      </div>
+    </div>
+
+    <h4>Example Calculation</h4>
+    <p>Over 150 trades: average P&amp;L per trade = $45, standard deviation = $320.</p>
+    <p>t = $45 / ($320 / &radic;150) = $45 / $26.13 = <strong>1.72</strong></p>
+    <p>A t-statistic of 1.72 is below the 2.0 threshold. Despite being profitable, you cannot yet conclude with confidence that your edge is real. You need more trades, a higher average win, or less variance. This is humbling but essential &mdash; many traders trade on &ldquo;edges&rdquo; that are nothing more than noise.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>t-Statistic</th>
+          <th>Confidence Level</th>
+          <th>Interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&lt; 1.0</td>
+          <td>&lt; 68%</td>
+          <td>No evidence of edge &mdash; likely noise</td>
+        </tr>
+        <tr>
+          <td>1.0&ndash;1.65</td>
+          <td>68&ndash;90%</td>
+          <td>Weak evidence &mdash; needs more data</td>
+        </tr>
+        <tr>
+          <td>1.65&ndash;2.0</td>
+          <td>90&ndash;95%</td>
+          <td>Suggestive but not conclusive</td>
+        </tr>
+        <tr>
+          <td>2.0&ndash;3.0</td>
+          <td>95&ndash;99%</td>
+          <td>Statistically significant edge</td>
+        </tr>
+        <tr>
+          <td>&gt; 3.0</td>
+          <td>&gt; 99%</td>
+          <td>Strong evidence of genuine edge</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Beware of Data Mining Bias</strong>
+      <p>If you test 20 different strategies and find one that is profitable, that is not a discovery &mdash; that is data mining. With 20 tests, you expect one to be &ldquo;significant&rdquo; at the 95% level purely by chance. The Bonferroni correction and other multiple-comparison adjustments are necessary when you have tested many hypotheses. This is one of the most common traps in quantitative trading &mdash; and it is why most &ldquo;backtested&rdquo; strategies fail in live trading.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 15.8 SCALING YOUR TRADING BUSINESS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.8</span> Scaling Your Trading Business</h2>
+  <p>If you have developed a consistent, statistically validated edge, the next question becomes: how do you scale? Moving from a $25,000 account to a $100,000+ operation involves more than just adding zeros. It requires strategic thinking about capital allocation, tax optimization, and business structure.</p>
+
+  <div class="concept-card">
+    <h3>When to Increase Size</h3>
+    <p>Most traders increase size at the worst possible time &mdash; after a winning streak, driven by overconfidence. The professional approach is systematic:</p>
+    <ul class="feature-list">
+      <li><strong>Minimum 6 months of profitability</strong> &mdash; Not just net positive, but consistent. Your monthly Sharpe ratio should be stable.</li>
+      <li><strong>Statistical significance</strong> &mdash; A t-statistic above 2.0 on at least 200 trades. You have proven your edge is real, not lucky.</li>
+      <li><strong>Manageable drawdowns</strong> &mdash; Your max drawdown should be under 15%. If you cannot manage risk at small size, bigger size will amplify the problem.</li>
+      <li><strong>Increase incrementally</strong> &mdash; Never more than 25&ndash;50% increase at a time. Go from 100 shares to 125, then to 150, observing your psychological response at each level.</li>
+      <li><strong>Use a &ldquo;ratchet&rdquo; system</strong> &mdash; Increase size when you make new equity highs. Decrease size during drawdowns. This naturally limits your risk during bad periods and compounds your winners.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Adding Strategies vs. Adding Capital</h3>
+    <p>There are two ways to grow: trade larger positions with your existing strategy, or add new strategies. Both have tradeoffs:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Approach</th>
+          <th>Pros</th>
+          <th>Cons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Bigger Size, Same Strategy</strong></td>
+          <td>Simple; no new learning curve; compounds directly</td>
+          <td>Capacity limits (slippage increases); single point of failure; psychological pressure scales with dollars</td>
+        </tr>
+        <tr>
+          <td><strong>New Strategies, Same Size</strong></td>
+          <td>Diversifies edge; reduces correlation; smoother equity curve</td>
+          <td>More complex; requires mastering new setups; tracking multiple strategies is mentally taxing</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The optimal path for most traders: <strong>first, increase size on your best strategy to your comfort limit. Then, add one new strategy at a time, starting with small size.</strong> Never add a new strategy without paper trading it for at least 50 trades alongside your live strategy.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Tax Optimization for Active Traders</h3>
+    <p>Taxes can be a major drag on trading profits. Understanding the tax landscape is essential for scaling:</p>
+
+    <h4>Trader Tax Status (TTS)</h4>
+    <p>The IRS distinguishes between &ldquo;investors&rdquo; and &ldquo;traders.&rdquo; Qualifying for Trader Tax Status opens up significant benefits:</p>
+    <ul class="feature-list">
+      <li><strong>Business expense deductions</strong> &mdash; Platform fees, data feeds, education, computer equipment, and home office expenses become deductible.</li>
+      <li><strong>No wash sale limitations</strong> (with Section 475 election) &mdash; Investors face the wash sale rule, which disallows losses if you repurchase the same security within 30 days. Section 475 eliminates this problem entirely for qualifying traders.</li>
+      <li><strong>Section 475 Mark-to-Market election</strong> &mdash; All open positions are treated as if sold on December 31st. All gains and losses are ordinary (not capital), which means no $3,000 capital loss limitation. You can deduct your full trading losses against other income.</li>
+    </ul>
+
+    <h4>Qualifying for TTS</h4>
+    <p>There is no bright-line test, but the IRS considers:</p>
+    <ul class="feature-list">
+      <li>Frequency of trades (generally 500+ trades per year, or 4+ trades per day on average)</li>
+      <li>Average holding period (primarily short-term &mdash; day trades and swing trades of a few days)</li>
+      <li>Intent to profit from short-term price movements (not dividends or long-term appreciation)</li>
+      <li>Substantial time devoted to trading (treated as a business, not a hobby)</li>
+    </ul>
+
+    <h4>Business Entity Considerations</h4>
+    <p>Many profitable traders form an entity for additional benefits:</p>
+    <ul class="feature-list">
+      <li><strong>S-Corporation</strong> &mdash; Can reduce self-employment tax by splitting income between salary and distributions. Popular for consistent six-figure traders.</li>
+      <li><strong>LLC taxed as S-Corp</strong> &mdash; Combines the flexibility of an LLC with S-Corp tax benefits.</li>
+      <li><strong>Solo 401(k)</strong> &mdash; As a self-employed trader, you can contribute up to $69,000 (2024) annually to a Solo 401(k), sheltering significant income from taxes.</li>
+    </ul>
+
+    <div class="info-box danger">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      <div class="info-box-content">
+        <strong>Consult a Tax Professional</strong>
+        <p>Tax law is complex and changes frequently. The information above is for educational purposes only. Before making any tax elections (especially Section 475, which is irrevocable for the tax year once made), consult with a CPA or tax attorney who specializes in trader taxation. Firms like GreenTraderTax specialize in this area. The cost of professional tax advice typically pays for itself many times over.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 15.9 THE PROP FIRM PATH ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.9</span> The Prop Firm Path</h2>
+  <p>Proprietary trading firms offer an alternative path for skilled traders who want to trade larger capital without risking their own. The modern prop firm landscape has evolved significantly, with online evaluation-based firms now making funded trading accessible to anyone with demonstrable skill.</p>
+
+  <div class="concept-card">
+    <h3>How Modern Prop Firms Work</h3>
+    <p>The current prop firm model generally follows this pattern:</p>
+
+    <ol>
+      <li><strong>Evaluation Phase</strong> &mdash; You pay a fee ($100&ndash;$500+) to take a simulated trading challenge. You must hit a profit target (typically 8&ndash;10%) while staying within drawdown limits (typically 5&ndash;10% daily, 8&ndash;12% total) within a time frame (usually 30&ndash;60 days).</li>
+      <li><strong>Verification Phase</strong> &mdash; Some firms require a second, more conservative evaluation phase with lower profit targets to confirm consistency.</li>
+      <li><strong>Funded Account</strong> &mdash; Upon passing, you receive a funded account ($25K&ndash;$200K+). You trade the firm&rsquo;s capital and split profits (typically 75&ndash;90% to you, 10&ndash;25% to the firm).</li>
+      <li><strong>Scaling</strong> &mdash; Consistent performers can receive larger allocations over time, sometimes reaching $500K&ndash;$1M+ in trading capital.</li>
+    </ol>
+  </div>
+
+  <div class="concept-card">
+    <h3>Major Prop Firms Compared</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Firm</th>
+          <th>Account Sizes</th>
+          <th>Profit Split</th>
+          <th>Eval Cost</th>
+          <th>Key Rules</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FTMO</strong></td>
+          <td>$10K&ndash;$200K</td>
+          <td>80&ndash;90%</td>
+          <td>$155&ndash;$1,080</td>
+          <td>10% profit target, 5% daily / 10% total DD</td>
+        </tr>
+        <tr>
+          <td><strong>Topstep</strong></td>
+          <td>$50K&ndash;$150K</td>
+          <td>90%</td>
+          <td>$165&ndash;$375/mo</td>
+          <td>Futures-focused; trailing max DD</td>
+        </tr>
+        <tr>
+          <td><strong>Apex Trader Funding</strong></td>
+          <td>$25K&ndash;$300K</td>
+          <td>90&ndash;100%</td>
+          <td>$147&ndash;$657/mo</td>
+          <td>Futures; generous DD rules</td>
+        </tr>
+        <tr>
+          <td><strong>The 5%ers</strong></td>
+          <td>$20K&ndash;$4M</td>
+          <td>50&ndash;100%</td>
+          <td>$235&ndash;$850</td>
+          <td>Scaling plan; lower initial split, grows over time</td>
+        </tr>
+        <tr>
+          <td><strong>MyFundedFX</strong></td>
+          <td>$5K&ndash;$300K</td>
+          <td>80%</td>
+          <td>$50&ndash;$550</td>
+          <td>No time limit on evaluation</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><em>Note: Firm terms and availability change frequently. Always verify current rules directly with each firm before evaluating.</em></p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Pros and Cons of Funded Accounts</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Pros</th>
+          <th>Cons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Trade larger capital than you could fund yourself</td>
+          <td>Evaluation fees add up if you fail repeatedly</td>
+        </tr>
+        <tr>
+          <td>Limited personal financial risk (your max loss is the eval fee)</td>
+          <td>Strict daily loss limits can force premature stop-outs</td>
+        </tr>
+        <tr>
+          <td>Forces disciplined risk management</td>
+          <td>Some firms have restrictive rules (no news trading, no overnight holds)</td>
+        </tr>
+        <tr>
+          <td>Potential path to real institutional capital</td>
+          <td>Profit splits reduce your take-home per dollar of profit</td>
+        </tr>
+        <tr>
+          <td>No PDT rule concerns (simulated or firm capital)</td>
+          <td>Some firms are poorly capitalized or have slow payouts</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>What Prop Firms Look For</h3>
+    <p>Whether you are applying to an online evaluation firm or a traditional prop desk, successful firms look for the same core traits:</p>
+    <ul class="feature-list">
+      <li><strong>Consistency over home runs</strong> &mdash; Firms want to see steady daily P&amp;L, not huge swings. A trader who makes $200&ndash;$500/day consistently is far more valuable than one who makes $5,000 one day and loses $4,000 the next.</li>
+      <li><strong>Risk discipline</strong> &mdash; Never hitting or approaching daily loss limits. The best traders use 30&ndash;50% of their allocated risk, not 90%.</li>
+      <li><strong>Small losing days, manageable winning days</strong> &mdash; Your worst losing day should be roughly equal to or smaller than your average winning day. This shows you cut losses properly.</li>
+      <li><strong>Clean equity curve</strong> &mdash; Smooth, upward-sloping equity with shallow drawdowns. No spike-and-crash patterns.</li>
+      <li><strong>Process over outcome</strong> &mdash; Firms that interview candidates look for traders who can articulate their strategy, risk rules, and review process. &ldquo;I just feel the market&rdquo; is not an acceptable answer.</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The Smart Prop Firm Strategy</strong>
+      <p>Do not take a prop firm evaluation until you can pass the rules consistently in paper trading for at least 2&ndash;3 months. Track your paper results against the firm&rsquo;s rules (profit target, drawdown limits, daily loss limits). If you cannot pass the rules in simulation, you will not pass them with real evaluation pressure. Treat the evaluation fee as tuition &mdash; do not gamble on passing.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 15.10 CONTINUOUS IMPROVEMENT ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.10</span> Continuous Improvement Framework</h2>
+  <p>The Japanese concept of <strong>kaizen</strong> &mdash; continuous, incremental improvement &mdash; is the philosophy that separates great traders from good ones. Trading is not a skill you learn once and then execute forever. Markets evolve, your psychology shifts, and strategies degrade over time. The traders who thrive over decades are those who build systematic improvement processes into their routine.</p>
+
+  <div class="concept-card">
+    <h3>The Weekly Review Process (Every Friday/Weekend)</h3>
+    <p>Your weekly review should take 1&ndash;2 hours and follow a structured format. Van Tharp emphasized that <em>the review is where learning actually happens</em> &mdash; not during market hours.</p>
+    <ol>
+      <li><strong>P&amp;L Summary</strong> &mdash; Net P&amp;L for the week. Compare to your weekly average and your weekly goal.</li>
+      <li><strong>Trade-by-Trade Review</strong> &mdash; For each trade: Did you follow your plan? Rate your execution 1&ndash;10. What would you do differently?</li>
+      <li><strong>Best Trade / Worst Trade</strong> &mdash; Identify your best-executed trade (not highest P&amp;L) and your worst-executed trade (not biggest loss). Process matters more than outcome.</li>
+      <li><strong>Pattern Recognition</strong> &mdash; Are you seeing recurring mistakes? Recurring strengths? Log them.</li>
+      <li><strong>Market Conditions Assessment</strong> &mdash; Was this a good week for your strategy? Was market volatility/trend favorable? Did you correctly identify the regime?</li>
+      <li><strong>One Action Item</strong> &mdash; Choose exactly one thing to improve next week. Not three, not five &mdash; one. Focus compounds.</li>
+    </ol>
+  </div>
+
+  <div class="concept-card">
+    <h3>The Monthly Strategy Audit</h3>
+    <p>Once per month, conduct a deeper analysis. This takes 2&ndash;4 hours:</p>
+
+    <ul class="feature-list">
+      <li><strong>Win rate trend</strong> &mdash; Is your win rate stable, improving, or declining? A declining win rate may indicate a changing market or strategy decay.</li>
+      <li><strong>Average win vs. average loss trend</strong> &mdash; Is your reward-to-risk ratio holding steady? Are you cutting winners shorter or letting losers run further?</li>
+      <li><strong>Expectancy calculation</strong> &mdash; Recalculate your system&rsquo;s expectancy (average $ per trade). Compare to the previous 3 months.</li>
+      <li><strong>Attribution analysis</strong> &mdash; Run the five-lens attribution from Section 15.6. Which strategies, times, and conditions are working? Which are not?</li>
+      <li><strong>Correlation check</strong> &mdash; Review whether your trades have become more correlated. During strong trends, traders tend to drift toward the same direction in every trade.</li>
+      <li><strong>Kelly recalculation</strong> &mdash; Update your Kelly fraction with the latest trade statistics. Has your optimal size changed?</li>
+      <li><strong>Drawdown analysis</strong> &mdash; What was your max drawdown this month? How does it compare to your Monte Carlo 95th percentile prediction?</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>The Quarterly Performance Review</h3>
+    <p>Every quarter, zoom out and assess your trading as a <em>business</em>:</p>
+
+    <ul class="feature-list">
+      <li><strong>ROI on time</strong> &mdash; Calculate your hourly rate. Divide quarterly net P&amp;L by total hours spent trading and studying. Is this better or worse than last quarter? Is trading a good use of your time versus alternatives?</li>
+      <li><strong>Strategy lifecycle</strong> &mdash; Is each strategy still working? Has any strategy shown 3+ months of declining expectancy? Should it be retired?</li>
+      <li><strong>Capital efficiency</strong> &mdash; Are you using your capital efficiently? Could you earn more with different allocation across strategies?</li>
+      <li><strong>Personal development</strong> &mdash; What skills have you improved? What books have you read? What new techniques have you tested?</li>
+      <li><strong>Goal assessment</strong> &mdash; Are you on track for your annual goals? Do the goals need adjusting based on actual performance data?</li>
+      <li><strong>Business operations</strong> &mdash; Tax planning, equipment/software upgrades, broker relationships, cost optimization.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Building Your Trader Development Roadmap</h3>
+    <p>Professional development for traders follows a progression. Where are you on this map?</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Typical Duration</th>
+          <th>Focus Area</th>
+          <th>Key Milestones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Foundation</strong></td>
+          <td>0&ndash;6 months</td>
+          <td>Education, paper trading, plan creation</td>
+          <td>Completed course; 100+ paper trades; written trading plan</td>
+        </tr>
+        <tr>
+          <td><strong>2. Novice Live</strong></td>
+          <td>6&ndash;18 months</td>
+          <td>Small size live trading, building journal data</td>
+          <td>First 200 live trades; breakeven or small profit; identified best setup</td>
+        </tr>
+        <tr>
+          <td><strong>3. Developing</strong></td>
+          <td>12&ndash;30 months</td>
+          <td>Refining edge, consistency, size management</td>
+          <td>3+ consecutive profitable months; t-stat above 2.0; stable risk management</td>
+        </tr>
+        <tr>
+          <td><strong>4. Competent</strong></td>
+          <td>2&ndash;4 years</td>
+          <td>Scaling up, adding strategies, optimization</td>
+          <td>6+ month profitable streak; scaled to meaningful size; passed prop firm eval</td>
+        </tr>
+        <tr>
+          <td><strong>5. Proficient</strong></td>
+          <td>3&ndash;7 years</td>
+          <td>Business structure, tax optimization, portfolio approach</td>
+          <td>Full-time income from trading; entity established; multiple strategies</td>
+        </tr>
+        <tr>
+          <td><strong>6. Expert</strong></td>
+          <td>5+ years</td>
+          <td>Teaching, mentoring, managing larger capital</td>
+          <td>Survived multiple market regimes; repeatable process; capital management</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>The Iteration Cycle: How to Actually Improve</h3>
+    <p>Improvement does not happen by wishing. It happens through a specific, repeatable cycle. This is the scientific method applied to trading:</p>
+
+    <ol>
+      <li><strong>Observe</strong> &mdash; Collect data from your journal. Notice patterns and anomalies. What is working? What is not?</li>
+      <li><strong>Hypothesize</strong> &mdash; Form a specific, testable hypothesis. Example: &ldquo;I lose money on breakout trades taken after 11:00 AM because volume fades.&rdquo;</li>
+      <li><strong>Test</strong> &mdash; Design a test. Trade the modified approach on paper for 30+ trades, or backtest against historical data. Keep all other variables constant.</li>
+      <li><strong>Analyze</strong> &mdash; Did the modification improve results? Use the same statistical tests from Section 15.6. Demand evidence, not feelings.</li>
+      <li><strong>Implement or Reject</strong> &mdash; If the data supports the change, implement it in your live plan. If not, reject it and try a different hypothesis.</li>
+      <li><strong>Monitor</strong> &mdash; After implementation, track the impact over the next 50&ndash;100 trades. Did real-world results match the test? Confirm and continue, or revert.</li>
+    </ol>
+
+    <p>As Ed Thorp writes in <em>A Man for All Markets</em>: <em>&ldquo;The key to success in any endeavor is to learn from mistakes &mdash; but you have to structure your process so that you actually detect and learn from them, rather than repeating them unconsciously.&rdquo;</em></p>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The One-Thing Rule</strong>
+      <p>Never try to fix more than one thing at a time. If you change your entry criteria, position sizing, and exit rules all at once, you will have no idea which change helped or hurt. Change one variable, measure the impact over 30+ trades, then move to the next. This is painfully slow &mdash; and it is the only way that works. As Van Tharp taught: <em>&ldquo;The speed of improvement comes from the depth of focus, not the breadth of change.&rdquo;</em></p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 15.11 QUIZ ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">15.11</span> Knowledge Check</h2>
+  <p>Test your understanding of advanced portfolio and risk optimization. These questions cover graduate-level concepts from this capstone module.</p>
+
+  <div class="quiz-container" data-quiz="m15-portfolio">
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "Your trading system has a 60% win rate and a 2:1 reward-to-risk ratio. What is the full Kelly fraction?",
+          "options": [
+            "20%",
+            "40%",
+            "30%",
+            "50%"
+          ],
+          "correct": 1,
+          "explanation": "Using f* = (bp - q) / b: f* = (2 \u00d7 0.60 - 0.40) / 2 = (1.20 - 0.40) / 2 = 0.80 / 2 = 0.40 or 40%. This is the full Kelly fraction. In practice, you would use quarter Kelly (10%) or at most half Kelly (20%) to account for estimation error and reduce drawdown severity."
+        },
+        {
+          "question": "In a Monte Carlo simulation of your trading system, the 5th percentile maximum drawdown is -28%. What does this tell you?",
+          "options": [
+            "Your average drawdown will be 28%",
+            "You will definitely experience a 28% drawdown",
+            "There is a 95% chance your max drawdown will be 28% or less \u2014 but a 5% chance it will be worse",
+            "Your system will fail 5% of the time"
+          ],
+          "correct": 2,
+          "explanation": "The 5th percentile in Monte Carlo represents the 'bad luck' boundary. It means that in 95 out of 100 simulated equity curves, the max drawdown was 28% or less. However, in 5 out of 100 simulations, it was worse than 28%. You should plan your position sizing to survive the 5th percentile scenario comfortably."
+        },
+        {
+          "question": "You are long AAPL, MSFT, and GOOGL simultaneously, risking 1% on each. During a tech selloff, what is the most accurate description of your risk?",
+          "options": [
+            "Your total risk is exactly 3% because you have three independent positions",
+            "Your effective risk is closer to a single 2.5-3% position because these stocks are highly correlated, especially during selloffs",
+            "Your risk is actually less than 3% because diversification always reduces risk",
+            "Correlation does not affect day trading positions because they are held for short periods"
+          ],
+          "correct": 1,
+          "explanation": "These are all large-cap tech stocks with high correlation (typically 0.70-0.85), and correlations spike even higher during stress events. Your three 'independent' positions behave almost like a single large position during a sector selloff. Effective portfolio heat is much closer to a concentrated 2.5-3% bet on tech than three independent 1% bets. This is why sector concentration limits are critical."
+        },
+        {
+          "question": "What is the primary advantage of Conditional VaR (CVaR / Expected Shortfall) over standard VaR?",
+          "options": [
+            "CVaR is simpler to calculate",
+            "CVaR tells you the average loss in the tail beyond the VaR threshold, revealing how bad losses get when they exceed VaR",
+            "CVaR assumes normal distributions, which is more accurate",
+            "CVaR eliminates tail risk entirely"
+          ],
+          "correct": 1,
+          "explanation": "Standard VaR tells you the boundary of the 'normal bad' zone (e.g., 'there is a 95% chance you will not lose more than $1,237'). But it says nothing about what happens in the worst 5% of cases. CVaR (Expected Shortfall) answers that critical question by averaging the losses in the tail. This is why regulators increasingly prefer CVaR \u2014 it captures tail risk that VaR ignores."
+        },
+        {
+          "question": "You are in a 12% drawdown from your equity peak. According to the progressive position sizing protocol, what should you do?",
+          "options": [
+            "Increase size to recover faster",
+            "Maintain 100% normal position size",
+            "Reduce to approximately 50% of normal position size",
+            "Stop trading entirely and switch to paper trading"
+          ],
+          "correct": 2,
+          "explanation": "A 12% drawdown falls in the 10-15% 'orange zone' of the progressive sizing protocol, which calls for 50% of normal size. This slows the bleeding and preserves capital for recovery. Increasing size during a drawdown (martingale thinking) is one of the most common paths to account destruction. You only stop trading entirely at 20%+ drawdown."
+        },
+        {
+          "question": "You have 150 trades with an average P&L of $45 and standard deviation of $320. Your t-statistic is 1.72. What is the correct interpretation?",
+          "options": [
+            "Your edge is proven and you should scale up immediately",
+            "Your results are profitable but not yet statistically significant at the 95% level \u2014 you need more data before concluding your edge is real",
+            "Your system is losing money and should be abandoned",
+            "The t-statistic is irrelevant for trading"
+          ],
+          "correct": 1,
+          "explanation": "A t-statistic of 1.72 falls below the 2.0 threshold for 95% confidence. This means there is roughly a 9% probability that your profits could be due to chance alone. You are profitable, which is promising, but you cannot yet conclude with statistical confidence that you have a real edge. You need more trades, a higher average win, or less variance to push the t-stat above 2.0."
+        },
+        {
+          "question": "Which of the following is the most important quality that proprietary trading firms look for in traders?",
+          "options": [
+            "Maximum single-day profit potential",
+            "Willingness to use maximum leverage",
+            "Consistent, steady daily P&L with disciplined risk management and shallow drawdowns",
+            "Trading the highest-volume stocks exclusively"
+          ],
+          "correct": 2,
+          "explanation": "Prop firms want consistency and risk discipline above all else. A trader who makes $200-$500/day reliably with small drawdowns is far more valuable than one who swings between $5,000 wins and $4,000 losses. Firms need predictable risk profiles to manage their overall book. Clean equity curves, small losing days, and never approaching daily loss limits are the hallmarks of a fundable trader."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="module-footer">
+  <button class="module-footer-btn" onclick="navigateTo(14)">&larr; Previous: Module 14</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo('home')">Back to Course Home &rarr;</button>
+</div>

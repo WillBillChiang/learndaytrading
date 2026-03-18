@@ -664,6 +664,9 @@ code {
   border-collapse: collapse;
   margin: var(--space-lg) 0;
   font-size: 0.9rem;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .data-table th {
@@ -977,10 +980,96 @@ code {
   .data-table td {
     padding: var(--space-sm);
   }
+
+  .module-footer-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .feature-list li {
+    padding-left: var(--space-lg);
+  }
+
+  .topbar {
+    padding: 0 var(--space-md);
+  }
+
+  .concept-card {
+    padding: var(--space-lg);
+  }
+
+  .info-box {
+    padding: var(--space-md);
+  }
+
+  .diagram-container {
+    padding: var(--space-md);
+  }
 }
 
 @media (max-width: 480px) {
   .content-area {
     padding: var(--space-md);
+  }
+
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.1rem; }
+  h4 { font-size: 1rem; }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  .hero-badge {
+    font-size: 0.7rem;
+  }
+
+  .module-footer-btn {
+    font-size: 0.85rem;
+    padding: var(--space-md);
+    min-height: 44px;
+  }
+
+  .feature-list li {
+    padding-left: var(--space-md);
+    font-size: 0.85rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+  }
+
+  .concept-card {
+    padding: var(--space-md);
+  }
+
+  .info-box {
+    flex-direction: column;
+    padding: var(--space-md);
+  }
+
+  .topbar {
+    padding: 0 var(--space-sm);
+    height: 50px;
+  }
+
+  .topbar-breadcrumb {
+    font-size: 0.75rem;
+  }
+
+  .module-header p {
+    font-size: 0.95rem;
+  }
+
+  .lesson-section h2 {
+    flex-wrap: wrap;
   }
 }

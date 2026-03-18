@@ -68,7 +68,7 @@ const Progress = {
   },
 
   getProgressPercent() {
-    return Math.round((this.getCompletedCount() / 10) * 100);
+    return Math.round((this.getCompletedCount() / 15) * 100);
   },
 
   // Quiz scores

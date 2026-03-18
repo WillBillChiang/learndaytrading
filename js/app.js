@@ -122,7 +122,12 @@ function updateBreadcrumb(module) {
       7: 'Day Trading Strategies',
       8: 'Tools of the Trade',
       9: 'Building Your Trading Plan',
-      10: 'Simulation & Final Exam'
+      10: 'Simulation & Final Exam',
+      11: 'Order Flow & Tape Reading',
+      12: 'Options for Day Traders',
+      13: 'Algorithmic & Quant Trading',
+      14: 'Market Regimes & Microstructure',
+      15: 'Advanced Risk & Portfolio'
     };
     bc.innerHTML = `Module ${module} · <span>${names[module]}</span>`;
   }
@@ -172,23 +177,31 @@ function showToast(message, type = 'success') {
 // --- Home Page ---
 function getHomePage() {
   const modules = [
-    { num: 1, title: 'How Markets Really Work', desc: 'Market microstructure, order types, and the bid/ask spread.', icon: 'building', color: '#3b82f6' },
-    { num: 2, title: 'Reading Candlesticks', desc: 'Candlestick anatomy and key reversal/continuation patterns.', icon: 'candle', color: '#f59e0b' },
-    { num: 3, title: 'Chart Patterns & Structure', desc: 'Support, resistance, trendlines, and classic chart formations.', icon: 'chart', color: '#8b5cf6' },
-    { num: 4, title: 'Technical Indicators', desc: 'Moving averages, RSI, MACD, Bollinger Bands, and VWAP.', icon: 'indicator', color: '#06b6d4' },
-    { num: 5, title: 'Risk Management', desc: 'Position sizing, stop losses, and protecting your capital.', icon: 'shield', color: '#10b981' },
-    { num: 6, title: 'Trading Psychology', desc: 'Cognitive biases, emotional discipline, and mental frameworks.', icon: 'brain', color: '#ec4899' },
-    { num: 7, title: 'Day Trading Strategies', desc: 'Momentum, breakout, ORB, scalping, and mean reversion.', icon: 'strategy', color: '#f97316' },
-    { num: 8, title: 'Tools of the Trade', desc: 'Level 2, time & sales, scanners, and platform essentials.', icon: 'tools', color: '#14b8a6' },
-    { num: 9, title: 'Building Your Trading Plan', desc: 'Define your edge, routines, and trade journal structure.', icon: 'plan', color: '#a855f7' },
-    { num: 10, title: 'Simulation & Final Exam', desc: 'Practice with a live simulator and test everything you learned.', icon: 'rocket', color: '#ef4444' }
+    { num: 1, title: 'How Markets Really Work', desc: 'Market microstructure, order types, dark pools, PFOF, and HFT.', icon: 'building', color: '#3b82f6' },
+    { num: 2, title: 'Reading Candlesticks', desc: 'Candlestick anatomy, volume confirmation, and multi-timeframe analysis.', icon: 'candle', color: '#f59e0b' },
+    { num: 3, title: 'Chart Patterns & Structure', desc: 'Support, resistance, harmonics, Wyckoff, and Smart Money Concepts.', icon: 'chart', color: '#8b5cf6' },
+    { num: 4, title: 'Technical Indicators', desc: 'Moving averages, RSI, MACD, Volume Profile, and market internals.', icon: 'indicator', color: '#06b6d4' },
+    { num: 5, title: 'Risk Management', desc: 'Position sizing, Kelly Criterion, Monte Carlo, and correlation risk.', icon: 'shield', color: '#10b981' },
+    { num: 6, title: 'Trading Psychology', desc: 'Kahneman\'s dual systems, flow state, biases, and mental resilience.', icon: 'brain', color: '#ec4899' },
+    { num: 7, title: 'Day Trading Strategies', desc: 'VWAP strategies, advanced ORB, order flow scalping, and gap trading.', icon: 'strategy', color: '#f97316' },
+    { num: 8, title: 'Tools of the Trade', desc: 'Level 2, tape reading, algorithmic orders, and journal software.', icon: 'tools', color: '#14b8a6' },
+    { num: 9, title: 'Building Your Trading Plan', desc: 'Regime-based plans, edge tracking, and tax optimization.', icon: 'plan', color: '#a855f7' },
+    { num: 10, title: 'Simulation & Final Exam', desc: 'Advanced scenarios, 30-day challenge, and comprehensive final exam.', icon: 'rocket', color: '#ef4444' },
+    { num: 11, title: 'Order Flow & Tape Reading', desc: 'DOM trading, footprint charts, volume delta, and auction theory.', icon: 'orderflow', color: '#0ea5e9', advanced: true },
+    { num: 12, title: 'Options for Day Traders', desc: 'Greeks, GEX, options flow, 0DTE trading, and IV analysis.', icon: 'options', color: '#d946ef', advanced: true },
+    { num: 13, title: 'Algorithmic & Quant Trading', desc: 'Backtesting, statistical edge, ML in trading, and building bots.', icon: 'algo', color: '#6366f1', advanced: true },
+    { num: 14, title: 'Market Regimes & Microstructure', desc: 'VIX regimes, market internals, dark pools, and macro events.', icon: 'regime', color: '#f43f5e', advanced: true },
+    { num: 15, title: 'Advanced Risk & Portfolio', desc: 'Kelly Criterion, Monte Carlo, VaR, scaling, and prop firms.', icon: 'portfolio', color: '#84cc16', advanced: true }
   ];
 
-  const moduleCards = modules.map(m => {
+  const coreModules = modules.filter(m => !m.advanced);
+  const advancedModules = modules.filter(m => m.advanced);
+
+  const renderCard = m => {
     const completed = Progress.isModuleCompleted(m.num);
     return `
       <div class="module-card reveal hover-lift" onclick="navigateTo(${m.num})">
-        <div class="module-card-number">MODULE ${String(m.num).padStart(2, '0')}</div>
+        <div class="module-card-number">${m.advanced ? 'ADVANCED ' : ''}MODULE ${String(m.num).padStart(2, '0')}</div>
         <div class="module-card-icon" style="background: ${m.color}15; color: ${m.color}">
           ${getModuleIcon(m.icon)}
         </div>
@@ -198,13 +211,26 @@ function getHomePage() {
           <span class="module-card-status ${completed ? 'completed' : ''}">${completed ? '✓ Completed' : 'Start →'}</span>
         </div>
       </div>`;
-  }).join('');
+  };
+
+  const moduleCards = coreModules.map(renderCard).join('') +
+    `<div class="module-grid-divider reveal" style="grid-column:1/-1;text-align:center;padding:2rem 0 1rem">
+      <div style="display:inline-flex;align-items:center;gap:0.75rem;color:#64748b;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em">
+        <div style="width:60px;height:1px;background:linear-gradient(to right,transparent,#334155)"></div>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Advanced Modules
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <div style="width:60px;height:1px;background:linear-gradient(to left,transparent,#334155)"></div>
+      </div>
+      <p style="color:#475569;font-size:0.8rem;margin-top:0.5rem">State-of-the-art strategies and research for serious traders</p>
+    </div>` +
+    advancedModules.map(renderCard).join('');
 
   return `
     <div class="hero">
       <div class="hero-badge">
         <span class="pulse-dot"></span>
-        10 Interactive Modules
+        15 Interactive Modules
       </div>
       <h1>Master <span class="gradient-text">Day Trading</span></h1>
       <p class="hero-description">
@@ -234,7 +260,7 @@ function getHomePage() {
 }
 
 function getNextModule() {
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 15; i++) {
     if (!Progress.isModuleCompleted(i)) return i;
   }
   return 1;
@@ -252,7 +278,12 @@ function getModuleIcon(type) {
     strategy: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>',
     tools: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
     plan: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>',
-    rocket: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>'
+    rocket: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>',
+    orderflow: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/><path d="M2 20h20"/></svg>',
+    options: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>',
+    algo: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>',
+    regime: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+    portfolio: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>'
   };
   return icons[type] || icons.chart;
 }

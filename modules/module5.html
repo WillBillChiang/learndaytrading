@@ -240,6 +240,79 @@
       <p>A common beginner mistake: wanting a bigger position so they move the stop closer. This defeats the entire purpose. Your stop loss should be placed at a technically meaningful level. Then your position size adjusts to accommodate the stop &mdash; never the other way around.</p>
     </div>
   </div>
+
+  <div class="concept-card reveal">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      ATR-Based Volatility-Adjusted Position Sizing
+    </h4>
+    <p>The basic position sizing formula uses a fixed-dollar stop distance. But a $2 stop on a stock with an Average True Range (ATR) of $1 is very different from a $2 stop on a stock with an ATR of $5. <strong>ATR-based position sizing</strong> automatically adjusts your share count based on the stock&rsquo;s current volatility, ensuring each trade carries approximately the same risk in volatility-adjusted terms.</p>
+    <p><strong>Formula:</strong> <code>Position Size = Account Risk $ / (N &times; ATR)</code></p>
+    <p>Where <strong>N</strong> is your ATR multiplier (typically 1.5&ndash;3x depending on your strategy&rsquo;s holding period and timeframe).</p>
+    <p><strong>Worked Example:</strong> $50,000 account, 1% risk ($500), stock ATR(14) = $2.50, using 2x ATR stop:</p>
+    <ul class="feature-list">
+      <li>Stop distance = 2 &times; $2.50 = $5.00</li>
+      <li>Position size = $500 / $5.00 = <strong>100 shares</strong></li>
+      <li>If the same stock&rsquo;s ATR rises to $5.00 (double the volatility): Stop = 2 &times; $5.00 = $10.00, Position = $500 / $10.00 = <strong>50 shares</strong></li>
+    </ul>
+    <p>Notice how the formula <em>automatically</em> halves your position size when volatility doubles. This is the power of volatility-adjusted sizing &mdash; it protects you in volatile markets and allows larger positions in calm markets.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Market Condition</th>
+          <th>Typical ATR</th>
+          <th>Fixed $2 Stop (Shares)</th>
+          <th>ATR-Based Stop (Shares)</th>
+          <th>Which Is Safer?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Calm (low vol)</td>
+          <td>$1.00</td>
+          <td>250 shares</td>
+          <td>250 shares (2x$1 stop)</td>
+          <td>Equivalent</td>
+        </tr>
+        <tr>
+          <td>Normal</td>
+          <td>$2.50</td>
+          <td>250 shares</td>
+          <td>100 shares (2x$2.50 stop)</td>
+          <td>ATR-based &mdash; fixed stop is too tight</td>
+        </tr>
+        <tr>
+          <td>Volatile (earnings, FOMC)</td>
+          <td>$5.00</td>
+          <td>250 shares</td>
+          <td>50 shares (2x$5 stop)</td>
+          <td>ATR-based &mdash; fixed stop guarantees being stopped out</td>
+        </tr>
+        <tr>
+          <td>Extreme (crash/squeeze)</td>
+          <td>$10.00</td>
+          <td>250 shares</td>
+          <td>25 shares (2x$10 stop)</td>
+          <td>ATR-based &mdash; fixed stop is suicidal</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card reveal">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Slippage Modeling in Position Sizing
+    </h4>
+    <p>Every position sizing formula assumes you get filled at your exact stop price. In reality, you often don&rsquo;t. <strong>Slippage</strong> &mdash; the difference between your intended fill price and your actual fill price &mdash; erodes your risk management. Fast-moving markets, low-liquidity stocks, and stop-market orders are the biggest culprits.</p>
+    <p><strong>Practical rule:</strong> Add a slippage buffer of <strong>0.5&ndash;1.0x ATR</strong> to your stop distance when calculating position size. This ensures your <em>actual</em> risk stays within your target even if slippage occurs.</p>
+    <p><strong>Example:</strong> If your ATR stop is $5.00 and you add a 0.5 ATR slippage buffer ($1.25), your effective stop distance becomes $6.25. Position size = $500 / $6.25 = 80 shares instead of 100. This small adjustment can prevent the frustrating reality of losing 1.5% on a trade that was supposed to risk only 1%.</p>
+    <ul class="feature-list">
+      <li><strong>Liquid large-caps (AAPL, MSFT, SPY):</strong> Use 0.25&ndash;0.5 ATR slippage buffer</li>
+      <li><strong>Mid-cap stocks ($1B&ndash;$10B market cap):</strong> Use 0.5&ndash;0.75 ATR slippage buffer</li>
+      <li><strong>Small-cap / low-float stocks:</strong> Use 1.0+ ATR slippage buffer &mdash; or consider using limit stops instead of market stops</li>
+    </ul>
+  </div>
 </div>
 
 <!-- =============================================
@@ -581,10 +654,510 @@
 </div>
 
 <!-- =============================================
-     5.9 Quiz: Risk Management
+     5.9 The Kelly Criterion
      ============================================= -->
 <div class="lesson-section reveal">
-  <h2><span class="section-number">5.9</span> Knowledge Check</h2>
+  <h2><span class="section-number">5.9</span> The Kelly Criterion</h2>
+
+  <p>So far we have discussed risking a fixed percentage per trade &mdash; typically 1%. But is there a mathematically <em>optimal</em> amount to risk? The answer is yes, and it was discovered by a Bell Labs scientist named <strong>John Kelly Jr.</strong> in 1956. The formula was later popularized for financial markets by <strong>Ed Thorp</strong>, a mathematics professor who first used it to beat blackjack (documented in his legendary book <em>Beat the Dealer</em>) and then applied it to Wall Street with extraordinary success.</p>
+
+  <p>The Kelly Criterion tells you the <strong>optimal fraction of your capital to risk</strong> on each bet to maximize the long-term geometric growth rate of your wealth. It is the mathematically proven sweet spot between risking too little (leaving money on the table) and risking too much (blowing up).</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      The Kelly Formula
+    </h4>
+    <p>The basic Kelly formula for trading is:</p>
+    <p style="text-align:center; font-size:1.3em; margin:1em 0;"><strong>Kelly % = (bp &minus; q) / b</strong></p>
+    <p>Where:</p>
+    <ul>
+      <li><strong>b</strong> = the ratio of average win to average loss (your reward-to-risk ratio)</li>
+      <li><strong>p</strong> = the probability of winning (your win rate)</li>
+      <li><strong>q</strong> = the probability of losing (1 &minus; p)</li>
+    </ul>
+    <p>Alternatively, this can be written as: <strong>Kelly % = p &minus; (q / b)</strong> which some traders find more intuitive. Both formulas produce the same result.</p>
+  </div>
+
+  <h3>Worked Example</h3>
+  <p>Suppose your trading system has these statistics based on 200+ trades:</p>
+  <ul>
+    <li><strong>Win rate (p):</strong> 55% = 0.55</li>
+    <li><strong>Loss rate (q):</strong> 45% = 0.45</li>
+    <li><strong>Average win / Average loss (b):</strong> 1.5 (you make $1.50 for every $1.00 you lose)</li>
+  </ul>
+  <p><strong>Kelly % = (1.5 &times; 0.55 &minus; 0.45) / 1.5 = (0.825 &minus; 0.45) / 1.5 = 0.375 / 1.5 = 0.25 = 25%</strong></p>
+  <p>Full Kelly says to risk 25% of your account per trade. That sounds insane &mdash; and in practice, it is.</p>
+
+  <h3>Why Full Kelly Is Too Aggressive</h3>
+  <p>The Kelly Criterion is mathematically optimal for maximizing long-term growth, but it assumes you know your exact edge with perfect precision. In reality:</p>
+  <ul class="feature-list">
+    <li><strong>Your statistics are estimated, not known:</strong> A 55% win rate based on 200 trades has significant statistical uncertainty. Your true win rate might be 50% or 60%.</li>
+    <li><strong>Markets change:</strong> The edge you measured last year may not exist next month. Regime changes can destroy strategies overnight.</li>
+    <li><strong>Drawdowns are brutal:</strong> Full Kelly produces equity swings of 50-80% drawdowns even when you have a genuine edge. Very few humans can psychologically endure this.</li>
+    <li><strong>It assumes infinite time horizon:</strong> Kelly maximizes terminal wealth over an infinite number of bets. You do not have infinite time or patience.</li>
+  </ul>
+  <p>As Ralph Vince demonstrated in <em>Portfolio Management Formulas</em>, even a slight overestimation of your edge when using full Kelly can turn a winning system into a losing one through over-betting. The penalty for over-betting is far more severe than the penalty for under-betting.</p>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>Full Kelly Is a Theoretical Ceiling, Not a Target</strong>
+      <p>Never use full Kelly in live trading. Even Ed Thorp himself &mdash; the man who popularized the formula &mdash; has said he rarely risked more than half Kelly. Full Kelly is the absolute maximum you should ever consider, and in practice you should stay well below it.</p>
+    </div>
+  </div>
+
+  <h3>Fractional Kelly: The Practical Solution</h3>
+  <p>Professional traders and fund managers use <strong>fractional Kelly</strong> &mdash; risking only a fraction of what the full Kelly formula recommends. This dramatically reduces volatility while sacrificing only a modest amount of return.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Kelly Fraction</th>
+        <th>Risk per Trade (Example)</th>
+        <th>Expected Growth</th>
+        <th>Max Drawdown Range</th>
+        <th>Practical Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Full Kelly (100%)</td>
+        <td>25.0%</td>
+        <td>Maximum (100%)</td>
+        <td>50&ndash;85%</td>
+        <td><span class="tag-red">Reckless &mdash; Do Not Use</span></td>
+      </tr>
+      <tr>
+        <td>Three-Quarter Kelly (75%)</td>
+        <td>18.75%</td>
+        <td>~94% of max</td>
+        <td>40&ndash;65%</td>
+        <td><span class="tag-red">Still Too Aggressive</span></td>
+      </tr>
+      <tr>
+        <td>Half Kelly (50%)</td>
+        <td>12.5%</td>
+        <td>~75% of max</td>
+        <td>25&ndash;40%</td>
+        <td><span class="tag-gold">Aggressive but Viable</span></td>
+      </tr>
+      <tr>
+        <td>Quarter Kelly (25%)</td>
+        <td>6.25%</td>
+        <td>~50% of max</td>
+        <td>10&ndash;20%</td>
+        <td><span class="tag-green">Conservative &amp; Recommended</span></td>
+      </tr>
+      <tr>
+        <td>Tenth Kelly (10%)</td>
+        <td>2.5%</td>
+        <td>~25% of max</td>
+        <td>5&ndash;10%</td>
+        <td><span class="tag-green">Very Safe</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>The Sweet Spot: Quarter to Half Kelly</strong>
+      <p>Most professional traders and quantitative fund managers use between quarter Kelly and half Kelly. At half Kelly, you capture roughly 75% of the theoretical maximum growth rate while cutting your worst-case drawdowns nearly in half. At quarter Kelly, you capture about 50% of maximum growth with very manageable drawdowns. For day traders, quarter Kelly (which often works out to roughly 1&ndash;3% risk per trade) aligns perfectly with the 1% rule discussed earlier in this module.</p>
+    </div>
+  </div>
+
+  <h3>Key Takeaways on the Kelly Criterion</h3>
+  <ul class="feature-list">
+    <li><strong>Calculate your Kelly percentage</strong> using your actual trading statistics (minimum 100+ trades for meaningful data).</li>
+    <li><strong>Never use full Kelly.</strong> Use quarter Kelly or half Kelly at most.</li>
+    <li><strong>Recalculate regularly</strong> as your statistics evolve over time.</li>
+    <li><strong>When in doubt, bet smaller.</strong> The penalty for under-betting is linear; the penalty for over-betting is catastrophic.</li>
+  </ul>
+</div>
+
+<!-- =============================================
+     5.10 Monte Carlo Simulation
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.10</span> Monte Carlo Simulation</h2>
+
+  <p>You have backtested your strategy and it looks profitable. Your win rate is solid, your risk/reward is good, and the equity curve goes up. But here is the uncomfortable truth: <strong>that backtest shows you only one possible path</strong> out of thousands. What if your losing trades had clustered differently? What if your biggest winners came at different times? Would you still have survived?</p>
+
+  <p><strong>Monte Carlo simulation</strong> answers these questions by taking your actual historical trade results and randomly reshuffling them thousands of times, generating thousands of alternative equity curves. Each curve represents one possible sequence of trades you <em>could have</em> experienced. The result is not a single equity curve but a <strong>probability distribution</strong> of outcomes.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M2 9h20"/><path d="M9 21V9"/></svg>
+      How Monte Carlo Simulation Works for Traders
+    </h4>
+    <p>The process is straightforward:</p>
+    <ol>
+      <li><strong>Collect your trade results:</strong> A list of all your individual trade P&amp;L values (e.g., +$150, -$100, +$200, -$95, &hellip;).</li>
+      <li><strong>Randomly resample with replacement:</strong> Draw trades at random from your list to create a new simulated sequence of the same length. Some trades will appear multiple times; others will be skipped.</li>
+      <li><strong>Build a simulated equity curve:</strong> Starting from your account balance, apply each randomly drawn trade sequentially.</li>
+      <li><strong>Repeat 1,000&ndash;10,000 times:</strong> Each repetition produces a different equity curve with a different drawdown profile and different final result.</li>
+      <li><strong>Analyze the distribution:</strong> Look at the median result, the 5th percentile (worst realistic case), the 95th percentile (best realistic case), and maximum drawdown across all simulations.</li>
+    </ol>
+  </div>
+
+  <h3>What Monte Carlo Simulation Reveals</h3>
+  <ul class="feature-list">
+    <li><strong>Probability of various drawdown levels:</strong> Instead of seeing the one drawdown from your backtest, you see the range of drawdowns you might experience. Maybe your backtest had a 15% max drawdown, but the simulation reveals a 10% chance of a 30%+ drawdown.</li>
+    <li><strong>Confidence intervals for returns:</strong> Rather than "my strategy returns 40% per year," you learn "there is a 90% probability my strategy returns between 15% and 65% per year."</li>
+    <li><strong>Statistical significance of your edge:</strong> If more than 5&ndash;10% of simulations result in a net loss, your edge may not be statistically robust.</li>
+    <li><strong>Ruin probability:</strong> The percentage of simulations where your account drops below a critical threshold (e.g., 50% drawdown). This is arguably the single most important output.</li>
+  </ul>
+
+  <h3>Simulated Equity Curves</h3>
+  <p>The diagram below illustrates how Monte Carlo simulation fans out from a single starting point. Each line represents one possible sequence of trades drawn from the same pool of results:</p>
+
+  <div class="diagram-container">
+    <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:700px;">
+      <!-- Background grid -->
+      <defs>
+        <linearGradient id="mcBg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(99,102,241,0.05)"/>
+          <stop offset="100%" stop-color="rgba(99,102,241,0)"/>
+        </linearGradient>
+      </defs>
+      <rect x="60" y="20" width="620" height="340" fill="url(#mcBg)" rx="4"/>
+      <!-- Axes -->
+      <line x1="60" y1="360" x2="680" y2="360" stroke="var(--text-secondary, #94a3b8)" stroke-width="1"/>
+      <line x1="60" y1="20" x2="60" y2="360" stroke="var(--text-secondary, #94a3b8)" stroke-width="1"/>
+      <!-- Y-axis labels -->
+      <text x="50" y="365" text-anchor="end" font-size="11" fill="var(--text-secondary, #94a3b8)">$0</text>
+      <text x="50" y="275" text-anchor="end" font-size="11" fill="var(--text-secondary, #94a3b8)">$25k</text>
+      <text x="50" y="190" text-anchor="end" font-size="11" fill="var(--text-secondary, #94a3b8)">$50k</text>
+      <text x="50" y="105" text-anchor="end" font-size="11" fill="var(--text-secondary, #94a3b8)">$75k</text>
+      <text x="50" y="30" text-anchor="end" font-size="11" fill="var(--text-secondary, #94a3b8)">$100k</text>
+      <!-- X-axis labels -->
+      <text x="60" y="378" text-anchor="middle" font-size="11" fill="var(--text-secondary, #94a3b8)">0</text>
+      <text x="215" y="378" text-anchor="middle" font-size="11" fill="var(--text-secondary, #94a3b8)">50</text>
+      <text x="370" y="378" text-anchor="middle" font-size="11" fill="var(--text-secondary, #94a3b8)">100</text>
+      <text x="525" y="378" text-anchor="middle" font-size="11" fill="var(--text-secondary, #94a3b8)">150</text>
+      <text x="680" y="378" text-anchor="middle" font-size="11" fill="var(--text-secondary, #94a3b8)">200</text>
+      <text x="370" y="398" text-anchor="middle" font-size="12" fill="var(--text-secondary, #94a3b8)">Number of Trades</text>
+      <!-- Grid lines -->
+      <line x1="60" y1="275" x2="680" y2="275" stroke="var(--text-secondary, #94a3b8)" stroke-width="0.3" stroke-dasharray="4"/>
+      <line x1="60" y1="190" x2="680" y2="190" stroke="var(--text-secondary, #94a3b8)" stroke-width="0.3" stroke-dasharray="4"/>
+      <line x1="60" y1="105" x2="680" y2="105" stroke="var(--text-secondary, #94a3b8)" stroke-width="0.3" stroke-dasharray="4"/>
+      <!-- 95th percentile curve (best case) -->
+      <polyline points="60,275 122,268 184,255 246,238 308,215 370,190 432,160 494,128 556,95 618,65 680,38" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.5"/>
+      <!-- 75th percentile -->
+      <polyline points="60,275 122,270 184,262 246,250 308,238 370,220 432,200 494,178 556,158 618,140 680,120" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.4"/>
+      <!-- Median curve (50th percentile) -->
+      <polyline points="60,275 122,272 184,266 246,258 308,250 370,238 432,225 494,212 556,198 618,186 680,172" fill="none" stroke="#6366f1" stroke-width="2.5" opacity="0.9"/>
+      <!-- 25th percentile -->
+      <polyline points="60,275 122,276 184,274 246,270 308,268 370,262 432,258 494,252 556,248 618,242 680,238" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.5"/>
+      <!-- 5th percentile curve (worst realistic case) -->
+      <polyline points="60,275 122,280 184,288 246,290 308,295 370,292 432,298 494,305 556,300 618,308 680,312" fill="none" stroke="#ef4444" stroke-width="1.5" opacity="0.5"/>
+      <!-- Additional simulated paths (faint) -->
+      <polyline points="60,275 122,269 184,258 246,248 308,230 370,210 432,188 494,165 556,140 618,115 680,90" fill="none" stroke="#22c55e" stroke-width="0.8" opacity="0.2"/>
+      <polyline points="60,275 122,274 184,270 246,264 308,255 370,245 432,238 494,228 556,218 618,210 680,200" fill="none" stroke="#6366f1" stroke-width="0.8" opacity="0.2"/>
+      <polyline points="60,275 122,278 184,282 246,279 308,284 370,280 432,285 494,282 556,288 618,285 680,290" fill="none" stroke="#f59e0b" stroke-width="0.8" opacity="0.2"/>
+      <polyline points="60,275 122,277 184,280 246,285 308,290 370,298 432,305 494,310 556,315 618,322 680,330" fill="none" stroke="#ef4444" stroke-width="0.8" opacity="0.2"/>
+      <polyline points="60,275 122,271 184,264 246,260 308,252 370,242 432,230 494,218 556,205 618,192 680,180" fill="none" stroke="#6366f1" stroke-width="0.8" opacity="0.15"/>
+      <polyline points="60,275 122,273 184,268 246,265 308,258 370,252 432,248 494,240 556,235 618,228 680,222" fill="none" stroke="#6366f1" stroke-width="0.8" opacity="0.15"/>
+      <!-- Starting point -->
+      <circle cx="60" cy="275" r="4" fill="#6366f1"/>
+      <!-- Legend -->
+      <line x1="400" y1="30" x2="430" y2="30" stroke="#22c55e" stroke-width="2"/>
+      <text x="435" y="34" font-size="10" fill="var(--text-secondary, #94a3b8)">95th percentile (best case)</text>
+      <line x1="400" y1="48" x2="430" y2="48" stroke="#6366f1" stroke-width="2.5"/>
+      <text x="435" y="52" font-size="10" fill="var(--text-secondary, #94a3b8)">50th percentile (median)</text>
+      <line x1="400" y1="66" x2="430" y2="66" stroke="#f59e0b" stroke-width="2"/>
+      <text x="435" y="70" font-size="10" fill="var(--text-secondary, #94a3b8)">25th percentile</text>
+      <line x1="400" y1="84" x2="430" y2="84" stroke="#ef4444" stroke-width="2"/>
+      <text x="435" y="88" font-size="10" fill="var(--text-secondary, #94a3b8)">5th percentile (worst case)</text>
+    </svg>
+  </div>
+
+  <p>Notice how the curves fan out over time. Early on, all paths look similar. But as trades accumulate, the range of outcomes widens dramatically. The <strong>5th percentile curve</strong> (red) is your worst realistic scenario &mdash; this is what you should plan for, not the median.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Ruin Probability
+    </h4>
+    <p><strong>Ruin probability</strong> is the percentage of Monte Carlo simulations in which your account hits a catastrophic drawdown threshold &mdash; typically defined as a 50% loss from peak equity. This is the single most critical number from a Monte Carlo analysis.</p>
+    <p>A robust trading system should have a <strong>ruin probability below 1%</strong> when tested at your actual position size. If your ruin probability is above 5%, your position sizing is too aggressive, regardless of what your backtest equity curve looks like.</p>
+  </div>
+
+  <h3>Practical Guidelines</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Recommended Value</th>
+        <th>Why</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Number of simulations</td>
+        <td>1,000 minimum; 10,000 ideal</td>
+        <td>Fewer than 1,000 gives unstable statistics</td>
+      </tr>
+      <tr>
+        <td>Focus curve</td>
+        <td>5th percentile (worst realistic)</td>
+        <td>Plan for the worst, not the average</td>
+      </tr>
+      <tr>
+        <td>Ruin threshold</td>
+        <td>50% drawdown from peak</td>
+        <td>Recovery from 50%+ drawdown is extremely difficult</td>
+      </tr>
+      <tr>
+        <td>Acceptable ruin probability</td>
+        <td>Below 1%</td>
+        <td>Even 1% means 1-in-100 chance of catastrophic loss</td>
+      </tr>
+      <tr>
+        <td>Minimum trade sample size</td>
+        <td>100+ trades</td>
+        <td>Fewer trades make the simulation unreliable</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Monte Carlo Cannot Predict the Future</strong>
+      <p>Monte Carlo simulation reshuffles your <em>past</em> trades. It assumes your future trades will come from the same statistical distribution. If market conditions change fundamentally (and they will), your actual results may fall outside the simulated range. Use Monte Carlo as a stress test, not a crystal ball.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>Free Tools for Monte Carlo</strong>
+      <p>You do not need to code your own simulator. Many free and paid tools exist: Excel/Google Sheets with a random resampling formula, dedicated platforms like Edgewonk and TradeStation, or simple Python scripts. The key is to actually run the simulation rather than assuming your backtest equity curve is the only possible outcome.</p>
+    </div>
+  </div>
+
+  <div class="concept-card reveal">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Sequence Risk: Why Order Matters
+    </h4>
+    <p>Consider two traders with identical statistics: 60% win rate, 2:1 reward-to-risk ratio, risking 2% per trade. Over 100 trades, both will have approximately 60 wins and 40 losses. But <strong>the order in which those wins and losses occur creates dramatically different outcomes</strong> for a compounding account.</p>
+    <ul class="feature-list">
+      <li><strong>Favorable sequence:</strong> Wins clustered early, building a larger base. Losses later are absorbed by accumulated gains. Ending balance: significantly above average.</li>
+      <li><strong>Unfavorable sequence:</strong> Losses clustered early, shrinking the base. Even when wins eventually come, they are calculated on a smaller capital base. Ending balance: significantly below average.</li>
+      <li><strong>Same statistics, different results:</strong> In a compounding account, a 10-trade losing streak at the beginning of your career is far more damaging than the same streak after 200 profitable trades.</li>
+    </ul>
+    <p>This is the fundamental insight: <strong>standard Monte Carlo simulation with independent, identically distributed (IID) resampling understates sequence risk</strong> for compounding accounts. Each simulated path treats trades as independent events, but in reality, a string of early losses compounds into a deeper hole than a string of late losses.</p>
+    <p><strong>Practical implication:</strong> Start with smaller position sizes (0.5% risk instead of 1%) until you have a 50+ trade track record demonstrating your edge. This protects against unfavorable early sequences. Only scale up after your account has built a cushion of confirmed profits.</p>
+  </div>
+</div>
+
+<!-- =============================================
+     5.11 Correlation Risk & Portfolio Heat
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.11</span> Correlation Risk &amp; Portfolio Heat</h2>
+
+  <p>You have learned to risk only 1% per trade. You have learned to set daily loss limits. But there is a subtle and devastating trap that catches even disciplined traders: <strong>correlation risk</strong>. If you are long AAPL, MSFT, GOOGL, NVDA, and META simultaneously &mdash; each risking 1% &mdash; you are <em>not</em> taking five independent 1% risks. You are effectively taking one big 5% bet on the tech sector.</p>
+
+  <p>When the market drops, correlated positions drop <em>together</em>. A Federal Reserve announcement, a geopolitical shock, or a sector rotation can hit all your positions simultaneously. Your carefully planned 1% risk per trade becomes a 5% portfolio-level disaster in minutes.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      What Is Portfolio Heat?
+    </h4>
+    <p><strong>Portfolio heat</strong> is the total amount of capital at risk across all your open positions at any given moment. If you have three trades open, each risking 1%, your portfolio heat is 3%. If you have six trades open at 1% risk each, your portfolio heat is 6%.</p>
+    <p>The critical rule: <strong>never let your total portfolio heat exceed 5&ndash;6%</strong>. This means if you are already in five trades at 1% risk each (5% total heat), you do not open a sixth position until one of the existing trades is closed or moved to breakeven.</p>
+  </div>
+
+  <h3>Understanding Correlation</h3>
+  <p>Correlation is measured on a scale from <strong>&minus;1.0 to +1.0</strong>:</p>
+  <ul class="feature-list">
+    <li><strong>+1.0 (perfect positive correlation):</strong> Two assets move in lockstep. When one goes up, the other always goes up by a proportional amount.</li>
+    <li><strong>0.0 (no correlation):</strong> The movements of the two assets are completely independent.</li>
+    <li><strong>&minus;1.0 (perfect negative correlation):</strong> When one goes up, the other always goes down by a proportional amount.</li>
+  </ul>
+  <p>In practice, most stocks within the same sector have correlations between <strong>+0.5 and +0.9</strong>. This means they frequently move together, especially during market-wide selloffs.</p>
+
+  <h3>Typical Sector Correlation Matrix</h3>
+  <p>The table below shows approximate correlations between major market sectors during normal market conditions:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Sector</th>
+        <th>Technology</th>
+        <th>Healthcare</th>
+        <th>Financials</th>
+        <th>Energy</th>
+        <th>Consumer Staples</th>
+        <th>Utilities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Technology</strong></td>
+        <td>1.00</td>
+        <td>0.65</td>
+        <td>0.72</td>
+        <td>0.35</td>
+        <td>0.45</td>
+        <td>0.30</td>
+      </tr>
+      <tr>
+        <td><strong>Healthcare</strong></td>
+        <td>0.65</td>
+        <td>1.00</td>
+        <td>0.60</td>
+        <td>0.30</td>
+        <td>0.55</td>
+        <td>0.40</td>
+      </tr>
+      <tr>
+        <td><strong>Financials</strong></td>
+        <td>0.72</td>
+        <td>0.60</td>
+        <td>1.00</td>
+        <td>0.50</td>
+        <td>0.48</td>
+        <td>0.42</td>
+      </tr>
+      <tr>
+        <td><strong>Energy</strong></td>
+        <td>0.35</td>
+        <td>0.30</td>
+        <td>0.50</td>
+        <td>1.00</td>
+        <td>0.32</td>
+        <td>0.28</td>
+      </tr>
+      <tr>
+        <td><strong>Consumer Staples</strong></td>
+        <td>0.45</td>
+        <td>0.55</td>
+        <td>0.48</td>
+        <td>0.32</td>
+        <td>1.00</td>
+        <td>0.62</td>
+      </tr>
+      <tr>
+        <td><strong>Utilities</strong></td>
+        <td>0.30</td>
+        <td>0.40</td>
+        <td>0.42</td>
+        <td>0.28</td>
+        <td>0.62</td>
+        <td>1.00</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>Correlation Goes to 1 in a Crisis</strong>
+      <p>During normal markets, different sectors have moderate correlations. But during a genuine market panic &mdash; a flash crash, a financial crisis, a global shock &mdash; <strong>correlations spike toward 1.0</strong>. Everything sells off together. This phenomenon has been observed in every major crisis: 2008, the COVID crash of March 2020, and countless smaller selloffs. Your "diversified" positions become a single concentrated bet precisely when you need diversification the most.</p>
+    </div>
+  </div>
+
+  <h3>Managing Portfolio Heat and Correlation</h3>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Practical Rules for Correlation-Aware Trading
+    </h4>
+    <ul>
+      <li><strong>Max portfolio heat:</strong> Never exceed 5&ndash;6% of total account risk across all open positions combined.</li>
+      <li><strong>Sector concentration limit:</strong> No more than 2&ndash;3 positions in the same sector at the same time.</li>
+      <li><strong>Correlated positions = reduced size:</strong> If you have two highly correlated trades (e.g., AAPL and MSFT), risk only 0.5% on each instead of 1% &mdash; treat them as a single trade from a risk perspective.</li>
+      <li><strong>Opposite-side hedging:</strong> If heavily long tech, consider a short position in a correlated index (like QQQ puts) to offset portfolio-level risk.</li>
+      <li><strong>Count your true bets:</strong> Before opening any new position, ask: "If the overall market drops 2% right now, how many of my positions lose money?" If the answer is "all of them," you are not diversified.</li>
+    </ul>
+  </div>
+
+  <h3>Portfolio Heat Calculation Example</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Sector</th>
+        <th>Risk per Trade</th>
+        <th>Running Portfolio Heat</th>
+        <th>Decision</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AAPL Long</td>
+        <td>Technology</td>
+        <td>1.0%</td>
+        <td>1.0%</td>
+        <td><span class="tag-green">Open</span></td>
+      </tr>
+      <tr>
+        <td>JPM Long</td>
+        <td>Financials</td>
+        <td>1.0%</td>
+        <td>2.0%</td>
+        <td><span class="tag-green">Open</span></td>
+      </tr>
+      <tr>
+        <td>XOM Long</td>
+        <td>Energy</td>
+        <td>1.0%</td>
+        <td>3.0%</td>
+        <td><span class="tag-green">Open</span></td>
+      </tr>
+      <tr>
+        <td>MSFT Long</td>
+        <td>Technology</td>
+        <td>0.5%</td>
+        <td>3.5%</td>
+        <td><span class="tag-gold">Open &mdash; Reduced size (correlated with AAPL)</span></td>
+      </tr>
+      <tr>
+        <td>UNH Long</td>
+        <td>Healthcare</td>
+        <td>1.0%</td>
+        <td>4.5%</td>
+        <td><span class="tag-green">Open</span></td>
+      </tr>
+      <tr>
+        <td>NVDA Long</td>
+        <td>Technology</td>
+        <td>1.0%</td>
+        <td>5.5%</td>
+        <td><span class="tag-red">Skip &mdash; 3rd tech position, heat at limit</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>Think in Terms of "True Independent Bets"</strong>
+      <p>Professional portfolio managers use the concept of <strong>"true independent bets"</strong> rather than counting positions. Five tech stocks is roughly one independent bet. Two tech stocks plus an energy stock plus a short on bonds &mdash; that might be three independent bets. Always ask yourself: "How many truly uncorrelated risks am I taking?" The answer is usually far fewer than the number of positions on your screen.</p>
+    </div>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Earnings Season Amplifies Correlation Risk</strong>
+      <p>During earnings season, one company's results can move an entire sector. If AAPL misses earnings, MSFT, GOOGL, and the whole tech sector will likely gap down the next morning. Be especially cautious about sector concentration when your holdings are approaching earnings dates.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     5.12 Quiz: Risk Management
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.12</span> Knowledge Check</h2>
   <p>Test your understanding of risk management principles. These concepts are non-negotiable for any successful trader.</p>
 
   <div class="quiz-container" data-quiz="m5-risk">

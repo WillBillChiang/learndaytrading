@@ -704,9 +704,567 @@
   </div>
 </div>
 
-<!-- 8.7 Quiz -->
+<!-- 8.7 Algorithmic Order Types -->
 <div class="lesson-section reveal">
-  <h2><span class="section-number">8.7</span> Knowledge Check</h2>
+  <h2><span class="section-number">8.7</span> Algorithmic Order Types</h2>
+  <p>Beyond the basic market and limit orders you learned early on, there is an entire universe of algorithmic order types used by institutional traders to execute large positions without moving the market. Understanding how these work gives you insight into why price behaves the way it does &mdash; and helps you trade smarter even at the retail level.</p>
+
+  <h3>Why Order Types Matter</h3>
+  <p>Imagine you need to buy 500,000 shares of a stock that trades 2 million shares per day. If you send a single market order, you will blow through every ask level on the book, moving the price against yourself dramatically. This is called <strong>market impact</strong>, and avoiding it is the central challenge of institutional execution. Algorithmic order types were designed to solve this problem.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      Algorithmic Order Types Explained
+    </h4>
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Order Type</th>
+            <th>How It Works</th>
+            <th>Best Used For</th>
+            <th>Market Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>TWAP</strong></td>
+            <td>Breaks a large order into equal-sized slices executed at regular time intervals over a specified period</td>
+            <td>Accumulating or liquidating a position steadily over hours</td>
+            <td><span class="tag tag-green">Low</span></td>
+          </tr>
+          <tr>
+            <td><strong>VWAP</strong></td>
+            <td>Slices the order proportionally to historical volume patterns, executing more during high-volume periods</td>
+            <td>Matching the day's average price; institutional benchmarks</td>
+            <td><span class="tag tag-green">Low</span></td>
+          </tr>
+          <tr>
+            <td><strong>Iceberg</strong></td>
+            <td>Displays only a small fraction (the "tip") of the total order on the book; refills automatically as portions are filled</td>
+            <td>Hiding true order size from other participants</td>
+            <td><span class="tag tag-green">Low</span></td>
+          </tr>
+          <tr>
+            <td><strong>Pegged</strong></td>
+            <td>Automatically adjusts the order price to follow the NBBO (National Best Bid/Offer) as it moves</td>
+            <td>Staying competitive at the best price without manual updates</td>
+            <td><span class="tag tag-blue">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Discretionary</strong></td>
+            <td>A limit order with a hidden range &mdash; displayed at one price but willing to pay up to a higher (or lower) price for a fill</td>
+            <td>Getting fills without revealing your true willingness to pay</td>
+            <td><span class="tag tag-blue">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Implementation Shortfall</strong></td>
+            <td>Front-loads execution to minimize the difference between the decision price and the actual fill price; trades aggressively early, then slows</td>
+            <td>Urgently capturing a price level while still managing impact</td>
+            <td><span class="tag tag-gold">Medium-High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dark Pool / Midpoint Peg</strong></td>
+            <td>Routes to dark pools and crosses at the midpoint between the bid and ask, providing price improvement</td>
+            <td>Large block trades away from lit exchanges</td>
+            <td><span class="tag tag-green">Very Low</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sniper / Liquidity-Seeking</strong></td>
+            <td>Scans multiple venues for hidden liquidity and pounces when it finds resting orders</td>
+            <td>Finding and executing against hidden institutional orders</td>
+            <td><span class="tag tag-blue">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>How TWAP Works in Practice</h3>
+  <p>A TWAP (Time-Weighted Average Price) algorithm divides a parent order into child orders distributed evenly over a defined time window. For example, an order to buy 100,000 shares over 2 hours would execute roughly 833 shares every minute. The algorithm adds randomness to the exact timing and size of each slice to avoid detection by other algorithms looking for predictable patterns.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      How Iceberg Orders Reveal Institutional Activity
+    </h4>
+    <p>Iceberg orders are one of the most important order types for day traders to recognize. Here is how to spot them:</p>
+    <ul class="feature-list">
+      <li><strong>Repeating size on the tape</strong> &mdash; You see the same size (e.g., 500 shares) print at the same price over and over. Each time the displayed portion is filled, the hidden reserve refills it.</li>
+      <li><strong>Price holds despite heavy volume</strong> &mdash; A level that "should" break based on the visible book size absorbs far more volume than expected. There is hidden size behind it.</li>
+      <li><strong>Level 2 refill pattern</strong> &mdash; Watch for an ask (or bid) that gets partially filled, shrinks, then immediately jumps back to its original displayed size. That is the iceberg refilling.</li>
+      <li><strong>Cumulative volume at a level</strong> &mdash; Track total volume transacted at a single price. If it far exceeds what the Level 2 showed, an iceberg was likely present.</li>
+    </ul>
+  </div>
+
+  <h3>What Retail Traders Can Learn</h3>
+  <p>You do not have access to TWAP or VWAP algorithms on most retail platforms. But the principles behind them apply to every trader:</p>
+  <ul class="feature-list">
+    <li><strong>Use limit orders as your default</strong> &mdash; Market orders give up edge by crossing the spread. A limit order at or near the ask (for buys) or bid (for sells) gives you a cleaner fill.</li>
+    <li><strong>Break larger orders into pieces</strong> &mdash; If you are buying 2,000 shares of a low-float stock, consider entering in 500-share clips. This reduces your own market impact and lets you get better average fills.</li>
+    <li><strong>Avoid signaling your intent</strong> &mdash; Do not place a 5,000-share bid on a stock trading 1,000 shares per minute. You will move the market against yourself as algorithms detect your order and front-run it.</li>
+    <li><strong>Watch for algorithmic footprints</strong> &mdash; Regular, evenly-spaced prints on the tape often signal a TWAP or VWAP algo at work. This tells you an institution is building or exiting a position, which informs your directional bias.</li>
+    <li><strong>Respect iceberg levels</strong> &mdash; If a price level absorbs far more volume than the visible book shows, there is institutional interest at that level. Trade with it, not against it.</li>
+  </ul>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The Simplest Edge: Default to Limit Orders</strong>
+      <p>Most retail traders use market orders out of habit. Simply switching to limit orders at the current ask (for buys) or current bid (for sells) saves you the spread on every trade. Over hundreds of trades, this adds up to thousands of dollars in saved slippage. Only use market orders when speed is critical &mdash; like hitting your stop loss during a fast drop.</p>
+    </div>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Algorithms Are Your Competition</strong>
+      <p>Institutional algorithms account for over 60% of daily stock market volume. They are faster, smarter, and better-capitalized than any retail trader. Your edge is not to compete with them on speed &mdash; it is to recognize their footprints on the tape and trade in alignment with their activity, not against it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8.8 Execution Venue Selection & ECN Rebates -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.8</span> Execution Venue Selection &amp; ECN Rebates</h2>
+  <p>Where your order is routed matters more than most traders realize. Different exchanges and ECNs have different fee structures, speed characteristics, and order book depths. Professional day traders &mdash; especially scalpers &mdash; carefully select their routing destinations to minimize costs and maximize fill quality.</p>
+
+  <div class="concept-card reveal">
+    <h3>The Maker-Taker Model</h3>
+    <p>Most U.S. exchanges operate on a <strong>maker-taker</strong> fee model: you <em>pay</em> a fee when you take liquidity (market orders, marketable limit orders) and <em>receive</em> a rebate when you provide liquidity (resting limit orders). The difference between these fees is how exchanges profit.</p>
+    <ul class="feature-list">
+      <li><strong>Taking liquidity:</strong> You cross the spread and immediately fill against a resting order. You pay the &ldquo;taker fee&rdquo; (typically $0.0025&ndash;$0.0030 per share).</li>
+      <li><strong>Providing liquidity:</strong> You place a limit order that rests on the book and waits to be filled. You receive the &ldquo;maker rebate&rdquo; (typically $0.0020&ndash;$0.0032 per share).</li>
+      <li><strong>Net effect for active traders:</strong> If you trade 10,000 shares per day and consistently add liquidity, your rebates can offset or even exceed your costs. Some prop traders earn more from rebates than from directional trading.</li>
+    </ul>
+  </div>
+
+  <table class="data-table reveal">
+    <thead>
+      <tr>
+        <th>Exchange / ECN</th>
+        <th>Taker Fee (per share)</th>
+        <th>Maker Rebate (per share)</th>
+        <th>Best For</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>NYSE ARCA</strong></td>
+        <td>$0.0030</td>
+        <td>$0.0025</td>
+        <td>Large-cap stocks, ETFs</td>
+        <td>Deep book, reliable fills on blue chips</td>
+      </tr>
+      <tr>
+        <td><strong>NASDAQ (INET)</strong></td>
+        <td>$0.0030</td>
+        <td>$0.0020</td>
+        <td>Tech stocks, NASDAQ-listed names</td>
+        <td>Fastest matching engine; home venue for many tech stocks</td>
+      </tr>
+      <tr>
+        <td><strong>Cboe EDGX</strong></td>
+        <td>$0.0030</td>
+        <td>$0.0032</td>
+        <td>Rebate-seeking strategies</td>
+        <td>Highest maker rebate among major venues</td>
+      </tr>
+      <tr>
+        <td><strong>Cboe BZX (BATS)</strong></td>
+        <td>$0.0030</td>
+        <td>$0.0025</td>
+        <td>General trading</td>
+        <td>Large market share, good depth</td>
+      </tr>
+      <tr>
+        <td><strong>Cboe EDGA</strong></td>
+        <td>$0.0004</td>
+        <td>&minus;$0.0006 (fee to add)</td>
+        <td>Taking liquidity cheaply</td>
+        <td>Inverted pricing &mdash; you pay to add, get discounted takes</td>
+      </tr>
+      <tr>
+        <td><strong>IEX</strong></td>
+        <td>$0.0009</td>
+        <td>$0.0000 (no rebate)</td>
+        <td>Anti-HFT protection</td>
+        <td>350-microsecond speed bump protects against latency arbitrage</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="concept-card reveal">
+    <h3>NASDAQ TotalView vs. Level 1 Data</h3>
+    <p>Not all market data is created equal. The data feed you receive determines how much of the order book you can see.</p>
+    <ul class="feature-list">
+      <li><strong>Level 1:</strong> Best bid and best ask only (NBBO). Free from most brokers. Sufficient for swing traders but inadequate for intraday scalping.</li>
+      <li><strong>Level 2 / Depth of Book:</strong> Shows multiple price levels of bids and asks from various market participants. Available for $15&ndash;$25/month. Essential for reading order flow.</li>
+      <li><strong>NASDAQ TotalView:</strong> The deepest data feed available &mdash; shows <em>every single order</em> on NASDAQ&rsquo;s book, including hidden orders that partially display. Costs $25&ndash;$30/month. Required for serious tape reading and order flow analysis.</li>
+      <li><strong>OpenBook (NYSE):</strong> The equivalent for NYSE-listed stocks. Shows the full depth of NYSE&rsquo;s order book. Often bundled with TotalView.</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Direct Access Routing Is Not Optional for Scalpers</strong>
+      <p>If you are scalping or trading for small moves (under $0.30), order routing and rebates directly impact your profitability. Use a broker that offers direct access routing (Interactive Brokers, Lightspeed, CenterPoint Securities) and learn to route orders to specific venues. The difference between paying $0.003/share (taker) and receiving $0.003/share (maker rebate) is $0.006/share &mdash; on 1,000 shares, that is $6.00 per trade, which adds up to thousands per month for active traders.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8.9 Options Flow & Dark Pool Tools -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.9</span> Options Flow &amp; Dark Pool Tools</h2>
+  <p>Options flow data has become one of the most powerful leading indicators available to retail traders. Because large options trades often precede significant stock moves, learning to read the flow gives you insight into what institutional money is betting on &mdash; before the stock price reacts.</p>
+
+  <h3>Why Options Flow Matters</h3>
+  <p>Options offer leverage. When a hedge fund or informed trader expects a stock to move, they often buy options instead of stock because the payoff is amplified. A $1 million call option bet can represent exposure equivalent to $10&ndash;20 million in stock. These large bets leave footprints that flow tools can detect in real time.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      Key Options Flow Signals
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Unusual options activity (UOA)</strong> &mdash; When daily options volume on a contract is 3x or more the open interest, it signals fresh positioning. Someone is making a new, large bet.</li>
+      <li><strong>Large sweeps</strong> &mdash; An order that sweeps across multiple exchanges simultaneously to get filled fast. Sweeps indicate urgency &mdash; the buyer wants the position now and is willing to pay the ask across venues.</li>
+      <li><strong>Block trades</strong> &mdash; Single large-lot prints, often 100+ contracts, executed as a single transaction. These represent institutional-size conviction.</li>
+      <li><strong>Dark pool block prints</strong> &mdash; Large stock trades executed off-exchange in dark pools. When a 500,000-share block prints in a dark pool above the current ask, it signals institutional demand.</li>
+      <li><strong>Opening vs. closing transactions</strong> &mdash; New positions (opening) are more significant than closing positions. A large opening call purchase is bullish; a large closing call sale is just profit-taking.</li>
+      <li><strong>Put/call ratio shifts</strong> &mdash; A sudden spike in put volume relative to call volume (or vice versa) can signal a directional shift before it shows on the chart.</li>
+    </ul>
+  </div>
+
+  <h3>Options Flow Tools</h3>
+  <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Key Features</th>
+          <th>Price Range</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Unusual Whales</strong></td>
+          <td>Flow alerts, dark pool data, congressional trading tracker, options chain visualization</td>
+          <td>$30&ndash;$75/month</td>
+          <td>Beginners to intermediate; clean UI and educational content</td>
+        </tr>
+        <tr>
+          <td><strong>Cheddar Flow</strong></td>
+          <td>Real-time flow feed, sweep detection, block trade alerts, sentiment dashboard</td>
+          <td>$40&ndash;$100/month</td>
+          <td>Active day traders who want a focused flow feed</td>
+        </tr>
+        <tr>
+          <td><strong>FlowAlgo</strong></td>
+          <td>Options flow, dark pool prints, equity block trades, custom alerts</td>
+          <td>$50&ndash;$120/month</td>
+          <td>Serious traders who also want dark pool data</td>
+        </tr>
+        <tr>
+          <td><strong>BlackBox Stocks</strong></td>
+          <td>Flow scanner, dark pool monitor, proprietary alerts, built-in community</td>
+          <td>$80&ndash;$100/month</td>
+          <td>Traders who want alerts plus a community chat</td>
+        </tr>
+        <tr>
+          <td><strong>Tradytics</strong></td>
+          <td>AI-powered flow analysis, net premium tracking, options dashboard, backtested signals</td>
+          <td>$50&ndash;$80/month</td>
+          <td>Data-driven traders who want quantitative analysis</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Key Metrics to Watch</h3>
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      Options Flow Metrics Dashboard
+    </h4>
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>What It Tells You</th>
+            <th>Bullish Signal</th>
+            <th>Bearish Signal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Net Premium</strong></td>
+            <td>Total dollar value of call premiums minus put premiums</td>
+            <td>Large positive net premium (call-heavy)</td>
+            <td>Large negative net premium (put-heavy)</td>
+          </tr>
+          <tr>
+            <td><strong>Volume/OI Ratio</strong></td>
+            <td>How much of today's activity is new vs. existing positions</td>
+            <td>Call volume &gt; 3x open interest on OTM calls</td>
+            <td>Put volume &gt; 3x open interest on OTM puts</td>
+          </tr>
+          <tr>
+            <td><strong>Sweep Count</strong></td>
+            <td>Number of aggressive multi-exchange sweeps</td>
+            <td>Heavy call sweeps, especially near the money</td>
+            <td>Heavy put sweeps with large premiums</td>
+          </tr>
+          <tr>
+            <td><strong>Dark Pool Level</strong></td>
+            <td>Price level where the largest dark pool prints occur</td>
+            <td>Block prints above the ask (accumulation)</td>
+            <td>Block prints below the bid (distribution)</td>
+          </tr>
+          <tr>
+            <td><strong>GEX (Gamma Exposure)</strong></td>
+            <td>Net gamma position of options market makers</td>
+            <td>Positive GEX = market makers hedge by selling rallies, buying dips (suppresses volatility)</td>
+            <td>Negative GEX = market makers amplify moves in both directions (increases volatility)</td>
+          </tr>
+          <tr>
+            <td><strong>DIX (Dark Index)</strong></td>
+            <td>Dark pool buying sentiment across the S&amp;P 500</td>
+            <td>DIX rising above 45% = institutional buying</td>
+            <td>DIX falling below 40% = institutional selling</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>Combining Flow with Technical Analysis</h3>
+  <p>Options flow alone is not a trading system. It is one piece of the puzzle. The most effective approach combines flow data with your existing chart analysis:</p>
+  <ul class="feature-list">
+    <li><strong>Step 1: Identify the flow signal</strong> &mdash; Large call sweeps or unusual activity on a specific stock and expiration</li>
+    <li><strong>Step 2: Check the chart</strong> &mdash; Is the stock at support? Is it breaking out of a pattern? Does the technical picture support the directional bet?</li>
+    <li><strong>Step 3: Verify the context</strong> &mdash; Is there an upcoming catalyst (earnings, FDA decision, product launch)? Is the broader market trending in the same direction?</li>
+    <li><strong>Step 4: Confirm with the tape</strong> &mdash; Are you seeing aggressive buying on the Time &amp; Sales? Is Level 2 showing accumulation at key levels?</li>
+    <li><strong>Step 5: Size and manage risk</strong> &mdash; Use your standard position sizing rules. Flow data increases conviction but does not eliminate risk.</li>
+  </ul>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Do Not Blindly Follow the Flow</strong>
+      <p>Large options trades can be hedges, not directional bets. A fund buying $5 million in puts might be hedging a $50 million long stock position &mdash; not betting on a crash. Multi-leg strategies (spreads, collars, straddles) can look bullish or bearish in isolation but are actually neutral. Always consider that you are seeing only one leg of a larger trade. Flow is a clue, not a guarantee.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Start Free, Then Upgrade</strong>
+      <p>Before paying for a flow tool, use free resources to learn the basics. Many brokers show options volume and open interest. Yahoo Finance displays unusual options activity. The CBOE publishes put/call ratios daily. Once you understand what you are looking at, a paid tool's speed and filtering will add real value.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8.10 Journal & Analytics Software -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.10</span> Journal &amp; Analytics Software</h2>
+  <p>Your trading journal is arguably the single most important tool for long-term improvement. Research consistently shows that traders who maintain detailed journals and conduct regular reviews improve their performance 30&ndash;40% faster than those who do not. The journal transforms random trading into a systematic learning process.</p>
+
+  <h3>Why Most Traders Skip Journaling (And Why They Fail)</h3>
+  <p>Journaling is tedious. After a losing day, the last thing you want to do is document what went wrong. After a winning day, you feel like you already know what worked. But without a journal, you are flying blind. You cannot identify your best setups, your worst habits, your optimal trading hours, or your emotional triggers. You are doomed to repeat the same mistakes because you have no system for catching them.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Essential Journal Fields Checklist
+    </h4>
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>What to Record</th>
+            <th>Why It Matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Date &amp; Time</strong></td>
+            <td>Exact entry and exit timestamps</td>
+            <td>Identifies your best and worst trading hours</td>
+          </tr>
+          <tr>
+            <td><strong>Ticker &amp; Direction</strong></td>
+            <td>Symbol, long or short</td>
+            <td>Tracks which stocks and sectors you trade best</td>
+          </tr>
+          <tr>
+            <td><strong>Setup Type</strong></td>
+            <td>ORB, VWAP bounce, pullback, breakout, etc.</td>
+            <td>Reveals which setups have the highest win rate and expectancy</td>
+          </tr>
+          <tr>
+            <td><strong>Entry &amp; Exit Prices</strong></td>
+            <td>Actual fill prices for entry and all exits</td>
+            <td>Calculates true P&amp;L including slippage</td>
+          </tr>
+          <tr>
+            <td><strong>Position Size</strong></td>
+            <td>Number of shares or contracts</td>
+            <td>Determines if you are sizing correctly relative to risk</td>
+          </tr>
+          <tr>
+            <td><strong>Stop Loss Level</strong></td>
+            <td>Where your stop was placed and whether you honored it</td>
+            <td>Exposes whether you are following your plan or moving stops</td>
+          </tr>
+          <tr>
+            <td><strong>Risk/Reward Ratio</strong></td>
+            <td>Planned R:R at entry vs. actual R:R at exit</td>
+            <td>Shows if you are cutting winners short or letting losers run</td>
+          </tr>
+          <tr>
+            <td><strong>Market Conditions</strong></td>
+            <td>Trending, choppy, gapping, low volume, FOMC day, etc.</td>
+            <td>Identifies which market environments suit your style</td>
+          </tr>
+          <tr>
+            <td><strong>Emotional State</strong></td>
+            <td>Confident, fearful, revenge-trading, bored, FOMO, disciplined</td>
+            <td>Connects emotional patterns to trading outcomes</td>
+          </tr>
+          <tr>
+            <td><strong>Trade Grade</strong></td>
+            <td>A&ndash;F grade based on execution quality, not P&amp;L</td>
+            <td>Separates process from outcome; a losing trade can be A-grade</td>
+          </tr>
+          <tr>
+            <td><strong>Screenshots</strong></td>
+            <td>Chart at entry, chart at exit, and annotated analysis</td>
+            <td>Visual evidence for pattern recognition during reviews</td>
+          </tr>
+          <tr>
+            <td><strong>Lessons / Notes</strong></td>
+            <td>What worked, what did not, what you would do differently</td>
+            <td>Compounds learning over time; your future self will thank you</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>Journal &amp; Analytics Software Options</h3>
+  <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Software</th>
+          <th>Key Features</th>
+          <th>Price</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tradervue</strong></td>
+          <td>Auto-import from most brokers, detailed analytics, trade replay, tagging, sharing</td>
+          <td>Free (basic) / $30&ndash;$50/month</td>
+          <td>Most popular all-around journal; great analytics and community</td>
+        </tr>
+        <tr>
+          <td><strong>Edgewonk</strong></td>
+          <td>Advanced analytics, custom tags, emotional tracking, "what-if" simulator, detailed stats</td>
+          <td>$169 one-time</td>
+          <td>Serious traders who want deep statistical analysis</td>
+        </tr>
+        <tr>
+          <td><strong>TradesVault</strong></td>
+          <td>Clean UI, auto-import, performance dashboards, setup tagging, mobile app</td>
+          <td>Free (basic) / $25&ndash;$40/month</td>
+          <td>Newer traders who want simplicity with room to grow</td>
+        </tr>
+        <tr>
+          <td><strong>TraderSync</strong></td>
+          <td>AI-powered insights, auto-import, journal + analytics, emotion tracking, reporting</td>
+          <td>$30&ndash;$80/month</td>
+          <td>Traders who want AI-driven pattern recognition in their data</td>
+        </tr>
+        <tr>
+          <td><strong>Spreadsheet (Google Sheets / Excel)</strong></td>
+          <td>Fully customizable, free, integrates with any workflow, formulas for custom metrics</td>
+          <td>Free</td>
+          <td>Traders who want total control and are comfortable building their own system</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>How to Conduct Reviews</h3>
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Weekly Review Process
+    </h4>
+    <p>Set aside 30&ndash;60 minutes every weekend for your weekly review. This is where the real learning happens.</p>
+    <ul class="feature-list">
+      <li><strong>Review every trade</strong> &mdash; Go through each trade from the week. Did you follow your plan? Did you honor your stops? Did you take the setup correctly?</li>
+      <li><strong>Calculate key metrics</strong> &mdash; Win rate, average winner vs. average loser, profit factor, largest win, largest loss, total P&amp;L</li>
+      <li><strong>Identify your best setup</strong> &mdash; Which setup type had the highest win rate and expectancy this week? Do more of that.</li>
+      <li><strong>Identify your worst mistake</strong> &mdash; What was the most costly error? Was it a pattern? Create a specific rule to prevent it next week.</li>
+      <li><strong>Grade your emotional discipline</strong> &mdash; How many trades were taken out of FOMO, revenge, or boredom vs. how many were clean, planned setups?</li>
+      <li><strong>Set one improvement goal</strong> &mdash; Pick one specific thing to work on next week. "I will not take any trades in the first 5 minutes" or "I will honor every stop loss without moving it."</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Monthly Review Process
+    </h4>
+    <p>Once a month, zoom out and evaluate the bigger picture of your trading business.</p>
+    <ul class="feature-list">
+      <li><strong>Monthly P&amp;L analysis</strong> &mdash; Plot your equity curve. Is it trending up, flat, or down? Are drawdowns getting smaller over time?</li>
+      <li><strong>Setup performance breakdown</strong> &mdash; Rank each setup type by expectancy (avg win &times; win rate &minus; avg loss &times; loss rate). Consider dropping setups with negative expectancy.</li>
+      <li><strong>Time-of-day analysis</strong> &mdash; When do you make the most money? When do you give it back? Many traders find that trading only the first 2 hours improves results dramatically.</li>
+      <li><strong>Risk management audit</strong> &mdash; Review your largest losses. Were any of them a result of breaking your rules? How much did rule-breaking cost you this month?</li>
+      <li><strong>Emotional pattern analysis</strong> &mdash; Correlate your emotional state tags with trade outcomes. You may discover that your "revenge" trades lose 80% of the time or that your most disciplined days are your most profitable.</li>
+      <li><strong>Adjust your trading plan</strong> &mdash; Based on a full month of data, make one or two adjustments to your plan. Add a rule, remove a setup, adjust your sizing &mdash; but change slowly and deliberately.</li>
+    </ul>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>The 30&ndash;40% Improvement Stat</strong>
+      <p>A study by trading performance coaches found that traders who maintained detailed journals and reviewed them weekly improved their risk-adjusted returns 30&ndash;40% faster than those who did not journal. The journal forces deliberate practice &mdash; it turns each trading day into a learning opportunity instead of a random experience. The traders who improve fastest are not the smartest; they are the ones who review their mistakes most honestly.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Start Simple, Then Expand</strong>
+      <p>If you are not currently journaling, do not try to track every field from day one. Start with just five fields: date, ticker, setup type, P&amp;L, and one sentence about what you learned. Build the habit first. Once journaling feels automatic (usually 2&ndash;3 weeks), gradually add more fields like emotional state, screenshots, and market conditions. A simple journal you actually use beats a complex journal you abandon.</p>
+    </div>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Grade Process, Not Outcome</strong>
+      <p>The biggest mistake traders make with journals is grading trades by P&amp;L alone. A trade that followed every rule but lost money is an A-grade trade &mdash; you just hit the statistical portion of losses that every strategy has. A trade that broke three rules but got lucky and made money is an F-grade trade. If you only reward outcomes, you reinforce bad habits that will eventually destroy your account.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8.11 Quiz -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.11</span> Knowledge Check</h2>
   <p>Test your understanding of the tools every day trader needs.</p>
 
   <div class="quiz-container" data-quiz="m8-tools">

@@ -716,9 +716,543 @@
   </div>
 </div>
 
-<!-- ========== 9.9 QUIZ ========== -->
+<!-- ========== 9.9 REGIME-BASED PLAN ADJUSTMENT ========== -->
 <div class="lesson-section reveal">
-  <h2><span class="section-number">9.9</span> Knowledge Check</h2>
+  <h2><span class="section-number">9.9</span> Regime-Based Plan Adjustment</h2>
+  <p>One of the most common mistakes traders make is using a single, static plan for all market conditions. Markets cycle through distinct <strong>regimes</strong> &mdash; trending, ranging, volatile, and low-volatility &mdash; and each regime demands a different approach. The traders who survive long-term are those who recognize the current regime and adjust their plan accordingly.</p>
+
+  <p>Think of it like driving: you would not drive the same speed on a sunny highway, a winding mountain road, and an icy street. Your trading plan needs the same adaptability. You are not changing your core identity as a trader &mdash; you are adjusting your tactics to match the battlefield.</p>
+
+  <div class="concept-card">
+    <h3>The Four Market Regimes</h3>
+    <ul class="feature-list">
+      <li><strong>Trending Regime</strong> &mdash; The market or sector is making sustained directional moves with clear higher highs and higher lows (uptrend) or lower highs and lower lows (downtrend). Moving averages are fanning out and sloping in one direction. This is the easiest regime for momentum and breakout traders.</li>
+      <li><strong>Ranging Regime</strong> &mdash; Price oscillates between defined support and resistance levels without breaking out. Volume tends to decline, and moving averages flatten and intertwine. Mean-reversion and range-bound strategies excel here.</li>
+      <li><strong>Volatile Regime (High VIX)</strong> &mdash; Large intraday swings, gap-ups and gap-downs, and news-driven moves dominate. VIX is typically above 25-30. This regime offers huge opportunity but also massive risk. Only the most experienced traders should be aggressive here.</li>
+      <li><strong>Low Volatility Regime</strong> &mdash; Tight daily ranges, minimal movement, and low volume. VIX is typically below 15. Breakout strategies get chopped up repeatedly. This is the most frustrating regime for active traders and the one most likely to cause overtrading.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Regime Identification Using VIX</h3>
+    <p>The CBOE Volatility Index (VIX) is one of the simplest tools for regime identification. While not perfect, it provides a quick read on overall market conditions:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>VIX Level</th>
+          <th>Regime</th>
+          <th>Market Character</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Below 15</td>
+          <td>Low Volatility</td>
+          <td>Tight ranges, slow grinds, mean reversion works</td>
+        </tr>
+        <tr>
+          <td>15 &ndash; 20</td>
+          <td>Normal / Trending</td>
+          <td>Healthy moves, breakouts follow through, standard setups work</td>
+        </tr>
+        <tr>
+          <td>20 &ndash; 30</td>
+          <td>Elevated / Transitional</td>
+          <td>Wider swings, increased gap risk, be selective</td>
+        </tr>
+        <tr>
+          <td>Above 30</td>
+          <td>High Volatility / Crisis</td>
+          <td>Extreme swings, short squeezes, panic selling, reduce size dramatically</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Plan Adjustments by Regime</h3>
+    <p>This is the core of regime-based trading. For each regime, you adjust four key variables: strategy selection, position size, stop-loss width, and profit targets.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Trending</th>
+          <th>Ranging</th>
+          <th>Volatile (High VIX)</th>
+          <th>Low Volatility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Strategy</strong></td>
+          <td>Momentum &amp; breakout strategies; trade in direction of the trend</td>
+          <td>Mean reversion; buy support, sell resistance; fade extremes</td>
+          <td>Only A+ setups; focus on oversold bounces and capitulation reversals</td>
+          <td>Scalping; small quick trades; focus on micro-patterns</td>
+        </tr>
+        <tr>
+          <td><strong>Position Size</strong></td>
+          <td>Full size (100% of normal)</td>
+          <td>Standard size (75-100% of normal)</td>
+          <td style="color:var(--accent-red)"><strong>Reduced by 50%</strong> (50% of normal max)</td>
+          <td>Standard size but expect smaller gains</td>
+        </tr>
+        <tr>
+          <td><strong>Stop-Loss</strong></td>
+          <td>Wider stops to accommodate trend pullbacks (1.5&times; normal ATR-based stop)</td>
+          <td>Tighter stops just outside range boundaries</td>
+          <td>Wider stops to avoid noise whipsaws (2&times; normal width)</td>
+          <td>Tight stops; small moves mean tight risk</td>
+        </tr>
+        <tr>
+          <td><strong>Profit Targets</strong></td>
+          <td>Let winners run; use trailing stops; no fixed target on strong trends</td>
+          <td>Take profits at opposite range boundary; do not hold for breakout</td>
+          <td>Take profits aggressively; do not get greedy in chaos</td>
+          <td>Reduced expectations; take 0.5-1R profits quickly</td>
+        </tr>
+        <tr>
+          <td><strong>Trade Frequency</strong></td>
+          <td>Moderate; wait for pullbacks within trend</td>
+          <td>Higher; multiple bounces off support/resistance</td>
+          <td style="color:var(--accent-red)"><strong>Low</strong>; only the highest-conviction setups</td>
+          <td>Can be higher but with smaller targets</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>The Biggest Mistake: Fighting the Regime</strong>
+      <p>If you are a breakout trader and the market is in a low-volatility range, your setups will fail over and over. It is not you &mdash; it is the regime. The worst thing you can do is double down on a strategy that does not match current conditions. Recognize the regime, adjust or sit out, and wait for your conditions to return. Capital preservation during unfavorable regimes is what keeps you in the game for the next trending phase.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Build a Regime Checklist</strong>
+      <p>Each morning during your pre-market routine, spend 60 seconds classifying the current regime. Check the VIX, look at the 20-day moving average slope on SPY, and note the average daily range over the past 5 days. Write the current regime at the top of your daily journal. This simple habit forces you to consciously adjust your plan before the market opens.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 9.10 EDGE TRACKING & STATISTICAL VALIDATION ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">9.10</span> Edge Tracking &amp; Statistical Validation</h2>
+  <p>Saying &ldquo;I have an edge&rdquo; is meaningless unless you can prove it with numbers. Edge tracking is the process of quantifying your advantage with statistical rigor. Without it, you are operating on hope and gut feeling &mdash; neither of which pays the bills.</p>
+
+  <p>Professional traders treat every strategy as a hypothesis. They collect data, calculate metrics, and only deploy real capital when the numbers confirm the edge exists. This section teaches you how to do exactly that.</p>
+
+  <div class="concept-card">
+    <h3>Core Metrics to Track Per Strategy</h3>
+    <p>You must track these metrics <strong>separately for each strategy</strong> you trade. Blending them together hides whether individual strategies are profitable or dragging you down.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Formula</th>
+          <th>What It Tells You</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Win Rate</strong></td>
+          <td>Winning Trades &divide; Total Trades</td>
+          <td>How often you are right. Alone, it means nothing without knowing your average win vs. loss.</td>
+        </tr>
+        <tr>
+          <td><strong>Average Win</strong></td>
+          <td>Sum of All Wins &divide; Number of Wins</td>
+          <td>The typical dollar or R-multiple gain when you are correct.</td>
+        </tr>
+        <tr>
+          <td><strong>Average Loss</strong></td>
+          <td>Sum of All Losses &divide; Number of Losses</td>
+          <td>The typical dollar or R-multiple loss when you are wrong. Should be smaller than average win.</td>
+        </tr>
+        <tr>
+          <td><strong>Expectancy</strong></td>
+          <td>(Win Rate &times; Avg Win) &minus; (Loss Rate &times; Avg Loss)</td>
+          <td>Your expected profit per trade. Must be positive for the strategy to be viable long-term.</td>
+        </tr>
+        <tr>
+          <td><strong>Profit Factor</strong></td>
+          <td>Gross Profits &divide; Gross Losses</td>
+          <td>Ratio of money won to money lost. Above 1.5 is good; above 2.0 is excellent.</td>
+        </tr>
+        <tr>
+          <td><strong>Max Consecutive Losses</strong></td>
+          <td>Longest streak of back-to-back losing trades</td>
+          <td>Tells you how psychologically tough losing streaks will be. Essential for position sizing.</td>
+        </tr>
+        <tr>
+          <td><strong>Max Drawdown</strong></td>
+          <td>Largest peak-to-trough decline in account equity</td>
+          <td>The worst-case scenario you need to survive. Size positions so max drawdown stays below 20% of capital.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Expectancy &amp; Profit Factor Formulas</h3>
+    <p>These are the two most important numbers in your trading business. Memorize them.</p>
+    <div class="info-box info" style="margin-bottom:1rem">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <div class="info-box-content">
+        <strong>Expectancy Formula</strong>
+        <p><strong>E = (W% &times; AvgW) &minus; (L% &times; AvgL)</strong></p>
+        <p>Example: Win rate = 45%, Avg Win = $300, Avg Loss = $150</p>
+        <p>E = (0.45 &times; $300) &minus; (0.55 &times; $150) = $135 &minus; $82.50 = <strong>$52.50 per trade</strong></p>
+      </div>
+    </div>
+    <div class="info-box info">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <div class="info-box-content">
+        <strong>Profit Factor Formula</strong>
+        <p><strong>PF = Gross Profits &divide; Gross Losses</strong></p>
+        <p>Example: Total gains = $15,000, Total losses = $9,000</p>
+        <p>PF = $15,000 &divide; $9,000 = <strong>1.67</strong> (profitable strategy)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>Example: Strategy Metrics Dashboard</h3>
+    <p>Here is what a properly tracked strategy comparison looks like after 100+ trades each:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Morning Breakout</th>
+          <th>VWAP Bounce</th>
+          <th>Afternoon Reversal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Trades</td>
+          <td>142</td>
+          <td>118</td>
+          <td>87</td>
+        </tr>
+        <tr>
+          <td>Win Rate</td>
+          <td style="color:var(--accent-green)">52%</td>
+          <td style="color:var(--accent-green)">61%</td>
+          <td style="color:var(--accent-red)">38%</td>
+        </tr>
+        <tr>
+          <td>Average Win</td>
+          <td>$285</td>
+          <td>$165</td>
+          <td>$340</td>
+        </tr>
+        <tr>
+          <td>Average Loss</td>
+          <td>$140</td>
+          <td>$120</td>
+          <td>$210</td>
+        </tr>
+        <tr>
+          <td>Expectancy</td>
+          <td style="color:var(--accent-green)">+$81.00</td>
+          <td style="color:var(--accent-green)">+$53.85</td>
+          <td style="color:var(--accent-red)">&minus;$0.80</td>
+        </tr>
+        <tr>
+          <td>Profit Factor</td>
+          <td style="color:var(--accent-green)">1.93</td>
+          <td style="color:var(--accent-green)">1.57</td>
+          <td style="color:var(--accent-red)">0.99</td>
+        </tr>
+        <tr>
+          <td>Max Consecutive Losses</td>
+          <td>7</td>
+          <td>5</td>
+          <td>11</td>
+        </tr>
+        <tr>
+          <td>Max Drawdown</td>
+          <td>$1,820</td>
+          <td>$1,200</td>
+          <td>$3,150</td>
+        </tr>
+        <tr>
+          <td><strong>Verdict</strong></td>
+          <td style="color:var(--accent-green)"><strong>Keep &amp; scale</strong></td>
+          <td style="color:var(--accent-green)"><strong>Keep</strong></td>
+          <td style="color:var(--accent-red)"><strong>Eliminate or rework</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Statistical Significance: How Many Trades Do You Need?</h3>
+    <p>A small sample of trades tells you almost nothing. You might win 8 out of 10 trades by sheer luck. Here is how to think about sample size:</p>
+    <ul class="feature-list">
+      <li><strong>Minimum 30 trades per strategy</strong> &mdash; This is the absolute bare minimum before drawing any conclusions. At 30 trades, you have a rough idea of whether the strategy has potential, but the confidence interval is still wide.</li>
+      <li><strong>Ideal: 100+ trades per strategy</strong> &mdash; At 100 trades, your metrics stabilize significantly. Win rate, average win, and average loss converge toward their true values. This is where you can make confident decisions about keeping or discarding a strategy.</li>
+      <li><strong>High confidence: 200+ trades</strong> &mdash; At this level, you can begin to identify edge variations by time of day, market cap, sector, and regime with reasonable confidence.</li>
+    </ul>
+    <p>Never make permanent decisions about a strategy based on fewer than 30 trades. A 10-trade losing streak does not mean the strategy is broken &mdash; it might just be normal variance.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Edge Decay: Why Edges Weaken Over Time</h3>
+    <p>Every edge has a lifespan. What worked last year may not work next year. This phenomenon, called <strong>edge decay</strong>, happens for several reasons:</p>
+    <ul class="feature-list">
+      <li><strong>Crowding</strong> &mdash; As more traders discover and exploit a pattern, the edge diminishes. When everyone is buying the same breakout, there are fewer buyers left to push the price higher.</li>
+      <li><strong>Market structure changes</strong> &mdash; Algorithm adoption, new regulations, changes in market maker behavior, and shifts in retail vs. institutional participation all alter how patterns play out.</li>
+      <li><strong>Regime shifts</strong> &mdash; An edge that works in trending markets may completely fail in ranging markets. If you do not adjust, the edge appears to &ldquo;decay&rdquo; when really the conditions have changed.</li>
+      <li><strong>Your own psychology</strong> &mdash; Success breeds complacency. You start taking shortcuts, skipping your checklist, or increasing size too fast. The edge did not decay &mdash; your discipline did.</li>
+    </ul>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Monitor for Edge Decay</strong>
+      <p>Every quarter, recalculate your core metrics for each strategy. If expectancy has dropped by 30% or more over 50+ trades, the edge may be decaying. Do not wait until a strategy is losing money &mdash; catch the decay early by watching profit factor and expectancy trends. Keep a rolling 50-trade metric window to spot deterioration before it becomes a drawdown crisis.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Always Be Developing</strong>
+      <p>Professional traders always have new strategies in development. While you trade your proven A-strategies with full size, allocate a small portion of your time and capital to testing B-strategies in simulation or with tiny positions. This way, when an A-strategy decays, you have a replacement ready. Think of it as a product pipeline for your trading business.</p>
+    </div>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Detecting Edge Decay: Quantitative Thresholds</h3>
+    <p>Every edge eventually decays as markets evolve, competitors adapt, or volatility regimes shift. The key is detecting decay <em>before</em> it becomes catastrophic. Monitor these metrics on a rolling basis (last 50&ndash;100 trades):</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Healthy Range</th>
+          <th>Warning Zone</th>
+          <th>Action Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Rolling Sharpe Ratio</strong></td>
+          <td>Above 1.0</td>
+          <td>0.5&ndash;1.0</td>
+          <td>Below 0.5 for 50+ trades: reduce size by 50% and investigate</td>
+        </tr>
+        <tr>
+          <td><strong>Win Rate vs. Baseline</strong></td>
+          <td>Within 5% of baseline</td>
+          <td>5&ndash;10% below baseline</td>
+          <td>&gt;10% below baseline: pause the strategy and re-evaluate</td>
+        </tr>
+        <tr>
+          <td><strong>Average Winner / Average Loser</strong></td>
+          <td>At or above historical ratio</td>
+          <td>10&ndash;20% compression</td>
+          <td>&gt;20% compression: the reward side of your edge is shrinking</td>
+        </tr>
+        <tr>
+          <td><strong>Consecutive Loss Streak</strong></td>
+          <td>Within Monte Carlo 90th percentile</td>
+          <td>At Monte Carlo 95th percentile</td>
+          <td>Exceeds 95th percentile: statistically unlikely under original edge assumptions</td>
+        </tr>
+        <tr>
+          <td><strong>Expectancy per Trade</strong></td>
+          <td>Positive and stable</td>
+          <td>Declining over 30-trade window</td>
+          <td>Turns negative: stop trading this setup immediately</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Intraday Regime Shift Detection</h3>
+    <p>Markets can change character mid-session. A trending morning can become a choppy afternoon. Recognizing these shifts in real time prevents you from applying the wrong strategy to the wrong conditions.</p>
+    <ul class="feature-list">
+      <li><strong>ATR compression:</strong> If the 5-minute ATR drops below 50% of its first-hour average, the market is transitioning from trending to ranging. Switch from momentum to mean-reversion strategies.</li>
+      <li><strong>TICK range narrowing:</strong> When NYSE TICK readings compress to a &plusmn;400 range after a directional morning, breadth conviction is fading. Reduce position size or stop trading.</li>
+      <li><strong>VWAP flattening:</strong> A VWAP that was sloping steeply and begins to flatten signals that the trend is decelerating. New trend entries become riskier.</li>
+      <li><strong>Volume decline:</strong> If the current hour&rsquo;s volume is less than 60% of the first hour&rsquo;s volume, liquidity is drying up. Spreads widen and fills deteriorate. This typically happens after 11:00 AM ET.</li>
+    </ul>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>When to Sit Out Entirely</strong>
+      <p>Not every trading day is a good trading day. Professional traders routinely skip these sessions: <strong>FOMC announcement days</strong> (unless trading the announcement itself), <strong>triple/quadruple witching Fridays</strong> (options expiration creates erratic price action), <strong>the day before and after major holidays</strong> (thin liquidity), <strong>major geopolitical events</strong> (military conflicts, elections, debt ceiling votes), and the <strong>first two trading days of a new quarter</strong> (portfolio rebalancing creates noise). Sitting out is a trade with zero risk and zero opportunity cost &mdash; the market will be there tomorrow.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 9.11 TAX PLANNING FOR TRADERS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">9.11</span> Tax Planning for Traders</h2>
+  <p>Taxes are the silent killer of trading profits. Many new traders focus exclusively on making money and give zero thought to how much they will owe Uncle Sam. Proper tax planning can save you thousands &mdash; or even tens of thousands &mdash; of dollars per year. Understanding the tax landscape is not optional; it is a core business skill.</p>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Disclaimer</strong>
+      <p>This section is for <strong>educational purposes only</strong> and does not constitute tax, legal, or financial advice. Tax laws are complex and change frequently. Consult a qualified tax professional &mdash; preferably one experienced with active traders &mdash; before making any tax elections or structuring decisions. Your specific situation may differ significantly from the general information presented here.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>Trader Tax Status (TTS) &amp; Section 475 Mark-to-Market</h3>
+    <p>Most investors are taxed on capital gains: short-term gains (positions held less than a year) are taxed as ordinary income, and long-term gains get a lower rate. But active day traders may qualify for <strong>Trader Tax Status (TTS)</strong>, which opens the door to a powerful election: <strong>Section 475 mark-to-market (MTM)</strong> accounting.</p>
+    <ul class="feature-list">
+      <li><strong>What is Section 475 MTM?</strong> &mdash; Under this election, all your trading positions are treated as if they were sold (marked to market) on the last business day of the tax year. All gains and losses become <strong>ordinary gains and losses</strong>, not capital gains and losses.</li>
+      <li><strong>Why it matters: No $3,000 capital loss limit</strong> &mdash; Without MTM, you can only deduct $3,000 in net capital losses per year. If you lose $50,000 trading, it would take over 16 years to fully deduct that loss. With MTM, the entire $50,000 is deductible as an ordinary loss in the year it occurred.</li>
+      <li><strong>Full deduction of trading expenses</strong> &mdash; With TTS, you can deduct trading-related expenses: data feeds, software subscriptions, computer equipment, home office, education, and more.</li>
+      <li><strong>Eliminates wash sale headaches</strong> &mdash; The wash sale rule (discussed below) does not apply to Section 475 traders, simplifying your tax situation enormously.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Qualifying for Trader Tax Status</h3>
+    <p>The IRS does not have a simple checklist for TTS. Instead, they look at facts and circumstances. Key factors include:</p>
+    <ul class="feature-list">
+      <li><strong>Regularity and continuity</strong> &mdash; You must trade substantially every business day, or close to it. Trading once a week or only during earnings season typically does not qualify.</li>
+      <li><strong>Intent to profit from short-term price swings</strong> &mdash; Day trading and short-term swing trading qualify. Buy-and-hold investing does not.</li>
+      <li><strong>Significant time devoted</strong> &mdash; Trading should be a significant part of your daily activity, not a side hobby done during lunch breaks.</li>
+      <li><strong>Volume and frequency</strong> &mdash; There is no fixed number, but hundreds of trades per year with multiple trades most days strengthens your case. The IRS has denied TTS for traders with fewer than 200 trades per year in some cases.</li>
+    </ul>
+    <p><strong>Important:</strong> The Section 475 election must be filed by April 15 of the tax year it applies to (or within 75 days of forming a new entity). You cannot retroactively elect MTM after seeing your year-end results.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>The Wash Sale Rule</h3>
+    <p>The <strong>wash sale rule</strong> prevents you from selling a security at a loss and repurchasing substantially the same security within 30 days before or after the sale. If triggered, the loss is not deductible &mdash; instead, it gets added to the cost basis of the replacement shares.</p>
+    <ul class="feature-list">
+      <li><strong>Why it matters for day traders</strong> &mdash; If you trade the same stock frequently (which most day traders do), wash sales can defer or eliminate your ability to deduct losses. You might show a $20,000 profit on your brokerage statement but owe taxes on $35,000 because $15,000 in losses were disallowed by wash sales.</li>
+      <li><strong>The Section 475 solution</strong> &mdash; Traders with MTM election are exempt from wash sale rules entirely. This alone is often worth the election for active day traders.</li>
+      <li><strong>Year-end trap</strong> &mdash; Wash sales that span the end of the tax year are particularly dangerous. A loss taken in December and repurchased in January is disallowed in the current year and may never be recovered if you do not trade the stock the following year.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Business Entity Options</h3>
+    <p>Many active traders operate through a business entity for liability protection and tax advantages. Here are the common structures:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Structure</th>
+          <th>Pros</th>
+          <th>Cons</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sole Proprietor</strong></td>
+          <td>Simplest; no entity formation; file on Schedule C</td>
+          <td>No liability protection; self-employment tax may apply; less credible for TTS</td>
+          <td>Beginners testing the waters</td>
+        </tr>
+        <tr>
+          <td><strong>Single-Member LLC</strong></td>
+          <td>Liability protection; simple formation; pass-through taxation</td>
+          <td>State filing fees; some states charge annual franchise taxes; still disregarded for federal tax</td>
+          <td>Most part-time to full-time traders</td>
+        </tr>
+        <tr>
+          <td><strong>LLC taxed as S-Corp</strong></td>
+          <td>Can reduce self-employment taxes by splitting income into salary + distributions; looks more professional</td>
+          <td>Must pay yourself a &ldquo;reasonable salary&rdquo;; payroll requirements; higher accounting costs; more complex filings</td>
+          <td>Full-time profitable traders earning $75K+ from trading</td>
+        </tr>
+        <tr>
+          <td><strong>C-Corp</strong></td>
+          <td>Can offer retirement plan benefits; more tax planning flexibility</td>
+          <td>Double taxation risk; high complexity; expensive to maintain</td>
+          <td>Rarely appropriate for individual traders</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Tax Treatment Comparison</h3>
+    <p>Here is a side-by-side comparison of how different tax treatments affect your bottom line:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Standard Investor</th>
+          <th>TTS without MTM</th>
+          <th>TTS with Section 475 MTM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$50,000 net trading loss</td>
+          <td style="color:var(--accent-red)">Deduct only $3,000/year (17 years to fully deduct)</td>
+          <td style="color:var(--accent-red)">Deduct only $3,000/year</td>
+          <td style="color:var(--accent-green)">Deduct full $50,000 as ordinary loss this year</td>
+        </tr>
+        <tr>
+          <td>Wash sale impact</td>
+          <td style="color:var(--accent-red)">Losses disallowed; added to cost basis</td>
+          <td style="color:var(--accent-red)">Losses disallowed; added to cost basis</td>
+          <td style="color:var(--accent-green)">Wash sale rule does not apply</td>
+        </tr>
+        <tr>
+          <td>Trading expense deductions</td>
+          <td style="color:var(--accent-red)">Not deductible (after 2017 tax reform)</td>
+          <td style="color:var(--accent-green)">Deductible on Schedule C</td>
+          <td style="color:var(--accent-green)">Deductible on Schedule C</td>
+        </tr>
+        <tr>
+          <td>$80,000 net trading profit</td>
+          <td>Short-term gains taxed as ordinary income</td>
+          <td>Short-term gains taxed as ordinary income</td>
+          <td>Ordinary income (same rate)</td>
+        </tr>
+        <tr>
+          <td>Tax return complexity</td>
+          <td>Schedule D + Form 8949</td>
+          <td>Schedule C + Schedule D + Form 8949</td>
+          <td>Schedule C + Form 4797 (simpler)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Estimated Quarterly Tax Payments</h3>
+    <p>If you are profitable, you are expected to make quarterly estimated tax payments to avoid underpayment penalties. The IRS expects you to pay as you earn, not in one lump sum at tax time.</p>
+    <ul class="feature-list">
+      <li><strong>Due dates:</strong> April 15, June 15, September 15, January 15 (of the following year)</li>
+      <li><strong>Safe harbor:</strong> Pay at least 100% of last year&rsquo;s total tax liability (110% if AGI exceeds $150,000) to avoid penalties, regardless of current year income</li>
+      <li><strong>Set aside 25-35% of profits</strong> &mdash; As a rule of thumb, set aside 25-35% of your net trading profits each quarter for taxes. Keep this money in a separate account &mdash; do not trade with it.</li>
+      <li><strong>State taxes:</strong> Many states also require quarterly estimated payments. Check your state&rsquo;s requirements.</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Find a Trader-Specialized CPA</strong>
+      <p>Do not use a generic tax preparer for your trading taxes. Find a CPA or tax attorney who specializes in active trader taxation. They will know the rules around TTS qualification, Section 475 elections, entity structuring, and retirement plan strategies that can save you far more than their fees. A good trader CPA typically costs $1,500-$5,000 per year but can save you multiples of that in tax savings.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 9.12 QUIZ ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">9.12</span> Knowledge Check</h2>
   <p>Test your understanding of trading plan construction. These questions cover the key principles from this module.</p>
 
   <div class="quiz-container" data-quiz="m9-plan">

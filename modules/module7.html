@@ -604,9 +604,532 @@
   </div>
 </div>
 
-<!-- 7.9 Quiz -->
+<!-- 7.9 Market Context: Sector Rotation, Futures, & Entry Timing -->
 <div class="lesson-section reveal">
-  <h2><span class="section-number">7.9</span> Knowledge Check</h2>
+  <h2><span class="section-number">7.9</span> Market Context: Sector Rotation, Futures, &amp; Volatility Timing</h2>
+  <p>No strategy operates in a vacuum. The broader market context &mdash; which sectors are leading, what futures did overnight, and where we are in the volatility cycle &mdash; dramatically affects which setups work on any given day. Professional traders assess these macro factors <em>before</em> selecting their strategy for the session.</p>
+
+  <div class="concept-card reveal">
+    <h3>Sector Rotation and Its Impact on Individual Stocks</h3>
+    <p>Money flows between sectors in a predictable pattern tied to the economic cycle. Understanding where we are in the rotation helps you choose <em>which</em> stocks to trade and <em>which direction</em> to bias.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Economic Phase</th>
+          <th>Leading Sectors</th>
+          <th>Lagging Sectors</th>
+          <th>Day Trading Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Early Recovery</strong></td>
+          <td>Financials, Consumer Discretionary, Industrials</td>
+          <td>Utilities, Healthcare, Consumer Staples</td>
+          <td>Favor long momentum in cyclicals; avoid defensive names</td>
+        </tr>
+        <tr>
+          <td><strong>Mid Expansion</strong></td>
+          <td>Technology, Industrials, Materials</td>
+          <td>Utilities, Energy (early)</td>
+          <td>Growth/tech momentum strategies dominate; breakout setups work well</td>
+        </tr>
+        <tr>
+          <td><strong>Late Expansion</strong></td>
+          <td>Energy, Materials, Healthcare</td>
+          <td>Technology, Consumer Discretionary</td>
+          <td>Rotation out of tech begins; mean reversion in former leaders, momentum in commodities</td>
+        </tr>
+        <tr>
+          <td><strong>Contraction / Recession</strong></td>
+          <td>Utilities, Healthcare, Consumer Staples</td>
+          <td>Financials, Consumer Discretionary, Industrials</td>
+          <td>Short setups dominate; defensive names for longs only; reduce overall exposure</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem;"><strong>Intraday sector rotation:</strong> Even within a single session, money rotates. Watch the sector ETFs (XLF, XLK, XLE, XLV, etc.) on a relative strength basis. If XLK is leading early but rolling over while XLE strengthens, individual tech stocks will face headwinds while energy names catch momentum. Trade in the direction of the sector flow, not against it.</p>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Overnight Futures and Their Impact on the Open</h3>
+    <p>U.S. equity index futures (/ES for S&amp;P 500, /NQ for Nasdaq 100, /RTY for Russell 2000) trade nearly 24 hours. Their overnight movement is the single best predictor of the opening gap and the first 30 minutes of price action.</p>
+    <ul class="feature-list">
+      <li><strong>/ES and /NQ set the tone:</strong> If /ES is up 0.5% overnight, most large-cap stocks will gap up. If /NQ is down 1% while /ES is flat, expect tech-heavy names to gap down while other sectors hold.</li>
+      <li><strong>Overnight range matters:</strong> A narrow overnight range (&lt;0.3% on /ES) suggests a balanced open with potential for a range day. A wide overnight range (&gt;1%) suggests a directional day with gap-and-go potential.</li>
+      <li><strong>Overnight levels become intraday S/R:</strong> The overnight high, overnight low, and the settlement price (4:15 PM ET close) act as key support/resistance for the regular session. Many algorithmic systems reference these levels.</li>
+      <li><strong>Globex volume analysis:</strong> High overnight volume validates the move; low volume suggests the gap may fade. Check the volume profile of the overnight session before the open.</li>
+    </ul>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Overnight Scenario</th>
+          <th>Opening Bias</th>
+          <th>Preferred Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>/ES up &gt;0.5%, high volume, clear catalyst</td>
+          <td>Gap and Go (bullish)</td>
+          <td>Momentum / ORB continuation</td>
+        </tr>
+        <tr>
+          <td>/ES up &gt;0.5%, low volume, no catalyst</td>
+          <td>Potential gap fade</td>
+          <td>Mean reversion / VWAP fade</td>
+        </tr>
+        <tr>
+          <td>/ES flat, narrow range</td>
+          <td>Balanced / rotational</td>
+          <td>Range trading / VWAP bounce</td>
+        </tr>
+        <tr>
+          <td>/ES down &gt;0.5%, high volume, clear catalyst</td>
+          <td>Gap and Go (bearish)</td>
+          <td>Momentum short / breakdown</td>
+        </tr>
+        <tr>
+          <td>/ES down &gt;0.5%, low volume, no catalyst</td>
+          <td>Potential gap fade</td>
+          <td>Mean reversion long / VWAP reclaim</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>ATR-Based Entry Timing</h3>
+    <p>Not all breakouts are created equal. A stock that has already moved 80% of its Average True Range (ATR) by 10:00 AM has limited fuel remaining for the day. Conversely, a stock that has moved only 20% of its ATR by mid-morning has significant room for expansion. The <strong>ATR percentile</strong> tells you how much of the day&rsquo;s expected range has already been consumed.</p>
+    <ul class="feature-list">
+      <li><strong>Formula:</strong> <code>ATR% Consumed = (Current High - Current Low) / ATR(14) &times; 100</code></li>
+      <li><strong>Below 40% consumed:</strong> The stock has room to run. Breakout and momentum entries have the best probability of continuation.</li>
+      <li><strong>40%&ndash;70% consumed:</strong> Moderate fuel remaining. Be selective &mdash; only take A+ setups with strong catalyst and volume.</li>
+      <li><strong>Above 70% consumed:</strong> Most of the day&rsquo;s range is used up. Avoid new breakout entries. Favor mean reversion or wait for the next session.</li>
+      <li><strong>Exception:</strong> On abnormally volatile days (earnings, FOMC, CPI), the stock can exceed 2&ndash;3x its normal ATR. In these cases, the ATR percentile underestimates remaining potential.</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Pre-Market Context Checklist</strong>
+      <p>Before the opening bell, review: (1) /ES and /NQ overnight direction and volume, (2) sector ETF pre-market movers, (3) economic calendar for today&rsquo;s events, (4) your watchlist stocks&rsquo; pre-market gaps and catalysts, (5) VIX level and direction. This 5-minute scan sets the context for every decision you make during the session.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.10 VWAP Trading Strategies -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.10</span> VWAP Trading Strategies</h2>
+  <p>VWAP (Volume Weighted Average Price) is the institutional benchmark &mdash; the price at which the majority of volume has transacted during the session. Large funds measure execution quality against VWAP, which means it acts as a gravitational center for price. Mastering VWAP-based strategies gives you a window into how institutions are positioning.</p>
+
+  <h3>Why VWAP Matters to Institutions</h3>
+  <p>When a mutual fund needs to buy 500,000 shares, their algorithm benchmarks against VWAP. If they get filled below VWAP, that is a "good" execution. This institutional behavior creates predictable support and resistance at the VWAP level every single day, which retail traders can exploit.</p>
+
+  <h3>Core VWAP Trading Setups</h3>
+
+  <div class="comparison-grid">
+    <div class="comparison-card bullish">
+      <h4>VWAP Bounce (Long)</h4>
+      <ul class="feature-list">
+        <li><strong>Context:</strong> Stock is in an intraday uptrend, trading above VWAP</li>
+        <li><strong>Setup:</strong> Price pulls back to VWAP on declining volume</li>
+        <li><strong>Entry:</strong> Buy when price touches VWAP and prints a bullish reversal candle (hammer, engulfing)</li>
+        <li><strong>Stop:</strong> 10-15 cents below VWAP (or below the pullback low)</li>
+        <li><strong>Target:</strong> Prior swing high, or 2:1 R:R minimum</li>
+      </ul>
+    </div>
+    <div class="comparison-card bearish">
+      <h4>VWAP Fade (Short)</h4>
+      <ul class="feature-list">
+        <li><strong>Context:</strong> Stock is in an intraday downtrend, trading below VWAP</li>
+        <li><strong>Setup:</strong> Price rallies back up to VWAP on declining volume</li>
+        <li><strong>Entry:</strong> Short when price reaches VWAP and prints a bearish rejection candle (shooting star, bearish engulfing)</li>
+        <li><strong>Stop:</strong> 10-15 cents above VWAP (or above the rally high)</li>
+        <li><strong>Target:</strong> Prior swing low, or 2:1 R:R minimum</li>
+      </ul>
+    </div>
+    <div class="comparison-card bullish">
+      <h4>VWAP Breakout</h4>
+      <ul class="feature-list">
+        <li><strong>Context:</strong> Stock has been trading below VWAP, consolidating just underneath</li>
+        <li><strong>Setup:</strong> Price breaks above VWAP with a strong candle and above-average volume</li>
+        <li><strong>Entry:</strong> Buy the close of the breakout candle or the first pullback after the break</li>
+        <li><strong>Stop:</strong> Below VWAP (the level should now act as support)</li>
+        <li><strong>Target:</strong> High of day or the next technical resistance level</li>
+      </ul>
+    </div>
+    <div class="comparison-card bearish">
+      <h4>VWAP Breakdown</h4>
+      <ul class="feature-list">
+        <li><strong>Context:</strong> Stock has been trading above VWAP, consolidating just above it</li>
+        <li><strong>Setup:</strong> Price breaks below VWAP with a strong candle and above-average volume</li>
+        <li><strong>Entry:</strong> Short the close of the breakdown candle or the first bounce that fails at VWAP</li>
+        <li><strong>Stop:</strong> Above VWAP (the level should now act as resistance)</li>
+        <li><strong>Target:</strong> Low of day or the next technical support level</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      VWAP Bounce Entry/Exit Rules
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Rule 1:</strong> Only trade VWAP bounces when the daily trend is in your favor &mdash; longs in uptrends, shorts in downtrends</li>
+      <li><strong>Rule 2:</strong> Wait for a confirming candle at VWAP &mdash; do not blindly buy the touch</li>
+      <li><strong>Rule 3:</strong> Volume on the pullback to VWAP should be declining; volume on the bounce should increase</li>
+      <li><strong>Rule 4:</strong> The first and second VWAP touches of the day have the highest probability; the third touch and beyond have diminishing reliability</li>
+      <li><strong>Rule 5:</strong> Stop loss goes below VWAP for longs (above for shorts) &mdash; if VWAP fails as support/resistance, the trade thesis is broken</li>
+      <li><strong>Rule 6:</strong> Take partial profits at the first resistance level and trail the remainder</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container">
+    <svg viewBox="0 0 700 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid -->
+      <g opacity="0.06" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="60" y1="20" x2="60" y2="290"/><line x1="60" y1="290" x2="680" y2="290"/>
+      </g>
+      <!-- Price labels -->
+      <text x="15" y="75" fill="#94a3b8" font-size="9">$52.00</text>
+      <text x="15" y="155" fill="#94a3b8" font-size="9">$51.00</text>
+      <text x="15" y="235" fill="#94a3b8" font-size="9">$50.00</text>
+      <!-- VWAP line -->
+      <path d="M80 160 Q200 155 350 158 Q480 162 600 155 Q640 153 670 156" stroke="#8b5cf6" stroke-width="2.5" fill="none" stroke-dasharray="6,3"/>
+      <text x="672" y="150" fill="#8b5cf6" font-size="11" font-weight="700">VWAP</text>
+      <!-- Uptrend price action -->
+      <polyline points="80,230 100,210 120,195 140,185 160,170 180,160" stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      <!-- Pullback to VWAP -->
+      <polyline points="180,160 200,145 220,130 240,125 260,135 280,145 300,155" stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      <!-- Bounce candle -->
+      <rect x="296" y="148" width="8" height="16" fill="#10b981" rx="1"/>
+      <line x1="300" y1="145" x2="300" y2="168" stroke="#10b981" stroke-width="1.5"/>
+      <!-- Entry arrow -->
+      <line x1="300" y1="178" x2="300" y2="168" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowGold7)"/>
+      <text x="280" y="195" fill="#f59e0b" font-size="11" font-weight="700">ENTRY</text>
+      <text x="278" y="207" fill="#f59e0b" font-size="9">$51.00</text>
+      <!-- Stop loss line -->
+      <line x1="270" y1="175" x2="380" y2="175" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="382" y="179" fill="#ef4444" font-size="10" font-weight="600">STOP $50.80</text>
+      <!-- Continuation up after bounce -->
+      <polyline points="310,148 330,135 350,120 370,110 390,100 410,90 430,85 450,80" stroke="#10b981" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+      <!-- Target line -->
+      <line x1="420" y1="80" x2="500" y2="80" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="502" y="84" fill="#10b981" font-size="10" font-weight="600">TARGET $52.00</text>
+      <!-- R:R annotation -->
+      <line x1="530" y1="155" x2="530" y2="175" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="540" y="170" fill="#ef4444" font-size="9">Risk: $0.20</text>
+      <line x1="530" y1="80" x2="530" y2="155" stroke="#10b981" stroke-width="1.5"/>
+      <text x="540" y="120" fill="#10b981" font-size="9">Reward: $1.00</text>
+      <text x="540" y="135" fill="#f59e0b" font-size="10" font-weight="700">5:1 R:R</text>
+      <!-- VWAP touch circle -->
+      <circle cx="300" cy="158" r="8" fill="none" stroke="#f59e0b" stroke-width="2"/>
+      <!-- Volume bars at bottom -->
+      <rect x="80" y="270" width="8" height="15" fill="#94a3b8" opacity="0.4" rx="1"/>
+      <rect x="110" y="265" width="8" height="20" fill="#94a3b8" opacity="0.4" rx="1"/>
+      <rect x="140" y="260" width="8" height="25" fill="#94a3b8" opacity="0.4" rx="1"/>
+      <rect x="170" y="268" width="8" height="17" fill="#94a3b8" opacity="0.4" rx="1"/>
+      <rect x="200" y="272" width="8" height="13" fill="#94a3b8" opacity="0.3" rx="1"/>
+      <rect x="230" y="275" width="8" height="10" fill="#94a3b8" opacity="0.3" rx="1"/>
+      <rect x="260" y="277" width="8" height="8" fill="#94a3b8" opacity="0.3" rx="1"/>
+      <rect x="290" y="258" width="8" height="27" fill="#10b981" opacity="0.6" rx="1"/>
+      <rect x="320" y="260" width="8" height="25" fill="#10b981" opacity="0.5" rx="1"/>
+      <rect x="350" y="263" width="8" height="22" fill="#10b981" opacity="0.5" rx="1"/>
+      <rect x="380" y="265" width="8" height="20" fill="#10b981" opacity="0.4" rx="1"/>
+      <rect x="410" y="268" width="8" height="17" fill="#10b981" opacity="0.4" rx="1"/>
+      <text x="260" y="300" fill="#94a3b8" font-size="8" opacity="0.6">Volume declines on pullback, rises on bounce</text>
+      <!-- Arrow marker -->
+      <defs><marker id="arrowGold7" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#f59e0b"/></marker></defs>
+    </svg>
+    <div class="diagram-label">VWAP Bounce setup with entry, stop loss, and target levels marked. Note declining volume on pullback and rising volume on bounce.</div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>VWAP Standard Deviation Bands</strong>
+      <p>Many platforms offer VWAP bands (1st and 2nd standard deviation). These act like Bollinger Bands around VWAP. The 1st deviation band often serves as a take-profit zone for VWAP bounce trades, while touches of the 2nd deviation band can signal mean reversion opportunities.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.11 Opening Range Breakout (Advanced) -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.11</span> Opening Range Breakout (Advanced)</h2>
+  <p>The Opening Range Breakout is one of the most researched strategies in day trading, with roots going back to Toby Crabel's pioneering work in the 1990s. His book <em>Day Trading With Short Term Price Patterns and Opening Range Breakout</em> demonstrated that the opening range captures the initial battle between overnight sentiment and morning order flow, creating a statistically significant reference point for the rest of the session.</p>
+
+  <h3>ORB Timeframe Variants</h3>
+  <p>Not all opening ranges are created equal. The timeframe you choose determines the tradeoff between signal quality and the number of opportunities you get. Here is how the three main variants compare.</p>
+
+  <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ORB Variant</th>
+          <th>Range Period</th>
+          <th>Win Rate</th>
+          <th>Avg R:R</th>
+          <th>Best Used When</th>
+          <th>Key Advantage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>5-Min ORB</strong></td>
+          <td>9:30 &ndash; 9:35 AM</td>
+          <td>~45-50%</td>
+          <td>2:1 &ndash; 3:1</td>
+          <td>High-volatility days, strong gap ups/downs, news catalysts</td>
+          <td>Fastest entry; captures explosive momentum early</td>
+        </tr>
+        <tr>
+          <td><strong>15-Min ORB</strong></td>
+          <td>9:30 &ndash; 9:45 AM</td>
+          <td>~50-55%</td>
+          <td>1.5:1 &ndash; 2.5:1</td>
+          <td>Most market conditions; the "default" ORB for many traders</td>
+          <td>Balances speed with noise filtration</td>
+        </tr>
+        <tr>
+          <td><strong>30-Min ORB</strong></td>
+          <td>9:30 &ndash; 10:00 AM</td>
+          <td>~55-60%</td>
+          <td>1:1 &ndash; 2:1</td>
+          <td>Choppy or low-volatility days; when you want higher confidence</td>
+          <td>Highest win rate; filters out most false breakouts</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>ORB With Volume Confirmation</h3>
+  <p>A breakout without volume is a trap waiting to happen. Always confirm ORB breakouts with a volume surge. The breakout candle should have at least 1.5x the average volume of the opening range candles. Without that volume confirmation, treat the breakout as suspect and either skip the trade or wait for a retest.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Failed ORB &mdash; The Reverse Trade
+    </h4>
+    <p>One of the highest-probability setups in day trading is the <strong>failed ORB</strong>. This occurs when price breaks above (or below) the opening range, fails to follow through, and reverses back inside the range. The failed breakout traps breakout traders, and their stop-loss orders fuel the reversal.</p>
+    <ul class="feature-list">
+      <li><strong>Identification:</strong> Price breaks the ORB high/low, moves 2-5 cents beyond, then immediately reverses back inside the range within 1-2 candles</li>
+      <li><strong>Entry:</strong> Enter in the opposite direction once price closes back inside the opening range</li>
+      <li><strong>Stop:</strong> Just beyond the failed breakout high/low (this is the tightest stop you will ever get)</li>
+      <li><strong>Target:</strong> The opposite side of the opening range, then trail if momentum continues</li>
+      <li><strong>Edge:</strong> Trapped breakout traders' stops add fuel to your trade &mdash; you are trading with the market makers</li>
+    </ul>
+  </div>
+
+  <h3>ORB + Gap Combination</h3>
+  <p>The most powerful ORB setups occur when they align with a gap. Crabel's research showed that gaps provide directional bias, and the ORB gives you the trigger. Here is how to combine them for maximum edge:</p>
+  <ul class="feature-list">
+    <li><strong>Gap Up + ORB Long:</strong> Stock gaps up 3%+ on news/earnings. The 15-min opening range forms entirely above the prior close. A breakout above the ORB high is a continuation signal with the highest probability of follow-through.</li>
+    <li><strong>Gap Up + ORB Short (Failed Gap):</strong> Stock gaps up but the ORB breaks to the downside. This signals the gap is being rejected and often leads to a full gap fill.</li>
+    <li><strong>Gap Down + ORB Short:</strong> Stock gaps down on bad news. The ORB forms below the prior close. A breakdown below the ORB low confirms selling pressure and targets lower.</li>
+    <li><strong>Gap Down + ORB Long (Gap Reversal):</strong> Stock gaps down but the ORB breaks to the upside. Short sellers get squeezed, and the resulting rally can be explosive.</li>
+  </ul>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Crabel's Key Insight</strong>
+      <p>Toby Crabel found that the narrower the opening range relative to recent ranges, the more likely a significant breakout move would follow. A narrow range compresses energy like a coiled spring. When you see an unusually tight opening range, prepare for a big move &mdash; you just do not know the direction yet.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Choose Your ORB by Context</strong>
+      <p>Use the 5-min ORB on days with strong catalysts and wide gaps, the 15-min ORB as your default on normal-volatility days, and the 30-min ORB on choppy days when you need more confirmation. Many experienced traders use the 15-min ORB but draw all three ranges on their chart for reference.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.12 Order Flow Scalping -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.12</span> Order Flow Scalping</h2>
+  <p>Order flow scalping is the practice of reading the raw order book (Level 2) and the transaction tape (Time &amp; Sales) to make ultra-short-term trading decisions. Instead of relying on chart patterns that summarize past price action, order flow traders watch the actual buying and selling pressure in real time. This section provides a brief introduction &mdash; detailed coverage of tape reading and Level 2 analysis is covered in <strong>Module 11</strong>.</p>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Hardest Strategy &mdash; Not for Beginners</strong>
+      <p>Order flow scalping is widely considered the most difficult day trading strategy. It requires extensive screen time (often 1,000+ hours), a direct-access broker, expensive Level 2 data feeds, and reflexes sharpened through months of practice. Most profitable scalpers spent 6-12 months losing money before becoming consistent. Do not attempt this strategy until you are already profitable with at least one other approach.</p>
+    </div>
+  </div>
+
+  <h3>Reading the Order Book for Absorption</h3>
+  <p>Absorption is the key concept in order flow scalping. It occurs when large resting orders on one side of the book "absorb" aggressive orders from the other side without the price moving. This reveals hidden institutional interest and can predict short-term direction.</p>
+
+  <div class="comparison-grid">
+    <div class="comparison-card bullish">
+      <h4>Bid Absorption (Bullish Signal)</h4>
+      <ul class="feature-list">
+        <li><strong>What you see:</strong> A large bid (e.g., 50,000 shares) sits on the bid and does not move</li>
+        <li><strong>What happens:</strong> Aggressive sellers keep hitting that bid with market orders, but the bid holds firm</li>
+        <li><strong>What it means:</strong> A large buyer is accumulating shares &mdash; they want to buy at this price</li>
+        <li><strong>How to trade:</strong> Go long with a stop just below the large bid. If the bid finally gets taken out, exit immediately</li>
+        <li><strong>Target:</strong> The next resistance level on the ask side, or when you see ask absorption forming</li>
+      </ul>
+    </div>
+    <div class="comparison-card bearish">
+      <h4>Ask Absorption (Bearish Signal)</h4>
+      <ul class="feature-list">
+        <li><strong>What you see:</strong> A large ask (e.g., 50,000 shares) sits on the ask and does not move</li>
+        <li><strong>What happens:</strong> Aggressive buyers keep hitting that ask with market orders, but the ask holds firm</li>
+        <li><strong>What it means:</strong> A large seller is distributing shares &mdash; they want to sell at this price</li>
+        <li><strong>How to trade:</strong> Go short with a stop just above the large ask. If the ask gets taken out (bought through), exit immediately</li>
+        <li><strong>Target:</strong> The next support level on the bid side, or when you see bid absorption forming</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Minimum Requirements for Order Flow Scalping</h3>
+  <ul class="feature-list">
+    <li><strong>Direct-access broker</strong> &mdash; You need sub-millisecond routing to ECNs (e.g., Lightspeed, Centerpoint, Interactive Brokers Pro). Retail brokers like Robinhood or Webull are not suitable.</li>
+    <li><strong>Level 2 market data</strong> &mdash; Full depth-of-book data from all exchanges (NYSE Arca, NASDAQ, EDGX, etc.). Budget $50-150/month for data feeds.</li>
+    <li><strong>Time &amp; Sales (The Tape)</strong> &mdash; Real-time transaction data showing every print &mdash; price, size, and the exchange it occurred on.</li>
+    <li><strong>Hotkey execution</strong> &mdash; Pre-programmed keys for instant buy/sell/flatten. You cannot afford to click through order entry windows.</li>
+    <li><strong>Low commissions</strong> &mdash; Per-share pricing (typically $0.002-0.005/share) is essential because you trade large size for small moves.</li>
+    <li><strong>Fast internet connection</strong> &mdash; Wired connection with low latency to your broker's servers. Wi-Fi introduces unacceptable jitter for scalping.</li>
+  </ul>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Scalping Risk Management Rules
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Max loss per trade:</strong> 5-10 cents per share. If the trade is not working within seconds, get out.</li>
+      <li><strong>Max daily loss:</strong> Set a hard daily stop. Many scalpers use $200-500 depending on account size.</li>
+      <li><strong>Position sizing:</strong> Large enough that small moves matter, small enough that one loss does not hurt. Typically 1,000-5,000 shares for most scalpers.</li>
+      <li><strong>No averaging down:</strong> If a scalp goes against you, take the loss. Adding to losers is the fastest way to blow up a scalping account.</li>
+    </ul>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Spoofing and Layering</strong>
+      <p>Be aware that not all large orders on Level 2 are real. "Spoofing" (placing large orders with the intent to cancel before execution) is illegal but still occurs. Look for orders that repeatedly appear and disappear at the same level &mdash; these may be spoof orders designed to deceive. Real absorption shows the large order actually getting filled, tick by tick, on the Time &amp; Sales tape.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.13 Gap Trading Strategies -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.13</span> Gap Trading Strategies</h2>
+  <p>A gap occurs when a stock opens at a significantly different price than its prior close, creating a visible "gap" on the chart. Gaps are caused by overnight news, earnings, analyst upgrades/downgrades, or macroeconomic events. Understanding gap types and their statistical tendencies gives you a significant edge in the first hours of trading.</p>
+
+  <h3>The Four Types of Gaps</h3>
+
+  <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Gap Type</th>
+          <th>Description</th>
+          <th>Fill Rate</th>
+          <th>How to Trade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Common Gap</strong></td>
+          <td>Occurs in the absence of significant news, often within a trading range. Low volume on the gap. No clear catalyst.</td>
+          <td>~70%</td>
+          <td>Fade the gap &mdash; trade in the direction of the fill. These gaps are noise and tend to fill quickly, often within the first 1-2 hours.</td>
+        </tr>
+        <tr>
+          <td><strong>Breakaway Gap</strong></td>
+          <td>Occurs at the start of a new trend, breaking out of a consolidation pattern or range. High volume on the gap. Strong catalyst (earnings surprise, new product, FDA approval).</td>
+          <td>~30%</td>
+          <td>Trade with the gap direction &mdash; do not fade. These gaps signal the beginning of a major move. Buy the breakout or the first pullback, and hold for a continuation.</td>
+        </tr>
+        <tr>
+          <td><strong>Runaway / Continuation Gap</strong></td>
+          <td>Occurs mid-trend, representing renewed momentum. Volume is high but may not be as extreme as a breakaway gap. Often occurs after a brief consolidation within the trend.</td>
+          <td>~40%</td>
+          <td>Trade with the trend &mdash; enter on the gap or on the first intraday pullback. These gaps confirm the trend is accelerating. Target the measured move (distance of the trend before the gap, projected from the gap).</td>
+        </tr>
+        <tr>
+          <td><strong>Exhaustion Gap</strong></td>
+          <td>Occurs near the end of a trend after a long run-up or sell-off. Very high volume (climactic). The stock has already moved significantly in the same direction over recent days/weeks.</td>
+          <td>~65%</td>
+          <td>Fade the gap once exhaustion is confirmed. Watch for a reversal candle on the 5-min chart within the first 30 minutes. This gap often marks the final burst of energy before a trend reversal.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box warning">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div class="info-box-content">
+        <strong>Fill Rates Are General Guidance, Not Fixed Rules</strong>
+        <p>The fill rate percentages above are approximations based on historical observations across broad market samples. They are <em>not</em> fixed rules. Actual fill rates vary significantly by market regime (trending vs. ranging), sector, market capitalization, catalyst strength, and the specific stock's volatility characteristics. Small-cap stocks exhibit different gap behavior than large-caps. Gaps during earnings season behave differently than gaps during quiet periods. Always track your own gap statistics to build personalized data that reflects the stocks and setups you actually trade.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Gap and Go Strategy</h3>
+  <p>The Gap and Go strategy trades in the direction of the gap, expecting momentum to continue. It works best with breakaway and runaway gaps on high relative volume. Here is the execution plan:</p>
+  <ul class="feature-list">
+    <li><strong>Pre-market scan:</strong> Find stocks gapping 4%+ on above-average pre-market volume with a clear catalyst</li>
+    <li><strong>Wait for the ORB:</strong> Let the first 5-15 minutes form the opening range. A gap without follow-through is dangerous.</li>
+    <li><strong>Entry trigger:</strong> Buy when price breaks above the opening range high (for gap ups) with volume confirmation</li>
+    <li><strong>Stop loss:</strong> Below the opening range low, or below VWAP if the range is too wide</li>
+    <li><strong>Targets:</strong> Pre-market high as the first target, then trail using the 9 EMA on the 5-minute chart</li>
+    <li><strong>Time limit:</strong> If the stock does not make a new high within 30 minutes of your entry, consider exiting. Gap and Go momentum fades after the first hour.</li>
+  </ul>
+
+  <h3>Gap Fade Strategy</h3>
+  <p>The Gap Fade trades against the gap, expecting it to fill. This strategy works best with common gaps and exhaustion gaps on relatively low volume. Here is the execution plan:</p>
+  <ul class="feature-list">
+    <li><strong>Pre-market scan:</strong> Find stocks gapping on no real catalyst, or gapping into major resistance/support levels</li>
+    <li><strong>Wait for failure:</strong> Watch the first 15-30 minutes. If the stock cannot hold above the opening price and starts to sell off, the gap is likely to fill.</li>
+    <li><strong>Entry trigger:</strong> Short when price breaks below the opening range low (for gap-up fades), or long when price breaks above the opening range high (for gap-down fades)</li>
+    <li><strong>Stop loss:</strong> Above the pre-market high (for short fades) or below the pre-market low (for long fades)</li>
+    <li><strong>Target:</strong> The prior day's close (the gap fill level). Take partial profits at 50% of the gap fill distance.</li>
+    <li><strong>Avoid fading:</strong> Never fade gaps caused by earnings, M&amp;A news, or FDA decisions. These are information-driven breakaway gaps and are unlikely to fill.</li>
+  </ul>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Gap Trading Decision Framework
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Step 1:</strong> Identify the gap type &mdash; Is there a catalyst? How much has the stock already moved in this direction? What is the volume like?</li>
+      <li><strong>Step 2:</strong> Determine probability &mdash; Common/exhaustion gaps favor the fade; breakaway/runaway gaps favor continuation</li>
+      <li><strong>Step 3:</strong> Wait for the opening range &mdash; Never trade a gap in the first 2 minutes. Let the ORB form to give you a reference level.</li>
+      <li><strong>Step 4:</strong> Confirm with volume &mdash; The breakout from the ORB (in either direction) must have volume. Without it, stand aside.</li>
+      <li><strong>Step 5:</strong> Set hard stops &mdash; Gap trades can reverse violently. Respect your stop or risk giving back the entire gap move and more.</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Keep a Gap Statistics Log</strong>
+      <p>Track every gap you trade: the gap percentage, catalyst (or lack thereof), gap type, whether it filled, and how long the fill took. After 50-100 gap trades, you will have your own personalized gap fill statistics that may be even more useful than generic numbers, because they reflect the specific stocks and setups you trade.</p>
+    </div>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Earnings Gap Warning</strong>
+      <p>Earnings gaps are among the most powerful and least likely to fill. A stock that gaps 10% on a strong earnings report will often continue higher for days or weeks. Attempting to fade an earnings gap is one of the most common ways new traders take large losses. Always check the economic calendar before fading any gap.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.14 Quiz -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.14</span> Knowledge Check</h2>
   <p>Test your understanding of day trading strategies with these scenario-based questions.</p>
 
   <div class="quiz-container" data-quiz="m7-strategies">

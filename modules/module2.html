@@ -474,9 +474,168 @@
   </div>
 </div>
 
-<!-- ========== 2.5 QUIZ: PATTERN RECOGNITION ========== -->
+<!-- ========== 2.5 VOLUME-CONFIRMED PATTERNS ========== -->
 <div class="lesson-section reveal">
-  <h2><span class="section-number">2.5</span> Quiz: Pattern Recognition</h2>
+  <h2><span class="section-number">2.5</span> Volume-Confirmed Patterns</h2>
+  <p>The difference between a high-probability candlestick signal and a false one often comes down to a single variable: <strong>volume</strong>. Professional traders never trade candle patterns without checking volume confirmation.</p>
+
+  <div class="concept-card">
+    <h3>Why Volume Matters</h3>
+    <p>Volume represents the number of shares (or contracts) traded during a candle&rsquo;s time period. It answers a critical question: <em>How much conviction is behind this price move?</em></p>
+    <ul class="feature-list">
+      <li><strong>High volume + reversal pattern</strong> &mdash; Strong signal. Many participants are involved in the reversal, increasing reliability by 40-60% according to Bulkowski's research.</li>
+      <li><strong>Low volume + reversal pattern</strong> &mdash; Weak signal. Few participants means the "reversal" may just be a lack of interest, not a genuine shift in sentiment.</li>
+      <li><strong>Climactic volume</strong> &mdash; A massive volume spike (3-5x average) at the end of a trend often marks exhaustion &mdash; the last buyers/sellers piling in before the move reverses.</li>
+      <li><strong>Declining volume into a pattern</strong> &mdash; Volume decreasing as a pattern forms (e.g., during a triangle) signals coiling energy that will release in a breakout.</li>
+    </ul>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Pattern</th>
+        <th>Volume Confirmation</th>
+        <th>Reliability Without Volume</th>
+        <th>Reliability With Volume</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Hammer</strong></td>
+        <td>Volume &gt; 1.5x average on the hammer candle</td>
+        <td>~45%</td>
+        <td>~65%</td>
+      </tr>
+      <tr>
+        <td><strong>Engulfing</strong></td>
+        <td>Engulfing candle volume &gt; prior candle volume</td>
+        <td>~50%</td>
+        <td>~70%</td>
+      </tr>
+      <tr>
+        <td><strong>Morning Star</strong></td>
+        <td>Third candle has highest volume of the three</td>
+        <td>~55%</td>
+        <td>~75%</td>
+      </tr>
+      <tr>
+        <td><strong>Doji at support</strong></td>
+        <td>Above-average volume shows institutional interest</td>
+        <td>~35%</td>
+        <td>~55%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The Volume Spike Rule</strong>
+      <p>When you see a candlestick pattern you like, immediately check: is volume at least 1.5x the 20-period average? If yes, the pattern is worth trading. If volume is below average, pass. This single filter eliminates the majority of false signals.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 2.6 MULTI-TIMEFRAME CANDLE ANALYSIS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">2.6</span> Multi-Timeframe Candle Analysis</h2>
+  <p>The most powerful application of candlestick analysis is reading patterns across multiple timeframes simultaneously. A signal that appears on two or three timeframes at once has dramatically higher reliability than a single-timeframe signal.</p>
+
+  <div class="concept-card">
+    <h3>The Top-Down Approach</h3>
+    <p>Professional traders read candles from higher timeframes to lower timeframes, using each level to confirm or deny the setup:</p>
+    <ul class="feature-list">
+      <li><strong>Daily chart</strong> &mdash; Determines the overall trend and identifies key reversal candles at major support/resistance. This is your directional bias.</li>
+      <li><strong>15-minute chart</strong> &mdash; Shows intraday trend structure. Look for candle patterns that align with the daily bias.</li>
+      <li><strong>5-minute chart</strong> &mdash; Your execution timeframe. Entry signals should align with 15-min and daily direction.</li>
+      <li><strong>1-minute chart</strong> &mdash; Precision timing only. Use for exact entry triggers, not for pattern identification.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Multi-Timeframe Alignment</h3>
+    <svg viewBox="0 0 700 280" width="100%" style="max-width:700px">
+      <!-- Daily -->
+      <rect x="20" y="20" width="200" height="80" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="120" y="42" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="600">DAILY: Bullish Trend</text>
+      <text x="120" y="60" text-anchor="middle" fill="#10b981" font-size="10">Hammer at 200-SMA support</text>
+      <text x="120" y="78" text-anchor="middle" fill="#94a3b8" font-size="9">BIAS: LONG</text>
+      <text x="120" y="92" text-anchor="middle" fill="#10b981" font-size="10" font-weight="600">&#10004;</text>
+
+      <!-- Arrow -->
+      <line x1="220" y1="60" x2="260" y2="60" stroke="#475569" stroke-width="1.5"/>
+      <polygon points="255,55 265,60 255,65" fill="#475569"/>
+
+      <!-- 15-min -->
+      <rect x="265" y="20" width="200" height="80" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+      <text x="365" y="42" text-anchor="middle" fill="#8b5cf6" font-size="11" font-weight="600">15-MIN: Pullback Bounce</text>
+      <text x="365" y="60" text-anchor="middle" fill="#10b981" font-size="10">Bullish engulfing at VWAP</text>
+      <text x="365" y="78" text-anchor="middle" fill="#94a3b8" font-size="9">CONFIRMS DAILY BIAS</text>
+      <text x="365" y="92" text-anchor="middle" fill="#10b981" font-size="10" font-weight="600">&#10004;</text>
+
+      <!-- Arrow -->
+      <line x1="465" y1="60" x2="500" y2="60" stroke="#475569" stroke-width="1.5"/>
+      <polygon points="495,55 505,60 495,65" fill="#475569"/>
+
+      <!-- 5-min -->
+      <rect x="505" y="20" width="180" height="80" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+      <text x="595" y="42" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">5-MIN: Entry Trigger</text>
+      <text x="595" y="60" text-anchor="middle" fill="#10b981" font-size="10">Break of 5m candle high</text>
+      <text x="595" y="78" text-anchor="middle" fill="#94a3b8" font-size="9">EXECUTE LONG</text>
+      <text x="595" y="92" text-anchor="middle" fill="#10b981" font-size="10" font-weight="600">&#10004;</text>
+
+      <!-- Result box -->
+      <rect x="180" y="130" width="340" height="70" rx="10" fill="rgba(16,185,129,0.08)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="350" y="155" text-anchor="middle" fill="#10b981" font-size="13" font-weight="700">HIGH PROBABILITY SETUP</text>
+      <text x="350" y="175" text-anchor="middle" fill="#94a3b8" font-size="10">All 3 timeframes aligned = maximum confluence</text>
+      <text x="350" y="192" text-anchor="middle" fill="#94a3b8" font-size="9">Estimated win rate: 65-75% with proper risk management</text>
+
+      <!-- Arrows to result -->
+      <line x1="120" y1="100" x2="280" y2="130" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="365" y1="100" x2="350" y2="130" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="595" y1="100" x2="420" y2="130" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <!-- Conflict example -->
+      <rect x="180" y="215" width="340" height="55" rx="10" fill="rgba(239,68,68,0.08)" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="350" y="238" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="600">CONFLICTING SIGNALS = PASS</text>
+      <text x="350" y="255" text-anchor="middle" fill="#94a3b8" font-size="10">If 5-min shows bullish but daily is bearish, skip the trade</text>
+    </svg>
+  </div>
+
+  <div class="concept-card">
+    <h3>Advanced: Candle Aggregation Principle</h3>
+    <p>A key insight from multi-timeframe analysis: <strong>three 5-minute candles aggregate into one 15-minute candle</strong>. This means you can "see" the 15-minute candle forming in real time by watching the 5-minute chart. If three consecutive 5-min bullish candles are forming, the 15-min candle will be a strong bullish marubozu. This gives you an early signal before the 15-min candle closes.</p>
+    <ul class="feature-list">
+      <li><strong>3 green 5-min candles</strong> = bullish 15-min candle forming (potential entry before 15m close)</li>
+      <li><strong>2 green + 1 red 5-min candles</strong> = 15-min candle likely has upper wick (weakness)</li>
+      <li><strong>Alternating green/red 5-min candles</strong> = 15-min doji forming (indecision, no trade)</li>
+    </ul>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Research Insight: Timeframe Confluence</strong>
+      <p>Studies by Bulkowski (2008) and Nison (2001) consistently show that candlestick patterns confirmed by higher-timeframe structure have success rates 15-25 percentage points higher than single-timeframe patterns. The additional filter of volume confirmation can add another 10-15 points. This is why professional traders insist on confluence before entering any trade.</p>
+    </div>
+  </div>
+</div>
+
+  <div class="concept-card reveal">
+    <h3>Multi-Timeframe Candle Confluence</h3>
+    <p>A single candlestick pattern in isolation has moderate reliability. The same pattern at a level that matters on a higher timeframe becomes a high-probability signal. <strong>Multi-timeframe confluence</strong> means aligning candlestick signals across daily, hourly, and intraday charts to filter out noise and trade only the strongest setups.</p>
+    <ul class="feature-list">
+      <li><strong>Daily chart sets the context:</strong> A daily hammer at a major support level tells you the higher timeframe favors a bounce. This is your directional bias for the day.</li>
+      <li><strong>Hourly chart identifies the setup:</strong> Within that daily hammer, the hourly chart may show a double bottom or bullish engulfing pattern forming. This narrows your entry window.</li>
+      <li><strong>5-minute chart triggers the entry:</strong> A bullish engulfing on the 5-minute chart, occurring at the hourly double bottom, which itself is the wick of a daily hammer at support &mdash; this is triple-timeframe confluence. The probability of this setup working is significantly higher than any single-timeframe signal.</li>
+      <li><strong>Volume must agree:</strong> The higher-timeframe candle should show above-average volume (commitment). The lower-timeframe entry candle should also show increasing volume (confirmation). Low volume at any level weakens the signal.</li>
+      <li><strong>The hierarchy rule:</strong> Never trade a lower-timeframe signal that contradicts the higher timeframe. A 5-minute bullish engulfing means nothing if the daily chart shows a bearish breakdown. Always defer to the higher timeframe for bias and use the lower timeframe only for entry timing.</li>
+    </ul>
+  </div>
+
+<!-- ========== 2.7 QUIZ: PATTERN RECOGNITION ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">2.7</span> Quiz: Pattern Recognition</h2>
   <p>Test your ability to identify and interpret candlestick patterns. These questions simulate real chart-reading scenarios you will encounter every trading day.</p>
 
   <div class="quiz-container" data-quiz="m2-candles">

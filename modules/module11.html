@@ -1,0 +1,1191 @@
+<!-- MODULE 11: Order Flow & Tape Reading Mastery -->
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 4-12"/><circle cx="7" cy="16" r="1.5"/><circle cx="11" cy="8" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="19" cy="4" r="1.5"/></svg>
+    MODULE 11
+  </div>
+  <h1>Order Flow &amp; Tape Reading Mastery</h1>
+  <p>Go beyond traditional chart-based technical analysis and learn to read the raw data that drives price movement. Order flow analysis reveals institutional intent, absorption, and exhaustion in real time &mdash; giving you a decisive edge before the candle even closes.</p>
+</div>
+
+<!-- ========== 11.1 WHAT IS ORDER FLOW ANALYSIS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">11.1</span> What Is Order Flow Analysis</h2>
+  <p>Order flow analysis is the study of the actual buy and sell orders hitting the market in real time. While traditional technical analysis looks at historical price patterns &mdash; lagging information derived from already-completed transactions &mdash; order flow gives you a window into what is happening <strong>right now</strong>. It answers the question: who is in control of this market at this very moment, buyers or sellers?</p>
+
+  <p>Every price movement is caused by an imbalance between aggressive buyers and aggressive sellers. When a buyer submits a market order, they are "lifting the offer" &mdash; they are so eager to buy that they accept the seller&rsquo;s asking price. When a seller submits a market order, they are "hitting the bid" &mdash; accepting the buyer&rsquo;s price to get out immediately. Order flow analysis tracks these aggressive transactions to determine who is more motivated.</p>
+
+  <div class="concept-card">
+    <h3>Order Flow vs. Traditional Technical Analysis</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Traditional Technical Analysis</th>
+          <th>Order Flow Analysis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Data Source</strong></td>
+          <td>OHLC candles, volume bars</td>
+          <td>Individual trades, bid/ask, DOM</td>
+        </tr>
+        <tr>
+          <td><strong>Timing</strong></td>
+          <td>Lagging &mdash; candle must close</td>
+          <td>Real-time &mdash; tick by tick</td>
+        </tr>
+        <tr>
+          <td><strong>Reveals</strong></td>
+          <td>What happened (price patterns)</td>
+          <td>What is happening (intent &amp; aggression)</td>
+        </tr>
+        <tr>
+          <td><strong>Granularity</strong></td>
+          <td>Aggregated by time interval</td>
+          <td>Individual transaction level</td>
+        </tr>
+        <tr>
+          <td><strong>Best For</strong></td>
+          <td>Identifying zones &amp; trend direction</td>
+          <td>Confirming entries &amp; reading intent</td>
+        </tr>
+        <tr>
+          <td><strong>Learning Curve</strong></td>
+          <td>Moderate</td>
+          <td>Steep &mdash; requires screen time</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Key Order Flow Concepts</h3>
+    <h4>Delta (Buying vs. Selling Volume)</h4>
+    <p>Delta is the difference between volume traded at the ask (aggressive buyers) and volume traded at the bid (aggressive sellers) for a given period or price level. A positive delta means more aggressive buying; a negative delta means more aggressive selling. Delta is the single most important metric in order flow trading.</p>
+    <ul class="feature-list">
+      <li><strong>Bar Delta</strong> &mdash; The net difference for an entire candle. A green candle with negative delta is a warning sign &mdash; the price went up but sellers were actually more aggressive.</li>
+      <li><strong>Per-Level Delta</strong> &mdash; Delta calculated at each individual price level, revealing exactly where buyers and sellers fought hardest.</li>
+    </ul>
+
+    <h4>Cumulative Delta</h4>
+    <p>Cumulative delta (CVD) is a running total of delta over time. It functions like an oscillator that reveals the underlying buying/selling pressure trend. When price makes a new high but cumulative delta does not, it signals a <strong>delta divergence</strong> &mdash; one of the most powerful order flow signals. Research by Dalton (2007) and later quantitative studies have confirmed that CVD divergences precede reversals with statistically significant frequency in liquid futures markets.</p>
+
+    <h4>Footprint Charts</h4>
+    <p>Footprint charts (also called cluster charts or bid/ask charts) display the volume traded at the bid and ask for every price level within each candle. They transform a standard candlestick into a detailed matrix of buying and selling activity. Footprint charts are the primary visualization tool for serious order flow traders, available in platforms such as Sierra Chart, Bookmap, ATAS, and Quantower.</p>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    <div class="info-box-content">
+      <strong>Platform Requirements</strong>
+      <p>Order flow analysis requires Level 2 / DOM data and time &amp; sales feeds, which are typically available through futures brokers (NinjaTrader, Sierra Chart, Rithmic) or specialized equity platforms (Bookmap, Jigsaw Trading). Standard retail charting platforms like TradingView do not provide the granular order flow data needed for this module&rsquo;s techniques. If you trade equities, consider Bookmap or DAS Trader Pro for tape reading capabilities.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 11.2 READING THE TAPE ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">11.2</span> Reading the Tape Like a Pro</h2>
+  <p>The &ldquo;tape&rdquo; refers to the Time &amp; Sales window &mdash; a real-time stream of every transaction that occurs in a given instrument. Before electronic screens, trades were printed on a ticker tape, and skilled traders like Jesse Livermore built fortunes by reading the speed, size, and rhythm of prints. Modern tape reading applies the same principles to the digital time &amp; sales feed, but with far greater detail.</p>
+
+  <p>Tape reading is not about watching every print. It is about recognizing <strong>patterns of aggression</strong> &mdash; bursts of large orders, sweep activity, and shifts in the rhythm of trading. A skilled tape reader can sense institutional accumulation or distribution minutes before it shows up on any chart.</p>
+
+  <div class="concept-card">
+    <h3>Anatomy of a Time &amp; Sales Print</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Description</th>
+          <th>What to Watch For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Time</strong></td>
+          <td>Timestamp to the millisecond</td>
+          <td>Clusters of prints at the same millisecond indicate algorithmic execution</td>
+        </tr>
+        <tr>
+          <td><strong>Price</strong></td>
+          <td>Execution price of the trade</td>
+          <td>Prints consistently at the ask = buying pressure; at the bid = selling</td>
+        </tr>
+        <tr>
+          <td><strong>Size</strong></td>
+          <td>Number of shares/contracts</td>
+          <td>Large prints (1,000+ shares or 50+ contracts in ES) signal institutional activity</td>
+        </tr>
+        <tr>
+          <td><strong>Condition</strong></td>
+          <td>Trade condition codes</td>
+          <td>Sweep orders (ISOs) that bypass displayed quotes indicate urgency</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Large Prints &amp; Sweep Orders</h3>
+    <p>Not all prints on the tape are created equal. Large prints &mdash; sometimes called "block trades" or "size prints" &mdash; carry disproportionate information because they are almost certainly institutional. A 10,000-share print at the ask in a mid-cap stock is not a retail trader; it is a fund manager building a position.</p>
+
+    <h4>Intermarket Sweep Orders (ISOs)</h4>
+    <p>ISOs are a special order type that allows a trader to simultaneously sweep liquidity across multiple exchanges. When you see a rapid sequence of prints at the same price across different exchanges, that is a sweep. Sweeps signal extreme urgency &mdash; the trader needs to get filled <em>right now</em> and is willing to take liquidity from every available venue simultaneously. Consecutive sweeps on the offer are strongly bullish; sweeps on the bid are strongly bearish.</p>
+
+    <h4>Odd-Lot vs. Round-Lot Analysis</h4>
+    <p>Round lots (multiples of 100 shares) are traditional institutional sizing. However, modern algorithms frequently use odd lots (e.g., 73 shares, 147 shares) to disguise order flow. Research published by O&rsquo;Hara, Yao, and Ye (2014) found that odd-lot trades contain significant information and often represent informed trading activity. Watch for patterns of repeated odd-lot prints at the same price &mdash; this is an algorithm slicing a large order into small, inconspicuous pieces.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Spotting Institutional Accumulation on the Tape</h3>
+    <p>Institutions cannot buy millions of shares at once without moving the market against themselves. Instead, they accumulate positions slowly over hours or days. Here are the tape signatures of institutional accumulation:</p>
+    <ul class="feature-list">
+      <li><strong>Persistent lifting of the offer</strong> &mdash; Repeated prints at the ask price, even as the ask rises, indicate a buyer willing to pay higher prices.</li>
+      <li><strong>Absorption at support</strong> &mdash; Large prints on the bid at a key support level, combined with the bid refreshing (getting refilled repeatedly), signal a large buyer absorbing all selling pressure.</li>
+      <li><strong>Increasing print size into dips</strong> &mdash; When the average print size grows as price pulls back, institutions are "buying the dip" with larger clips.</li>
+      <li><strong>Consistent odd-lot patterns</strong> &mdash; Algorithmic accumulation via 50&ndash;200 share clips appearing every few seconds with clockwork regularity.</li>
+      <li><strong>Dark pool prints after hours</strong> &mdash; Large block trades reported to the tape with a "D" condition code indicate dark pool crosses, often signaling institutional activity.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Simulated Time &amp; Sales &mdash; Institutional Accumulation Pattern</h3>
+    <svg viewBox="0 0 700 340" width="100%" style="max-width:700px">
+      <!-- Background -->
+      <rect x="0" y="0" width="700" height="340" rx="8" fill="#0f172a"/>
+      <!-- Header row -->
+      <rect x="10" y="10" width="680" height="28" rx="4" fill="#1e293b"/>
+      <text x="60" y="29" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700">TIME</text>
+      <text x="200" y="29" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700">PRICE</text>
+      <text x="340" y="29" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700">SIZE</text>
+      <text x="500" y="29" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700">SIDE</text>
+      <text x="630" y="29" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700">COND</text>
+
+      <!-- Row 1 -->
+      <text x="60" y="62" text-anchor="middle" fill="#64748b" font-size="11">09:42:31.004</text>
+      <text x="200" y="62" text-anchor="middle" fill="#e2e8f0" font-size="11">185.22</text>
+      <text x="340" y="62" text-anchor="middle" fill="#e2e8f0" font-size="11">200</text>
+      <text x="500" y="62" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">ASK</text>
+      <text x="630" y="62" text-anchor="middle" fill="#64748b" font-size="11">&mdash;</text>
+
+      <!-- Row 2 -->
+      <text x="60" y="86" text-anchor="middle" fill="#64748b" font-size="11">09:42:31.004</text>
+      <text x="200" y="86" text-anchor="middle" fill="#e2e8f0" font-size="11">185.22</text>
+      <text x="340" y="86" text-anchor="middle" fill="#e2e8f0" font-size="11">300</text>
+      <text x="500" y="86" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">ASK</text>
+      <text x="630" y="86" text-anchor="middle" fill="#f59e0b" font-size="11">ISO</text>
+
+      <!-- Row 3 -->
+      <text x="60" y="110" text-anchor="middle" fill="#64748b" font-size="11">09:42:31.005</text>
+      <text x="200" y="110" text-anchor="middle" fill="#e2e8f0" font-size="11">185.22</text>
+      <text x="340" y="110" text-anchor="middle" fill="#e2e8f0" font-size="11">147</text>
+      <text x="500" y="110" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">ASK</text>
+      <text x="630" y="110" text-anchor="middle" fill="#f59e0b" font-size="11">ISO</text>
+
+      <!-- Row 4 - highlight -->
+      <rect x="10" y="120" width="680" height="24" rx="2" fill="rgba(16,185,129,0.08)"/>
+      <text x="60" y="137" text-anchor="middle" fill="#64748b" font-size="11">09:42:31.005</text>
+      <text x="200" y="137" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">185.23</text>
+      <text x="340" y="137" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">5,000</text>
+      <text x="500" y="137" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">ASK</text>
+      <text x="630" y="137" text-anchor="middle" fill="#f59e0b" font-size="11">ISO</text>
+
+      <!-- Row 5 -->
+      <text x="60" y="162" text-anchor="middle" fill="#64748b" font-size="11">09:42:31.102</text>
+      <text x="200" y="162" text-anchor="middle" fill="#e2e8f0" font-size="11">185.22</text>
+      <text x="340" y="162" text-anchor="middle" fill="#e2e8f0" font-size="11">100</text>
+      <text x="500" y="162" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">BID</text>
+      <text x="630" y="162" text-anchor="middle" fill="#64748b" font-size="11">&mdash;</text>
+
+      <!-- Row 6 -->
+      <text x="60" y="186" text-anchor="middle" fill="#64748b" font-size="11">09:42:31.340</text>
+      <text x="200" y="186" text-anchor="middle" fill="#e2e8f0" font-size="11">185.23</text>
+      <text x="340" y="186" text-anchor="middle" fill="#e2e8f0" font-size="11">250</text>
+      <text x="500" y="186" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">ASK</text>
+      <text x="630" y="186" text-anchor="middle" fill="#64748b" font-size="11">&mdash;</text>
+
+      <!-- Row 7 -->
+      <text x="60" y="210" text-anchor="middle" fill="#64748b" font-size="11">09:42:31.341</text>
+      <text x="200" y="210" text-anchor="middle" fill="#e2e8f0" font-size="11">185.23</text>
+      <text x="340" y="210" text-anchor="middle" fill="#e2e8f0" font-size="11">183</text>
+      <text x="500" y="210" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">ASK</text>
+      <text x="630" y="210" text-anchor="middle" fill="#f59e0b" font-size="11">ISO</text>
+
+      <!-- Row 8 - highlight -->
+      <rect x="10" y="218" width="680" height="24" rx="2" fill="rgba(16,185,129,0.08)"/>
+      <text x="60" y="235" text-anchor="middle" fill="#64748b" font-size="11">09:42:31.342</text>
+      <text x="200" y="235" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">185.24</text>
+      <text x="340" y="235" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">3,200</text>
+      <text x="500" y="235" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">ASK</text>
+      <text x="630" y="235" text-anchor="middle" fill="#f59e0b" font-size="11">ISO</text>
+
+      <!-- Annotation -->
+      <rect x="30" y="270" width="640" height="55" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+      <text x="50" y="292" fill="#10b981" font-size="11" font-weight="700">READING:</text>
+      <text x="120" y="292" fill="#e2e8f0" font-size="10.5">Rapid sweep orders (ISOs) all on the ASK side with increasing size and rising price.</text>
+      <text x="50" y="312" fill="#e2e8f0" font-size="10.5">This is aggressive institutional buying. Multiple exchanges swept simultaneously. Strongly bullish signal.</text>
+    </svg>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Tape Reading Takes Screen Time</strong>
+      <p>You cannot learn tape reading from a textbook alone. It requires hundreds of hours of watching the tape alongside price action to build pattern recognition. Start by watching the tape on one instrument (e.g., ES futures or SPY) for 30 minutes a day. After a few weeks, you will begin to "feel" the rhythm of the market &mdash; when it is speeding up, slowing down, or about to reverse. Record your screen and review after market close.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 11.3 DEPTH OF MARKET (DOM) ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">11.3</span> Depth of Market (DOM) Trading</h2>
+  <p>The Depth of Market (DOM), also called the price ladder or Level 2, displays all resting limit orders at each price level above and below the current market price. While the tape shows you what has already traded (executed orders), the DOM shows you what is <strong>waiting to trade</strong> (pending orders). Together, they form a complete picture of market microstructure.</p>
+
+  <p>The DOM is a vertical ladder where each rung represents a price level. On the left side (bid) you see buy limit orders waiting; on the right side (ask) you see sell limit orders waiting. The "inside market" is the best bid and best ask &mdash; where the next trades will execute.</p>
+
+  <div class="concept-card">
+    <h3>DOM Ladder Mechanics</h3>
+    <h4>Key DOM Components</h4>
+    <ul class="feature-list">
+      <li><strong>Bid Stack</strong> &mdash; The column of buy limit orders below the current price. A thick bid stack (large total size) suggests strong support; a thin bid stack suggests the price could fall quickly.</li>
+      <li><strong>Ask Stack</strong> &mdash; The column of sell limit orders above the current price. Heavy offers create resistance; thin offers mean price can move up easily.</li>
+      <li><strong>Last Traded Price</strong> &mdash; The center column showing where the most recent transaction occurred and whether it was at the bid or ask.</li>
+      <li><strong>Volume at Price</strong> &mdash; Many DOM displays show how much volume has already traded at each price level during the session &mdash; a real-time volume profile.</li>
+      <li><strong>Pull Rate</strong> &mdash; Advanced DOM tools like Jigsaw show how often orders are being pulled (cancelled) at each level, revealing fake liquidity.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>DOM Price Ladder &mdash; Anatomy</h3>
+    <svg viewBox="0 0 600 400" width="100%" style="max-width:600px">
+      <rect x="0" y="0" width="600" height="400" rx="8" fill="#0f172a"/>
+
+      <!-- Column headers -->
+      <text x="100" y="30" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="700">BID SIZE</text>
+      <text x="300" y="30" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">PRICE</text>
+      <text x="500" y="30" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">ASK SIZE</text>
+
+      <!-- Ask levels (above market) -->
+      <text x="300" y="60" text-anchor="middle" fill="#94a3b8" font-size="11">4,522.50</text>
+      <rect x="400" y="48" width="48" height="16" rx="2" fill="rgba(239,68,68,0.15)"/>
+      <text x="500" y="60" text-anchor="middle" fill="#ef4444" font-size="11">12</text>
+
+      <text x="300" y="84" text-anchor="middle" fill="#94a3b8" font-size="11">4,522.25</text>
+      <rect x="400" y="72" width="36" height="16" rx="2" fill="rgba(239,68,68,0.15)"/>
+      <text x="500" y="84" text-anchor="middle" fill="#ef4444" font-size="11">8</text>
+
+      <text x="300" y="108" text-anchor="middle" fill="#94a3b8" font-size="11">4,522.00</text>
+      <rect x="400" y="96" width="120" height="16" rx="2" fill="rgba(239,68,68,0.3)"/>
+      <text x="500" y="108" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">245</text>
+      <!-- Annotation for stacked orders -->
+      <line x1="530" y1="104" x2="575" y2="104" stroke="#ef4444" stroke-width="1"/>
+      <text x="578" y="108" fill="#ef4444" font-size="9" font-weight="600">STACKED</text>
+
+      <text x="300" y="132" text-anchor="middle" fill="#94a3b8" font-size="11">4,521.75</text>
+      <rect x="400" y="120" width="30" height="16" rx="2" fill="rgba(239,68,68,0.15)"/>
+      <text x="500" y="132" text-anchor="middle" fill="#ef4444" font-size="11">6</text>
+
+      <text x="300" y="156" text-anchor="middle" fill="#94a3b8" font-size="11">4,521.50</text>
+      <rect x="400" y="144" width="52" height="16" rx="2" fill="rgba(239,68,68,0.15)"/>
+      <text x="500" y="156" text-anchor="middle" fill="#ef4444" font-size="11">15</text>
+
+      <!-- Inside market highlight -->
+      <rect x="50" y="170" width="500" height="28" rx="4" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+      <text x="100" y="189" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="700">42</text>
+      <text x="300" y="189" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700">4,521.25</text>
+      <text x="500" y="189" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">18</text>
+      <text x="300" y="207" text-anchor="middle" fill="#f59e0b" font-size="8">INSIDE MARKET</text>
+
+      <!-- Bid levels (below market) -->
+      <text x="300" y="232" text-anchor="middle" fill="#94a3b8" font-size="11">4,521.00</text>
+      <rect x="55" y="220" width="90" height="16" rx="2" fill="rgba(59,130,246,0.15)"/>
+      <text x="100" y="232" text-anchor="middle" fill="#3b82f6" font-size="11">35</text>
+
+      <text x="300" y="256" text-anchor="middle" fill="#94a3b8" font-size="11">4,520.75</text>
+      <rect x="55" y="244" width="60" height="16" rx="2" fill="rgba(59,130,246,0.15)"/>
+      <text x="100" y="256" text-anchor="middle" fill="#3b82f6" font-size="11">22</text>
+
+      <text x="300" y="280" text-anchor="middle" fill="#94a3b8" font-size="11">4,520.50</text>
+      <rect x="55" y="268" width="140" height="16" rx="2" fill="rgba(59,130,246,0.3)"/>
+      <text x="100" y="280" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="700">320</text>
+      <!-- Annotation for stacked orders -->
+      <line x1="20" y1="276" x2="50" y2="276" stroke="#3b82f6" stroke-width="1"/>
+      <text x="17" y="280" text-anchor="end" fill="#3b82f6" font-size="9" font-weight="600">STACKED</text>
+
+      <text x="300" y="304" text-anchor="middle" fill="#94a3b8" font-size="11">4,520.25</text>
+      <rect x="55" y="292" width="42" height="16" rx="2" fill="rgba(59,130,246,0.15)"/>
+      <text x="100" y="304" text-anchor="middle" fill="#3b82f6" font-size="11">10</text>
+
+      <text x="300" y="328" text-anchor="middle" fill="#94a3b8" font-size="11">4,520.00</text>
+      <rect x="55" y="316" width="26" height="16" rx="2" fill="rgba(59,130,246,0.15)"/>
+      <text x="100" y="328" text-anchor="middle" fill="#3b82f6" font-size="11">4</text>
+      <!-- Annotation for thin level -->
+      <line x1="20" y1="324" x2="50" y2="324" stroke="#94a3b8" stroke-width="1"/>
+      <text x="17" y="328" text-anchor="end" fill="#94a3b8" font-size="9">THIN</text>
+
+      <!-- Legend -->
+      <rect x="130" y="360" width="340" height="28" rx="4" fill="#1e293b"/>
+      <text x="300" y="379" text-anchor="middle" fill="#94a3b8" font-size="10">Stacked = 100+ contracts | Thin = fewer than 10 contracts</text>
+    </svg>
+  </div>
+
+  <div class="concept-card">
+    <h3>DOM Manipulation &amp; Spoofing</h3>
+    <p>The DOM is not always an honest picture of supply and demand. High-frequency trading (HFT) firms and sophisticated algorithms frequently place and cancel large orders to create false impressions of liquidity. Understanding these tactics is essential for avoiding traps.</p>
+
+    <h4>Pull/Reload Patterns</h4>
+    <p>A <strong>pull</strong> occurs when a large resting order is suddenly cancelled just before price reaches it. A <strong>reload</strong> occurs when an order is consumed and then immediately replaced at the same level. These patterns reveal intent:</p>
+    <ul class="feature-list">
+      <li><strong>Pulled offers before they are hit</strong> &mdash; A large sell order at 4,522.00 disappears as price approaches. This was never a real sell order &mdash; it was placed to create the illusion of resistance and discourage buying. Strongly bullish when offers are pulled.</li>
+      <li><strong>Reloading bids after they are hit</strong> &mdash; A 200-lot bid at 4,520.50 gets filled, then immediately another 200 lots appear at the same price. This is a genuine buyer absorbing all selling. The bid keeps refreshing because a large institution is accumulating.</li>
+      <li><strong>Spoofing</strong> &mdash; Placing large orders with the intent to cancel before execution, designed to trick other traders or algorithms. This is illegal under the Dodd-Frank Act (prosecuted since 2015), but still occurs. Watch for large orders that disappear right before they would be filled.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Spoofing Detection: Red Flags</h3>
+    <p>Spoofing is illegal under the Dodd-Frank Act, but it still occurs. Here are quantitative red flags that distinguish spoofing from legitimate order management:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Red Flag</th>
+          <th>What to Look For</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>High order-to-trade ratio</strong></td>
+          <td>Large orders placed and cancelled at a rate exceeding 10:1 (10 cancels per 1 fill)</td>
+          <td>Legitimate traders want fills; spoofers want to create the illusion of demand/supply</td>
+        </tr>
+        <tr>
+          <td><strong>Sub-second cancellation</strong></td>
+          <td>Large orders pulled within 100&ndash;300 milliseconds of placement</td>
+          <td>Too fast for any human trader; designed to flash on the DOM just long enough to be detected by algos</td>
+        </tr>
+        <tr>
+          <td><strong>Repeated appearance at same level</strong></td>
+          <td>A large order appears, disappears, and reappears at the same price 3+ times in rapid succession</td>
+          <td>Legitimate institutional orders do not flicker; they are placed once and managed via slicing algorithms</td>
+        </tr>
+        <tr>
+          <td><strong>Orders pulled as price approaches</strong></td>
+          <td>A 500-lot bid at $100.00 disappears when the ask drops to $100.01</td>
+          <td>The order was never intended to fill &mdash; it existed only to create the appearance of support</td>
+        </tr>
+        <tr>
+          <td><strong>Opposite-side activity</strong></td>
+          <td>Large visible bids placed while simultaneous small sell orders execute on the tape</td>
+          <td>The spoofer is selling while their large bid creates the illusion of buying interest</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>DOM Ladder Trading Strategies</h3>
+    <p>Beyond reading the DOM for context, professional scalpers use specific DOM-based strategies:</p>
+    <ul class="feature-list">
+      <li><strong>Absorption trading:</strong> Watch for a large resting bid that keeps getting hit (selling into it) but does not break. Each time it absorbs selling and refreshes, it signals a genuine institutional buyer. Go long when the aggressive selling exhausts itself and the bid holds. Stop below the absorption level.</li>
+      <li><strong>Pulling detection:</strong> If a large offer at resistance suddenly disappears (is pulled), it signals that the seller has withdrawn &mdash; resistance is weakened. This is a breakout signal, especially if accompanied by aggressive buying on the tape.</li>
+      <li><strong>Stacking:</strong> Multiple large orders stacked at consecutive price levels (e.g., 500 lots at $100, 400 at $100.25, 600 at $100.50) indicate a wall of institutional supply. These levels are likely to hold initially. Trade the rejection at the stack, or trade the breakout if the stack is consumed with aggressive buying.</li>
+      <li><strong>Iceberg detection:</strong> An order that keeps refreshing at the same price after being partially filled (e.g., 100 shares appear, get hit, another 100 appear) is an iceberg order. This signals hidden institutional demand or supply &mdash; larger than what the DOM displays.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Time &amp; Sales Filtering</h3>
+    <p>Raw Time &amp; Sales data is noisy. Professional tape readers apply filters to extract signal from noise:</p>
+    <ul class="feature-list">
+      <li><strong>Size filter:</strong> Filter for trades above a meaningful threshold (e.g., 500+ shares for liquid large-caps, 200+ for mid-caps). Small retail orders are noise; large prints reveal institutional activity.</li>
+      <li><strong>Odd lots vs. round lots:</strong> Round lots (100, 500, 1000 shares) are more likely to be institutional. Odd lots (137, 283 shares) are typically retail or algorithmic slicing. Weight round-lot prints more heavily.</li>
+      <li><strong>Venue filtering:</strong> Some platforms show which exchange each print came from. Dark pool prints (marked as &ldquo;D&rdquo; or off-exchange) represent institutional activity that chose to avoid the lit market. Large dark pool prints at the bid are bearish; at the ask, bullish.</li>
+      <li><strong>Speed of prints:</strong> A rapid succession of prints at the ask (&ldquo;machine-gunning the offer&rdquo;) indicates aggressive algorithmic buying. Manual traders cannot produce this pattern.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Cross-Exchange Fragmentation</h3>
+    <p>A single stock trades simultaneously on 15+ venues in the U.S. (NYSE, NASDAQ, ARCA, BATS, EDGX, IEX, plus 40+ dark pools). The DOM you see on your platform typically shows the <strong>consolidated</strong> feed from the Securities Information Processor (SIP), which aggregates quotes from all venues.</p>
+    <ul class="feature-list">
+      <li><strong>What you see vs. reality:</strong> The SIP consolidates quotes, but there is a latency gap (microseconds to milliseconds) between individual venue feeds and the SIP. HFT firms exploit this gap via direct feeds.</li>
+      <li><strong>Dark pool volume is invisible:</strong> Approximately 35&ndash;40% of equity volume trades off-exchange in dark pools. These trades appear on the tape <em>after</em> execution but are not visible in the DOM beforehand. This means the DOM underrepresents true supply and demand.</li>
+      <li><strong>Practical implication:</strong> Never assume the DOM shows the complete picture. A thin DOM with no visible bids may actually have substantial institutional buying interest hiding in dark pools. Conversely, a stacked DOM may include spoofed orders that will disappear on approach.</li>
+    </ul>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Do Not Trade the DOM Alone</strong>
+      <p>The DOM shows <em>intent</em>, but intent can be fake. Resting orders can be cancelled in microseconds. Never enter a trade solely because you see a large order on the DOM &mdash; always confirm with the tape (actual executed trades). If a large bid appears but no prints are occurring at that level, the order may be a spoof. The tape never lies; the DOM frequently does.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 11.4 VOLUME DELTA & IMBALANCES ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">11.4</span> Volume Delta &amp; Imbalances</h2>
+  <p>Volume alone tells you how much activity occurred. Delta tells you <strong>who was in control</strong>. By measuring the difference between aggressive buying volume (trades at the ask) and aggressive selling volume (trades at the bid) at each price level, delta reveals the true directional conviction behind every move. This is the heartbeat of order flow analysis.</p>
+
+  <div class="concept-card">
+    <h3>Understanding Delta at Each Price Level</h3>
+    <p>Consider a single price level during a 5-minute candle. At price 4,521.25, suppose 800 contracts traded at the ask (buyers lifting) and 300 contracts traded at the bid (sellers hitting). The delta at that level is +500 &mdash; net aggressive buying. This single number tells you more about what happened at that price than the candlestick ever could.</p>
+
+    <h4>Absorption</h4>
+    <p>Absorption occurs when a large volume of aggressive orders hits a price level, but the price does not move. This is one of the most powerful signals in all of order flow trading. It means a large passive participant (typically institutional) is absorbing all the aggression from the other side.</p>
+    <ul class="feature-list">
+      <li><strong>Bid absorption</strong> &mdash; Price approaches a support level. Aggressive sellers are hitting the bid with large volume, but the bid is reloading. Delta is very negative, yet price does not fall. A large buyer is absorbing all selling. This is extremely bullish.</li>
+      <li><strong>Ask absorption</strong> &mdash; Price pushes into a resistance level. Aggressive buyers are lifting the offer with huge volume, but price stalls. A large seller is absorbing all buying. This is extremely bearish.</li>
+    </ul>
+
+    <h4>Exhaustion</h4>
+    <p>Exhaustion is the opposite of absorption. It occurs when aggressive volume dries up after a sustained move. If price has been rallying with strong positive delta and then the delta begins shrinking while price makes one more push higher &mdash; that is exhaustion. The buyers are running out of fuel. Exhaustion often precedes sharp reversals.</p>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Delta Imbalance Patterns</h3>
+    <svg viewBox="0 0 800 350" width="100%" style="max-width:800px">
+      <rect x="0" y="0" width="800" height="350" rx="8" fill="#0f172a"/>
+
+      <!-- Title for Absorption example -->
+      <text x="200" y="30" text-anchor="middle" fill="#10b981" font-size="13" font-weight="700">BID ABSORPTION (Bullish)</text>
+
+      <!-- Absorption diagram - price levels -->
+      <text x="50" y="65" fill="#94a3b8" font-size="10">4,521.50</text>
+      <rect x="130" y="53" width="20" height="16" rx="2" fill="rgba(16,185,129,0.3)"/>
+      <text x="170" y="65" fill="#10b981" font-size="10">+50</text>
+
+      <text x="50" y="90" fill="#94a3b8" font-size="10">4,521.25</text>
+      <rect x="130" y="78" width="15" height="16" rx="2" fill="rgba(239,68,68,0.3)"/>
+      <text x="170" y="90" fill="#ef4444" font-size="10">-30</text>
+
+      <text x="50" y="115" fill="#f59e0b" font-size="10" font-weight="700">4,521.00</text>
+      <rect x="130" y="103" width="140" height="16" rx="2" fill="rgba(239,68,68,0.4)" stroke="#ef4444" stroke-width="1"/>
+      <text x="170" y="115" fill="#ef4444" font-size="10" font-weight="700">-2,400</text>
+      <text x="295" y="115" fill="#10b981" font-size="9" font-weight="700">ABSORBED!</text>
+
+      <text x="50" y="140" fill="#94a3b8" font-size="10">4,520.75</text>
+      <rect x="130" y="128" width="80" height="16" rx="2" fill="rgba(239,68,68,0.3)"/>
+      <text x="170" y="140" fill="#ef4444" font-size="10">-800</text>
+
+      <text x="50" y="165" fill="#94a3b8" font-size="10">4,520.50</text>
+      <rect x="130" y="153" width="40" height="16" rx="2" fill="rgba(239,68,68,0.3)"/>
+      <text x="170" y="165" fill="#ef4444" font-size="10">-200</text>
+
+      <!-- Arrow showing price held -->
+      <line x1="330" y1="165" x2="330" y2="65" stroke="#10b981" stroke-width="2" stroke-dasharray="4"/>
+      <polygon points="326,70 334,70 330,58" fill="#10b981"/>
+      <text x="350" y="115" fill="#10b981" font-size="9" font-weight="600">Price reverses UP</text>
+      <text x="350" y="130" fill="#94a3b8" font-size="8">Heavy selling absorbed</text>
+      <text x="350" y="143" fill="#94a3b8" font-size="8">at 4,521.00 by passive buyer</text>
+
+      <!-- Title for Exhaustion example -->
+      <text x="600" y="30" text-anchor="middle" fill="#ef4444" font-size="13" font-weight="700">BUYING EXHAUSTION (Bearish)</text>
+
+      <!-- Exhaustion diagram -->
+      <text x="460" y="65" fill="#94a3b8" font-size="10">4,525.00</text>
+      <rect x="545" y="53" width="8" height="16" rx="2" fill="rgba(16,185,129,0.2)"/>
+      <text x="575" y="65" fill="#10b981" font-size="10">+10</text>
+      <text x="630" y="65" fill="#f59e0b" font-size="9" font-weight="600">WEAK!</text>
+
+      <text x="460" y="90" fill="#94a3b8" font-size="10">4,524.75</text>
+      <rect x="545" y="78" width="18" height="16" rx="2" fill="rgba(16,185,129,0.25)"/>
+      <text x="575" y="90" fill="#10b981" font-size="10">+40</text>
+
+      <text x="460" y="115" fill="#94a3b8" font-size="10">4,524.50</text>
+      <rect x="545" y="103" width="40" height="16" rx="2" fill="rgba(16,185,129,0.3)"/>
+      <text x="575" y="115" fill="#10b981" font-size="10">+200</text>
+
+      <text x="460" y="140" fill="#94a3b8" font-size="10">4,524.25</text>
+      <rect x="545" y="128" width="80" height="16" rx="2" fill="rgba(16,185,129,0.35)"/>
+      <text x="575" y="140" fill="#10b981" font-size="10">+600</text>
+
+      <text x="460" y="165" fill="#94a3b8" font-size="10">4,524.00</text>
+      <rect x="545" y="153" width="130" height="16" rx="2" fill="rgba(16,185,129,0.4)"/>
+      <text x="575" y="165" fill="#10b981" font-size="10" font-weight="700">+1,800</text>
+
+      <!-- Arrow showing declining delta -->
+      <line x1="720" y1="165" x2="720" y2="65" stroke="#ef4444" stroke-width="2"/>
+      <polygon points="716,70 724,70 720,58" fill="#ef4444"/>
+      <text x="735" y="100" fill="#ef4444" font-size="9" font-weight="600">Delta</text>
+      <text x="735" y="113" fill="#ef4444" font-size="9" font-weight="600">shrinking</text>
+      <text x="735" y="130" fill="#94a3b8" font-size="8">Buyers losing</text>
+      <text x="735" y="143" fill="#94a3b8" font-size="8">conviction</text>
+
+      <!-- Bottom summary boxes -->
+      <rect x="30" y="195" width="340" height="140" rx="6" fill="#1e293b"/>
+      <text x="200" y="220" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">Absorption Characteristics</text>
+      <text x="50" y="245" fill="#e2e8f0" font-size="10">&bull; Very high volume at a single price level</text>
+      <text x="50" y="265" fill="#e2e8f0" font-size="10">&bull; Strongly negative delta, but price holds</text>
+      <text x="50" y="285" fill="#e2e8f0" font-size="10">&bull; Bid constantly refreshing on the DOM</text>
+      <text x="50" y="305" fill="#e2e8f0" font-size="10">&bull; Indicates hidden institutional passive order</text>
+      <text x="50" y="325" fill="#10b981" font-size="10" font-weight="600">Signal: Strong reversal likely</text>
+
+      <rect x="430" y="195" width="340" height="140" rx="6" fill="#1e293b"/>
+      <text x="600" y="220" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">Exhaustion Characteristics</text>
+      <text x="450" y="245" fill="#e2e8f0" font-size="10">&bull; Delta decreasing on successive price levels</text>
+      <text x="450" y="265" fill="#e2e8f0" font-size="10">&bull; Price still advancing but with less conviction</text>
+      <text x="450" y="285" fill="#e2e8f0" font-size="10">&bull; Print sizes shrinking on the tape</text>
+      <text x="450" y="305" fill="#e2e8f0" font-size="10">&bull; Often occurs at the end of trend moves</text>
+      <text x="450" y="325" fill="#ef4444" font-size="10" font-weight="600">Signal: Reversal or pullback imminent</text>
+    </svg>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    <div class="info-box-content">
+      <strong>Imbalance Ratios</strong>
+      <p>Most order flow platforms allow you to set an imbalance ratio threshold. A common setting is 300% &mdash; meaning if the ask volume at a price level is 3x or more than the bid volume at the adjacent level, it flags as a diagonal imbalance. Three or more consecutive diagonal imbalances in the same direction form an "imbalance stack" &mdash; a very high-probability signal of continued momentum. Sierra Chart, ATAS, and Exocharts all provide configurable imbalance highlighting.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 11.5 FOOTPRINT CHARTS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">11.5</span> Footprint Charts</h2>
+  <p>Footprint charts are the most information-dense visualization tool available to order flow traders. Each candle is expanded into a matrix showing the exact volume traded at the bid and at the ask for every price level within that candle&rsquo;s range. They replace the guesswork of standard candlestick analysis with precise, transaction-level data.</p>
+
+  <p>Originally developed for institutional futures trading, footprint charts have become accessible to retail traders through platforms like Sierra Chart, ATAS, Exocharts, Quantower, and MotiveWave. They are sometimes called "cluster charts," "bid/ask charts," or "number bars."</p>
+
+  <div class="concept-card">
+    <h3>Reading a Footprint Chart</h3>
+    <p>Each price level within a candle shows two numbers: <strong>Bid Volume x Ask Volume</strong> (or Ask x Bid, depending on platform convention). The bid volume represents trades executed at the bid (selling aggression), and the ask volume represents trades executed at the ask (buying aggression).</p>
+
+    <h4>Key Patterns in Footprint Charts</h4>
+    <ul class="feature-list">
+      <li><strong>Diagonal Imbalances</strong> &mdash; Compare the ask volume at one price level to the bid volume at the next level up. If the ratio exceeds 3:1, you have a diagonal buying imbalance. Three consecutive diagonal imbalances form a "buying ladder" &mdash; one of the strongest footprint signals.</li>
+      <li><strong>Finished Auction</strong> &mdash; When the lowest price level of a candle shows zero bid volume, the auction at the bottom is "finished" &mdash; sellers exhausted themselves and no more selling remains at that price. Bullish. The opposite applies at the top of candles.</li>
+      <li><strong>Unfinished Auction</strong> &mdash; When the highest or lowest price level still shows active volume on both sides, the auction is "unfinished" and price is likely to revisit that level.</li>
+      <li><strong>Point of Control (POC)</strong> &mdash; The price level with the highest total volume within a candle. This is where the most business was conducted and often acts as a magnet for future price.</li>
+      <li><strong>High Volume Nodes</strong> &mdash; Price levels with abnormally high total volume indicate agreement between buyers and sellers at that price. These become support/resistance in the future.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Footprint Chart &mdash; Visual Anatomy</h3>
+    <svg viewBox="0 0 700 460" width="100%" style="max-width:700px">
+      <rect x="0" y="0" width="700" height="460" rx="8" fill="#0f172a"/>
+
+      <!-- Candle outline -->
+      <rect x="120" y="40" width="260" height="340" rx="4" fill="none" stroke="#475569" stroke-width="1"/>
+
+      <!-- Title -->
+      <text x="250" y="25" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">5-Minute Footprint Candle</text>
+
+      <!-- Column headers inside candle -->
+      <text x="190" y="62" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="700">BID VOL</text>
+      <text x="250" y="62" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700">PRICE</text>
+      <text x="320" y="62" text-anchor="middle" fill="#10b981" font-size="10" font-weight="700">ASK VOL</text>
+
+      <!-- High of candle (finished auction - 0 ask) -->
+      <text x="190" y="88" text-anchor="middle" fill="#ef4444" font-size="11">18</text>
+      <text x="250" y="88" text-anchor="middle" fill="#94a3b8" font-size="11">4,523.00</text>
+      <text x="320" y="88" text-anchor="middle" fill="#64748b" font-size="11">0</text>
+      <text x="400" y="88" fill="#10b981" font-size="9" font-weight="600">&larr; Finished Auction (top)</text>
+
+      <text x="190" y="112" text-anchor="middle" fill="#ef4444" font-size="11">45</text>
+      <text x="250" y="112" text-anchor="middle" fill="#94a3b8" font-size="11">4,522.75</text>
+      <text x="320" y="112" text-anchor="middle" fill="#10b981" font-size="11">62</text>
+
+      <text x="190" y="136" text-anchor="middle" fill="#ef4444" font-size="11">120</text>
+      <text x="250" y="136" text-anchor="middle" fill="#94a3b8" font-size="11">4,522.50</text>
+      <text x="320" y="136" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">480</text>
+      <!-- Diagonal imbalance marker -->
+      <rect x="300" y="125" width="50" height="16" rx="2" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="1"/>
+      <text x="400" y="136" fill="#10b981" font-size="9" font-weight="600">&larr; 480 vs 120 = 4:1 imbalance</text>
+
+      <text x="190" y="160" text-anchor="middle" fill="#ef4444" font-size="11">85</text>
+      <text x="250" y="160" text-anchor="middle" fill="#94a3b8" font-size="11">4,522.25</text>
+      <text x="320" y="160" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">340</text>
+      <rect x="300" y="149" width="50" height="16" rx="2" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="1"/>
+
+      <!-- POC Level -->
+      <rect x="125" y="173" width="250" height="20" rx="2" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1"/>
+      <text x="190" y="188" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">520</text>
+      <text x="250" y="188" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">4,522.00</text>
+      <text x="320" y="188" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">680</text>
+      <text x="400" y="188" fill="#f59e0b" font-size="9" font-weight="600">&larr; POC (1,200 total)</text>
+
+      <text x="190" y="216" text-anchor="middle" fill="#ef4444" font-size="11">200</text>
+      <text x="250" y="216" text-anchor="middle" fill="#94a3b8" font-size="11">4,521.75</text>
+      <text x="320" y="216" text-anchor="middle" fill="#10b981" font-size="11">150</text>
+
+      <text x="190" y="240" text-anchor="middle" fill="#ef4444" font-size="11">310</text>
+      <text x="250" y="240" text-anchor="middle" fill="#94a3b8" font-size="11">4,521.50</text>
+      <text x="320" y="240" text-anchor="middle" fill="#10b981" font-size="11">95</text>
+
+      <text x="190" y="264" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">450</text>
+      <text x="250" y="264" text-anchor="middle" fill="#94a3b8" font-size="11">4,521.25</text>
+      <text x="320" y="264" text-anchor="middle" fill="#10b981" font-size="11">60</text>
+      <rect x="170" y="253" width="50" height="16" rx="2" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="1"/>
+      <text x="400" y="264" fill="#ef4444" font-size="9" font-weight="600">&larr; Selling imbalance (7.5:1)</text>
+
+      <text x="190" y="288" text-anchor="middle" fill="#ef4444" font-size="11">180</text>
+      <text x="250" y="288" text-anchor="middle" fill="#94a3b8" font-size="11">4,521.00</text>
+      <text x="320" y="288" text-anchor="middle" fill="#10b981" font-size="11">40</text>
+
+      <text x="190" y="312" text-anchor="middle" fill="#ef4444" font-size="11">90</text>
+      <text x="250" y="312" text-anchor="middle" fill="#94a3b8" font-size="11">4,520.75</text>
+      <text x="320" y="312" text-anchor="middle" fill="#10b981" font-size="11">25</text>
+
+      <!-- Low of candle -->
+      <text x="190" y="336" text-anchor="middle" fill="#ef4444" font-size="11">30</text>
+      <text x="250" y="336" text-anchor="middle" fill="#94a3b8" font-size="11">4,520.50</text>
+      <text x="320" y="336" text-anchor="middle" fill="#10b981" font-size="11">12</text>
+      <text x="400" y="336" fill="#94a3b8" font-size="9">&larr; Unfinished (both sides active)</text>
+
+      <!-- Delta summary at bottom -->
+      <text x="250" y="365" text-anchor="middle" fill="#94a3b8" font-size="10">CANDLE DELTA: +620</text>
+      <text x="250" y="380" text-anchor="middle" fill="#94a3b8" font-size="10">TOTAL VOLUME: 4,012</text>
+
+      <!-- Legend -->
+      <rect x="100" y="400" width="400" height="48" rx="6" fill="#1e293b"/>
+      <rect x="115" y="412" width="12" height="12" rx="2" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="1"/>
+      <text x="135" y="422" fill="#e2e8f0" font-size="9">Buying Imbalance (&ge;3:1)</text>
+      <rect x="270" y="412" width="12" height="12" rx="2" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="1"/>
+      <text x="290" y="422" fill="#e2e8f0" font-size="9">Selling Imbalance (&ge;3:1)</text>
+      <rect x="115" y="430" width="12" height="12" rx="2" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1"/>
+      <text x="135" y="440" fill="#e2e8f0" font-size="9">Point of Control (highest volume)</text>
+    </svg>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Start with One Timeframe</strong>
+      <p>Footprint charts can be overwhelming. Begin with 5-minute footprints on a single instrument (ES, NQ, or CL futures are ideal) and focus on identifying just the POC and diagonal imbalances. Once those become second nature, add finished/unfinished auctions and delta analysis. Mastery takes months, not days.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 11.6 VOLUME PROFILE (ADVANCED) ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">11.6</span> Volume Profile (Advanced)</h2>
+  <p>Volume profile is a horizontal histogram showing the total volume traded at each price level over a chosen period. Unlike traditional volume bars (which show volume per time period), volume profile shows volume per <strong>price level</strong> &mdash; answering the question: "At which prices did the most business occur?" These high-volume prices become magnets for future price action and powerful support/resistance levels.</p>
+
+  <p>While basic volume profile is covered in many technical analysis courses, this section focuses on advanced applications: composite profiles, naked POCs, single prints, and using volume profile for precision entries.</p>
+
+  <div class="concept-card">
+    <h3>Core Volume Profile Components</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Definition</th>
+          <th>Trading Application</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Point of Control (POC)</strong></td>
+          <td>Price level with the highest volume</td>
+          <td>Acts as a magnet &mdash; price tends to revisit the POC. Use as a mean-reversion target or support/resistance.</td>
+        </tr>
+        <tr>
+          <td><strong>Value Area High (VAH)</strong></td>
+          <td>Upper boundary of the value area (70% of volume)</td>
+          <td>Acts as resistance when price is below, support when above. Key level for range trading.</td>
+        </tr>
+        <tr>
+          <td><strong>Value Area Low (VAL)</strong></td>
+          <td>Lower boundary of the value area</td>
+          <td>Acts as support when price is above, resistance when below. Breakdowns below VAL are significant.</td>
+        </tr>
+        <tr>
+          <td><strong>High Volume Node (HVN)</strong></td>
+          <td>Price level with significantly above-average volume</td>
+          <td>Areas of agreement/acceptance. Price tends to slow down and consolidate at HVNs. Good for targets.</td>
+        </tr>
+        <tr>
+          <td><strong>Low Volume Node (LVN)</strong></td>
+          <td>Price level with very little volume</td>
+          <td>Areas of rejection. Price moves quickly through LVNs. These are the &ldquo;air pockets&rdquo; between balance areas.</td>
+        </tr>
+        <tr>
+          <td><strong>Naked POC</strong></td>
+          <td>A prior session&rsquo;s POC that has not yet been revisited</td>
+          <td>Unfinished business. Price has a strong tendency to return to naked POCs, sometimes days later.</td>
+        </tr>
+        <tr>
+          <td><strong>Single Prints</strong></td>
+          <td>TPO letters or volume bars that appear only once at a price</td>
+          <td>Indicate impulsive, one-directional moves. Often get "repaired" (filled in) on subsequent visits.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Volume Profile Histogram</h3>
+    <svg viewBox="0 0 750 420" width="100%" style="max-width:750px">
+      <rect x="0" y="0" width="750" height="420" rx="8" fill="#0f172a"/>
+
+      <!-- Price axis -->
+      <line x1="80" y1="30" x2="80" y2="390" stroke="#475569" stroke-width="1"/>
+      <text x="40" y="50" text-anchor="middle" fill="#94a3b8" font-size="10">4,540</text>
+      <text x="40" y="100" text-anchor="middle" fill="#94a3b8" font-size="10">4,535</text>
+      <text x="40" y="150" text-anchor="middle" fill="#94a3b8" font-size="10">4,530</text>
+      <text x="40" y="200" text-anchor="middle" fill="#94a3b8" font-size="10">4,525</text>
+      <text x="40" y="250" text-anchor="middle" fill="#94a3b8" font-size="10">4,520</text>
+      <text x="40" y="300" text-anchor="middle" fill="#94a3b8" font-size="10">4,515</text>
+      <text x="40" y="350" text-anchor="middle" fill="#94a3b8" font-size="10">4,510</text>
+
+      <!-- Volume bars - creating a bell-curve-like profile -->
+      <!-- Single prints (thin) at top -->
+      <rect x="82" y="42" width="15" height="8" rx="1" fill="#3b82f6" opacity="0.4"/>
+      <rect x="82" y="52" width="20" height="8" rx="1" fill="#3b82f6" opacity="0.4"/>
+      <text x="115" y="59" fill="#94a3b8" font-size="8">Single prints</text>
+
+      <!-- Low volume node -->
+      <rect x="82" y="72" width="25" height="8" rx="1" fill="#3b82f6" opacity="0.5"/>
+      <rect x="82" y="82" width="30" height="8" rx="1" fill="#3b82f6" opacity="0.5"/>
+      <rect x="82" y="92" width="18" height="8" rx="1" fill="#3b82f6" opacity="0.4"/>
+      <text x="120" y="89" fill="#94a3b8" font-size="8">LVN &mdash; price moves fast here</text>
+
+      <!-- VAH region -->
+      <rect x="82" y="112" width="80" height="8" rx="1" fill="#3b82f6" opacity="0.6"/>
+      <rect x="82" y="122" width="120" height="8" rx="1" fill="#3b82f6" opacity="0.7"/>
+      <line x1="205" y1="122" x2="205" y2="282" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3"/>
+      <text x="215" y="130" fill="#f59e0b" font-size="9" font-weight="600">VAH</text>
+
+      <!-- Building up to POC -->
+      <rect x="82" y="132" width="160" height="8" rx="1" fill="#3b82f6" opacity="0.7"/>
+      <rect x="82" y="142" width="200" height="8" rx="1" fill="#3b82f6" opacity="0.8"/>
+      <rect x="82" y="152" width="260" height="8" rx="1" fill="#3b82f6" opacity="0.8"/>
+      <rect x="82" y="162" width="310" height="8" rx="1" fill="#3b82f6" opacity="0.85"/>
+      <rect x="82" y="172" width="350" height="8" rx="1" fill="#3b82f6" opacity="0.9"/>
+      <rect x="82" y="182" width="380" height="8" rx="1" fill="#3b82f6" opacity="0.9"/>
+
+      <!-- POC -->
+      <rect x="82" y="192" width="440" height="12" rx="2" fill="#f59e0b" opacity="0.9"/>
+      <line x1="82" y1="198" x2="525" y2="198" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5"/>
+      <text x="540" y="202" fill="#f59e0b" font-size="11" font-weight="700">POC 4,523</text>
+
+      <!-- Below POC -->
+      <rect x="82" y="208" width="360" height="8" rx="1" fill="#3b82f6" opacity="0.9"/>
+      <rect x="82" y="218" width="320" height="8" rx="1" fill="#3b82f6" opacity="0.85"/>
+      <rect x="82" y="228" width="280" height="8" rx="1" fill="#3b82f6" opacity="0.8"/>
+      <rect x="82" y="238" width="220" height="8" rx="1" fill="#3b82f6" opacity="0.75"/>
+      <rect x="82" y="248" width="180" height="8" rx="1" fill="#3b82f6" opacity="0.7"/>
+      <rect x="82" y="258" width="140" height="8" rx="1" fill="#3b82f6" opacity="0.65"/>
+      <rect x="82" y="268" width="100" height="8" rx="1" fill="#3b82f6" opacity="0.6"/>
+
+      <!-- VAL -->
+      <rect x="82" y="278" width="70" height="8" rx="1" fill="#3b82f6" opacity="0.55"/>
+      <text x="215" y="285" fill="#f59e0b" font-size="9" font-weight="600">VAL</text>
+
+      <!-- LVN below -->
+      <rect x="82" y="298" width="22" height="8" rx="1" fill="#3b82f6" opacity="0.4"/>
+      <rect x="82" y="308" width="18" height="8" rx="1" fill="#3b82f6" opacity="0.35"/>
+      <text x="120" y="309" fill="#94a3b8" font-size="8">LVN</text>
+
+      <!-- Single prints at bottom -->
+      <rect x="82" y="328" width="12" height="8" rx="1" fill="#3b82f6" opacity="0.3"/>
+      <rect x="82" y="338" width="8" height="8" rx="1" fill="#3b82f6" opacity="0.25"/>
+
+      <!-- Value Area bracket -->
+      <rect x="76" y="122" width="4" height="160" rx="1" fill="#f59e0b" opacity="0.5"/>
+      <text x="68" y="202" text-anchor="end" fill="#f59e0b" font-size="9" font-weight="600" transform="rotate(-90,68,202)">VALUE AREA (70%)</text>
+
+      <!-- Legend box -->
+      <rect x="500" y="40" width="220" height="150" rx="6" fill="#1e293b"/>
+      <text x="610" y="62" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="700">Legend</text>
+      <rect x="515" y="75" width="30" height="8" rx="1" fill="#f59e0b" opacity="0.9"/>
+      <text x="555" y="83" fill="#e2e8f0" font-size="10">Point of Control</text>
+      <rect x="515" y="95" width="20" height="8" rx="1" fill="#3b82f6" opacity="0.8"/>
+      <text x="555" y="103" fill="#e2e8f0" font-size="10">High Volume Node</text>
+      <rect x="515" y="115" width="8" height="8" rx="1" fill="#3b82f6" opacity="0.4"/>
+      <text x="555" y="123" fill="#e2e8f0" font-size="10">Low Volume Node</text>
+      <line x1="515" y1="140" x2="545" y2="140" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3"/>
+      <text x="555" y="143" fill="#e2e8f0" font-size="10">Value Area Boundary</text>
+      <rect x="515" y="155" width="5" height="8" rx="1" fill="#3b82f6" opacity="0.3"/>
+      <text x="555" y="163" fill="#e2e8f0" font-size="10">Single Prints</text>
+    </svg>
+  </div>
+
+  <div class="concept-card">
+    <h3>Trading with Naked POCs</h3>
+    <p>A "naked POC" is a prior session&rsquo;s Point of Control that has never been revisited by subsequent price action. Research by Dalton (Markets in Profile, 2007) demonstrated that naked POCs act as magnets because they represent unfinished business &mdash; areas of high-volume agreement that the market has not yet retested.</p>
+    <ul class="feature-list">
+      <li><strong>Identification</strong> &mdash; At the start of each day, mark the POCs from the prior 5&ndash;10 sessions. Any POC that price has not traded through since its formation is "naked."</li>
+      <li><strong>As targets</strong> &mdash; When price is moving toward a naked POC, it is a high-probability target for profit-taking.</li>
+      <li><strong>As support/resistance</strong> &mdash; When price reaches a naked POC, watch for absorption or rejection on the footprint chart. The first visit often produces a reaction (bounce or reversal).</li>
+      <li><strong>Timeframe</strong> &mdash; Naked POCs from the previous day are the strongest. Those from 2&ndash;5 days ago are still relevant. Beyond a week, they lose significance unless they align with other levels.</li>
+    </ul>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Poor Structure &amp; Single Prints</strong>
+      <p>Single prints (also called "poor structure" or "single print buying/selling tails") occur when price moves rapidly through a zone in one direction, leaving behind very low volume. These zones are vulnerable to being "repaired" when price revisits them. A profile with many single prints indicates an unhealthy, impulsive move that is likely to be at least partially retraced. Watch for these as areas where price may accelerate through quickly on a retest.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 11.7 AUCTION MARKET THEORY ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">11.7</span> Auction Market Theory</h2>
+  <p>Auction Market Theory (AMT) is the theoretical framework underlying all order flow analysis. Developed by J. Peter Steidlmayer at the Chicago Board of Trade in the 1980s and later refined by Jim Dalton in his seminal works <em>Mind Over Markets</em> (1990) and <em>Markets in Profile</em> (2007), AMT views the market as a continuous two-way auction whose purpose is to facilitate trade between buyers and sellers.</p>
+
+  <p>The core insight of AMT is that price is merely an advertising mechanism. The market probes higher to find sellers and lower to find buyers. When it finds a price where both sides agree to do business, volume accumulates and a <strong>balance area</strong> forms. When one side becomes more motivated, price breaks out of balance to search for a new equilibrium. All price movement can be understood through this lens.</p>
+
+  <div class="concept-card">
+    <h3>Balance vs. Imbalance</h3>
+    <p>At any given time, the market is in one of two states:</p>
+
+    <h4>Balance (Bracketing / Range)</h4>
+    <p>When the market finds a price range where both buyers and sellers are willing to transact, it enters a balance state. The volume profile during balance periods forms a symmetrical, bell-shaped curve centered on the POC. The market spends approximately 70% of its time in balance. During balance, the best strategies are mean-reversion trades &mdash; buying near the VAL and selling near the VAH.</p>
+
+    <h4>Imbalance (Trending / Breakout)</h4>
+    <p>When one side becomes significantly more motivated (perhaps due to news, earnings, or a shift in institutional positioning), the market transitions from balance to imbalance. Price breaks out of the established value area and searches for a new level where both sides agree. The volume profile during imbalance periods is elongated and asymmetric, often showing single prints and poor structure. During imbalance, the best strategies are trend-following &mdash; entering in the direction of the breakout.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Initial Balance &amp; Range Extension</h3>
+    <p>The <strong>initial balance (IB)</strong> is the price range established during the first hour of the regular trading session (typically 9:30&ndash;10:30 AM ET for US equities and futures). The IB is a critical reference point because it represents the range where the "local" traders and early participants established the day&rsquo;s first balance area.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>IB Scenario</th>
+          <th>Description</th>
+          <th>Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Wide IB</strong></td>
+          <td>First-hour range is wider than average</td>
+          <td>Suggests a rotational day. Price is likely to stay within or near the IB. Favor mean-reversion setups.</td>
+        </tr>
+        <tr>
+          <td><strong>Narrow IB</strong></td>
+          <td>First-hour range is narrower than average</td>
+          <td>Suggests a breakout/trend day. Institutions have not yet committed. When they do, expect a directional move. Favor trend-following setups.</td>
+        </tr>
+        <tr>
+          <td><strong>IB Extension Up</strong></td>
+          <td>Price breaks above the IB high</td>
+          <td>Bullish. Institutions are driving price higher. If it extends more than 1x the IB range above the IB high, it is a strong trend day.</td>
+        </tr>
+        <tr>
+          <td><strong>IB Extension Down</strong></td>
+          <td>Price breaks below the IB low</td>
+          <td>Bearish. Same logic applies in reverse. Double IB extension is a powerful trend signal.</td>
+        </tr>
+        <tr>
+          <td><strong>Failed IB Extension</strong></td>
+          <td>Price breaks IB high/low then reverses back into range</td>
+          <td>Traps breakout traders. Often leads to a move in the opposite direction. This is a "look above and fail" or "look below and fail" pattern.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>How Institutions Participate in Auctions</h3>
+    <p>Understanding institutional behavior within the auction framework is what separates profitable order flow traders from everyone else. Institutions operate under constraints that retail traders do not face:</p>
+    <ul class="feature-list">
+      <li><strong>Size constraint</strong> &mdash; A fund buying 500,000 shares cannot execute at once. They must use algorithms to slice orders across time and venues, often taking days to build a position.</li>
+      <li><strong>They buy weakness and sell strength</strong> &mdash; Unlike retail traders who chase momentum, institutions accumulate on pullbacks (buying into balance or below the VAL) and distribute into rallies (selling into imbalance or above the VAH).</li>
+      <li><strong>They create balance</strong> &mdash; When a large institution is accumulating, their persistent buying at lower prices creates a floor. When distributing, their persistent selling creates a ceiling. This is why balance areas form.</li>
+      <li><strong>They cause imbalance</strong> &mdash; When an institution finishes accumulating and becomes aggressive (switching from passive to market orders), they trigger the breakout that ends balance. Understanding where institutions are likely done accumulating helps you anticipate breakouts.</li>
+      <li><strong>VWAP as institutional benchmark</strong> &mdash; Most institutional algorithms target VWAP (Volume Weighted Average Price) as their execution benchmark. This is why VWAP is such a powerful level for day traders &mdash; institutions are actively trading around it.</li>
+    </ul>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    <div class="info-box-content">
+      <strong>Essential Reading on Auction Market Theory</strong>
+      <p>For a deep understanding of AMT, read <em>Markets in Profile</em> by Jim Dalton, Robert Dalton, and Eric Jones (2007). This book builds on Steidlmayer&rsquo;s original Market Profile concepts and provides the most comprehensive treatment of how auctions drive all market behavior. Also recommended: <em>Mind Over Markets</em> (Dalton, 1990) for foundational concepts, and <em>CBOT Market Profile</em> (Chicago Board of Trade, 1984) for the original source material.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 11.8 ORDER FLOW TRADING SETUPS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">11.8</span> Order Flow Trading Setups</h2>
+  <p>Now that you understand the components of order flow analysis &mdash; the tape, the DOM, delta, footprint charts, volume profile, and auction market theory &mdash; it is time to combine them into actionable trading setups. The following setups are used by professional order flow traders in futures and equity markets. Each setup includes specific entry triggers, stop placement, and confirmation criteria.</p>
+
+  <div class="concept-card">
+    <h3>Setup 1: Absorption Reversal</h3>
+    <p>The absorption reversal is the highest-probability order flow setup. It identifies a large passive participant absorbing aggressive orders at a key level, indicating a likely reversal.</p>
+    <h4>Entry Rules</h4>
+    <ul class="feature-list">
+      <li><strong>Context</strong> &mdash; Price has moved into a significant level (prior day&rsquo;s VAH/VAL, naked POC, major support/resistance).</li>
+      <li><strong>Footprint confirmation</strong> &mdash; Very high volume at the level with delta strongly favoring one side, yet price does not advance. Example: 2,000 contracts of selling delta at 4,520.00 but price holds.</li>
+      <li><strong>DOM confirmation</strong> &mdash; Bid at the key level is constantly reloading. Each time it is consumed, a new large bid appears.</li>
+      <li><strong>Tape confirmation</strong> &mdash; Large prints appear on the bid side, and the bid does not drop. Print sizes may increase, indicating the absorber is taking on more.</li>
+      <li><strong>Entry</strong> &mdash; Enter in the reversal direction when delta begins to shift (aggressive volume switches from selling to buying). A "flip" in per-bar delta confirms the reversal has begun.</li>
+      <li><strong>Stop</strong> &mdash; Place stop 2&ndash;3 ticks beyond the absorption level. If the passive buyer/seller loses the level, the thesis is invalidated.</li>
+      <li><strong>Target</strong> &mdash; First target at the midpoint of the prior move; second target at the POC of the prior balance area.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Setup 2: Iceberg Detection</h3>
+    <p>An iceberg order is a large order that only displays a small portion of its total size on the DOM. When 50 contracts are shown on the bid but 500 contracts have already been filled at that price (visible on the tape), you have found an iceberg. Icebergs are institutional orders designed to minimize market impact.</p>
+    <h4>Entry Rules</h4>
+    <ul class="feature-list">
+      <li><strong>Identification</strong> &mdash; The DOM shows a modest bid/offer size (e.g., 20 lots), but the cumulative volume traded at that price (from the tape) keeps growing far beyond what was displayed. Many platforms (Jigsaw, Bookmap) have iceberg detection algorithms.</li>
+      <li><strong>Confirmation</strong> &mdash; The price level holds despite repeated hits. Each time the displayed order is consumed, it refreshes instantly.</li>
+      <li><strong>Entry</strong> &mdash; Trade in the direction the iceberg is defending. If an iceberg bid is holding a support level, go long. If an iceberg offer is capping a resistance level, go short.</li>
+      <li><strong>Stop</strong> &mdash; 2&ndash;4 ticks beyond the iceberg level.</li>
+      <li><strong>Edge</strong> &mdash; The iceberg trader is a large, informed participant. By trading with them, you are aligning with institutional flow.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Setup 3: Delta Divergence</h3>
+    <p>Delta divergence occurs when price makes a new high (or low) but cumulative delta does not confirm. This signals that the move is running on fumes &mdash; price is advancing but the aggressive participants have lost conviction.</p>
+    <h4>Entry Rules</h4>
+    <ul class="feature-list">
+      <li><strong>Bearish divergence</strong> &mdash; Price makes a higher high, but cumulative delta makes a lower high. Aggressive buyers are weaker on the second push. This is especially powerful at the VAH or prior day&rsquo;s high.</li>
+      <li><strong>Bullish divergence</strong> &mdash; Price makes a lower low, but cumulative delta makes a higher low. Sellers are losing conviction. Powerful at the VAL or prior day&rsquo;s low.</li>
+      <li><strong>Confirmation</strong> &mdash; Wait for a footprint bar showing exhaustion at the extreme (shrinking delta on successive price levels). The tape should show smaller print sizes.</li>
+      <li><strong>Entry</strong> &mdash; Enter on the first footprint bar that confirms the reversal (delta flips direction).</li>
+      <li><strong>Stop</strong> &mdash; Beyond the divergence extreme. If price makes another new high/low with strong delta, the divergence has failed.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Setup 4: IB Extension with Delta Confirmation</h3>
+    <p>When price breaks out of the initial balance range with strong delta support, it signals a trend day. This setup catches the early portion of the day&rsquo;s largest move.</p>
+    <h4>Entry Rules</h4>
+    <ul class="feature-list">
+      <li><strong>Wait for IB to form</strong> &mdash; Mark the high and low of the 9:30&ndash;10:30 range.</li>
+      <li><strong>Breakout with delta</strong> &mdash; Price breaks above IB high (or below IB low) AND the breakout bar shows strong delta in the breakout direction (e.g., +300 delta on the breakout bar for a long).</li>
+      <li><strong>Tape confirmation</strong> &mdash; Large prints and sweep orders appear in the breakout direction.</li>
+      <li><strong>Entry</strong> &mdash; Enter on a pullback to the IB high/low after the initial breakout. The IB boundary should now act as support/resistance.</li>
+      <li><strong>Stop</strong> &mdash; Below the IB midpoint for longs; above the IB midpoint for shorts.</li>
+      <li><strong>Target</strong> &mdash; 1x the IB range beyond the breakout point (e.g., if IB was 10 points wide and broke above, target is IB high + 10 points).</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Order Flow Setups Comparison</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Setup</th>
+          <th>Market Condition</th>
+          <th>Win Rate</th>
+          <th>Risk:Reward</th>
+          <th>Difficulty</th>
+          <th>Best Instruments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Absorption Reversal</strong></td>
+          <td>At key S/R levels</td>
+          <td>55&ndash;65%</td>
+          <td>1:2 to 1:3</td>
+          <td>Advanced</td>
+          <td>ES, NQ, CL futures</td>
+        </tr>
+        <tr>
+          <td><strong>Iceberg Detection</strong></td>
+          <td>At any support/resistance</td>
+          <td>60&ndash;70%</td>
+          <td>1:1.5 to 1:2</td>
+          <td>Intermediate</td>
+          <td>Futures, liquid equities</td>
+        </tr>
+        <tr>
+          <td><strong>Delta Divergence</strong></td>
+          <td>At extremes / exhaustion</td>
+          <td>50&ndash;60%</td>
+          <td>1:2 to 1:4</td>
+          <td>Advanced</td>
+          <td>ES, NQ, bonds</td>
+        </tr>
+        <tr>
+          <td><strong>IB Extension</strong></td>
+          <td>Narrow IB / trend days</td>
+          <td>45&ndash;55%</td>
+          <td>1:3 to 1:5</td>
+          <td>Intermediate</td>
+          <td>ES, NQ, RTY futures</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>Order Flow Is Not a Crystal Ball</strong>
+      <p>No order flow setup works every time. Even the best absorption signals can fail when a larger participant enters the market on the other side. Always use stops. Always manage position size. The edge in order flow trading comes from <em>consistent application over hundreds of trades</em>, not from any single setup. Treat each trade as one iteration of a probability distribution &mdash; win rates of 55&ndash;65% are excellent in this domain. If someone promises you 90%+ accuracy with order flow, they are selling you a fantasy.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>Recommended Order Flow Platforms &amp; Tools</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Best For</th>
+          <th>Key Features</th>
+          <th>Price Range</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sierra Chart</strong></td>
+          <td>Futures footprint &amp; profile</td>
+          <td>Highly customizable footprints, numbers bars, volume profile, cumulative delta. Industry standard for futures order flow.</td>
+          <td>$26&ndash;$56/mo</td>
+        </tr>
+        <tr>
+          <td><strong>Bookmap</strong></td>
+          <td>Visual DOM &amp; heatmap</td>
+          <td>Real-time order book heatmap showing liquidity changes over time. Excellent for spotting spoofing and iceberg orders.</td>
+          <td>$39&ndash;$79/mo</td>
+        </tr>
+        <tr>
+          <td><strong>Jigsaw Trading</strong></td>
+          <td>DOM &amp; tape reading</td>
+          <td>Reconstructed tape, DOM with pull/reload stats, summary tape. Best education resources for DOM trading.</td>
+          <td>$379 lifetime</td>
+        </tr>
+        <tr>
+          <td><strong>ATAS (Order Flow Trading)</strong></td>
+          <td>Footprints &amp; cluster charts</td>
+          <td>Full footprint suite, composite profiles, smart tape filter. Popular in Europe and Russia.</td>
+          <td>$69/mo</td>
+        </tr>
+        <tr>
+          <td><strong>Exocharts</strong></td>
+          <td>Crypto order flow</td>
+          <td>Footprints and volume profile for cryptocurrency futures (Binance, Bybit). Leading crypto order flow tool.</td>
+          <td>$50&ndash;$100/mo</td>
+        </tr>
+        <tr>
+          <td><strong>Quantower</strong></td>
+          <td>Multi-asset order flow</td>
+          <td>Footprints, DOM, volume profile across futures, crypto, and equities. Good value for the features offered.</td>
+          <td>$40&ndash;$90/mo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Start with Simulation</strong>
+      <p>Before risking real money on order flow setups, spend at least 4&ndash;6 weeks trading in simulation (paper trading) while watching the footprint, DOM, and tape. Most platforms offer replay functionality so you can practice after market hours. Record your screen, mark your observations, and review daily. The ability to read order flow in real time is a skill that develops through deliberate practice &mdash; it cannot be shortcut.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 11.9 QUIZ ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">11.9</span> Knowledge Check</h2>
+  <p>Test your understanding of order flow concepts. These questions are intentionally challenging &mdash; they require you to apply the concepts from this module, not just recall definitions.</p>
+
+  <div class="quiz-container" data-quiz="m11-orderflow">
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "A candle closes green (higher) but the bar delta is strongly negative (-800). What does this tell you?",
+          "options": [
+            "The candle is bullish because price went up",
+            "There is a data error — green candles always have positive delta",
+            "Aggressive sellers dominated despite the price increase — passive buyers absorbed selling and price drifted higher on thin offers. This is often a warning that the up move may not continue.",
+            "The market is in balance and delta is irrelevant"
+          ],
+          "correct": 2,
+          "explanation": "A green candle with negative delta is a critical warning sign. It means that aggressive sellers were actually dominant (more volume traded at the bid than at the ask), yet price still went up. This typically occurs when sellers are hitting into a passive buyer who absorbs them, and price drifts higher on thin offer-side liquidity. The up move lacks genuine buying conviction and is vulnerable to reversal."
+        },
+        {
+          "question": "You see a 500-lot bid on the DOM at a key support level. As price approaches, the bid disappears before being hit. What just happened?",
+          "options": [
+            "The buyer found a better price and moved their order",
+            "This is likely spoofing — a fake order designed to create the illusion of support and discourage selling. It was pulled before execution.",
+            "The exchange cancelled the order automatically",
+            "This is normal market behavior and has no significance"
+          ],
+          "correct": 1,
+          "explanation": "Pulling a large order just before it would be executed is a classic sign of spoofing (which is illegal under the Dodd-Frank Act). The order was never intended to be filled — it existed solely to create the appearance of support and influence other traders' decisions. This is why you should never trade based on DOM orders alone — always confirm with the tape (actual executions)."
+        },
+        {
+          "question": "Price makes a new high for the day, but cumulative delta makes a lower high compared to the previous swing high. What is this pattern called and what does it suggest?",
+          "options": [
+            "Momentum confirmation — the trend is accelerating",
+            "Absorption — a large seller is absorbing all buying",
+            "Delta divergence — aggressive buyers are losing conviction despite higher prices, suggesting a potential reversal",
+            "This is meaningless noise in the data"
+          ],
+          "correct": 2,
+          "explanation": "This is a bearish delta divergence. Price made a higher high (new territory) but cumulative delta failed to confirm (lower high). This means fewer aggressive buyers participated in the second push higher compared to the first. The move is running on fumes. This is one of the highest-probability reversal signals in order flow trading, especially when it occurs at the VAH or prior day's high."
+        },
+        {
+          "question": "During the first hour of trading, the initial balance range is unusually narrow (about 50% of the 20-day average IB width). What type of day does this suggest?",
+          "options": [
+            "A rotational, range-bound day where price stays within the IB",
+            "A trend day — institutions have not committed yet, and when they do, a directional move is likely",
+            "A low-volume, uneventful day",
+            "It has no predictive value for the rest of the session"
+          ],
+          "correct": 1,
+          "explanation": "A narrow initial balance relative to average suggests that neither buyers nor sellers have asserted dominance in the first hour. This compressed range acts like a coiled spring — when institutional participants finally commit (often after 10:30 AM), the breakout from the narrow IB tends to produce a trend day with significant range extension. Narrow IB days are when trend-following setups (like IB Extension with Delta Confirmation) are most appropriate."
+        },
+        {
+          "question": "On a footprint chart, you notice that the lowest price level of a candle shows 45 contracts traded at the bid and 0 contracts at the ask. What does this indicate?",
+          "options": [
+            "An unfinished auction — price will return to this level",
+            "A finished auction — sellers exhausted themselves at this level, which is bullish",
+            "A data feed issue",
+            "A buying imbalance that signals more downside"
+          ],
+          "correct": 1,
+          "explanation": "A finished auction at the bottom of a candle occurs when the last price level shows zero ask volume. This means that when price reached this low, there were sellers but no buyers willing to lift the offer — yet price still bounced higher. The auction at the bottom 'finished' because selling was exhausted. This is a bullish signal, suggesting that the low of that candle is unlikely to be broken immediately. The opposite (0 bid volume at the candle's high) would be a bearish finished auction."
+        },
+        {
+          "question": "You are watching the tape and notice 15 consecutive prints of exactly 137 shares at the ask, spaced about 2 seconds apart, all in the same stock. What is the most likely explanation?",
+          "options": [
+            "Fifteen different retail traders all happened to buy 137 shares",
+            "An institutional algorithm slicing a large buy order into small, inconspicuous odd-lot clips to minimize market impact",
+            "A market maker providing liquidity",
+            "High-frequency trading firms arbitraging between exchanges"
+          ],
+          "correct": 1,
+          "explanation": "The clockwork regularity (every 2 seconds) and consistent odd-lot size (137 shares — not a round lot) are telltale signatures of an institutional execution algorithm. The fund is slicing a large buy order into small pieces to avoid detection and minimize market impact. Research by O'Hara, Yao, and Ye (2014) confirmed that odd-lot trades frequently represent informed institutional activity. Spotting these patterns on the tape gives you early warning of institutional accumulation."
+        },
+        {
+          "question": "In Auction Market Theory, what happens when price breaks above the Value Area High (VAH) and then falls back below it within the same session?",
+          "options": [
+            "It confirms the uptrend — price tested and approved the higher range",
+            "This is a 'look above and fail' pattern — a bearish signal that often leads to a move back toward the POC or VAL",
+            "The Value Area needs to be recalculated",
+            "This pattern has no significance in AMT"
+          ],
+          "correct": 1,
+          "explanation": "A 'look above and fail' occurs when price breaks above the VAH (suggesting a potential breakout to a higher value area) but fails to sustain above it and falls back into the prior value area. This traps breakout buyers who entered on the push above VAH, and their forced liquidation (selling to exit their longs) adds fuel to the downside move. The target for this pattern is typically the POC, and in strong cases, the VAL. This is one of the most reliable patterns in Auction Market Theory."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="module-footer">
+  <button class="module-footer-btn" onclick="navigateTo(10)">← Previous: Putting It All Together</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(12)">Next: Module 12 →</button>
+</div>

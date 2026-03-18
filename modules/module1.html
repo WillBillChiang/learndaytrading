@@ -383,10 +383,195 @@
   </div>
 </div>
 
-<!-- ========== 1.6 QUIZ ========== -->
+<!-- ========== 1.6 DARK POOLS & PAYMENT FOR ORDER FLOW ========== -->
 <div class="lesson-section reveal">
-  <h2><span class="section-number">1.6</span> Knowledge Check</h2>
-  <p>Test your understanding of market mechanics. You need to get at least 5 out of 6 correct to demonstrate mastery of this module.</p>
+  <h2><span class="section-number">1.6</span> Dark Pools &amp; Payment for Order Flow</h2>
+  <p>Approximately 40-50% of all U.S. equity volume now trades <em>off-exchange</em> &mdash; in dark pools and through wholesalers. Understanding this hidden layer of market structure is essential for any serious trader.</p>
+
+  <div class="concept-card">
+    <h3>What Are Dark Pools?</h3>
+    <p>Dark pools are private, off-exchange trading venues where buy and sell orders are matched without displaying quotes publicly. They were originally created for institutional investors to execute large block trades without moving the market. Today, there are over 50 active dark pools in the U.S.</p>
+    <ul class="feature-list">
+      <li><strong>ATS (Alternative Trading Systems)</strong> &mdash; The regulatory classification for dark pools under SEC Regulation ATS</li>
+      <li><strong>No pre-trade transparency</strong> &mdash; Orders are hidden until after execution, preventing front-running</li>
+      <li><strong>Price improvement possible</strong> &mdash; Trades can execute at the midpoint of the NBBO, saving you half the spread</li>
+      <li><strong>Major dark pools:</strong> Citadel Connect, Virtu Financial, UBS ATS, Goldman Sachs Sigma X, Morgan Stanley MS Pool</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Payment for Order Flow (PFOF)</h3>
+    <p>When you place an order on a commission-free broker (Robinhood, Schwab, E*TRADE), your broker does not send it to the NYSE or NASDAQ. Instead, it sells your order to a <strong>wholesale market maker</strong> like Citadel Securities or Virtu Financial. The wholesaler pays the broker a small fee per share and then fills your order internally.</p>
+    <ul class="feature-list">
+      <li><strong>How it works:</strong> Broker receives $0.002-$0.004 per share from the wholesaler for routing your order to them</li>
+      <li><strong>Price improvement claim:</strong> Wholesalers claim they fill orders at slightly better prices than the NBBO (National Best Bid and Offer)</li>
+      <li><strong>The concern:</strong> Your orders are not competing in the public market. The wholesaler sees your order before anyone else and can trade around it</li>
+      <li><strong>SEC Rule 606:</strong> Brokers must disclose where they route orders and how much they receive in payment &mdash; check your broker's 606 report</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Where Retail Orders Actually Go</h3>
+    <svg viewBox="0 0 700 250" width="100%" style="max-width:700px">
+      <!-- Retail Trader -->
+      <rect x="20" y="95" width="120" height="60" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+      <text x="80" y="120" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">You (Retail)</text>
+      <text x="80" y="137" text-anchor="middle" fill="#94a3b8" font-size="9">Place order</text>
+
+      <!-- Arrow -->
+      <line x1="140" y1="125" x2="210" y2="125" stroke="#475569" stroke-width="2"/>
+      <polygon points="205,120 215,125 205,130" fill="#475569"/>
+
+      <!-- Broker -->
+      <rect x="215" y="95" width="120" height="60" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="275" y="120" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">Broker</text>
+      <text x="275" y="137" text-anchor="middle" fill="#94a3b8" font-size="9">Sells order flow</text>
+
+      <!-- Arrow to wholesaler (95%) -->
+      <line x1="335" y1="110" x2="430" y2="65" stroke="#ef4444" stroke-width="2"/>
+      <polygon points="425,60 435,65 425,70" fill="#ef4444"/>
+      <text x="370" y="78" fill="#ef4444" font-size="10" font-weight="600">~95%</text>
+
+      <!-- Arrow to exchange (5%) -->
+      <line x1="335" y1="140" x2="430" y2="185" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <polygon points="425,180 435,185 425,190" fill="#10b981"/>
+      <text x="370" y="175" fill="#10b981" font-size="10">~5%</text>
+
+      <!-- Wholesaler -->
+      <rect x="435" y="35" width="140" height="60" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+      <text x="505" y="58" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">Wholesaler</text>
+      <text x="505" y="73" text-anchor="middle" fill="#94a3b8" font-size="9">Citadel / Virtu</text>
+      <text x="505" y="86" text-anchor="middle" fill="#ef4444" font-size="8">Fills internally</text>
+
+      <!-- Exchange -->
+      <rect x="435" y="155" width="140" height="60" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+      <text x="505" y="180" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">Exchange</text>
+      <text x="505" y="197" text-anchor="middle" fill="#94a3b8" font-size="9">NYSE / NASDAQ</text>
+
+      <!-- Money flow -->
+      <line x1="480" y1="95" x2="340" y2="95" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="410" y="108" text-anchor="middle" fill="#f59e0b" font-size="8">$$$ PFOF payment</text>
+
+      <text x="350" y="240" text-anchor="middle" fill="#94a3b8" font-size="10">Most retail orders never reach a public exchange.</text>
+    </svg>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>The PFOF Debate</strong>
+      <p>Proponents say PFOF funds commission-free trading and provides price improvement. Critics (including some SEC officials) argue it creates conflicts of interest and may result in worse execution for retail traders. As a day trader, consider using a broker with direct-access routing (Interactive Brokers, Lightspeed) where you control where your orders go.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 1.7 REG NMS & MARKET STRUCTURE RULES ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">1.7</span> Regulation NMS &amp; Key Market Rules</h2>
+  <p>Regulation NMS (National Market System), adopted by the SEC in 2005, is the backbone of modern U.S. equity market structure. Every trader benefits from understanding the rules that govern how their orders are handled.</p>
+
+  <div class="concept-card">
+    <h3>Key Reg NMS Rules</h3>
+    <ul class="feature-list">
+      <li><strong>Order Protection Rule (Rule 611)</strong> &mdash; Prohibits "trade-throughs" &mdash; executing a trade at a price worse than a protected quote displayed on another exchange. This ensures you get the National Best Bid and Offer (NBBO).</li>
+      <li><strong>Access Rule (Rule 610)</strong> &mdash; Limits the fees exchanges can charge for accessing their quotes to $0.003 per share (the "access fee cap"). This prevents exchanges from posting the best price but making it prohibitively expensive to access.</li>
+      <li><strong>Sub-Penny Rule (Rule 612)</strong> &mdash; Prohibits displaying quotes in increments finer than $0.01 for stocks priced above $1.00. This prevents market makers from stepping ahead of your limit order by $0.001.</li>
+      <li><strong>Market Data Rules (Rules 601, 602, 603)</strong> &mdash; Require the consolidation and distribution of market data through Securities Information Processors (SIPs).</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>The Pattern Day Trader (PDT) Rule</h3>
+    <p>FINRA Rule 4210 requires that any trader who executes <strong>4 or more day trades within 5 business days</strong> in a margin account must maintain a minimum equity of <strong>$25,000</strong>. If your account falls below this threshold, you cannot day trade until it is replenished.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Account Type</th>
+          <th>Day Trade Limit</th>
+          <th>Minimum Equity</th>
+          <th>Buying Power</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cash Account</td>
+          <td>Unlimited (with settled cash)</td>
+          <td>None</td>
+          <td>1x settled cash</td>
+        </tr>
+        <tr>
+          <td>Margin &lt; $25K</td>
+          <td>3 day trades per 5 rolling days</td>
+          <td>$2,000</td>
+          <td>2x maintenance margin</td>
+        </tr>
+        <tr>
+          <td>PDT Account (&ge; $25K)</td>
+          <td>Unlimited</td>
+          <td>$25,000</td>
+          <td>4x maintenance margin</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Workarounds for the PDT Rule</strong>
+      <p>If you have under $25K: (1) Use a cash account with settled funds. (2) Trade futures, which are exempt from PDT. (3) Use multiple broker accounts to spread day trades. (4) Trade options (careful with settlement rules). (5) Trade in a prop firm account, which often has different rules.</p>
+    </div>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>SEC Proposed Reg NMS Reforms (2023&ndash;2024)</strong>
+      <p>The SEC has proposed significant updates to Regulation NMS that could reshape equity market structure. Key proposals include: (1) <strong>Sub-penny pricing</strong> &mdash; allowing tick sizes as small as $0.001 for actively traded stocks, which could tighten spreads further. (2) <strong>Order Competition Rule</strong> &mdash; requiring marketable retail orders to be exposed to open competition via auctions before being filled by wholesalers, potentially ending the current PFOF model. (3) <strong>Best Execution Standard</strong> &mdash; establishing a federal best-execution rule for broker-dealers, replacing the patchwork of FINRA guidance. These reforms remain under deliberation and may be modified, but they signal a shift toward greater transparency and competition. Stay informed &mdash; changes to market structure directly affect your execution quality and costs.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 1.8 HIGH-FREQUENCY TRADING & YOUR EDGE ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">1.8</span> High-Frequency Trading &amp; Your Edge</h2>
+  <p>High-frequency trading (HFT) firms account for roughly 50% of U.S. equity volume. They operate at microsecond speeds with co-located servers directly at the exchange. Here is what you need to know &mdash; and why you still have an edge.</p>
+
+  <div class="concept-card">
+    <h3>What HFT Firms Do</h3>
+    <ul class="feature-list">
+      <li><strong>Market making</strong> &mdash; Providing liquidity by continuously quoting bids and asks, profiting from the spread thousands of times per second</li>
+      <li><strong>Statistical arbitrage</strong> &mdash; Exploiting tiny price discrepancies between related securities or venues (e.g., SPY vs ES futures)</li>
+      <li><strong>Latency arbitrage</strong> &mdash; Racing to exploit price differences across exchanges before the SIP consolidates the data (the "speed tax" on slower traders)</li>
+      <li><strong>Momentum ignition</strong> &mdash; Placing rapid orders to trigger other algorithms into buying or selling, then trading against them</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Where Retail Still Wins</h3>
+    <p>HFT excels at microsecond execution but has significant limitations. As a retail day trader, you have edges that algorithms struggle to replicate:</p>
+    <ul class="feature-list">
+      <li><strong>No obligation to trade</strong> &mdash; HFT firms must constantly deploy capital. You can sit in cash all day waiting for the perfect setup.</li>
+      <li><strong>Small size advantage</strong> &mdash; A 100-share order has zero market impact. An HFT firm moving millions of shares must work around their own footprint.</li>
+      <li><strong>Holding period flexibility</strong> &mdash; You can hold for minutes to hours. HFT holding periods are seconds or less. You occupy a different niche.</li>
+      <li><strong>Pattern recognition on higher timeframes</strong> &mdash; 5-minute and daily chart patterns driven by human psychology are not easily arbitraged away by speed.</li>
+      <li><strong>News interpretation</strong> &mdash; Natural language processing has improved, but human judgment on complex earnings calls or regulatory news still holds value.</li>
+    </ul>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Coexist, Don't Compete</strong>
+      <p>You will never beat an HFT firm on speed. That is fine &mdash; you do not need to. Scalping for pennies is their game. Your game is reading price action, managing risk, and exploiting setups that unfold over minutes, not microseconds. The key is choosing strategies where speed is not the primary edge.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 1.9 QUIZ ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">1.9</span> Knowledge Check</h2>
+  <p>Test your understanding of market mechanics. You need to get at least 7 out of 9 correct to demonstrate mastery of this module.</p>
 
   <div class="quiz-container" data-quiz="m1-markets">
     <div class="quiz-body"></div>
@@ -458,6 +643,39 @@
           ],
           "correct": 1,
           "explanation": "As of May 2024, U.S. equities settle on T+1. This means that after you execute a trade, the actual transfer of shares and cash occurs on the next business day. Previously it was T+2."
+        },
+        {
+          "question": "What is Payment for Order Flow (PFOF)?",
+          "options": [
+            "A fee you pay to the exchange for executing your order",
+            "A payment from wholesale market makers to your broker for routing your orders to them",
+            "The commission charged by your broker on each trade",
+            "A rebate you receive for providing liquidity"
+          ],
+          "correct": 1,
+          "explanation": "PFOF is when wholesale market makers (like Citadel Securities or Virtu) pay your broker a small fee per share in exchange for receiving your order flow. This is how 'commission-free' brokers make money, and it means most retail orders never reach a public exchange."
+        },
+        {
+          "question": "Under the Pattern Day Trader (PDT) rule, what minimum equity must you maintain to day trade freely in a margin account?",
+          "options": [
+            "$2,000",
+            "$10,000",
+            "$25,000",
+            "$50,000"
+          ],
+          "correct": 2,
+          "explanation": "FINRA's PDT rule requires $25,000 minimum equity in a margin account if you execute 4 or more day trades within 5 business days. Below this threshold, you are limited to 3 day trades per rolling 5-day period."
+        },
+        {
+          "question": "What is the primary reason retail day traders can still profit despite HFT firms dominating volume?",
+          "options": [
+            "Retail traders get faster execution speeds",
+            "Retail traders have better algorithms",
+            "Retail traders have no obligation to trade and can wait for optimal setups on higher timeframes",
+            "HFT firms are not allowed to trade the same stocks"
+          ],
+          "correct": 2,
+          "explanation": "Retail traders compete on a different dimension than HFT firms. While HFT excels at microsecond execution, retail traders can wait patiently for high-probability setups, hold for minutes to hours, and exploit patterns driven by human psychology on higher timeframes where speed is not the primary edge."
         }
       ]
     }

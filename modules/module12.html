@@ -1,0 +1,1131 @@
+<!-- MODULE 12: Options for Day Traders -->
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M2 11h20"/><path d="M9 16l2 2 4-4"/></svg>
+    MODULE 12
+  </div>
+  <h1>Options for Day Traders</h1>
+  <p>Options are not just a derivative product &mdash; they are a window into institutional positioning, a leverage tool for directional bets, and an increasingly dominant force that moves the underlying equity market itself. This module gives you the options knowledge every serious day trader needs in the modern market.</p>
+</div>
+
+<!-- ========== 12.1 WHY OPTIONS MATTER ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.1</span> Why Options Matter for Day Traders</h2>
+  <p>Even if you never trade a single option contract, understanding the options market is essential for day trading equities. The options market now routinely exceeds the equity market in notional volume &mdash; in 2024 and 2025, average daily options notional on S&amp;P 500 components surpassed the cash equity volume by a factor of 1.5 to 2x. This means options flow is a primary driver of stock price movement, not a secondary one.</p>
+
+  <div class="concept-card">
+    <h3>Options as a Leading Indicator</h3>
+    <p>Institutional traders, hedge funds, and sophisticated firms frequently express their views through options before equities. There are several reasons for this:</p>
+    <ul class="feature-list">
+      <li><strong>Leverage</strong> &mdash; Options provide leveraged exposure at a fraction of the capital required for stock positions. A fund wanting $50M of directional exposure can achieve it with $2&ndash;5M in premium.</li>
+      <li><strong>Information asymmetry</strong> &mdash; Large players who have conviction on an event (earnings, FDA approval, M&amp;A) often use options because the asymmetric payoff matches their thesis.</li>
+      <li><strong>Hedging footprints</strong> &mdash; When institutions hedge large equity positions with puts or collars, the options flow reveals the size and direction of their underlying holdings.</li>
+      <li><strong>Speed of execution</strong> &mdash; Options sweeps can be executed in milliseconds, often appearing before corresponding equity block trades.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>How Options Data Reveals Institutional Positioning</h3>
+    <p>When you see a block of 10,000 call contracts purchased at the ask on a single strike, that is a signal. It means someone is willing to pay the offer &mdash; they want in immediately and are not price-sensitive. This aggressive buying reveals urgency and conviction. As a day trader, you can layer this information on top of your chart-based setups to gain an edge.</p>
+    <p>Key signals include:</p>
+    <ul class="feature-list">
+      <li><strong>Unusual options activity (UOA)</strong> &mdash; Volume exceeding open interest by 3x or more on a specific strike.</li>
+      <li><strong>Sweep orders</strong> &mdash; Large orders broken across multiple exchanges for fast execution, signaling urgency.</li>
+      <li><strong>Put/call ratio shifts</strong> &mdash; A sudden spike in put volume relative to calls on an index or sector ETF.</li>
+      <li><strong>Open interest build-up at key strikes</strong> &mdash; Large OI clusters act as magnets and barriers for price.</li>
+    </ul>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>The Tail Wags the Dog</strong>
+      <p>Research from the Bank for International Settlements and academic studies from the University of Illinois have shown that options market activity increasingly drives equity price movement &mdash; not the other way around. Market makers hedging options positions create buying and selling pressure in the underlying stock, making options flow a leading indicator rather than a lagging one.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 12.2 OPTIONS FUNDAMENTALS REFRESHER ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.2</span> Options Fundamentals Refresher</h2>
+  <p>Before diving into advanced options concepts, let us ensure the foundational knowledge is rock-solid. Options are contracts that give the buyer the right, but not the obligation, to buy (call) or sell (put) an underlying asset at a specified price (strike) before or on a specified date (expiration).</p>
+
+  <div class="concept-card">
+    <h3>Core Terminology</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Term</th>
+          <th>Definition</th>
+          <th>Day Trading Relevance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Call Option</strong></td>
+          <td>Right to buy the underlying at the strike price</td>
+          <td>Used for bullish directional bets; call volume spikes signal institutional buying interest</td>
+        </tr>
+        <tr>
+          <td><strong>Put Option</strong></td>
+          <td>Right to sell the underlying at the strike price</td>
+          <td>Used for bearish bets or hedging; unusual put activity can signal coming downside</td>
+        </tr>
+        <tr>
+          <td><strong>Strike Price</strong></td>
+          <td>The price at which the option can be exercised</td>
+          <td>Strikes with heavy OI act as support/resistance; round-number strikes are magnets</td>
+        </tr>
+        <tr>
+          <td><strong>Expiration</strong></td>
+          <td>The date the contract expires</td>
+          <td>Near-term expirations (0&ndash;7 DTE) carry the highest gamma and fastest time decay</td>
+        </tr>
+        <tr>
+          <td><strong>Premium</strong></td>
+          <td>The price paid for the option contract</td>
+          <td>Premium = Intrinsic Value + Extrinsic Value; large premium trades indicate conviction</td>
+        </tr>
+        <tr>
+          <td><strong>Intrinsic Value</strong></td>
+          <td>The amount an option is in-the-money</td>
+          <td>Deep ITM options have high intrinsic value and track the stock closely (high delta)</td>
+        </tr>
+        <tr>
+          <td><strong>Extrinsic Value</strong></td>
+          <td>Time value + volatility premium above intrinsic</td>
+          <td>Extrinsic decays throughout the day; fastest decay occurs on 0DTE options</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Moneyness: ITM, ATM, and OTM</h3>
+    <p>Moneyness describes the relationship between the current stock price and the option&rsquo;s strike price. It directly determines an option&rsquo;s behavior and is critical for selecting the right contract.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Moneyness</th>
+          <th>Call Example (Stock at $150)</th>
+          <th>Put Example (Stock at $150)</th>
+          <th>Characteristics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>In-the-Money (ITM)</strong></td>
+          <td>$140 call (intrinsic = $10)</td>
+          <td>$160 put (intrinsic = $10)</td>
+          <td>Higher delta, more expensive, lower risk of total loss, tracks stock closely</td>
+        </tr>
+        <tr>
+          <td><strong>At-the-Money (ATM)</strong></td>
+          <td>$150 call</td>
+          <td>$150 put</td>
+          <td>Delta &asymp; 0.50, highest extrinsic value, most liquid, most gamma</td>
+        </tr>
+        <tr>
+          <td><strong>Out-of-the-Money (OTM)</strong></td>
+          <td>$160 call (no intrinsic)</td>
+          <td>$140 put (no intrinsic)</td>
+          <td>Cheapest premium, lowest delta, highest percentage gains if correct, highest loss rate</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Call Option Payoff at Expiration</h3>
+    <svg viewBox="0 0 600 320" width="100%" style="max-width:600px">
+      <!-- Grid -->
+      <line x1="80" y1="40" x2="80" y2="260" stroke="#475569" stroke-width="1"/>
+      <line x1="80" y1="160" x2="560" y2="160" stroke="#475569" stroke-width="1"/>
+      <!-- Axis labels -->
+      <text x="320" y="295" fill="#94a3b8" font-size="12" text-anchor="middle">Stock Price at Expiration</text>
+      <text x="25" y="155" fill="#94a3b8" font-size="12" text-anchor="middle" transform="rotate(-90 25 155)">Profit / Loss</text>
+      <!-- Strike label -->
+      <line x1="300" y1="155" x2="300" y2="265" stroke="#64748b" stroke-width="1" stroke-dasharray="4"/>
+      <text x="300" y="280" fill="#94a3b8" font-size="11" text-anchor="middle">Strike ($150)</text>
+      <!-- Zero line labels -->
+      <text x="70" y="164" fill="#94a3b8" font-size="10" text-anchor="end">$0</text>
+      <!-- Premium line -->
+      <line x1="80" y1="190" x2="560" y2="190" stroke="#64748b" stroke-width="1" stroke-dasharray="2"/>
+      <text x="70" y="194" fill="#94a3b8" font-size="10" text-anchor="end">-$5</text>
+      <!-- Long call payoff -->
+      <polyline points="80,190 300,190 500,60" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+      <!-- Breakeven label -->
+      <line x1="330" y1="155" x2="330" y2="195" stroke="#22c55e" stroke-width="1" stroke-dasharray="3"/>
+      <text x="330" y="210" fill="#22c55e" font-size="10" text-anchor="middle">Breakeven</text>
+      <text x="330" y="222" fill="#22c55e" font-size="10" text-anchor="middle">($155)</text>
+      <!-- Max loss zone -->
+      <rect x="80" y="160" width="220" height="30" fill="#ef4444" opacity="0.1"/>
+      <text x="190" y="180" fill="#ef4444" font-size="10" text-anchor="middle">Max Loss = Premium Paid</text>
+      <!-- Profit zone -->
+      <text x="440" y="100" fill="#22c55e" font-size="11" text-anchor="middle">Unlimited Profit Potential</text>
+      <!-- Legend -->
+      <line x1="400" y1="40" x2="430" y2="40" stroke="#22c55e" stroke-width="2.5"/>
+      <text x="435" y="44" fill="#e2e8f0" font-size="11">Long Call P&amp;L</text>
+    </svg>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Put Option Payoff at Expiration</h3>
+    <svg viewBox="0 0 600 320" width="100%" style="max-width:600px">
+      <!-- Grid -->
+      <line x1="80" y1="40" x2="80" y2="260" stroke="#475569" stroke-width="1"/>
+      <line x1="80" y1="160" x2="560" y2="160" stroke="#475569" stroke-width="1"/>
+      <!-- Axis labels -->
+      <text x="320" y="295" fill="#94a3b8" font-size="12" text-anchor="middle">Stock Price at Expiration</text>
+      <text x="25" y="155" fill="#94a3b8" font-size="12" text-anchor="middle" transform="rotate(-90 25 155)">Profit / Loss</text>
+      <!-- Strike label -->
+      <line x1="300" y1="155" x2="300" y2="265" stroke="#64748b" stroke-width="1" stroke-dasharray="4"/>
+      <text x="300" y="280" fill="#94a3b8" font-size="11" text-anchor="middle">Strike ($150)</text>
+      <!-- Zero line -->
+      <text x="70" y="164" fill="#94a3b8" font-size="10" text-anchor="end">$0</text>
+      <!-- Premium line -->
+      <line x1="80" y1="190" x2="560" y2="190" stroke="#64748b" stroke-width="1" stroke-dasharray="2"/>
+      <text x="70" y="194" fill="#94a3b8" font-size="10" text-anchor="end">-$4</text>
+      <!-- Long put payoff -->
+      <polyline points="100,60 270,190 560,190" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+      <!-- Breakeven label -->
+      <line x1="270" y1="155" x2="270" y2="195" stroke="#ef4444" stroke-width="1" stroke-dasharray="3"/>
+      <text x="270" y="210" fill="#ef4444" font-size="10" text-anchor="middle">Breakeven</text>
+      <text x="270" y="222" fill="#ef4444" font-size="10" text-anchor="middle">($146)</text>
+      <!-- Max loss zone -->
+      <rect x="300" y="160" width="260" height="30" fill="#ef4444" opacity="0.1"/>
+      <text x="430" y="180" fill="#ef4444" font-size="10" text-anchor="middle">Max Loss = Premium Paid</text>
+      <!-- Profit zone -->
+      <text x="160" y="90" fill="#22c55e" font-size="11" text-anchor="middle">Profit as Stock Falls</text>
+      <!-- Legend -->
+      <line x1="400" y1="40" x2="430" y2="40" stroke="#ef4444" stroke-width="2.5"/>
+      <text x="435" y="44" fill="#e2e8f0" font-size="11">Long Put P&amp;L</text>
+    </svg>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Day Trader&rsquo;s Shortcut</strong>
+      <p>For intraday trading, you rarely hold options to expiration. Your profit or loss is determined by the change in premium, not the payoff diagram at expiry. Still, understanding these payoff profiles is essential because they shape how delta and gamma behave &mdash; which directly affects your intraday P&amp;L.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 12.3 THE GREEKS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.3</span> The Greeks for Day Traders</h2>
+  <p>The Greeks quantify how an option&rsquo;s price changes in response to various factors. For day traders, understanding the Greeks is not an academic exercise &mdash; it is the difference between understanding why your position just lost 30% in 10 minutes and being blindsided by it.</p>
+
+  <div class="concept-card">
+    <h3>The Four Greeks That Matter Intraday</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Greek</th>
+          <th>Measures</th>
+          <th>Range</th>
+          <th>Intraday Impact</th>
+          <th>Day Trader Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Delta (&Delta;)</strong></td>
+          <td>Price change per $1 move in the stock</td>
+          <td>0 to &plusmn;1.00</td>
+          <td>Determines how much your option moves with the stock. ATM calls have &Delta; &asymp; 0.50.</td>
+          <td>Use high-delta options (0.60&ndash;0.80) to closely track stock movement without overpaying for premium</td>
+        </tr>
+        <tr>
+          <td><strong>Gamma (&Gamma;)</strong></td>
+          <td>Rate of change of delta per $1 stock move</td>
+          <td>0 to ~0.15</td>
+          <td>The &ldquo;acceleration&rdquo; of your position. High gamma = delta changes rapidly. Biggest near ATM and near expiration.</td>
+          <td>Gamma is your friend when the stock moves in your direction; your enemy when it reverses. Respect it on 0DTE.</td>
+        </tr>
+        <tr>
+          <td><strong>Theta (&Theta;)</strong></td>
+          <td>Daily time decay (premium lost per day)</td>
+          <td>Always negative for long options</td>
+          <td>Your option loses value every minute you hold it. Theta accelerates into the close, especially on 0DTE.</td>
+          <td>Do not hold long options through dead zones (11:30&ndash;2:00 ET) unless you have strong conviction. Theta bleeds you.</td>
+        </tr>
+        <tr>
+          <td><strong>Vega (&nu;)</strong></td>
+          <td>Price change per 1% change in implied volatility</td>
+          <td>Varies; highest for ATM, longer-dated options</td>
+          <td>If IV drops while you hold, your option loses value even if the stock moves in your favor (&ldquo;IV crush&rdquo;).</td>
+          <td>Check IV rank before entering. Avoid buying options at the IV peak. Selling premium into high IV can be profitable.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>How Delta and Gamma Interact</h3>
+    <p>Think of delta as your speed and gamma as your acceleration. If you hold an ATM call with a delta of 0.50 and gamma of 0.05, and the stock rallies $2, your delta increases to approximately 0.60. Now each additional dollar of stock movement earns you more. This is the &ldquo;convexity&rdquo; that makes options powerful &mdash; your winners accelerate while your losers decelerate.</p>
+    <p>However, gamma works both ways. If the stock drops $2, your delta falls to 0.40, and now you are losing money more slowly &mdash; but you are still losing. The danger is that near-expiration, ATM options have extreme gamma. A 0DTE ATM option can swing from $2.00 to $0.20 in minutes if the stock moves against you.</p>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Delta Across Strike Prices (Call Option)</h3>
+    <svg viewBox="0 0 600 300" width="100%" style="max-width:600px">
+      <!-- Axes -->
+      <line x1="80" y1="40" x2="80" y2="250" stroke="#475569" stroke-width="1"/>
+      <line x1="80" y1="250" x2="560" y2="250" stroke="#475569" stroke-width="1"/>
+      <!-- Axis labels -->
+      <text x="320" y="285" fill="#94a3b8" font-size="12" text-anchor="middle">Strike Price Relative to Stock Price</text>
+      <text x="25" y="145" fill="#94a3b8" font-size="12" text-anchor="middle" transform="rotate(-90 25 145)">Delta</text>
+      <!-- Y-axis ticks -->
+      <text x="70" y="254" fill="#94a3b8" font-size="10" text-anchor="end">0.00</text>
+      <text x="70" y="148" fill="#94a3b8" font-size="10" text-anchor="end">0.50</text>
+      <text x="70" y="48" fill="#94a3b8" font-size="10" text-anchor="end">1.00</text>
+      <line x1="75" y1="145" x2="560" y2="145" stroke="#64748b" stroke-width="0.5" stroke-dasharray="4"/>
+      <!-- X-axis labels -->
+      <text x="160" y="268" fill="#94a3b8" font-size="10" text-anchor="middle">Deep ITM</text>
+      <text x="320" y="268" fill="#94a3b8" font-size="10" text-anchor="middle">ATM</text>
+      <text x="480" y="268" fill="#94a3b8" font-size="10" text-anchor="middle">Deep OTM</text>
+      <!-- ATM vertical line -->
+      <line x1="320" y1="40" x2="320" y2="250" stroke="#64748b" stroke-width="1" stroke-dasharray="4"/>
+      <!-- S-curve for delta -->
+      <path d="M100,55 C150,55 200,60 240,80 C270,95 295,120 320,145 C345,170 370,200 400,220 C440,238 490,245 540,248" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+      <!-- Key point at ATM -->
+      <circle cx="320" cy="145" r="5" fill="#3b82f6"/>
+      <text x="335" y="138" fill="#3b82f6" font-size="11">&Delta; = 0.50 at ATM</text>
+      <!-- Gamma annotation -->
+      <text x="310" y="95" fill="#f59e0b" font-size="10" text-anchor="middle">Steepest slope = Highest Gamma</text>
+      <path d="M260,100 L260,135" fill="none" stroke="#f59e0b" stroke-width="1" marker-end="url(#arrowhead12)"/>
+      <path d="M360,100 L360,170" fill="none" stroke="#f59e0b" stroke-width="1" marker-end="url(#arrowhead12)"/>
+      <defs>
+        <marker id="arrowhead12" markerWidth="6" markerHeight="4" refX="0" refY="2" orient="auto">
+          <polygon points="0 0, 6 2, 0 4" fill="#f59e0b"/>
+        </marker>
+      </defs>
+      <!-- Legend -->
+      <line x1="420" y1="45" x2="450" y2="45" stroke="#3b82f6" stroke-width="2.5"/>
+      <text x="455" y="49" fill="#e2e8f0" font-size="11">Call Delta</text>
+    </svg>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>The Gamma Trap</strong>
+      <p>Near-expiration options (especially 0DTE) carry extreme gamma. A stock trading at $150 with an ATM 0DTE call might show a delta of 0.50 and a gamma of 0.12. If the stock drops $3, your delta collapses to ~0.14 &mdash; your option is almost worthless. But if it rallies $3, your delta jumps to ~0.86. This knife-edge behavior is why 0DTE options produce massive percentage gains and losses. Size your positions accordingly.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 12.4 READING THE OPTIONS CHAIN ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.4</span> Reading the Options Chain</h2>
+  <p>The options chain is a matrix displaying all available contracts for a given underlying, organized by expiration and strike price. Learning to read it efficiently is a fundamental skill that separates casual observers from informed day traders.</p>
+
+  <div class="concept-card">
+    <h3>Key Columns in the Options Chain</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>What It Tells You</th>
+          <th>What to Watch For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Bid / Ask</strong></td>
+          <td>The current market for the option; bid is what buyers pay, ask is what sellers demand</td>
+          <td>Tight spreads (1&ndash;2 cents) indicate high liquidity. Wide spreads (&gt;$0.10) mean poor fills and hidden costs.</td>
+        </tr>
+        <tr>
+          <td><strong>Volume</strong></td>
+          <td>Number of contracts traded today</td>
+          <td>Volume spikes &mdash; especially when volume exceeds open interest &mdash; signal new positioning, not old.</td>
+        </tr>
+        <tr>
+          <td><strong>Open Interest (OI)</strong></td>
+          <td>Total outstanding contracts at that strike</td>
+          <td>Large OI clusters at round-number strikes create &ldquo;gravity&rdquo; for price. Biggest OI strikes often pin the stock at expiration.</td>
+        </tr>
+        <tr>
+          <td><strong>Implied Volatility (IV)</strong></td>
+          <td>The market&rsquo;s forecast of future volatility, embedded in option prices</td>
+          <td>Compare IV across strikes to find skew. Higher IV on puts vs. calls = market pricing in downside fear.</td>
+        </tr>
+        <tr>
+          <td><strong>Delta</strong></td>
+          <td>Directional exposure per contract</td>
+          <td>Helps you quickly assess the probability of an option finishing ITM (delta &asymp; probability).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Identifying Unusual Options Activity (UOA)</h3>
+    <p>UOA is one of the most actionable signals in day trading. It occurs when options volume dramatically exceeds normal levels, often driven by informed participants. Here is how to filter for it:</p>
+    <ul class="feature-list">
+      <li><strong>Volume &gt; 3x Open Interest</strong> &mdash; This means more contracts traded today than existed yesterday. New money is flowing in.</li>
+      <li><strong>Large single prints</strong> &mdash; Individual trades of 500+ contracts on stocks that normally trade 50&ndash;100 per strike.</li>
+      <li><strong>Bought at the ask</strong> &mdash; When large orders execute at the ask price, it signals aggressive buying (bullish for calls, bearish for puts).</li>
+      <li><strong>Near-term expiration</strong> &mdash; Large bets on weekly or 0DTE options suggest the buyer expects a move soon &mdash; not in months.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Sweeps vs. Blocks</h3>
+    <p>Understanding order types helps you interpret the intent behind large trades:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Order Type</th>
+          <th>How It Executes</th>
+          <th>What It Signals</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sweep</strong></td>
+          <td>Splits across multiple exchanges simultaneously to fill as fast as possible</td>
+          <td>Urgency. The trader wants the position NOW and is willing to pay up across exchanges. Highest signal value.</td>
+        </tr>
+        <tr>
+          <td><strong>Block</strong></td>
+          <td>Single large trade, often negotiated off-exchange and printed to tape</td>
+          <td>Institutional size. Could be a hedge (lower signal) or a directional bet (high signal). Check context.</td>
+        </tr>
+        <tr>
+          <td><strong>Split</strong></td>
+          <td>Broken into smaller pieces over time on a single exchange</td>
+          <td>The trader is trying to hide size. Less urgency but still represents significant conviction.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Combine UOA with Price Action</strong>
+      <p>UOA alone is not a trade signal &mdash; it is a context layer. The most powerful setups occur when unusual options activity aligns with a technical breakout, VWAP reclaim, or a key level test. If you see 5,000 aggressive calls swept on a stock that is also breaking above its pre-market high, that confluence is actionable.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 12.5 GAMMA EXPOSURE (GEX) ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.5</span> Gamma Exposure (GEX)</h2>
+  <p>Gamma Exposure is arguably the most important options-derived metric for equity day traders. It quantifies the aggregate gamma held by market makers across all strikes and expirations, revealing where their hedging activity will amplify or suppress price movement.</p>
+
+  <div class="concept-card">
+    <h3>What GEX Is and Why It Matters</h3>
+    <p>When you buy a call option, a market maker sells it to you. To stay delta-neutral, the market maker must buy shares of the underlying stock. If the stock goes up (and their short call gains delta), they must buy more shares to hedge. If the stock goes down, they sell shares. This is called <strong>delta hedging</strong>.</p>
+    <p>GEX measures the aggregate dollar amount of stock that market makers must buy or sell for every 1% move in the underlying. When GEX is positive (market makers are net long gamma), their hedging <strong>dampens</strong> volatility &mdash; they buy dips and sell rips. When GEX is negative (market makers are net short gamma), their hedging <strong>amplifies</strong> volatility &mdash; they sell into selloffs and buy into rallies.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>The Gamma Flip Point</h3>
+    <p>The gamma flip point is the price level where aggregate dealer gamma shifts from positive to negative. It is one of the most important levels on any day trader&rsquo;s chart.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>Market Maker Behavior</th>
+          <th>Price Action Effect</th>
+          <th>Day Trading Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Above gamma flip (+ GEX)</strong></td>
+          <td>Buy dips, sell rips</td>
+          <td>Mean-reverting, range-bound, lower realized volatility</td>
+          <td>Fade moves to extremes. Sell at resistance, buy at support. Tighter stops work.</td>
+        </tr>
+        <tr>
+          <td><strong>Below gamma flip (&minus; GEX)</strong></td>
+          <td>Sell into selloffs, buy into rallies</td>
+          <td>Trending, volatile, momentum feeds on itself</td>
+          <td>Trade breakouts and momentum. Do not fade moves. Use wider stops.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>GEX Levels as Support &amp; Resistance</h3>
+    <p>Large concentrations of open interest at specific strikes create GEX &ldquo;walls&rdquo; that act as support and resistance. The strikes with the highest gamma exposure attract price (known as &ldquo;pinning&rdquo;) because market maker hedging creates a gravitational effect. The highest GEX strike is often called the &ldquo;max pain&rdquo; or &ldquo;GEX anchor.&rdquo;</p>
+    <ul class="feature-list">
+      <li><strong>Call walls</strong> &mdash; Strikes with massive call OI create overhead resistance. As price approaches, market makers sell shares (hedging their short calls), pushing price back down.</li>
+      <li><strong>Put walls</strong> &mdash; Strikes with massive put OI create support. As price approaches, market makers buy shares (hedging their short puts), preventing further decline.</li>
+      <li><strong>Breakout potential</strong> &mdash; When price breaks through a GEX wall, the hedging flow reverses and can accelerate the move. This is why breaking through a major call wall often triggers a sharp squeeze higher.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>GEX Profile &mdash; Dealer Gamma by Strike</h3>
+    <svg viewBox="0 0 650 340" width="100%" style="max-width:650px">
+      <!-- Axes -->
+      <line x1="80" y1="30" x2="80" y2="300" stroke="#475569" stroke-width="1"/>
+      <line x1="80" y1="170" x2="600" y2="170" stroke="#475569" stroke-width="1.5"/>
+      <!-- Axis labels -->
+      <text x="340" y="335" fill="#94a3b8" font-size="12" text-anchor="middle">Strike Price</text>
+      <text x="20" y="170" fill="#94a3b8" font-size="12" text-anchor="middle" transform="rotate(-90 20 170)">GEX ($ Billions)</text>
+      <!-- Y labels -->
+      <text x="70" y="54" fill="#22c55e" font-size="10" text-anchor="end">+$3B</text>
+      <text x="70" y="174" fill="#94a3b8" font-size="10" text-anchor="end">$0</text>
+      <text x="70" y="270" fill="#ef4444" font-size="10" text-anchor="end">-$2B</text>
+      <!-- Positive GEX bars (call-heavy strikes above current price) -->
+      <rect x="130" y="155" width="30" height="15" fill="#22c55e" opacity="0.3"/>
+      <rect x="175" y="140" width="30" height="30" fill="#22c55e" opacity="0.4"/>
+      <rect x="220" y="120" width="30" height="50" fill="#22c55e" opacity="0.5"/>
+      <rect x="265" y="90" width="30" height="80" fill="#22c55e" opacity="0.6"/>
+      <rect x="310" y="50" width="30" height="120" fill="#22c55e" opacity="0.8" stroke="#22c55e" stroke-width="1"/>
+      <text x="325" y="45" fill="#22c55e" font-size="10" text-anchor="middle">Max GEX</text>
+      <rect x="355" y="70" width="30" height="100" fill="#22c55e" opacity="0.7"/>
+      <rect x="400" y="110" width="30" height="60" fill="#22c55e" opacity="0.5"/>
+      <rect x="445" y="145" width="30" height="25" fill="#22c55e" opacity="0.3"/>
+      <!-- Negative GEX bars (put-heavy strikes below current price) -->
+      <rect x="490" y="170" width="30" height="35" fill="#ef4444" opacity="0.4"/>
+      <rect x="535" y="170" width="30" height="70" fill="#ef4444" opacity="0.6"/>
+      <!-- Gamma flip annotation -->
+      <line x1="465" y1="40" x2="465" y2="300" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6"/>
+      <text x="465" y="35" fill="#f59e0b" font-size="11" text-anchor="middle">Gamma Flip</text>
+      <!-- Current price -->
+      <line x1="340" y1="30" x2="340" y2="300" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3"/>
+      <text x="340" y="310" fill="#8b5cf6" font-size="10" text-anchor="middle">Current Price</text>
+      <!-- Zone labels -->
+      <rect x="110" y="290" width="10" height="10" fill="#22c55e" opacity="0.6"/>
+      <text x="125" y="299" fill="#e2e8f0" font-size="10">Positive GEX (Dampening)</text>
+      <rect x="340" y="290" width="10" height="10" fill="#ef4444" opacity="0.6"/>
+      <text x="355" y="299" fill="#e2e8f0" font-size="10">Negative GEX (Amplifying)</text>
+    </svg>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>GEX Is a Map, Not a Crystal Ball</strong>
+      <p>GEX levels update as options trade throughout the day. A major GEX wall at 9:30 AM may weaken by noon if positions are closed. Treat GEX levels as the current terrain &mdash; not as permanent features of the landscape. Many traders check GEX levels from services like SpotGamma, Menthor Q, or GEX Dashboard pre-market and update key levels at midday.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 12.6 OPTIONS FLOW ANALYSIS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.6</span> Options Flow Analysis</h2>
+  <p>Options flow analysis is the practice of monitoring real-time options transactions to detect large or unusual trades that may indicate informed positioning. It is one of the most popular &ldquo;smart money&rdquo; tracking methods used by professional day traders.</p>
+
+  <div class="concept-card">
+    <h3>How to Read Live Options Flow</h3>
+    <p>A raw options flow feed shows every options transaction as it occurs. Without filtering, it is overwhelming &mdash; thousands of trades per minute across thousands of underlying assets. The key is filtering for the trades that matter.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Filter</th>
+          <th>Why It Matters</th>
+          <th>Suggested Threshold</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Premium size</strong></td>
+          <td>Eliminates noise from small retail trades</td>
+          <td>&gt;$100K for large caps; &gt;$25K for small/mid caps</td>
+        </tr>
+        <tr>
+          <td><strong>Order type: Sweep</strong></td>
+          <td>Sweeps indicate urgency and conviction</td>
+          <td>Filter for sweeps; they carry the highest signal value</td>
+        </tr>
+        <tr>
+          <td><strong>Side: At or above ask</strong></td>
+          <td>Buying at the ask signals aggressive positioning (bullish for calls, bearish for puts)</td>
+          <td>Prioritize trades executed at the ask over those at the bid or midpoint</td>
+        </tr>
+        <tr>
+          <td><strong>Expiration: Near-term</strong></td>
+          <td>Near-term options signal conviction about an imminent move</td>
+          <td>0&ndash;14 DTE carries the most day-trading relevance</td>
+        </tr>
+        <tr>
+          <td><strong>Volume vs. OI</strong></td>
+          <td>Volume &gt; OI means new positions being opened</td>
+          <td>Volume &gt; 2x OI is notable; &gt; 5x is highly unusual</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Interpreting Flow Signals</h3>
+    <ul class="feature-list">
+      <li><strong>Aggressive call buying (sweeps at ask)</strong> &mdash; Bullish signal. Someone is paying up for upside exposure. Strongest when accompanied by stock making new highs or breaking resistance.</li>
+      <li><strong>Aggressive put buying (sweeps at ask)</strong> &mdash; Bearish signal, or could be a hedge on a large long position. Context matters: if the stock is also breaking down, it confirms the direction.</li>
+      <li><strong>Call selling at bid (large blocks)</strong> &mdash; Could be covered calls (neutral), or naked call selling (bearish). If delta on the calls is high and the trade is large, it signals a ceiling expectation.</li>
+      <li><strong>Repeated flow in one direction</strong> &mdash; Multiple large trades on the same strike and expiration across the day is more significant than a single print. Institutional positions are often built in tranches.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Dark Pool Options Prints</h3>
+    <p>Dark pool options trades are negotiated privately and printed to the tape after execution. They are identifiable by their execution venue and often represent the largest institutional trades. Key characteristics:</p>
+    <ul class="feature-list">
+      <li>They appear as single large blocks, often in the thousands of contracts</li>
+      <li>Execution price is usually between bid and ask (negotiated)</li>
+      <li>They may represent complex multi-leg strategies (spreads, collars) that are harder to interpret directionally</li>
+      <li>Highest value when they appear on stocks with an upcoming catalyst</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Options Flow Tools</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Strengths</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Unusual Whales</strong></td>
+          <td>Clean UI, real-time flow, dark pool data, congressional trading alerts</td>
+          <td>Beginners to intermediate; broad market scanning</td>
+        </tr>
+        <tr>
+          <td><strong>Cheddar Flow</strong></td>
+          <td>Net premium charts, sector heatmaps, historical flow data</td>
+          <td>Visual learners; tracking flow trends over time</td>
+        </tr>
+        <tr>
+          <td><strong>BlackBox Stocks</strong></td>
+          <td>Combines options flow with proprietary dark pool alerts</td>
+          <td>Traders wanting dark pool and options flow in one platform</td>
+        </tr>
+        <tr>
+          <td><strong>Tradytics</strong></td>
+          <td>AI-powered flow analysis, net GEX calculations, flow scoring</td>
+          <td>Data-driven traders who want quantitative analysis of flow</td>
+        </tr>
+        <tr>
+          <td><strong>InsiderFinance</strong></td>
+          <td>Real-time flow alerts, sweep detection, trade-idea generation</td>
+          <td>Active day traders who want actionable alerts</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Flow Is a Mosaic, Not a Magic Bullet</strong>
+      <p>Any single options print can be misleading. That large call purchase might be a hedge against a short stock position, not a directional bet. Always look for confirmation: multiple prints in the same direction, alignment with technical levels, and consistency across time. The best flow traders build a mosaic of evidence rather than reacting to isolated prints.</p>
+    </div>
+  </div>
+</div>
+
+  <div class="concept-card reveal">
+    <h3>Put/Call Ratio (PCR) Analysis</h3>
+    <p>The Put/Call Ratio measures relative trading activity in puts versus calls. It serves as a <strong>contrarian sentiment indicator</strong> &mdash; extreme readings often signal the crowd is wrong.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>PCR Range</th>
+          <th>Interpretation</th>
+          <th>Day Trading Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Below 0.5</strong></td>
+          <td>Extreme call buying &mdash; bullish complacency / euphoria</td>
+          <td>Contrarian bearish signal. The crowd is aggressively long. Watch for a reversal.</td>
+        </tr>
+        <tr>
+          <td><strong>0.5&ndash;0.7</strong></td>
+          <td>Bullish sentiment &mdash; call buyers dominate</td>
+          <td>Market trending higher but not extreme. Trade with the trend.</td>
+        </tr>
+        <tr>
+          <td><strong>0.7&ndash;1.0</strong></td>
+          <td>Neutral &mdash; balanced put and call activity</td>
+          <td>No strong signal. Use other indicators for direction.</td>
+        </tr>
+        <tr>
+          <td><strong>1.0&ndash;1.3</strong></td>
+          <td>Elevated fear &mdash; put buying increasing</td>
+          <td>Contrarian bullish signal. Hedging activity suggests a floor may be forming.</td>
+        </tr>
+        <tr>
+          <td><strong>Above 1.3</strong></td>
+          <td>Extreme fear / panic &mdash; heavy put buying</td>
+          <td>Strongly contrarian bullish. The crowd is aggressively hedged. Watch for a bounce.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem;"><strong>Important distinction:</strong> Use the <em>equity-only</em> PCR (CPCE) for stock market signals, not the total PCR which includes index options. Index options are used for hedging and skew the ratio. Also differentiate between <em>volume</em> PCR (real-time, more responsive) and <em>open interest</em> PCR (slower, shows accumulated positioning).</p>
+  </div>
+
+<!-- ========== 12.7 0DTE OPTIONS TRADING ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.7</span> 0DTE Options Trading</h2>
+  <p>Zero-days-to-expiration (0DTE) options have transformed modern markets. Since the CBOE introduced daily expirations on the S&amp;P 500 (SPX) in 2022, 0DTE options now account for over 40% of all SPX options volume. This explosion in short-dated trading has created new opportunities, new risks, and new market dynamics that every day trader must understand.</p>
+
+  <div class="concept-card">
+    <h3>Why 0DTE Options Are Different</h3>
+    <p>On expiration day, options exhibit extreme characteristics that make them behave very differently from longer-dated contracts:</p>
+    <ul class="feature-list">
+      <li><strong>Maximum gamma</strong> &mdash; ATM 0DTE options have the highest gamma of any contract. Delta changes dramatically with small stock moves, creating lottery-ticket-like payoffs.</li>
+      <li><strong>Rapid theta decay</strong> &mdash; Time value evaporates throughout the day. An ATM 0DTE option might lose 50% of its value between 9:30 AM and noon even if the stock is flat.</li>
+      <li><strong>Low absolute cost</strong> &mdash; Because most of the time value has already decayed, 0DTE options are cheap in dollar terms, making them accessible but deceptively risky in percentage terms.</li>
+      <li><strong>Binary-like behavior</strong> &mdash; Near the close, 0DTE options behave almost like binary bets &mdash; they either finish ITM (worth intrinsic value) or expire worthless.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>How 0DTE Options Move the Underlying</h3>
+    <p>The sheer volume of 0DTE trading creates a feedback loop between options and equity markets. Here is the mechanism:</p>
+    <ol>
+      <li>Traders buy large quantities of 0DTE calls (or puts) on SPX or individual stocks.</li>
+      <li>Market makers, who sold those options, must delta-hedge by buying (or selling) the underlying.</li>
+      <li>Because gamma is extreme, even a small move forces market makers to aggressively re-hedge.</li>
+      <li>This re-hedging flow amplifies the move, attracting more options buying, which forces more hedging.</li>
+      <li>The result is a self-reinforcing feedback loop that can produce outsized intraday moves.</li>
+    </ol>
+    <p>This is why many of the 1&ndash;2% intraday reversals in the S&amp;P 500 are driven by 0DTE gamma dynamics rather than fundamental news.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>0DTE Trading Strategies</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Strategy</th>
+          <th>Setup</th>
+          <th>Risk Profile</th>
+          <th>Best Conditions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Momentum scalp</strong></td>
+          <td>Buy ATM call/put on a clear directional break (VWAP cross, range break)</td>
+          <td>Risk: 100% of premium. Reward: 100&ndash;500%+ if the move continues.</td>
+          <td>First 30 minutes; trending days; after a catalyst (data release, earnings)</td>
+        </tr>
+        <tr>
+          <td><strong>Fade overextension</strong></td>
+          <td>Buy options in the opposite direction after a 1&ndash;2 standard deviation move</td>
+          <td>Risk: 100% of premium. Reward: 50&ndash;200% on a mean reversion.</td>
+          <td>Positive GEX environment; afternoon session; no fundamental catalyst for the move</td>
+        </tr>
+        <tr>
+          <td><strong>Credit spread</strong></td>
+          <td>Sell an OTM spread (iron condor or vertical) to collect theta</td>
+          <td>Risk: Width of spread minus premium. Reward: Premium collected.</td>
+          <td>Low-volatility days; positive GEX; range-bound price action</td>
+        </tr>
+        <tr>
+          <td><strong>Straddle/strangle</strong></td>
+          <td>Buy both a call and a put ATM or slightly OTM</td>
+          <td>Risk: Total premium paid. Reward: Profits if the stock moves sharply in either direction.</td>
+          <td>Pre-data release (CPI, FOMC); when IV is low relative to expected move</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>0DTE Can Destroy Your Account in Minutes</strong>
+      <p>The same extreme gamma that creates 500% winners also creates 100% losers in minutes. A common pattern: a trader buys $1,000 in 0DTE calls, the stock moves $2 in their direction and they are up $3,000, they do not take profit, the stock reverses $3, and the options expire worthless. The most important rule for 0DTE trading is rigid profit-taking. Set a target (50&ndash;100% gain), take it, and do not look back. Never risk more than 1&ndash;2% of your account on any single 0DTE trade.</p>
+    </div>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Pin Risk &amp; Gamma Scalping at Expiration</h3>
+    <p>As expiration approaches, stocks tend to gravitate toward strike prices with the highest open interest. This phenomenon, called <strong>pinning</strong>, is driven by dealer gamma hedging and creates discrete opportunities for informed traders.</p>
+    <ul class="feature-list">
+      <li><strong>Why pinning occurs:</strong> Market makers who sold options at popular strikes must delta-hedge. Near expiration, as gamma peaks, their hedging activity pushes price toward the strike &mdash; buying when below, selling when above. This creates a gravitational pull toward high-OI strikes.</li>
+      <li><strong>How to identify pin candidates:</strong> Look for strikes with unusually high open interest relative to surrounding strikes. If the $150 strike has 50,000 OI while adjacent strikes have 5,000, the stock is likely to pin near $150 on expiration.</li>
+      <li><strong>Gamma scalping basics:</strong> If you hold a long straddle (long call + long put at the same strike) near expiration, you can scalp the underlying as it oscillates around the strike. When price moves above the strike, your call gains delta &mdash; sell shares to hedge. When price moves below, your put gains delta &mdash; buy shares. Each oscillation generates small profits from the gamma-driven delta changes.</li>
+      <li><strong>Risk of gamma scalping:</strong> Theta decay is your enemy. The premiums you paid for the straddle decay rapidly on expiration day. You must generate enough scalping profits to offset theta, which requires the stock to oscillate enough around the strike.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 12.8 IMPLIED VOLATILITY & EVENT TRADING ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.8</span> Implied Volatility &amp; Event Trading</h2>
+  <p>Implied volatility (IV) is the market&rsquo;s consensus estimate of how much a stock will move over a given period. It is embedded in option prices and is one of the most important variables for options day traders to understand. Misunderstanding IV is the number one reason new options traders lose money around events like earnings.</p>
+
+  <div class="concept-card">
+    <h3>How IV Crush Works</h3>
+    <p>Before a known event (earnings, FDA decision, economic data release), uncertainty is high. Option prices inflate because the market is pricing in a potential large move. The moment the event occurs and uncertainty resolves, IV collapses &mdash; even if the stock moves significantly. This is <strong>IV crush</strong>.</p>
+    <p>Example: A stock trading at $100 has earnings after the close. The ATM weekly straddle is priced at $8.00 (implying an &plusmn;8% move). Earnings are announced, the stock moves +5%, and opens at $105. Despite the stock moving in the &ldquo;right&rdquo; direction, the call option might barely break even because IV collapsed from 80% to 35% overnight, destroying the extrinsic value component of the premium.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>IV Rank and IV Percentile</h3>
+    <p>Raw IV numbers are meaningless without context. A stock with 40% IV could be at a 52-week high or a 52-week low, depending on the stock. Two metrics solve this:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Calculation</th>
+          <th>Interpretation</th>
+          <th>Day Trading Use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>IV Rank</strong></td>
+          <td>(Current IV &minus; 52wk Low IV) &divide; (52wk High IV &minus; 52wk Low IV) &times; 100</td>
+          <td>Shows where current IV sits in its annual range. IVR of 80 means IV is near its yearly high.</td>
+          <td>IVR &gt; 50: consider selling premium. IVR &lt; 30: buying options is relatively cheap.</td>
+        </tr>
+        <tr>
+          <td><strong>IV Percentile</strong></td>
+          <td>Percentage of days in the past year when IV was lower than today</td>
+          <td>IVP of 90 means IV has been lower than today 90% of the time this year.</td>
+          <td>More robust than IV Rank for stocks with IV spikes. Preferred by most professionals.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Volatility Skew</h3>
+    <p>Volatility skew refers to the pattern where different strike prices have different implied volatilities. In equity markets, the typical pattern is a &ldquo;smirk&rdquo; &mdash; OTM puts have higher IV than OTM calls, reflecting the market&rsquo;s persistent fear of downside crashes.</p>
+    <ul class="feature-list">
+      <li><strong>Normal skew (put skew)</strong> &mdash; OTM puts are more expensive than equidistant OTM calls. This is the default state and reflects demand for downside protection.</li>
+      <li><strong>Flattened skew</strong> &mdash; When call IV rises toward put IV, it signals increasing demand for upside exposure. This often precedes or accompanies strong rallies.</li>
+      <li><strong>Inverted skew</strong> &mdash; When OTM calls are more expensive than equidistant OTM puts. Rare, but occurs during short squeezes (e.g., GME in 2021) or extreme euphoria.</li>
+      <li><strong>Steep skew</strong> &mdash; When the gap between put IV and call IV widens sharply, the market is pricing in elevated crash risk. Often a warning sign.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Trading the IV Curve Around Events</h3>
+    <p>For day traders, the key insight is that IV changes create P&amp;L independent of the stock&rsquo;s direction. Here are actionable approaches:</p>
+    <ul class="feature-list">
+      <li><strong>Avoid buying options pre-earnings</strong> &mdash; Unless you are confident the stock will move more than the straddle-implied move, buying options before earnings is a losing proposition because of IV crush.</li>
+      <li><strong>Sell premium pre-event, buy post-event</strong> &mdash; Credit spreads or iron condors placed before earnings benefit from IV crush. After earnings, IV is reset lower and buying options becomes cheaper.</li>
+      <li><strong>Trade the morning-after reaction</strong> &mdash; After an earnings gap, IV has already crushed. Options are now priced more fairly, making intraday momentum trades on the post-earnings move more efficient.</li>
+      <li><strong>Use IV to calibrate expectations</strong> &mdash; The straddle price tells you the expected move. If the ATM weekly straddle is $5 on a $100 stock, the market expects a 5% move. Trade the reaction only if the actual move significantly exceeds this.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Quantifying IV Crush: The Math</h3>
+    <p>IV crush is not just a concept &mdash; you can calculate it and use it to make better trading decisions. The key formula estimates the post-event option value:</p>
+    <p style="text-align:center;font-size:1.1rem;margin:1rem 0;"><code>Post-Event Value &approx; Pre-Event Value &times; (Post-Event IV / Pre-Event IV)</code></p>
+    <p><strong>Worked example (0DTE earnings play):</strong></p>
+    <ul class="feature-list">
+      <li>Stock trading at $100 before earnings</li>
+      <li>ATM straddle price: $8.00 (implied move: &plusmn;$8, or 8%)</li>
+      <li>Pre-earnings IV: 120%</li>
+      <li>Expected post-earnings IV: 35% (based on historical post-earnings IV)</li>
+      <li>IV crush factor: 35% / 120% = <strong>0.29</strong></li>
+      <li>Post-crush straddle value (if stock flat): $8.00 &times; 0.29 &asymp; <strong>$2.32</strong></li>
+      <li><strong>Result:</strong> Even if the stock doesn&rsquo;t move, the straddle loses ~71% of its value from IV crush alone</li>
+    </ul>
+    <p><strong>Practical rule:</strong> For a long option to profit through an earnings event, the stock must move <em>more than</em> the straddle-implied move to overcome IV crush. If the straddle implies &plusmn;8% and the stock moves only 5%, your long call or put will likely <em>still lose money</em> despite being directionally correct. This is the most common mistake options traders make around events.</p>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The Expected Move Formula</strong>
+      <p>To quickly estimate how much a stock is expected to move for any expiration: multiply the ATM straddle price by 0.85. For a $100 stock with a $6 ATM weekly straddle, the expected move is approximately $5.10 (or &plusmn;5.1%). If the stock moves more than this after earnings, the option buyer profits. If it moves less, the option seller profits. This simple calculation lets you evaluate whether a trade&rsquo;s risk/reward makes sense before you enter.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 12.9 OPTIONS-BASED DAY TRADING SETUPS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.9</span> Options-Based Day Trading Setups</h2>
+  <p>Now that you understand the mechanics, let us translate that knowledge into specific, repeatable trading setups. Each setup below includes the rationale, execution details, and risk parameters.</p>
+
+  <div class="concept-card">
+    <h3>Setup 1: ATM Option Scalp on Momentum</h3>
+    <p>This is the most common options day trade. You buy an ATM or slightly ITM call (or put) on a stock that is making a clean directional move, ride the momentum for a quick gain, and exit.</p>
+    <ul class="feature-list">
+      <li><strong>Entry trigger</strong> &mdash; Stock breaks above VWAP with volume, reclaims a key level, or breaks out of a consolidation pattern.</li>
+      <li><strong>Contract selection</strong> &mdash; ATM or one strike ITM. Delta of 0.50&ndash;0.70. Expiration: same week or next week (avoid 0DTE unless experienced).</li>
+      <li><strong>Target</strong> &mdash; 20&ndash;50% gain on the option premium. Do not get greedy.</li>
+      <li><strong>Stop</strong> &mdash; 30&ndash;50% loss on the option premium, or when the stock reclaims/loses the level that triggered your entry.</li>
+      <li><strong>Position size</strong> &mdash; Risk no more than 1% of account on the trade. If the option costs $3.00 per contract ($300 total), and your stop is a $1.50 loss ($150), size accordingly.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Setup 2: Debit Spread for Defined Risk</h3>
+    <p>A debit spread involves buying one option and selling another at a different strike in the same expiration. This limits your maximum loss to the net debit paid, at the cost of capping your maximum gain.</p>
+    <ul class="feature-list">
+      <li><strong>Bull call spread</strong> &mdash; Buy ATM call, sell OTM call (e.g., buy $150 call, sell $155 call for $2.00 net debit). Max profit = $3.00. Max loss = $2.00.</li>
+      <li><strong>Bear put spread</strong> &mdash; Buy ATM put, sell OTM put (e.g., buy $150 put, sell $145 put for $2.00 net debit). Max profit = $3.00. Max loss = $2.00.</li>
+      <li><strong>Advantages for day trading</strong> &mdash; Lower cost than a naked long option. Reduced vega exposure (less affected by IV changes). Defined risk makes position sizing straightforward.</li>
+      <li><strong>Disadvantage</strong> &mdash; Capped profit. If the stock makes a massive move, you leave money on the table. Also less liquid than single-leg options, so wider bid-ask spreads.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Setup 3: Options as Stock Replacement</h3>
+    <p>Instead of buying 100 shares of a $200 stock ($20,000 capital), you buy a deep ITM call with a delta of 0.80&ndash;0.90 for perhaps $15.00 ($1,500 per contract). This gives you nearly the same directional exposure at a fraction of the capital.</p>
+    <ul class="feature-list">
+      <li><strong>Contract selection</strong> &mdash; Deep ITM. Delta &gt; 0.80. Expiration at least 2&ndash;4 weeks out to minimize theta decay.</li>
+      <li><strong>Advantage</strong> &mdash; Frees up capital for other trades. Defined risk (you cannot lose more than the premium). Still captures 80&ndash;90% of the stock&rsquo;s move.</li>
+      <li><strong>Disadvantage</strong> &mdash; You pay a time-value premium for the privilege. If the stock goes nowhere, you lose that extrinsic value.</li>
+      <li><strong>Best for</strong> &mdash; High-priced stocks where buying shares would consume too much capital. AMZN, GOOG, META, TSLA.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Strategy Comparison</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Strategy</th>
+          <th>Capital Required</th>
+          <th>Max Loss</th>
+          <th>Max Gain</th>
+          <th>Theta Exposure</th>
+          <th>Best Environment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Long ATM call/put</strong></td>
+          <td>$200&ndash;$800 per contract</td>
+          <td>100% of premium</td>
+          <td>Unlimited (calls) / Strike &minus; premium (puts)</td>
+          <td>High (negative)</td>
+          <td>Strong momentum, trending markets</td>
+        </tr>
+        <tr>
+          <td><strong>Debit spread</strong></td>
+          <td>$100&ndash;$400 per spread</td>
+          <td>Net debit paid</td>
+          <td>Width of spread &minus; debit</td>
+          <td>Moderate (partially offset)</td>
+          <td>Directional bias with defined range</td>
+        </tr>
+        <tr>
+          <td><strong>Deep ITM (stock replacement)</strong></td>
+          <td>$1,000&ndash;$3,000 per contract</td>
+          <td>100% of premium</td>
+          <td>Unlimited (calls) / Strike &minus; premium (puts)</td>
+          <td>Low (mostly intrinsic)</td>
+          <td>High-priced stocks; capital preservation</td>
+        </tr>
+        <tr>
+          <td><strong>0DTE ATM scalp</strong></td>
+          <td>$50&ndash;$300 per contract</td>
+          <td>100% of premium</td>
+          <td>500%+ on large moves</td>
+          <td>Extreme (negative)</td>
+          <td>Clear momentum; catalysts; experienced traders</td>
+        </tr>
+        <tr>
+          <td><strong>Credit spread (selling)</strong></td>
+          <td>Width of spread &minus; credit</td>
+          <td>Width of spread &minus; credit</td>
+          <td>Credit received</td>
+          <td>Positive (theta works for you)</td>
+          <td>Range-bound; high IV; positive GEX</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Liquidity Is Everything</strong>
+      <p>Only trade options on highly liquid underlyings. The bid-ask spread on options is a hidden cost that compounds rapidly for day traders. A $0.10 spread on a $2.00 option means you are paying 5% just to enter the trade. Stick to names with penny-wide options markets: SPY, QQQ, AAPL, TSLA, NVDA, AMZN, META, MSFT. If the bid-ask spread on the option is wider than 2&ndash;3% of the ask price, find a different contract or a different stock.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Start Simple</strong>
+      <p>If you are new to trading options intraday, start with single-leg ATM options on SPY or QQQ. These have the tightest spreads, the most liquidity, and the most predictable behavior. Master one strategy on one instrument before expanding. Complexity does not equal profitability &mdash; simplicity and consistency do.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 12.10 OPTIONS SPREAD STRATEGIES FOR DAY TRADING ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.10</span> Options Spread Strategies for Day Trading</h2>
+  <p>Single-leg options (naked calls and puts) are the simplest approach but not always the best. <strong>Spread strategies</strong> let you define your maximum risk, reduce your capital requirement, and profit from scenarios that naked options cannot exploit. Here are the spreads most relevant to day trading.</p>
+
+  <table class="data-table reveal">
+    <thead>
+      <tr>
+        <th>Strategy</th>
+        <th>Structure</th>
+        <th>Max Risk</th>
+        <th>Max Reward</th>
+        <th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Vertical Call Spread (Debit)</strong></td>
+        <td>Buy ATM call, sell OTM call (same expiry)</td>
+        <td>Net debit paid</td>
+        <td>Width of strikes minus debit</td>
+        <td>Bullish with defined risk; reduces cost vs. naked call by 30&ndash;50%</td>
+      </tr>
+      <tr>
+        <td><strong>Vertical Put Spread (Debit)</strong></td>
+        <td>Buy ATM put, sell OTM put (same expiry)</td>
+        <td>Net debit paid</td>
+        <td>Width of strikes minus debit</td>
+        <td>Bearish with defined risk; cheaper than naked puts</td>
+      </tr>
+      <tr>
+        <td><strong>Risk Reversal</strong></td>
+        <td>Buy OTM call + sell OTM put (or vice versa)</td>
+        <td>Potentially unlimited (short put side)</td>
+        <td>Unlimited (long call side)</td>
+        <td>Strong directional conviction; near-zero cost if strikes balanced</td>
+      </tr>
+      <tr>
+        <td><strong>Butterfly</strong></td>
+        <td>Buy 1 ITM call, sell 2 ATM calls, buy 1 OTM call</td>
+        <td>Net debit paid (very small)</td>
+        <td>Width of wings minus debit</td>
+        <td>Expecting stock to pin near a specific price at expiry; low-cost bet on pinning</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="concept-card reveal">
+    <h3>Why Spreads Matter for Day Traders</h3>
+    <ul class="feature-list">
+      <li><strong>Defined risk:</strong> Unlike naked options, vertical spreads have a hard maximum loss. You cannot lose more than the net debit, even in a flash crash.</li>
+      <li><strong>Theta reduction:</strong> Selling the far leg offsets theta decay on the near leg. On 0DTE trades, this can be the difference between profit and loss.</li>
+      <li><strong>Lower margin requirement:</strong> Spreads require less buying power than naked options, allowing you to take more positions or larger positions within your account limits.</li>
+      <li><strong>IV crush hedge:</strong> In a vertical spread, IV crush hurts your long leg but helps your short leg. The net effect is reduced, making spreads better for earnings-day trades.</li>
+    </ul>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Spread Liquidity Warning</strong>
+      <p>Spreads require two fills, which means wider effective bid-ask spreads. Only trade multi-leg strategies on highly liquid underlyings (SPY, QQQ, AAPL, TSLA, NVDA, AMZN) where individual option spreads are penny-wide. On illiquid names, the slippage from a 2- or 4-leg spread can consume your entire expected profit.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 12.11 QUIZ ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">12.11</span> Module 12 Quiz</h2>
+  <p>Test your understanding of options concepts for day trading. These questions are designed to challenge your comprehension of how options data, the Greeks, and flow analysis apply to real intraday trading scenarios.</p>
+
+  <div class="quiz-container" data-quiz="m12-options">
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "GEX (Gamma Exposure) is positive, and the S&P 500 is trading above the gamma flip point. What type of price action should you expect?",
+          "options": [
+            "Trending, volatile moves with strong momentum",
+            "Range-bound, mean-reverting price action with suppressed volatility",
+            "Completely random movement with no directional bias",
+            "Sharp selloffs driven by institutional liquidation"
+          ],
+          "correct": 1,
+          "explanation": "When GEX is positive (above the gamma flip), market makers are net long gamma. They hedge by buying dips and selling rips, which dampens volatility and creates range-bound, mean-reverting conditions. This is an environment where fading moves to extremes works better than chasing momentum."
+        },
+        {
+          "question": "You see 8,000 call contracts swept at the ask on NVDA $140 strike, expiring in 3 days. Volume on this strike was only 200 contracts with 1,500 open interest before this trade. What does this most likely indicate?",
+          "options": [
+            "Market makers adjusting their hedges",
+            "A retail trader buying lottery tickets",
+            "Unusual options activity suggesting informed, aggressive bullish positioning",
+            "An institutional investor closing an existing short call position"
+          ],
+          "correct": 2,
+          "explanation": "This trade exhibits all the hallmarks of significant UOA: volume massively exceeds open interest (8,000 vs 1,500), the order was swept (indicating urgency), it was executed at the ask (aggressive buying), and the near-term expiration signals conviction about an imminent move. The size (8,000 contracts) rules out typical retail activity."
+        },
+        {
+          "question": "A stock is at $100 and you hold an ATM 0DTE call with delta 0.50 and gamma 0.10. The stock drops $3. What is your approximate new delta?",
+          "options": [
+            "0.50 (delta does not change)",
+            "0.35",
+            "0.20",
+            "0.80"
+          ],
+          "correct": 2,
+          "explanation": "Delta changes by approximately gamma × stock move. With gamma of 0.10 and a $3 drop: delta change = 0.10 × 3 = 0.30. New delta = 0.50 − 0.30 = 0.20. Your option now moves only $0.20 for each $1 of stock movement — it has lost most of its directional sensitivity. In reality, gamma itself changes (it is not constant), but this linear approximation demonstrates the concept."
+        },
+        {
+          "question": "AAPL is reporting earnings tonight. The ATM weekly straddle is priced at $8.00 with the stock at $200. What move does the market expect, and what happens to option prices if AAPL moves exactly 3%?",
+          "options": [
+            "Expected move is 4%; the call buyer profits because the stock moved in a clear direction",
+            "Expected move is 4%; option buyers lose because the 3% actual move is less than the 4% expected move, and IV crush further erodes value",
+            "Expected move is 8%; option sellers lose because the stock moved significantly",
+            "Expected move is 2%; option buyers profit handsomely on the larger-than-expected move"
+          ],
+          "correct": 1,
+          "explanation": "The expected move is the straddle price divided by the stock price: $8 / $200 = 4%. If the stock only moves 3%, the actual move is less than what the options priced in. Combined with IV crush (IV dropping sharply once the event is known), option buyers on both sides lose money. This is why buying options pre-earnings is often a losing strategy — you need the stock to move MORE than the straddle implies."
+        },
+        {
+          "question": "You want to day trade a $300 stock but do not want to tie up $30,000 for 100 shares. Which options strategy best replicates stock ownership for intraday purposes?",
+          "options": [
+            "Buy an OTM call for the cheapest premium possible",
+            "Buy a deep ITM call (delta 0.80–0.90) with 2–4 weeks until expiration",
+            "Sell an ATM put to collect premium",
+            "Buy an ATM 0DTE call for maximum leverage"
+          ],
+          "correct": 1,
+          "explanation": "A deep ITM call with high delta (0.80–0.90) closely tracks the stock's movement while requiring a fraction of the capital. Using 2–4 weeks of expiration minimizes theta decay intraday. An OTM call has low delta and does not track the stock well. An ATM 0DTE call has extreme theta and gamma risk. Selling a put is a different risk profile entirely (short volatility, not directional replacement)."
+        },
+        {
+          "question": "What is the most significant risk unique to 0DTE options compared to options with weeks until expiration?",
+          "options": [
+            "Higher commission costs per contract",
+            "Lower liquidity making it difficult to exit",
+            "Extreme gamma causing rapid, outsized losses from small adverse stock moves combined with relentless theta decay",
+            "They can only be traded on index products, not individual stocks"
+          ],
+          "correct": 2,
+          "explanation": "0DTE options have maximum gamma and maximum theta. A small adverse move can destroy a 0DTE option's value in minutes because delta collapses rapidly (high gamma), and time decay accelerates throughout the day (high theta). This combination makes 0DTE uniquely dangerous — your position can go from profitable to worthless far faster than with longer-dated options."
+        },
+        {
+          "question": "The VIX is at 28, and IV Rank on SPY options is at 85. What does this tell you about option pricing, and what strategy is generally favored?",
+          "options": [
+            "Options are cheap; buy calls and puts aggressively for maximum leverage",
+            "Options are expensive relative to the past year; selling premium (credit spreads, iron condors) is generally favored because IV is likely to revert lower",
+            "IV Rank is irrelevant for day trading; focus only on delta",
+            "You should avoid trading options entirely when the VIX is above 25"
+          ],
+          "correct": 1,
+          "explanation": "An IV Rank of 85 means current IV is near the top of its 52-week range — options are expensive. When IV is elevated, it has a statistical tendency to revert toward its mean. This environment favors selling premium (credit spreads, iron condors) because you collect inflated premium that decays as IV normalizes. Buying expensive options means you need a larger move to profit, working against the mean-reversion tendency of volatility."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="module-footer">
+  <button class="module-footer-btn" onclick="navigateTo(11)">← Previous: Advanced Chart Patterns</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(13)">Next: Algorithmic Trading Basics →</button>
+</div>

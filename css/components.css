@@ -1131,3 +1131,149 @@ input[type="range"]::-moz-range-thumb {
   font-family: var(--font-mono);
   font-weight: 700;
 }
+
+/* --- Mobile Responsive: 768px --- */
+@media (max-width: 768px) {
+  .order-book {
+    grid-template-columns: 1fr;
+  }
+
+  .interactive-body {
+    padding: var(--space-md);
+  }
+
+  .interactive-header {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .calculator-body {
+    padding: var(--space-md);
+  }
+
+  .accordion-content-inner {
+    padding: var(--space-sm) var(--space-md) var(--space-md);
+  }
+
+  .accordion-trigger {
+    padding: var(--space-md);
+    font-size: 0.85rem;
+  }
+
+  .simulator-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .simulator-stats {
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
+    width: 100%;
+  }
+
+  .toast {
+    left: var(--space-md);
+    right: var(--space-md);
+    bottom: var(--space-md);
+    max-width: none;
+  }
+
+  .quiz-container {
+    padding: var(--space-md);
+  }
+
+  .quiz-header {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .quiz-option {
+    min-height: 44px;
+    padding: var(--space-md);
+  }
+
+  .scenario-card {
+    padding: var(--space-md);
+  }
+
+  .scenario-situation {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .steps {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--space-sm);
+  }
+
+  .calc-result {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    padding: var(--space-md);
+  }
+
+  .chart-toolbar {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .simulator-controls {
+    flex-wrap: wrap;
+    padding: var(--space-md);
+  }
+}
+
+/* --- Mobile Responsive: 480px --- */
+@media (max-width: 480px) {
+  .interactive-body {
+    padding: var(--space-sm);
+  }
+
+  .calculator-body {
+    padding: var(--space-sm);
+  }
+
+  .quiz-option {
+    font-size: 0.85rem;
+    gap: var(--space-sm);
+  }
+
+  .btn {
+    min-height: 44px;
+  }
+
+  .btn-sm {
+    min-height: 36px;
+  }
+
+  .sim-btn {
+    flex: 1;
+    min-height: 44px;
+  }
+
+  .calc-result-value {
+    font-size: 1.1rem;
+  }
+
+  .toast {
+    left: var(--space-sm);
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+
+  .comparison-card {
+    padding: var(--space-md);
+  }
+
+  .tab {
+    font-size: 0.75rem;
+    padding: var(--space-sm);
+  }
+
+  .drag-item {
+    font-size: 0.8rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+}

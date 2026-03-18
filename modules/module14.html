@@ -1,0 +1,1141 @@
+<!-- MODULE 14: Market Microstructure & Regime Analysis -->
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/><path d="M16.24 7.76a6 6 0 010 8.49"/><path d="M7.76 16.24a6 6 0 010-8.49"/></svg>
+    MODULE 14
+  </div>
+  <h1>Market Microstructure &amp; Regime Analysis</h1>
+  <p>Learn to read the invisible forces that drive price action &mdash; from volatility regimes and market internals to dark pool activity and macro event trading. Understanding microstructure separates advanced traders from the crowd.</p>
+</div>
+
+<!-- ========== 14.1 UNDERSTANDING MARKET REGIMES ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.1</span> Understanding Market Regimes</h2>
+  <p>A <strong>market regime</strong> is the prevailing behavioral state of the market at any given time. Just as weather has distinct patterns &mdash; sunny, rainy, stormy &mdash; markets cycle through recognizable regimes that fundamentally alter how price behaves. The single most important realization an advanced trader can have is this: <em>the same strategy that prints money in one regime will bleed you dry in another</em>.</p>
+
+  <p>Regime detection is not just another indicator to add to your chart. It is the <strong>meta-skill</strong> &mdash; the skill that governs which skills you deploy. A breakout trader who cannot recognize a ranging market will take loss after loss on false breakouts. A mean-reversion trader who cannot detect a trending regime will fade moves that never revert. Regime awareness is the difference between a trader who adapts and one who blows up.</p>
+
+  <div class="concept-card">
+    <h3>The Four Primary Market Regimes</h3>
+    <p>While markets exist on a spectrum, most conditions can be categorized into four primary regimes. Each regime has distinct characteristics that favor specific strategies and penalize others.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Regime</th>
+          <th>Characteristics</th>
+          <th>Favored Strategies</th>
+          <th>Strategies to Avoid</th>
+          <th>Typical Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Trending (Directional)</strong></td>
+          <td>Strong directional moves, higher highs/higher lows (uptrend) or lower highs/lower lows (downtrend). ADX above 25. Clear institutional footprint.</td>
+          <td>Breakouts, momentum, trend-following, pullback entries</td>
+          <td>Mean reversion, fading, range trading</td>
+          <td>Days to weeks</td>
+        </tr>
+        <tr>
+          <td><strong>Ranging (Choppy)</strong></td>
+          <td>Price oscillates between support and resistance. ADX below 20. Volume declines. Many false breakouts. Moving averages flatten and intertwine.</td>
+          <td>Mean reversion, range scalping, selling premium</td>
+          <td>Breakout strategies, trend-following</td>
+          <td>Days to months</td>
+        </tr>
+        <tr>
+          <td><strong>Volatile (High Energy)</strong></td>
+          <td>Large intraday ranges, gap moves, VIX elevated. News-driven. Wide spreads. Fast reversals. High volume.</td>
+          <td>Volatility expansion plays, gap trading, hedged positions</td>
+          <td>Tight stops, small targets, passive strategies</td>
+          <td>Hours to days</td>
+        </tr>
+        <tr>
+          <td><strong>Quiet (Low Volatility)</strong></td>
+          <td>Compressed ranges, low volume, small candle bodies. ATR at multi-week lows. VIX depressed. Theta decay dominates options.</td>
+          <td>Selling premium, patience, position building</td>
+          <td>Breakout chasing, large position sizes</td>
+          <td>Days to weeks</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Why the Same Strategy Fails in Different Regimes</h3>
+    <p>Consider a simple VWAP breakout strategy: buy when price breaks above VWAP with volume confirmation. In a <strong>trending regime</strong>, this strategy captures strong directional moves and often sees price extend well beyond the initial breakout. The win rate might be 55&ndash;65% with favorable risk-reward.</p>
+    <p>Now deploy the same strategy in a <strong>ranging regime</strong>. Price breaks above VWAP, triggers your entry, moves half a point &mdash; then reverses hard back below VWAP. This happens repeatedly because there is no directional conviction. The same 55% win-rate strategy now wins 30% of the time. The strategy did not break &mdash; the regime changed.</p>
+    <p>Research by Marcos L&oacute;pez de Prado (2018) in <em>Advances in Financial Machine Learning</em> demonstrates that regime detection alone can improve strategy performance by 40&ndash;60%, even without changing the underlying strategy logic. The key is knowing <em>when</em> to deploy each strategy and <em>when</em> to sit on your hands.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Regime Transitions: Where the Money Is</h3>
+    <p>The most profitable &mdash; and most dangerous &mdash; moments in the market are <strong>regime transitions</strong>. When a quiet, low-volatility regime shifts to a trending regime, the early recognition of that shift produces enormous edge. Conversely, failing to recognize a shift from trending to ranging leads to whipsaw losses.</p>
+
+    <h4>Common Regime Transition Signals</h4>
+    <ul class="feature-list">
+      <li><strong>Volatility compression followed by expansion</strong> &mdash; Bollinger Band width at multi-week lows often precedes a regime shift. Think of it as a coiled spring.</li>
+      <li><strong>Volume divergence</strong> &mdash; Rising volume during a range-bound market suggests institutional accumulation or distribution before a directional move.</li>
+      <li><strong>Correlation breakdown</strong> &mdash; When assets that normally move together suddenly diverge, it signals changing market dynamics.</li>
+      <li><strong>Sector rotation</strong> &mdash; Money flowing from defensive sectors (XLU, XLP) to aggressive sectors (XLK, XLY) or vice versa signals a regime change in risk appetite.</li>
+      <li><strong>VIX term structure inversion</strong> &mdash; When near-term VIX exceeds longer-term VIX (backwardation), it signals a fear-driven regime shift.</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The Meta-Skill Mindset</strong>
+      <p>Before you ask "What is the best trade right now?" you should first ask "What regime are we in right now?" The answer to the second question determines which strategies are even viable. Build this into your pre-market routine: assess the current regime before looking for individual setups.</p>
+    </div>
+  </div>
+</div>
+
+  <div class="concept-card reveal">
+    <h3>Real-Time Regime Detection Methods</h3>
+    <p>Classifying regimes after the fact is easy; detecting regime <em>changes</em> as they happen is the real challenge. Here are quantitative tools for real-time regime identification:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Indicator</th>
+          <th>Calculation</th>
+          <th>Trending Signal</th>
+          <th>Ranging Signal</th>
+          <th>Transition Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Rolling VIX Percentile</strong></td>
+          <td>Current VIX rank vs. last 252 trading days</td>
+          <td>Below 30th percentile with slope up</td>
+          <td>Between 20th&ndash;50th percentile, flat</td>
+          <td>Crossing above 70th percentile = volatility expansion beginning</td>
+        </tr>
+        <tr>
+          <td><strong>ATR Percentile (14-period)</strong></td>
+          <td>Current ATR rank vs. last 100 bars</td>
+          <td>Above 60th percentile and rising</td>
+          <td>Below 30th percentile</td>
+          <td>Rapid move from below 20th to above 60th = breakout regime emerging</td>
+        </tr>
+        <tr>
+          <td><strong>ADX (Average Directional Index)</strong></td>
+          <td>Standard 14-period ADX</td>
+          <td>Above 25 and rising</td>
+          <td>Below 20</td>
+          <td>ADX crossing above 25 from below = new trend starting</td>
+        </tr>
+        <tr>
+          <td><strong>Hurst Exponent</strong></td>
+          <td>Rolling 100-bar Hurst calculation</td>
+          <td>H &gt; 0.6 = trending (persistent)</td>
+          <td>H &lt; 0.4 = mean-reverting</td>
+          <td>H crossing 0.5 = regime boundary (random walk transitioning)</td>
+        </tr>
+        <tr>
+          <td><strong>Correlation Regime</strong></td>
+          <td>Average pairwise correlation of sector ETFs (20-day)</td>
+          <td>High correlation (&gt;0.7) = macro-driven / risk-on-off</td>
+          <td>Low correlation (&lt;0.4) = idiosyncratic / stock-picker&rsquo;s market</td>
+          <td>Correlation rising rapidly = stress event or regime shift in progress</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem;"><strong>Practical tip:</strong> No single indicator is sufficient. Use 2&ndash;3 indicators together and require agreement before declaring a regime change. A &ldquo;regime dashboard&rdquo; with VIX percentile + ADX + correlation gives you a robust, real-time read on market conditions that updates every bar.</p>
+  </div>
+
+<!-- ========== 14.2 VOLATILITY REGIMES & THE VIX ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.2</span> Volatility Regimes &amp; the VIX</h2>
+  <p>The CBOE Volatility Index (VIX) &mdash; commonly called the "fear gauge" &mdash; is the single most important regime indicator available to traders. It measures the market&rsquo;s expectation of 30-day forward volatility, derived from S&amp;P 500 option prices. Understanding VIX dynamics gives you a powerful lens into what the market <em>expects</em> to happen, not just what has happened.</p>
+
+  <div class="concept-card">
+    <h3>How the VIX Works</h3>
+    <p>The VIX is not a measure of historical volatility &mdash; it is <strong>implied volatility</strong>, reflecting the collective options market&rsquo;s forecast. When traders buy puts aggressively (hedging against downside), option premiums rise, and the VIX spikes. When complacency reigns and hedging demand drops, the VIX falls.</p>
+    <p>Key properties of the VIX:</p>
+    <ul class="feature-list">
+      <li><strong>Mean-reverting</strong> &mdash; The VIX&rsquo;s historical all-time mean through 2019 was approximately 19&ndash;20, but the post-2020 environment (pandemic, aggressive rate cycles, geopolitical shocks) has shifted the rolling mean closer to 22&ndash;24. Use the trailing 3&ndash;5 year mean rather than the all-time average for practical regime classification. Regardless, VIX always eventually reverts toward its prevailing mean, though it can stay elevated or depressed for extended periods.</li>
+      <li><strong>Negatively correlated with SPX</strong> &mdash; The VIX typically moves inversely to the S&amp;P 500, but this relationship is asymmetric. VIX rises faster on drops than it falls on rallies.</li>
+      <li><strong>Spikes are sharper than declines</strong> &mdash; VIX spikes are sudden and violent (fear is sudden); VIX declines are gradual and grinding (complacency builds slowly).</li>
+      <li><strong>Non-tradable directly</strong> &mdash; You cannot buy or sell the VIX spot. You trade VIX futures, options, or ETPs (VXX, UVXY, SVXY).</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>VIX Regime Classification</h3>
+    <p>Different VIX levels create fundamentally different trading environments. This table provides a framework for adjusting your strategy selection based on the current VIX regime.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>VIX Level</th>
+          <th>Regime Name</th>
+          <th>Market Character</th>
+          <th>Strategy Adjustments</th>
+          <th>Historical Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Below 12</strong></td>
+          <td>Extreme Complacency</td>
+          <td>Ultra-low vol, tight ranges, grinding higher. Dangerous complacency. Breakouts fail. Often precedes a volatility event.</td>
+          <td>Reduce size. Sell premium. Prepare for volatility expansion. Buy cheap tail hedges.</td>
+          <td>~15% of time</td>
+        </tr>
+        <tr>
+          <td><strong>12&ndash;16</strong></td>
+          <td>Low Volatility</td>
+          <td>Normal bull market conditions. Smooth trends, small pullbacks. Good for trend-following.</td>
+          <td>Standard position sizes. Trend-following and breakout strategies work well. Tighten stops.</td>
+          <td>~30% of time</td>
+        </tr>
+        <tr>
+          <td><strong>16&ndash;22</strong></td>
+          <td>Normal Volatility</td>
+          <td>Healthy two-way action. Both trend and mean-reversion strategies work. Good for day traders.</td>
+          <td>Full strategy deployment. Both directional and mean-reversion strategies viable.</td>
+          <td>~25% of time</td>
+        </tr>
+        <tr>
+          <td><strong>22&ndash;30</strong></td>
+          <td>Elevated Volatility</td>
+          <td>Increased fear, wider ranges, gap risk. Pullbacks are deeper. Overnight risk increases.</td>
+          <td>Reduce position size 25&ndash;50%. Widen stops. Favor intraday over swing. Avoid overnight holds.</td>
+          <td>~18% of time</td>
+        </tr>
+        <tr>
+          <td><strong>30&ndash;40</strong></td>
+          <td>High Volatility / Crisis</td>
+          <td>Panic selling, violent short squeezes, circuit breakers possible. Correlations spike to 1.0.</td>
+          <td>Reduce size 50&ndash;75%. Trade only the first 30 minutes. Use wider targets. Cash is a position.</td>
+          <td>~8% of time</td>
+        </tr>
+        <tr>
+          <td><strong>Above 40</strong></td>
+          <td>Extreme Fear / Capitulation</td>
+          <td>March 2020, Oct 2008 territory. Market dislocations. Counterparty risk. Liquidity vanishes.</td>
+          <td>Minimal trading. Focus on survival. VIX above 40 is historically a contrarian buy signal for the index on a multi-week basis.</td>
+          <td>~4% of time</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>VIX Term Structure: Contango vs. Backwardation</h3>
+    <p>The VIX term structure &mdash; the relationship between VIX futures at different expirations &mdash; provides critical information about market expectations that the spot VIX alone cannot reveal.</p>
+
+    <h4>Contango (Normal State)</h4>
+    <p>When longer-dated VIX futures trade <em>above</em> shorter-dated futures, the curve is in <strong>contango</strong>. This is the normal state (~80% of the time) and reflects the market&rsquo;s structural demand for longer-dated insurance. In contango, the market is relatively calm and expects stability. VIX ETPs like VXX experience persistent decay (they roll into more expensive contracts), which is why short-volatility strategies work in contango.</p>
+
+    <h4>Backwardation (Fear State)</h4>
+    <p>When shorter-dated VIX futures trade <em>above</em> longer-dated futures, the curve is in <strong>backwardation</strong>. This signals acute fear &mdash; the market is pricing in more near-term risk than long-term risk. Backwardation is a powerful signal: it tells you that institutions are aggressively buying short-term protection. Major selloffs (Aug 2015, Feb 2018, Mar 2020, Aug 2024) all featured deep backwardation.</p>
+
+    <h4>VVIX: Volatility of Volatility</h4>
+    <p>The VVIX measures implied volatility of VIX options &mdash; effectively, uncertainty about uncertainty. When VVIX spikes above 120&ndash;130, it signals that even the volatility market is uncertain, which often precedes violent VIX moves in either direction. A high VIX with rising VVIX is the most dangerous environment for traders.</p>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>VIX Mean Reversion Trap</strong>
+      <p>While the VIX is mean-reverting over the long term, it can stay elevated for months during prolonged bear markets (2008&ndash;2009, 2022). Never assume VIX will immediately revert. The saying "the market can stay irrational longer than you can stay solvent" applies doubly to volatility. Time your entries using VIX term structure and VVIX, not just the absolute VIX level.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 14.3 MARKET INTERNALS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.3</span> Market Internals</h2>
+  <p>Market internals &mdash; also called breadth indicators &mdash; measure the health of the broader market beneath the surface of headline indices. A market can appear strong on the surface (SPY at highs) while rotting underneath (most stocks declining). Internals reveal this divergence in real time, making them indispensable for intraday traders.</p>
+
+  <div class="concept-card">
+    <h3>The TICK Index (NYSE Breadth)</h3>
+    <p>The NYSE TICK index ($TICK) measures the number of NYSE stocks ticking up minus the number ticking down at any given moment. It is the most widely used real-time breadth indicator for day traders.</p>
+
+    <h4>How to Read TICK</h4>
+    <ul class="feature-list">
+      <li><strong>+1000 or higher</strong> &mdash; Extremely strong buying pressure. Virtually all NYSE stocks ticking up simultaneously. Often seen at the start of strong rallies or during short squeezes. Readings above +1200 are rare and significant.</li>
+      <li><strong>+500 to +1000</strong> &mdash; Healthy buying pressure. Broad participation in the rally. Good confirmation for long entries.</li>
+      <li><strong>-500 to +500</strong> &mdash; Neutral zone. Normal two-way action. No directional breadth bias.</li>
+      <li><strong>-500 to -1000</strong> &mdash; Significant selling pressure. Most stocks declining. Confirms short bias.</li>
+      <li><strong>-1000 or lower</strong> &mdash; Extreme selling pressure. Panic-like conditions. Readings below -1200 often mark intraday capitulation points and potential reversal zones.</li>
+    </ul>
+
+    <h4>TICK Strategies</h4>
+    <p><strong>Cumulative TICK:</strong> Summing TICK readings throughout the day creates a running total that reveals the day&rsquo;s directional bias. A rising cumulative TICK confirms upside bias; a falling cumulative TICK confirms downside bias &mdash; even if SPY is moving sideways.</p>
+    <p><strong>TICK Extremes as Entry Signals:</strong> A TICK reading below -800 during an uptrending day often marks a short-term washout and buying opportunity. Similarly, a TICK reading above +800 during a downtrending day can signal a short-term exhaustion point for fade trades.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>ADD: Advance-Decline Line</h3>
+    <p>The Advance-Decline Line ($ADD) is the cumulative total of advancing stocks minus declining stocks on the NYSE. Unlike TICK (which is a snapshot), ADD accumulates throughout the day, providing a running score of market breadth.</p>
+    <p>The power of ADD lies in <strong>divergences</strong>. If SPY is making new intraday highs but ADD is flat or declining, it means the rally is being driven by a few large-cap names while most stocks are not participating. This is a warning sign that the rally lacks conviction and is vulnerable to reversal.</p>
+    <p>Conversely, if SPY is pulling back but ADD is holding firm, it signals that the broader market is absorbing the selling well &mdash; a potential buying opportunity.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>VOLD: Up Volume vs. Down Volume</h3>
+    <p>The VOLD index ($VOLD) compares the total volume of advancing stocks versus declining stocks on the NYSE. Where ADD counts the <em>number</em> of stocks moving, VOLD measures the <em>weight of money</em> behind those moves.</p>
+    <p>VOLD is particularly useful for detecting institutional activity. Large institutions move significant volume, so a VOLD reading heavily skewed in one direction indicates that big money is actively buying or selling &mdash; not just retail participants.</p>
+
+    <h4>VOLD Interpretation</h4>
+    <ul class="feature-list">
+      <li><strong>VOLD ratio above 3:1</strong> &mdash; Overwhelming buying volume. Strong conviction day. Fade trades are extremely dangerous.</li>
+      <li><strong>VOLD ratio 1.5:1 to 3:1</strong> &mdash; Moderate directional bias. Normal trending day.</li>
+      <li><strong>VOLD ratio near 1:1</strong> &mdash; Balanced volume. Ranging or rotational day. Mean-reversion strategies favored.</li>
+      <li><strong>VOLD ratio below 1:3</strong> &mdash; Overwhelming selling volume. Avoid buying dips.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>Market Internals Dashboard</h3>
+    <svg viewBox="0 0 800 400" width="100%" style="max-width:800px">
+      <!-- Background -->
+      <rect x="0" y="0" width="800" height="400" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+      <text x="400" y="30" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="700">Real-Time Market Internals Dashboard</text>
+
+      <!-- TICK Panel -->
+      <rect x="20" y="50" width="240" height="160" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="140" y="72" text-anchor="middle" fill="#3b82f6" font-size="13" font-weight="700">$TICK (NYSE)</text>
+      <text x="140" y="120" text-anchor="middle" fill="#10b981" font-size="32" font-weight="700">+847</text>
+      <text x="140" y="145" text-anchor="middle" fill="#94a3b8" font-size="10">Current Reading</text>
+      <!-- TICK bar -->
+      <rect x="40" y="160" width="200" height="8" rx="4" fill="#334155"/>
+      <rect x="40" y="160" width="170" height="8" rx="4" fill="#10b981"/>
+      <text x="40" y="185" fill="#94a3b8" font-size="9">-1200</text>
+      <text x="130" y="185" fill="#94a3b8" font-size="9" text-anchor="middle">0</text>
+      <text x="230" y="185" fill="#94a3b8" font-size="9" text-anchor="end">+1200</text>
+      <text x="140" y="202" text-anchor="middle" fill="#10b981" font-size="10" font-weight="600">BULLISH</text>
+
+      <!-- ADD Panel -->
+      <rect x="280" y="50" width="240" height="160" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="400" y="72" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700">$ADD (Adv-Dec)</text>
+      <text x="400" y="120" text-anchor="middle" fill="#10b981" font-size="32" font-weight="700">+1,245</text>
+      <text x="400" y="145" text-anchor="middle" fill="#94a3b8" font-size="10">Cumulative Today</text>
+      <!-- ADD trend line -->
+      <polyline points="300,190 320,185 340,180 360,176 380,170 400,165 420,160 440,155 460,158 480,152 500,148" fill="none" stroke="#10b981" stroke-width="2"/>
+      <text x="400" y="202" text-anchor="middle" fill="#10b981" font-size="10" font-weight="600">RISING &mdash; HEALTHY</text>
+
+      <!-- VOLD Panel -->
+      <rect x="540" y="50" width="240" height="160" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="660" y="72" text-anchor="middle" fill="#8b5cf6" font-size="13" font-weight="700">$VOLD (Volume)</text>
+      <text x="660" y="120" text-anchor="middle" fill="#10b981" font-size="32" font-weight="700">2.4:1</text>
+      <text x="660" y="145" text-anchor="middle" fill="#94a3b8" font-size="10">Up:Down Volume Ratio</text>
+      <!-- VOLD bars -->
+      <rect x="600" y="160" width="50" height="35" rx="3" fill="#10b981" opacity="0.8"/>
+      <text x="625" y="180" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">UP</text>
+      <rect x="660" y="175" width="50" height="20" rx="3" fill="#ef4444" opacity="0.8"/>
+      <text x="685" y="189" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">DN</text>
+      <text x="660" y="202" text-anchor="middle" fill="#10b981" font-size="10" font-weight="600">STRONG BUY FLOW</text>
+
+      <!-- Overall Assessment -->
+      <rect x="20" y="230" width="760" height="60" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+      <text x="400" y="255" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="700">REGIME ASSESSMENT: TRENDING BULLISH</text>
+      <text x="400" y="275" text-anchor="middle" fill="#94a3b8" font-size="11">All three internals confirm broad-based buying. Favor long setups. Avoid fading strength.</text>
+
+      <!-- VIX mini panel -->
+      <rect x="20" y="310" width="370" height="70" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="40" y="335" fill="#f59e0b" font-size="12" font-weight="700">VIX: 16.2</text>
+      <text x="40" y="355" fill="#94a3b8" font-size="10">Normal vol regime. Standard position sizing.</text>
+      <text x="40" y="370" fill="#94a3b8" font-size="10">Term structure: Contango (normal)</text>
+
+      <!-- Strategy panel -->
+      <rect x="410" y="310" width="370" height="70" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="430" y="335" fill="#3b82f6" font-size="12" font-weight="700">SUGGESTED STRATEGIES</text>
+      <text x="430" y="355" fill="#10b981" font-size="10">&#10004; Breakouts, Momentum, VWAP Reclaim Longs</text>
+      <text x="430" y="370" fill="#ef4444" font-size="10">&#10008; Mean Reversion Shorts, Fading Rallies</text>
+    </svg>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Building Your Internals Dashboard</strong>
+      <p>Most professional trading platforms (Thinkorswim, TradeStation, DAS Trader) allow you to display $TICK, $ADD, and $VOLD as real-time charts. Set them up as a panel alongside your main chart. After two weeks of watching internals alongside price action, you will develop an intuitive feel for when the market is healthy versus deteriorating &mdash; often before price itself confirms the shift.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 14.4 CORRELATION & INTERMARKET ANALYSIS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.4</span> Correlation &amp; Intermarket Analysis</h2>
+  <p>No market exists in isolation. Equities, bonds, currencies, and commodities form an interconnected web of relationships. Understanding these relationships &mdash; and more importantly, understanding when they <em>break down</em> &mdash; gives advanced traders a significant informational edge.</p>
+
+  <div class="concept-card">
+    <h3>Index Relationships: SPY, QQQ, IWM</h3>
+    <p>The three major U.S. equity ETFs &mdash; SPY (S&amp;P 500), QQQ (Nasdaq 100), and IWM (Russell 2000) &mdash; normally move in the same direction but with different magnitudes. Their relative performance reveals important regime information.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Relationship</th>
+          <th>What It Signals</th>
+          <th>Trading Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QQQ leading SPY</strong></td>
+          <td>Growth/tech leadership. Risk-on sentiment. Often occurs during momentum-driven rallies.</td>
+          <td>Trade tech and growth names. Momentum strategies favored.</td>
+        </tr>
+        <tr>
+          <td><strong>IWM leading SPY</strong></td>
+          <td>Broad-based economic optimism. Domestic economy strength. Small caps outperform in early-cycle recoveries.</td>
+          <td>Trade small-cap setups. Breakout strategies work well in small caps.</td>
+        </tr>
+        <tr>
+          <td><strong>SPY up, IWM down</strong></td>
+          <td>Narrow market. Only mega-caps driving the index. Unhealthy breadth. Often late-cycle behavior.</td>
+          <td>Reduce exposure. Be selective. The rally is fragile.</td>
+        </tr>
+        <tr>
+          <td><strong>QQQ down, IWM up</strong></td>
+          <td>Rotation from growth to value. Possible rate-driven move. Sector rotation underway.</td>
+          <td>Shift focus to value, financials, energy. Avoid tech-heavy positions.</td>
+        </tr>
+        <tr>
+          <td><strong>All three declining</strong></td>
+          <td>Broad risk-off. No rotation, just outright selling. Defensive posture needed.</td>
+          <td>Reduce size dramatically. Cash is a position. Look for short setups only.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>Sector Rotation &amp; the Business Cycle</h3>
+    <p>Different sectors lead and lag at different points in the economic cycle. Tracking sector ETFs reveals where institutional money is flowing before headline indices confirm the move.</p>
+
+    <h4>Key Sector Relationships</h4>
+    <ul class="feature-list">
+      <li><strong>XLF (Financials)</strong> &mdash; Sensitive to interest rates and yield curve. Leading XLF strength often precedes SPY rallies. Financials thrive when the yield curve steepens.</li>
+      <li><strong>XLE (Energy)</strong> &mdash; Correlated with crude oil and inflation expectations. Energy outperformance signals inflationary regime. Watch the XLE/XLK ratio as a value vs. growth proxy.</li>
+      <li><strong>XLK (Technology)</strong> &mdash; Sensitive to interest rates (inversely) and growth expectations. Tech outperformance indicates a growth/momentum regime.</li>
+      <li><strong>XLU (Utilities) &amp; XLP (Staples)</strong> &mdash; Defensive sectors. Outperformance signals risk-off behavior. When money flows into utilities and staples, institutions are positioning for a downturn.</li>
+      <li><strong>XLY (Consumer Discretionary)</strong> &mdash; Sensitive to consumer confidence. Outperformance signals economic optimism.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>The Dollar (DXY) &amp; Its Impact on Equities</h3>
+    <p>The U.S. Dollar Index (DXY) measures the dollar against a basket of six major currencies. The dollar-equity relationship is nuanced and regime-dependent:</p>
+    <ul class="feature-list">
+      <li><strong>Normal correlation:</strong> Dollar up = equities down (stronger dollar hurts multinational earnings and emerging market flows).</li>
+      <li><strong>Risk-off correlation:</strong> Dollar up = equities down (flight to safety into USD and Treasuries simultaneously).</li>
+      <li><strong>Exception:</strong> During a U.S.-led growth regime, both dollar and equities can rise together as global capital flows into U.S. assets.</li>
+    </ul>
+    <p>For day traders, a sharply rising DXY intraday often creates headwinds for SPY, particularly in names with heavy international revenue (AAPL, MSFT, GOOGL). A falling DXY provides a tailwind.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Bond-Stock Correlation Shifts</h3>
+    <p>The relationship between bonds (TLT) and stocks (SPY) is one of the most important intermarket signals &mdash; and it <strong>changes between regimes</strong>, which confuses many traders.</p>
+
+    <h4>Growth-Driven Regime (Negative Correlation)</h4>
+    <p>When the market is focused on <strong>growth</strong>, bonds and stocks move in opposite directions (negative correlation). Stocks sell off &rarr; money flows into bonds (safety). This is the "normal" relationship that has persisted for most of the 2000s&ndash;2020s. In this regime, bonds serve as an effective hedge for equity positions.</p>
+
+    <h4>Inflation-Driven Regime (Positive Correlation)</h4>
+    <p>When the market is focused on <strong>inflation</strong>, bonds and stocks can fall together (positive correlation). Rising inflation &rarr; higher rates &rarr; both bond prices and equity multiples compress. This occurred in 2022 and is the "nightmare scenario" for traditional 60/40 portfolios. In this regime, bonds do NOT hedge equities &mdash; you need alternative hedges (commodities, volatility).</p>
+
+    <p>Monitoring the rolling 30-day correlation between TLT and SPY tells you which regime you are in. A positive correlation warns that traditional hedging relationships have broken down.</p>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Correlation Is Not Constant</strong>
+      <p>The biggest mistake traders make with intermarket analysis is assuming correlations are fixed. They are not. Correlations are regime-dependent. The SPY-TLT correlation flipped from -0.4 to +0.6 between 2021 and 2022. Always use rolling correlations (20&ndash;60 day windows) rather than assuming historical averages hold.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 14.5 MARKET MICROSTRUCTURE DEEP DIVE ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.5</span> Market Microstructure Deep Dive</h2>
+  <p>Market microstructure is the study of how trading actually works at the mechanical level &mdash; how orders become trades, how prices are formed, and how different types of participants interact. Understanding microstructure gives you insight into <em>why</em> price moves the way it does, not just <em>that</em> it moves.</p>
+
+  <div class="concept-card">
+    <h3>Information Asymmetry &amp; Adverse Selection</h3>
+    <p>At the heart of microstructure theory lies a fundamental problem: <strong>adverse selection</strong>. Every market maker posting bids and offers faces the risk that the person hitting their quote has better information than they do.</p>
+    <p>Consider a market maker quoting 100.00 bid / 100.02 offer in a stock. If a hedge fund with nonpublic information about a negative earnings revision sells aggressively at 100.00, the market maker is on the wrong side &mdash; they just bought from someone who <em>knows</em> the stock is going lower. This is adverse selection.</p>
+    <p>To compensate for this risk, market makers:</p>
+    <ul class="feature-list">
+      <li><strong>Widen spreads</strong> when they suspect informed trading (earnings announcements, M&amp;A rumors, unusual options activity).</li>
+      <li><strong>Reduce displayed size</strong> to limit exposure to informed flow.</li>
+      <li><strong>Fade quotes quickly</strong> when they detect aggressive directional flow (quote stuffing and flickering quotes).</li>
+    </ul>
+    <p>For day traders, this means: when you see spreads widening and liquidity thinning in a stock you are watching, it often means market makers are detecting informed flow. This is a leading signal that a significant move may be imminent.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Kyle&rsquo;s Lambda Model</h3>
+    <p>Albert Kyle&rsquo;s 1985 model is one of the foundational works in microstructure theory. It introduces the concept of <strong>lambda (&lambda;)</strong> &mdash; a measure of <em>price impact per unit of order flow</em>.</p>
+
+    <h4>The Key Insight</h4>
+    <p>Lambda (&lambda;) measures how much price moves for each unit of net buying or selling pressure. A high lambda means the market is <strong>illiquid</strong> &mdash; even small orders move price significantly. A low lambda means the market is <strong>liquid</strong> &mdash; large orders can be absorbed with minimal price impact.</p>
+
+    <h4>What Affects Lambda</h4>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Effect on Lambda</th>
+          <th>Practical Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>More informed traders</td>
+          <td>Lambda increases</td>
+          <td>Market makers widen spreads to protect against better-informed counterparties</td>
+        </tr>
+        <tr>
+          <td>More noise traders</td>
+          <td>Lambda decreases</td>
+          <td>More uninformed flow gives market makers confidence to tighten quotes</td>
+        </tr>
+        <tr>
+          <td>Higher uncertainty</td>
+          <td>Lambda increases</td>
+          <td>Before earnings or events, price impact per trade increases</td>
+        </tr>
+        <tr>
+          <td>More market makers</td>
+          <td>Lambda decreases</td>
+          <td>Competition among liquidity providers narrows spreads</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>For practical trading, lambda explains why your 1,000-share order moves a mid-cap stock by 3 cents during market hours but 15 cents after hours. The after-hours book has fewer market makers and fewer noise traders, dramatically increasing price impact.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Informed vs. Uninformed Traders</h3>
+    <p>The market is a complex ecosystem where different types of participants interact. Understanding <em>who</em> you are likely trading against in different situations improves your decision-making.</p>
+
+    <h4>The Ecosystem</h4>
+    <ul class="feature-list">
+      <li><strong>Informed traders (smart money)</strong> &mdash; Hedge funds, prop firms, and insiders with superior information or models. They trade directionally and profitably. They tend to use limit orders to disguise their intent and split large orders into smaller pieces (iceberging).</li>
+      <li><strong>Uninformed traders (noise traders)</strong> &mdash; Retail traders, index funds executing rebalancing, and forced sellers (margin calls). Their flow is non-directional or liquidity-driven, not information-driven.</li>
+      <li><strong>Market makers</strong> &mdash; Firms that provide liquidity by posting bids and offers. They profit from the spread but lose to informed traders. They are <em>not</em> directional &mdash; they are in the business of managing inventory and collecting the bid-ask spread.</li>
+      <li><strong>High-frequency traders (HFTs)</strong> &mdash; A subset of market makers and statistical arbitrageurs who use speed (microsecond-level) to capture tiny inefficiencies. They provide ~50% of U.S. equity volume.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>The Maker-Taker Fee Model</h3>
+    <p>Most U.S. equity exchanges operate on a <strong>maker-taker</strong> fee model that creates subtle but important incentives affecting order routing and execution quality.</p>
+
+    <h4>How It Works</h4>
+    <ul class="feature-list">
+      <li><strong>Makers</strong> (those who add liquidity via limit orders) receive a <strong>rebate</strong> &mdash; typically $0.0020&ndash;$0.0035 per share. They are "making" the market by providing quotes others can trade against.</li>
+      <li><strong>Takers</strong> (those who remove liquidity via market orders or aggressive limit orders) pay a <strong>fee</strong> &mdash; typically $0.0025&ndash;$0.0035 per share. They are "taking" liquidity from the book.</li>
+    </ul>
+    <p>The exchange keeps the spread between what takers pay and what makers receive.</p>
+
+    <h4>Rebate Trading</h4>
+    <p>Some high-frequency strategies focus entirely on <strong>capturing rebates</strong>. By posting limit orders on both sides of the spread and getting filled frequently, rebate traders can generate consistent small profits from the exchange rebate alone &mdash; even if their actual trading P&amp;L is flat. This is why you sometimes see large size posted at the bid and offer that appears and disappears quickly &mdash; it is rebate-seeking flow.</p>
+
+    <h4>Inverted Venues</h4>
+    <p>Some exchanges (like EDGX and BYX) use an <strong>inverted</strong> fee model: they pay takers and charge makers. This attracts aggressive, directional flow. Orders routed to inverted venues tend to be more informed. Monitoring which venues execute your order can provide information about the quality of the counterparty flow.</p>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>You Are Likely the Uninformed Trader</strong>
+      <p>A humbling but critical realization: in most situations, retail day traders are the <em>uninformed</em> flow. This does not mean you cannot profit &mdash; but it means you should avoid situations where you are most likely trading against informed participants (e.g., trading a biotech stock 30 seconds after an FDA announcement, when hedge funds with faster data feeds have already positioned). Your edge comes from discipline, risk management, and pattern recognition &mdash; not from information advantages.</p>
+    </div>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>Liquidity Dynamics in High-Volatility Regimes</h3>
+    <p>Liquidity is not a constant &mdash; it evaporates precisely when you need it most. During high-volatility regimes, the microstructure of the market changes in predictable but dangerous ways:</p>
+    <ul class="feature-list">
+      <li><strong>Bid-ask spread expansion:</strong> Spreads that are normally $0.01 on liquid stocks can widen to $0.05&ndash;$0.10 during volatility spikes. Market makers widen their quotes to compensate for increased adverse selection risk (the risk that the person trading against them has better information).</li>
+      <li><strong>Depth-of-book thinning:</strong> Resting limit orders are pulled from the book as volatility increases. The Level 2 display that normally shows 10,000+ shares on each side may thin to 500&ndash;1,000 shares per level. This means your market orders will experience more slippage.</li>
+      <li><strong>Flash crash mechanics:</strong> When liquidity thins enough, a single large market sell order can cascade through multiple price levels, triggering stop orders that generate more selling. This positive feedback loop is the mechanism behind flash crashes. The 2010 Flash Crash and the August 2015 mini-crash both followed this pattern.</li>
+      <li><strong>Dark pool withdrawal:</strong> During extreme volatility, dark pool participation drops because crossing networks require stable reference prices. More volume shifts to lit exchanges, but with thinner books, creating a paradox: more orders competing for less liquidity.</li>
+      <li><strong>Practical adaptation:</strong> In high-volatility regimes, (1) reduce position size by 50%+, (2) use limit orders instead of market orders, (3) widen your stops to 2&ndash;3x ATR to avoid noise-triggered stops, (4) expect slippage and incorporate it into your position sizing, (5) avoid trading the first 5 minutes when liquidity is thinnest.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 14.6 DARK POOLS & OFF-EXCHANGE TRADING ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.6</span> Dark Pools &amp; Off-Exchange Trading</h2>
+  <p>Approximately 40&ndash;45% of all U.S. equity volume trades <strong>off-exchange</strong> &mdash; meaning it never appears on the lit order books of NYSE, Nasdaq, or other public exchanges. Understanding where this volume goes and what it tells you is a critical piece of the microstructure puzzle.</p>
+
+  <div class="concept-card">
+    <h3>What Are Dark Pools?</h3>
+    <p>Dark pools are private, off-exchange trading venues that match buy and sell orders without displaying quotes to the public. They were originally created to help large institutions execute block orders without revealing their intent to the market.</p>
+
+    <h4>Types of Dark Pools</h4>
+    <ul class="feature-list">
+      <li><strong>Broker-dealer dark pools</strong> &mdash; Operated by large broker-dealers (Goldman Sachs&rsquo; Sigma X, JP Morgan&rsquo;s JPM-X, Morgan Stanley&rsquo;s MS Pool). They match their clients&rsquo; orders internally before routing to public exchanges. These account for the majority of dark pool volume.</li>
+      <li><strong>Crossing networks</strong> &mdash; Match buy and sell orders at the midpoint of the NBBO (National Best Bid and Offer). Liquidnet is the most prominent example, specializing in institutional block trades. The advantage: zero market impact because there is no price discovery.</li>
+      <li><strong>Electronic market maker dark pools</strong> &mdash; Operated by HFT firms (Citadel Connect, Virtu Financial). They internalize retail order flow, often providing slight price improvement over the NBBO. This is where most retail broker order flow ends up (via payment for order flow arrangements).</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Why ~40% of Volume Trades Off-Exchange</h3>
+    <p>The shift of volume to dark pools reflects several structural dynamics:</p>
+    <ul class="feature-list">
+      <li><strong>Reduced market impact</strong> &mdash; A pension fund buying 500,000 shares on a lit exchange would telegraph its intent and push the price up against itself. In a dark pool, the order is hidden until executed.</li>
+      <li><strong>Price improvement</strong> &mdash; Dark pools often execute at the midpoint of the NBBO, saving half the spread. For large orders, this is significant cost savings.</li>
+      <li><strong>Payment for Order Flow (PFOF)</strong> &mdash; Retail brokers like Schwab and Robinhood route orders to market makers (Citadel, Virtu) who internalize the flow off-exchange. The broker receives payment; the retail trader receives slight price improvement. The market maker profits from the spread between their cost and the fill price.</li>
+      <li><strong>Regulation NMS quirks</strong> &mdash; SEC rules allow off-exchange execution as long as the client receives a price equal to or better than the NBBO. This creates a legal framework for extensive off-exchange trading.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>How to Detect Dark Pool Prints</h3>
+    <p>While dark pool orders are hidden before execution, the <strong>prints</strong> (completed trades) are reported to the consolidated tape within 10 seconds. This creates a window for detecting institutional activity after the fact.</p>
+
+    <h4>Identifying Dark Pool Prints on the Tape</h4>
+    <ul class="feature-list">
+      <li><strong>Large block prints at midpoint prices</strong> &mdash; A 50,000-share print at a price exactly between the bid and offer is almost certainly a dark pool crossing. Lit exchanges execute at bid, offer, or NBBO prices &mdash; not midpoints.</li>
+      <li><strong>Prints with "D" condition code</strong> &mdash; The consolidated tape marks trades with condition codes. The "D" flag indicates the trade was reported from a dark pool or ATS (Alternative Trading System).</li>
+      <li><strong>Clustered prints at the same price</strong> &mdash; Multiple large prints at the same price within seconds suggest a dark pool is working a large order in pieces.</li>
+      <li><strong>FINRA ATS data</strong> &mdash; FINRA publishes weekly data on dark pool volume by security. While delayed, this data shows which stocks have unusually high dark pool activity &mdash; a sign of institutional interest.</li>
+    </ul>
+
+    <h4>What Dark Pool Activity Tells You</h4>
+    <p>Heavy dark pool buying in a stock that is trading sideways or pulling back is a <strong>bullish signal</strong>. It suggests institutions are accumulating shares without disturbing the price. Conversely, heavy dark pool selling in a stock that appears to be holding support may signal distribution &mdash; the "smart money" is quietly exiting before a breakdown.</p>
+    <p>Several services (FlowAlgo, Quant Data, Unusual Whales) provide real-time dark pool print alerts. These can supplement your analysis but should never be the sole basis for a trade.</p>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Dark Pool Data Has Limitations</strong>
+      <p>Not every large dark pool print is directional. Many dark pool trades are index rebalancing, ETF creation/redemption, or portfolio transitions &mdash; not directional bets. A massive dark pool print at 3:55 PM on a Friday is likely an index rebalance, not a conviction trade. Context matters. Always combine dark pool data with price action and other indicators.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 14.7 SEASONAL & CALENDAR EFFECTS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.7</span> Seasonal &amp; Calendar Effects</h2>
+  <p>Markets exhibit persistent calendar-based patterns that have been documented in academic research for decades. While no calendar effect is guaranteed, understanding these tendencies adds a probabilistic edge to your trading. Think of them as tailwinds and headwinds &mdash; not deterministic signals.</p>
+
+  <div class="concept-card">
+    <h3>Day-of-Week Effects</h3>
+    <p>Research by Cross (1973) and French (1980) first documented the "weekend effect" &mdash; the tendency for Monday returns to be lower than other weekdays. While the original effect has diminished over decades of arbitrage, more nuanced day-of-week patterns persist:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Historical Tendency</th>
+          <th>Trading Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Monday</strong></td>
+          <td>Weakest day historically. Institutions reassess over the weekend. Gap risk from weekend news. Often sets the tone for the week.</td>
+          <td>Be cautious with long positions. Monday gaps often reverse by Tuesday. Wait for direction confirmation.</td>
+        </tr>
+        <tr>
+          <td><strong>Tuesday</strong></td>
+          <td>Often a "reversal" day. If Monday was strong, Tuesday tends to pull back and vice versa. Institutions begin executing weekly plans.</td>
+          <td>Watch for continuation or reversal of Monday&rsquo;s direction. Good day for mean-reversion setups.</td>
+        </tr>
+        <tr>
+          <td><strong>Wednesday</strong></td>
+          <td>Mid-week positioning. FOMC announcements typically occur on Wednesday. "Turnaround Tuesday/Wednesday" is a documented phenomenon.</td>
+          <td>FOMC Wednesdays have unique dynamics (see Section 14.8). Non-FOMC Wednesdays tend to be good trend days.</td>
+        </tr>
+        <tr>
+          <td><strong>Thursday</strong></td>
+          <td>Weekly jobless claims released. Often sees continuation of the week&rsquo;s trend. Options dealers begin adjusting positions ahead of Friday expiration.</td>
+          <td>Tends to be a good day for trend-following strategies. Gamma effects begin building.</td>
+        </tr>
+        <tr>
+          <td><strong>Friday</strong></td>
+          <td>Weekly options expiration (0DTE explosion). Position squaring ahead of weekend. Volume often lighter in the afternoon. "Freaky Friday" reversals when OPEX creates pin risk.</td>
+          <td>Expect increased volatility around key option strikes. Afternoon tends to see de-risking. Close positions before the weekend to avoid gap risk.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>OPEX Week Dynamics</h3>
+    <p>Options expiration (OPEX) creates powerful mechanical forces in the market that are distinct from fundamental or technical factors. Understanding these forces is essential for navigating OPEX weeks.</p>
+
+    <h4>Monthly OPEX (Third Friday)</h4>
+    <p>Monthly options expiration drives significant volume as options makers (primarily dealers) hedge and unwind gamma exposure. The week leading into OPEX tends to see <strong>pinning behavior</strong> &mdash; SPY gravitates toward the strike with the highest open interest (the "max pain" level). This occurs because dealers who are short gamma need to buy as price rises and sell as price falls, creating a mean-reverting force that pulls price toward the highest-OI strike.</p>
+
+    <h4>Triple &amp; Quadruple Witching</h4>
+    <p>Four times per year (March, June, September, December), stock options, index options, index futures, and single-stock futures all expire on the same day. These "quadruple witching" days see the highest volume of the quarter &mdash; often 2&ndash;3x normal volume. The final hour of quad witching can see violent, non-directional swings as trillions of dollars in notional exposure rolls or expires.</p>
+
+    <h4>0DTE (Zero Days to Expiration)</h4>
+    <p>The explosion of zero-day-to-expiration options trading since 2022 has fundamentally altered daily market microstructure. On any given day, 0DTE options represent 40&ndash;50% of total SPX options volume. The gamma exposure from these options creates intraday pinning effects similar to what historically only occurred on OPEX Fridays. Dealers hedging 0DTE options inject mean-reverting flow throughout the day, compressing intraday ranges &mdash; until a catalyst overwhelms the gamma effect, at which point the unwinding creates explosive moves.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Other Calendar Effects</h3>
+
+    <h4>Turn-of-Month Effect</h4>
+    <p>The last trading day of the month and the first three trading days of the next month have historically outperformed all other days combined. This "turn of month" effect is attributed to automatic investment flows: 401(k) contributions, pension fund rebalancing, and systematic investment plans all tend to execute around month-end. The effect is strongest when it coincides with quarter-end (March, June, September, December).</p>
+
+    <h4>January Effect</h4>
+    <p>Historically, small-cap stocks outperform in January as tax-loss selling pressure from December reverses. While diminished by front-running (smart money began buying in December instead), the effect still creates a January tailwind for small caps, particularly in beaten-down names.</p>
+
+    <h4>"Sell in May" (Halloween Effect)</h4>
+    <p>The adage "Sell in May and go away" has statistical backing: November through April has historically outperformed May through October across most global markets. The best six months of the year for equities are November through April. This is not a timing signal but rather a risk management consideration &mdash; reduce exposure during the historically weaker May&ndash;October period.</p>
+
+    <h4>Pre-Holiday Effect</h4>
+    <p>The trading day before a market holiday (Christmas, Thanksgiving, Independence Day) has a historical bullish bias. Volume is typically light, and short sellers are reluctant to hold positions over a holiday when they cannot manage risk. This creates a mild upward drift.</p>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Calendar Effects Are Tendencies, Not Guarantees</strong>
+      <p>Every calendar effect described above has historical statistical significance, but none works 100% of the time. Use them as a <em>tiebreaker</em> &mdash; if your technical setup is ambiguous but the calendar effect supports one direction, lean that way. Never trade solely on calendar effects. They add a few percentage points of edge, not a crystal ball.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 14.8 MACRO EVENT TRADING ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.8</span> Macro Event Trading</h2>
+  <p>Major macroeconomic events &mdash; FOMC decisions, CPI releases, Non-Farm Payrolls, and earnings announcements &mdash; create unique trading environments with distinct dynamics. These events inject <strong>new information</strong> into the market simultaneously, creating the purest form of price discovery and the most volatile intraday conditions.</p>
+
+  <div class="concept-card">
+    <h3>The Major Macro Events Calendar</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Frequency</th>
+          <th>Release Time</th>
+          <th>Typical Impact</th>
+          <th>Key Instruments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FOMC Decision</strong></td>
+          <td>8 times/year</td>
+          <td>2:00 PM ET (press conf 2:30 PM)</td>
+          <td>Massive. SPY can move 1&ndash;3% intraday. Affects rates, dollar, and all risk assets.</td>
+          <td>SPY, QQQ, TLT, DXY, /ES, /NQ</td>
+        </tr>
+        <tr>
+          <td><strong>CPI (Inflation)</strong></td>
+          <td>Monthly</td>
+          <td>8:30 AM ET</td>
+          <td>High. Determines rate expectations. Hot CPI = selloff; cool CPI = rally (in rate-sensitive regimes).</td>
+          <td>SPY, TLT, IEF, DXY, /ZN</td>
+        </tr>
+        <tr>
+          <td><strong>Non-Farm Payrolls (NFP)</strong></td>
+          <td>Monthly (first Friday)</td>
+          <td>8:30 AM ET</td>
+          <td>High. Shows employment strength. Market reaction depends on whether "good news is good news" or "good news is bad news" (rate fears).</td>
+          <td>SPY, IWM, DXY, /ES</td>
+        </tr>
+        <tr>
+          <td><strong>PCE (Fed&rsquo;s Preferred Inflation)</strong></td>
+          <td>Monthly</td>
+          <td>8:30 AM ET</td>
+          <td>Medium-High. Core PCE is the Fed&rsquo;s official inflation target measure.</td>
+          <td>SPY, TLT, DXY</td>
+        </tr>
+        <tr>
+          <td><strong>ISM Manufacturing/Services</strong></td>
+          <td>Monthly</td>
+          <td>10:00 AM ET</td>
+          <td>Medium. Readings below 50 signal contraction. Can move markets if surprising.</td>
+          <td>SPY, IWM, XLI</td>
+        </tr>
+        <tr>
+          <td><strong>Retail Sales</strong></td>
+          <td>Monthly</td>
+          <td>8:30 AM ET</td>
+          <td>Medium. Consumer spending is ~70% of GDP. Weak retail sales = recession fears.</td>
+          <td>XLY, XRT, SPY</td>
+        </tr>
+        <tr>
+          <td><strong>Earnings (AAPL, NVDA, etc.)</strong></td>
+          <td>Quarterly</td>
+          <td>After close or before open</td>
+          <td>Extreme for the individual stock. Mega-cap earnings (AAPL, NVDA, MSFT) can move SPY.</td>
+          <td>Individual stocks, sector ETFs</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concept-card">
+    <h3>FOMC Day Trading Dynamics</h3>
+    <p>FOMC days are the most important single-day events in financial markets. The dynamics are unique and well-documented:</p>
+
+    <h4>Pre-Decision (Morning Session)</h4>
+    <p>Volume is typically 30&ndash;50% below average as traders wait for the 2:00 PM announcement. The market often drifts in a narrow range. Spreads widen slightly. This is a <strong>terrible</strong> environment for breakout strategies and an acceptable environment for tight range scalping.</p>
+
+    <h4>The Decision (2:00 PM ET)</h4>
+    <p>The statement is released at exactly 2:00 PM. Algorithmic systems parse the text in milliseconds, generating an immediate "knee-jerk" reaction. This first move is driven by speed-sensitive algos and is frequently a <strong>head-fake</strong>. Research by the Federal Reserve Bank of New York shows that the initial 5-minute move is reversed approximately 40% of the time.</p>
+
+    <h4>The Press Conference (2:30 PM ET)</h4>
+    <p>The Chair&rsquo;s press conference begins at 2:30 PM and often generates larger moves than the initial statement. Q&amp;A responses can shift rate expectations dramatically. The market digests nuance in real time, creating the highest intraday volatility window of the entire FOMC cycle.</p>
+
+    <h4>The "FOMC Drift"</h4>
+    <p>Academic research (Lucca &amp; Moench, 2015) documented a phenomenon called the "pre-FOMC announcement drift" &mdash; a statistically significant positive return in equities in the 24 hours before FOMC announcements. This effect has generated ~80% of all S&amp;P 500 returns since 1994 during just 8 days per year. While the effect has diminished since publication, it remains a notable tendency.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>The "First Move Is Often Wrong" Phenomenon</h3>
+    <p>Across all major macro events, a well-documented pattern exists: the immediate knee-jerk reaction to a data release is frequently <strong>reversed</strong> within 5&ndash;30 minutes. This occurs because:</p>
+
+    <ul class="feature-list">
+      <li><strong>Algorithmic overreaction</strong> &mdash; HFT algorithms respond to headline numbers within milliseconds, creating an exaggerated initial move that does not fully account for nuance (revisions, internals, forward guidance).</li>
+      <li><strong>Stop-hunting</strong> &mdash; The initial move triggers stop losses on both sides, creating liquidity that larger players use to enter positions in the opposite direction.</li>
+      <li><strong>Human digestion lag</strong> &mdash; It takes human traders 5&ndash;15 minutes to fully read and analyze a complex report (CPI components, FOMC statement changes, NFP revisions). The "smart" reaction often diverges from the algorithmic reaction.</li>
+      <li><strong>Positioning unwinds</strong> &mdash; If the market was heavily positioned for a specific outcome and the data confirms it, the "sell the news" dynamic kicks in as longs take profit.</li>
+    </ul>
+
+    <h4>How to Trade Around This</h4>
+    <p>The experienced approach is to <strong>not trade the initial reaction</strong>. Wait 15&ndash;30 minutes for the dust to settle. Let the first move play out, observe whether it reverses or extends, and then trade in the direction of the <em>secondary</em> move. The secondary move (occurring 15&ndash;60 minutes after the release) is far more reliable because it reflects actual market digestion, not algorithmic noise.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>Pre-Event Positioning</h3>
+    <p>The days leading into a major event create their own dynamics. Options implied volatility rises (the event is "priced in" via elevated premiums), volume shifts, and the market often trends toward the "consensus" expectation.</p>
+
+    <h4>Pre-Event Rules</h4>
+    <ul class="feature-list">
+      <li><strong>Reduce position size</strong> &mdash; An event that moves SPY 2% in seconds can turn a normal position into a catastrophic loss if you are wrong.</li>
+      <li><strong>Define risk asymmetrically</strong> &mdash; If the event has a skewed risk profile (e.g., CPI higher than expected is worse for markets than CPI lower than expected is good), position accordingly.</li>
+      <li><strong>Use options for defined risk</strong> &mdash; Instead of a stock position through an event, consider a defined-risk options trade (vertical spread, straddle, or strangle) that limits your maximum loss.</li>
+      <li><strong>Flatten before the release if uncertain</strong> &mdash; There is no shame in being flat during a binary event. "I don&rsquo;t know" is a valid position.</li>
+    </ul>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>Event Trading Is Not for Beginners</strong>
+      <p>Trading directly through macro events is one of the highest-risk activities in day trading. Slippage can be extreme, fills may be poor, and the market can move 1% in either direction within seconds. If you are not consistently profitable in normal conditions, do <strong>not</strong> attempt event trading. Flatten your positions 30 minutes before major releases and re-enter after the volatility subsides. Your edge is not in predicting CPI &mdash; it is in trading the reaction.</p>
+    </div>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>FOMC Day Playbook</h3>
+    <p>The Federal Open Market Committee (FOMC) rate decision at 2:00 PM ET, followed by the Chair&rsquo;s press conference at 2:30 PM ET, creates the most predictable pattern of any macro event.</p>
+    <ul class="feature-list">
+      <li><strong>Pre-announcement drift (12:00&ndash;1:45 PM):</strong> Markets often drift in a direction before the announcement, reflecting consensus positioning. This drift is noise &mdash; do not trade it unless you have conviction.</li>
+      <li><strong>The 2:00 PM spike:</strong> The initial reaction to the rate decision is often a sharp 0.5&ndash;1.5% move in SPY within 1&ndash;2 minutes. This move is driven by algorithmic headline scanning and frequently <em>reverses</em>.</li>
+      <li><strong>The 2:30 PM press conference reversal:</strong> The Chair&rsquo;s tone during the press conference often contradicts or nuances the headline decision. A hawkish hike can be softened by dovish forward guidance, causing a reversal. This reversal at 2:30&ndash;3:00 PM is one of the most consistent intraday patterns in macro trading.</li>
+      <li><strong>Tradeable setup:</strong> Wait for the 2:00 PM spike to establish a direction. If the 2:30 PM press conference drives price back through the pre-announcement level, trade the reversal with a stop at the 2:00 PM extreme. Target: the full measured move in the reversal direction.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>CPI Release Playbook</h3>
+    <p>The Consumer Price Index (CPI) is released at 8:30 AM ET and is currently the most market-moving economic data point due to its direct impact on Federal Reserve rate expectations.</p>
+    <ul class="feature-list">
+      <li><strong>Headline vs. core:</strong> Markets react to <em>core CPI</em> (excluding food and energy) more than headline CPI. If headline CPI is hot but core is in-line, the initial panic often reverses as traders digest the details.</li>
+      <li><strong>The 30-minute reversal pattern:</strong> The initial reaction within the first 5 minutes is often exaggerated. Studies show that 40&ndash;50% of CPI-day first moves reverse within 30 minutes. Wait for the first 15&ndash;30 minutes to establish the real direction before entering.</li>
+      <li><strong>Magnitude matters:</strong> A CPI miss of &plusmn;0.1% from consensus typically produces a 0.5&ndash;1.0% SPY move. A miss of &plusmn;0.3%+ can produce a 2%+ move that is more likely to sustain without reversal.</li>
+      <li><strong>Pre-market setup:</strong> CPI releases at 8:30 AM, before the regular session. Use /ES futures to gauge the reaction magnitude. If /ES moves &lt;0.5%, expect a gap fade at the open. If /ES moves &gt;1%, expect gap-and-go continuation.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card reveal">
+    <h3>NFP (Non-Farm Payrolls) Playbook</h3>
+    <p>The monthly jobs report, released at 8:30 AM ET on the first Friday of each month, measures employment change and the unemployment rate. Its market impact has evolved significantly:</p>
+    <ul class="feature-list">
+      <li><strong>The &ldquo;good news is bad news&rdquo; regime:</strong> In tightening cycles, strong jobs data = higher rates = bearish for stocks. In easing cycles, strong jobs data = economic resilience = bullish. You <em>must</em> know which regime you are in before trading NFP.</li>
+      <li><strong>Revision trap:</strong> NFP data is heavily revised in subsequent months. An initial print of +250K jobs might be revised to +180K a month later. The market trades the initial print, but revisions create secondary opportunities.</li>
+      <li><strong>Unemployment rate threshold:</strong> The unemployment rate is a lagging indicator but has a disproportionate market impact when it crosses key thresholds (e.g., 4.0%, 4.5%, 5.0%). Threshold crossings trigger algorithmic rebalancing in rate-sensitive sectors.</li>
+      <li><strong>Trading approach:</strong> Like CPI, let the first 15&ndash;30 minutes of reaction play out before entering. Use the overnight /ES level as your reference. If NFP pushes /ES above the overnight high, buy the pullback. If below the overnight low, short the bounce.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 14.9 REGIME-BASED STRATEGY SELECTION ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.9</span> Regime-Based Strategy Selection</h2>
+  <p>The ultimate application of everything in this module is a <strong>decision framework</strong> that maps current market conditions to the optimal strategy. This is not about having one "best" strategy &mdash; it is about having a toolkit of strategies and knowing which tool to pull out for which job.</p>
+
+  <div class="diagram-container reveal">
+    <h3>Regime-Based Strategy Selection Flowchart</h3>
+    <svg viewBox="0 0 800 620" width="100%" style="max-width:800px">
+      <!-- Background -->
+      <rect x="0" y="0" width="800" height="620" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+
+      <!-- Title -->
+      <text x="400" y="30" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="700">Strategy Selection Decision Tree</text>
+
+      <!-- Step 1: VIX Check -->
+      <rect x="275" y="50" width="250" height="50" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+      <text x="400" y="72" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="700">STEP 1: Check VIX Regime</text>
+      <text x="400" y="88" text-anchor="middle" fill="#94a3b8" font-size="10">What is the current VIX level?</text>
+
+      <!-- Arrows from Step 1 -->
+      <line x1="325" y1="100" x2="150" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+      <line x1="400" y1="100" x2="400" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+      <line x1="475" y1="100" x2="650" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+      <!-- VIX Low -->
+      <rect x="50" y="140" width="200" height="40" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+      <text x="150" y="158" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">VIX &lt; 16 (Low Vol)</text>
+      <text x="150" y="172" text-anchor="middle" fill="#94a3b8" font-size="9">Normal sizing</text>
+
+      <!-- VIX Normal -->
+      <rect x="300" y="140" width="200" height="40" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="400" y="158" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">VIX 16&ndash;25 (Normal)</text>
+      <text x="400" y="172" text-anchor="middle" fill="#94a3b8" font-size="9">Full strategy suite</text>
+
+      <!-- VIX High -->
+      <rect x="550" y="140" width="200" height="40" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="650" y="158" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="600">VIX &gt; 25 (High Vol)</text>
+      <text x="650" y="172" text-anchor="middle" fill="#94a3b8" font-size="9">Reduce size 50%</text>
+
+      <!-- Step 2 -->
+      <rect x="275" y="210" width="250" height="50" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+      <text x="400" y="232" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="700">STEP 2: Check Internals</text>
+      <text x="400" y="248" text-anchor="middle" fill="#94a3b8" font-size="10">TICK, ADD, VOLD alignment?</text>
+
+      <!-- Arrows to Step 2 -->
+      <line x1="150" y1="180" x2="325" y2="210" stroke="#475569" stroke-width="1.5"/>
+      <line x1="400" y1="180" x2="400" y2="210" stroke="#475569" stroke-width="1.5"/>
+      <line x1="650" y1="180" x2="475" y2="210" stroke="#475569" stroke-width="1.5"/>
+
+      <!-- Arrows from Step 2 -->
+      <line x1="325" y1="260" x2="150" y2="300" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+      <line x1="400" y1="260" x2="400" y2="300" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+      <line x1="475" y1="260" x2="650" y2="300" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+      <!-- Internals Bullish -->
+      <rect x="50" y="300" width="200" height="40" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+      <text x="150" y="318" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">All Bullish</text>
+      <text x="150" y="332" text-anchor="middle" fill="#94a3b8" font-size="9">TICK+, ADD rising, VOLD &gt;2:1</text>
+
+      <!-- Internals Mixed -->
+      <rect x="300" y="300" width="200" height="40" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="400" y="318" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">Mixed / Neutral</text>
+      <text x="400" y="332" text-anchor="middle" fill="#94a3b8" font-size="9">Conflicting signals</text>
+
+      <!-- Internals Bearish -->
+      <rect x="550" y="300" width="200" height="40" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="650" y="318" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="600">All Bearish</text>
+      <text x="650" y="332" text-anchor="middle" fill="#94a3b8" font-size="9">TICK-, ADD falling, VOLD &lt;1:2</text>
+
+      <!-- Step 3 -->
+      <rect x="275" y="370" width="250" height="50" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+      <text x="400" y="392" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="700">STEP 3: Select Strategy</text>
+      <text x="400" y="408" text-anchor="middle" fill="#94a3b8" font-size="10">Match regime to strategy</text>
+
+      <!-- Arrows to Step 3 -->
+      <line x1="150" y1="340" x2="325" y2="370" stroke="#475569" stroke-width="1.5"/>
+      <line x1="400" y1="340" x2="400" y2="370" stroke="#475569" stroke-width="1.5"/>
+      <line x1="650" y1="340" x2="475" y2="370" stroke="#475569" stroke-width="1.5"/>
+
+      <!-- Strategy outputs -->
+      <line x1="300" y1="420" x2="150" y2="460" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+      <line x1="400" y1="420" x2="400" y2="460" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+      <line x1="500" y1="420" x2="650" y2="460" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+      <!-- Trend Strategy -->
+      <rect x="30" y="460" width="240" height="65" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+      <text x="150" y="480" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">TRENDING STRATEGIES</text>
+      <text x="150" y="496" text-anchor="middle" fill="#e2e8f0" font-size="9">Breakouts, Momentum</text>
+      <text x="150" y="510" text-anchor="middle" fill="#e2e8f0" font-size="9">VWAP Reclaim, Pullback Entries</text>
+
+      <!-- Range Strategy -->
+      <rect x="280" y="460" width="240" height="65" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="400" y="480" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">RANGE STRATEGIES</text>
+      <text x="400" y="496" text-anchor="middle" fill="#e2e8f0" font-size="9">Mean Reversion, Scalping</text>
+      <text x="400" y="510" text-anchor="middle" fill="#e2e8f0" font-size="9">Reduce Size, Tighten Targets</text>
+
+      <!-- Short / Defensive -->
+      <rect x="530" y="460" width="240" height="65" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="650" y="480" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">DEFENSIVE / SHORT</text>
+      <text x="650" y="496" text-anchor="middle" fill="#e2e8f0" font-size="9">Short Setups, Hedging</text>
+      <text x="650" y="510" text-anchor="middle" fill="#e2e8f0" font-size="9">Cash Position, Small Size Only</text>
+
+      <!-- Bottom note -->
+      <rect x="100" y="550" width="600" height="50" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+      <text x="400" y="572" text-anchor="middle" fill="#8b5cf6" font-size="11" font-weight="700">STEP 4: Continuous Reassessment</text>
+      <text x="400" y="590" text-anchor="middle" fill="#94a3b8" font-size="10">Re-evaluate regime every 30 minutes. Regimes can shift intraday. Adapt or sit out.</text>
+
+      <!-- Arrowhead marker -->
+      <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#475569"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="concept-card">
+    <h3>The Regime Assessment Checklist</h3>
+    <p>Before every trading session, run through this checklist to classify the current regime and select your strategy focus for the day.</p>
+
+    <h4>Pre-Market Assessment (Before 9:30 AM ET)</h4>
+    <ul class="feature-list">
+      <li><strong>VIX level and term structure</strong> &mdash; Is VIX in contango or backwardation? What is the absolute level? This sets your volatility regime.</li>
+      <li><strong>Overnight futures action</strong> &mdash; Did /ES trend overnight or chop? Overnight trend often indicates the day session&rsquo;s regime.</li>
+      <li><strong>Macro calendar</strong> &mdash; Is there a CPI, FOMC, or NFP release today? If yes, adjust your entire approach (see Section 14.8).</li>
+      <li><strong>Intermarket signals</strong> &mdash; DXY direction, TLT direction, sector rotation signals from overnight moves in futures.</li>
+      <li><strong>Prior day&rsquo;s regime</strong> &mdash; Was yesterday a trend day or a range day? Multi-day regime persistence is common.</li>
+    </ul>
+
+    <h4>Opening 30-Minute Assessment (9:30&ndash;10:00 AM ET)</h4>
+    <ul class="feature-list">
+      <li><strong>Internals alignment</strong> &mdash; Are TICK, ADD, and VOLD all pointing in the same direction? Alignment = trending regime. Conflict = ranging regime.</li>
+      <li><strong>Opening range</strong> &mdash; A wide opening range (first 15-minute candle) relative to recent days signals a potential trend day. A narrow opening range signals potential range-bound action (until breakout).</li>
+      <li><strong>Volume comparison</strong> &mdash; Is volume above or below average in the first 30 minutes? High volume confirms conviction; low volume warns of chop.</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Detecting Regime Shifts in Real Time</h3>
+    <p>Regimes do not change instantaneously &mdash; they <strong>transition</strong>. Recognizing the transition phase gives you time to adapt before the new regime is obvious to everyone.</p>
+
+    <h4>Signs a Trending Day Is Becoming a Range Day</h4>
+    <ul class="feature-list">
+      <li>TICK extremes are compressing (losing momentum).</li>
+      <li>ADD flattens and stops making new highs/lows.</li>
+      <li>Volume is declining as the session progresses.</li>
+      <li>Price starts respecting round numbers and prior support/resistance instead of slicing through them.</li>
+      <li>Candle bodies shrink relative to wicks.</li>
+    </ul>
+
+    <h4>Signs a Range Day Is Breaking Into a Trend</h4>
+    <ul class="feature-list">
+      <li>A TICK reading above +1000 or below -1000 breaks the range.</li>
+      <li>ADD makes a decisive new high or low.</li>
+      <li>Volume surges on a breakout of the range.</li>
+      <li>A major level (prior day high/low, weekly open, VWAP) is broken with conviction.</li>
+      <li>VIX term structure shifts (especially intraday backwardation appearing).</li>
+    </ul>
+
+    <h4>The Regime Shift Rule</h4>
+    <p>When you detect a regime shift, your first action should be to <strong>close or reduce existing positions</strong> that are optimized for the old regime. Only then should you begin deploying strategies suited to the new regime. Many traders recognize regime shifts but fail to act because they are anchored to their existing positions. Adaptability requires action, not just awareness.</p>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The 80/20 Rule of Regime Analysis</strong>
+      <p>You do not need to classify the regime perfectly. Getting it roughly right is sufficient. If you can correctly identify "trending" versus "not trending" just 60&ndash;70% of the time, and adjust your strategy selection accordingly, you will dramatically outperform a trader who uses the same strategy regardless of conditions. Perfect regime detection is impossible &mdash; but even imperfect regime awareness is a massive edge.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 14.10 QUIZ ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">14.10</span> Module 14 Quiz</h2>
+  <p>Test your understanding of market microstructure, regime analysis, and advanced market concepts. These questions require synthesis across the entire module.</p>
+
+  <div class="quiz-container" data-quiz="m14-regime">
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "VIX is at 32 and the term structure is in backwardation. TICK readings are consistently below -500 and VOLD ratio is 1:4. What regime are you in, and what should you do?",
+          "options": [
+            "Trending bullish regime — buy dips aggressively",
+            "High volatility bearish regime — reduce size dramatically, short setups only or cash",
+            "Normal ranging regime — use mean-reversion strategies at support",
+            "Low volatility regime — sell premium and deploy breakout strategies"
+          ],
+          "correct": 1,
+          "explanation": "VIX at 32 in backwardation signals acute fear (high vol crisis regime). Negative TICK and extreme VOLD selling ratio confirm broad bearish pressure. The correct response is to dramatically reduce size, focus only on short setups if trading at all, and treat cash as a valid position. This is not a dip-buying environment."
+        },
+        {
+          "question": "What does Kyle's lambda (λ) measure in market microstructure?",
+          "options": [
+            "The speed at which market makers update their quotes",
+            "The price impact per unit of net order flow",
+            "The ratio of informed to uninformed traders in a market",
+            "The probability that a limit order will be filled"
+          ],
+          "correct": 1,
+          "explanation": "Kyle's lambda measures how much price moves for each unit of net buying or selling pressure. A high lambda means the market is illiquid (small orders move price a lot), while a low lambda means the market is liquid. Lambda increases with more informed traders and higher uncertainty."
+        },
+        {
+          "question": "Approximately what percentage of U.S. equity volume trades off-exchange (dark pools and internalization)?",
+          "options": [
+            "10–15%",
+            "20–25%",
+            "40–45%",
+            "70–80%"
+          ],
+          "correct": 2,
+          "explanation": "Approximately 40–45% of all U.S. equity volume trades off-exchange through dark pools, broker-dealer internalization, and crossing networks. This is a massive share of total volume that never appears on lit exchange order books, making dark pool awareness essential for understanding true market dynamics."
+        },
+        {
+          "question": "On FOMC day, the Fed announces a 25bps rate cut at 2:00 PM. SPY immediately spikes 0.8% in 2 minutes. What is the most prudent action?",
+          "options": [
+            "Buy immediately to ride the momentum higher",
+            "Short immediately because the move is overdone",
+            "Wait 15–30 minutes for the secondary reaction before taking any position",
+            "Close all positions and stop trading for the day"
+          ],
+          "correct": 2,
+          "explanation": "The 'first move is often wrong' phenomenon is well-documented on FOMC days. The initial knee-jerk reaction is driven by algorithmic parsing and is reversed approximately 40% of the time. The press conference at 2:30 PM often generates a larger, more reliable move. Experienced traders wait for the secondary reaction (15–30 minutes) before positioning."
+        },
+        {
+          "question": "SPY is making new intraday highs, but the NYSE Advance-Decline Line ($ADD) is declining. What does this divergence signal?",
+          "options": [
+            "A very healthy, broad-based rally — the divergence is meaningless",
+            "The rally is narrow, driven by a few large-cap stocks, and is vulnerable to reversal",
+            "Market internals always lag price — ignore the divergence",
+            "Short sellers are covering, which always causes ADD to decline"
+          ],
+          "correct": 1,
+          "explanation": "When SPY makes new highs but ADD declines, it means the rally is driven by a few large-cap names while most stocks are not participating. This 'narrow breadth' divergence is a warning signal — the rally lacks conviction and is vulnerable to reversal. Healthy rallies feature broad participation (SPY and ADD rising together)."
+        },
+        {
+          "question": "Which calendar effect describes the tendency for the last day of the month and first three days of the next month to outperform?",
+          "options": [
+            "The January Effect",
+            "The OPEX Pin Effect",
+            "The Turn-of-Month Effect",
+            "The Pre-Holiday Effect"
+          ],
+          "correct": 2,
+          "explanation": "The Turn-of-Month Effect refers to the historically strong performance of the last trading day of each month and the first three trading days of the next month. This is attributed to automatic investment flows: 401(k) contributions, pension rebalancing, and systematic plans that execute around month-end. The effect is strongest at quarter-end."
+        },
+        {
+          "question": "You notice that bonds (TLT) and stocks (SPY) are both declining simultaneously over several weeks. What does this positive correlation signal about the current market regime?",
+          "options": [
+            "A normal growth-driven regime where bonds hedge equities effectively",
+            "An inflation-driven regime where rising rates compress both bonds and equities",
+            "A deflationary regime where all assets lose value",
+            "A sign that the data is incorrect — bonds and stocks always move inversely"
+          ],
+          "correct": 1,
+          "explanation": "When bonds and stocks fall together (positive correlation), it signals an inflation-driven regime. Rising inflation leads to higher rates, which compress both bond prices and equity multiples simultaneously. This occurred prominently in 2022. In this regime, traditional bond hedges fail, and traders need alternative hedges like commodities or volatility instruments."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="module-footer">
+  <button class="module-footer-btn" onclick="navigateTo(13)">&#8592; Previous: Advanced Options for Day Traders</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(15)">Next: Algorithmic &amp; Systematic Trading &#8594;</button>
+</div>
