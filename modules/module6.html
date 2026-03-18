@@ -1,0 +1,673 @@
+<!-- ============================================
+     MODULE 6: Trading Psychology
+     ============================================ -->
+
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 01-1 1H9a1 1 0 01-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/>
+      <line x1="9" y1="21" x2="15" y2="21"/>
+      <line x1="10" y1="24" x2="14" y2="24"/>
+    </svg>
+    MODULE 06
+  </div>
+  <h1>Trading Psychology</h1>
+  <p>Your biggest edge &mdash; and biggest enemy &mdash; is between your ears.</p>
+</div>
+
+<!-- =============================================
+     6.1 The Emotional Cycle of Trading
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">6.1</span> The Emotional Cycle of Trading</h2>
+
+  <p>Every trader, from beginner to professional, experiences an emotional cycle that mirrors the market itself. Understanding this cycle is the first step to breaking free from it.</p>
+
+  <p>The diagram below maps the emotional states most traders experience during a typical winning-then-losing cycle. Recognizing where you are on this curve is critical for making rational decisions.</p>
+
+  <div class="diagram-container">
+    <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="max-width:800px;">
+      <defs>
+        <linearGradient id="emotionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8"/>
+          <stop offset="20%" style="stop-color:#10b981;stop-opacity:0.8"/>
+          <stop offset="35%" style="stop-color:#10b981;stop-opacity:0.9"/>
+          <stop offset="42%" style="stop-color:#f59e0b;stop-opacity:0.8"/>
+          <stop offset="55%" style="stop-color:#ef4444;stop-opacity:0.8"/>
+          <stop offset="70%" style="stop-color:#ef4444;stop-opacity:0.9"/>
+          <stop offset="80%" style="stop-color:#f59e0b;stop-opacity:0.7"/>
+          <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.8"/>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+      </defs>
+
+      <!-- Grid lines -->
+      <line x1="60" y1="50" x2="60" y2="370" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="60" y1="370" x2="760" y2="370" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="60" y1="210" x2="760" y2="210" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="20" y="55" fill="rgba(255,255,255,0.3)" font-size="10" font-family="sans-serif">HIGH</text>
+      <text x="20" y="375" fill="rgba(255,255,255,0.3)" font-size="10" font-family="sans-serif">LOW</text>
+
+      <!-- The emotional curve -->
+      <path d="M 70,280 C 100,250 130,180 180,140 C 220,105 250,80 290,60 C 330,45 350,55 380,100 C 400,135 420,180 450,230 C 480,275 500,310 530,340 C 555,360 570,365 590,350 C 610,335 630,310 660,280 C 690,250 720,230 750,210"
+            fill="none" stroke="url(#emotionGradient)" stroke-width="3.5" stroke-linecap="round" filter="url(#glow)"/>
+
+      <!-- Shaded area under curve -->
+      <path d="M 70,280 C 100,250 130,180 180,140 C 220,105 250,80 290,60 C 330,45 350,55 380,100 C 400,135 420,180 450,230 C 480,275 500,310 530,340 C 555,360 570,365 590,350 C 610,335 630,310 660,280 C 690,250 720,230 750,210 L 750,370 L 70,370 Z"
+            fill="url(#emotionGradient)" opacity="0.06"/>
+
+      <!-- Emotion points and labels -->
+      <!-- 1. Optimism -->
+      <circle cx="70" cy="280" r="5" fill="#3b82f6" stroke="rgba(59,130,246,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="70" cy="280" r="4" fill="#3b82f6"/>
+      <text x="70" y="302" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="600" font-family="sans-serif">Optimism</text>
+
+      <!-- 2. Excitement -->
+      <circle cx="180" cy="140" r="5" fill="#10b981" stroke="rgba(16,185,129,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="180" cy="140" r="4" fill="#10b981"/>
+      <text x="180" y="128" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600" font-family="sans-serif">Excitement</text>
+
+      <!-- 3. Thrill -->
+      <circle cx="245" cy="82" r="5" fill="#10b981" stroke="rgba(16,185,129,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="245" cy="82" r="4" fill="#10b981"/>
+      <text x="245" y="70" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600" font-family="sans-serif">Thrill</text>
+
+      <!-- 4. Euphoria (PEAK) -->
+      <circle cx="300" cy="55" r="7" fill="#10b981" stroke="rgba(16,185,129,0.3)" stroke-width="12" opacity="0.5"/>
+      <circle cx="300" cy="55" r="5" fill="#10b981"/>
+      <text x="300" y="35" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700" font-family="sans-serif">EUPHORIA</text>
+      <text x="300" y="18" text-anchor="middle" fill="rgba(16,185,129,0.5)" font-size="9" font-family="sans-serif">Maximum Risk</text>
+
+      <!-- 5. Anxiety -->
+      <circle cx="380" cy="100" r="5" fill="#f59e0b" stroke="rgba(245,158,11,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="380" cy="100" r="4" fill="#f59e0b"/>
+      <text x="380" y="88" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600" font-family="sans-serif">Anxiety</text>
+
+      <!-- 6. Denial -->
+      <circle cx="420" cy="180" r="5" fill="#f59e0b" stroke="rgba(245,158,11,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="420" cy="180" r="4" fill="#f59e0b"/>
+      <text x="420" y="200" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600" font-family="sans-serif">Denial</text>
+
+      <!-- 7. Fear -->
+      <circle cx="465" cy="245" r="5" fill="#ef4444" stroke="rgba(239,68,68,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="465" cy="245" r="4" fill="#ef4444"/>
+      <text x="465" y="268" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="600" font-family="sans-serif">Fear</text>
+
+      <!-- 8. Desperation -->
+      <circle cx="510" cy="320" r="5" fill="#ef4444" stroke="rgba(239,68,68,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="510" cy="320" r="4" fill="#ef4444"/>
+      <text x="510" y="310" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="600" font-family="sans-serif">Desperation</text>
+
+      <!-- 9. Panic (BOTTOM) -->
+      <circle cx="565" cy="362" r="7" fill="#ef4444" stroke="rgba(239,68,68,0.3)" stroke-width="12" opacity="0.5"/>
+      <circle cx="565" cy="362" r="5" fill="#ef4444"/>
+      <text x="565" y="395" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700" font-family="sans-serif">PANIC</text>
+      <text x="565" y="410" text-anchor="middle" fill="rgba(239,68,68,0.5)" font-size="9" font-family="sans-serif">Maximum Opportunity</text>
+
+      <!-- 10. Hope -->
+      <circle cx="630" cy="310" r="5" fill="#f59e0b" stroke="rgba(245,158,11,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="630" cy="310" r="4" fill="#f59e0b"/>
+      <text x="630" y="298" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600" font-family="sans-serif">Hope</text>
+
+      <!-- 11. Relief -->
+      <circle cx="700" cy="258" r="5" fill="#3b82f6" stroke="rgba(59,130,246,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="700" cy="258" r="4" fill="#3b82f6"/>
+      <text x="700" y="246" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="600" font-family="sans-serif">Relief</text>
+
+      <!-- 12. Optimism returns -->
+      <circle cx="750" cy="210" r="5" fill="#3b82f6" stroke="rgba(59,130,246,0.4)" stroke-width="8" opacity="0.5"/>
+      <circle cx="750" cy="210" r="4" fill="#3b82f6"/>
+      <text x="750" y="198" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="600" font-family="sans-serif">Optimism</text>
+    </svg>
+    <div class="diagram-label">The Emotional Cycle of Trading &mdash; Most traders buy near euphoria and sell near panic, doing exactly the opposite of what they should.</div>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>The Cruel Irony</strong>
+      <p>The point of <em>maximum financial risk</em> (Euphoria) is when traders feel most confident. The point of <em>maximum financial opportunity</em> (Panic) is when traders feel most afraid. Successful trading requires you to act against your strongest emotions.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     6.2 Cognitive Biases in Trading
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">6.2</span> Cognitive Biases in Trading</h2>
+
+  <p>Your brain evolved to survive on the savanna, not to trade financial markets. The same mental shortcuts that kept your ancestors alive now actively sabotage your trading. Here are the eight most destructive biases:</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      1. Loss Aversion
+    </h4>
+    <p>Research by Kahneman and Tversky shows that <strong>losses hurt roughly twice as much as equivalent gains feel good</strong>. A $500 loss creates more emotional pain than a $500 gain creates pleasure. This asymmetry causes traders to hold losing positions too long (hoping to avoid realizing the loss) and cut winners too early (rushing to lock in the pleasure).</p>
+    <p style="margin-top:0.5rem;"><span class="tag-red">Impact:</span> Holding losers, cutting winners short &mdash; the exact opposite of what profitable traders do.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      2. Confirmation Bias
+    </h4>
+    <p>Once you enter a trade, your brain actively <strong>seeks information that supports your position</strong> and filters out contradictory evidence. Bought a stock? You will notice every bullish article and dismiss every warning sign. This makes you blind to genuine danger signals.</p>
+    <p style="margin-top:0.5rem;"><span class="tag-gold">Antidote:</span> Actively look for reasons your trade is <em>wrong</em> before and during the trade. If you cannot find any, you are not looking hard enough.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      3. Recency Bias
+    </h4>
+    <p>We <strong>overweight recent events and underweight historical data</strong>. After three winning trades, you feel invincible. After three losing trades, you feel your strategy is broken. Neither is true. Recent results are a tiny, statistically insignificant sample.</p>
+    <p style="margin-top:0.5rem;"><span class="tag-gold">Antidote:</span> Judge your strategy over at least 50-100 trades, not the last 3-5. Track your overall statistics, not your last session.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      4. Anchoring Bias
+    </h4>
+    <p>Traders become <strong>fixated on their entry price</strong>, using it as a reference point for all decisions. "I bought at $150, so I will sell when it gets back to $150." But the market does not care about your entry price. The only relevant question is: at the <em>current</em> price and <em>current</em> conditions, would you enter this trade fresh?</p>
+    <p style="margin-top:0.5rem;"><span class="tag-blue">Key Question:</span> "If I were flat right now, would I take this trade at this price?" If no, close it.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      5. Disposition Effect
+    </h4>
+    <p>The tendency to <strong>sell winners too early and hold losers too long</strong>. It is a combination of loss aversion and anchoring. Studies show the average retail trader sells winning stocks 50% more often than losing stocks &mdash; the exact opposite of what profitable trading requires.</p>
+    <p style="margin-top:0.5rem;"><span class="tag-red">Impact:</span> Your average win becomes smaller than your average loss, destroying your risk/reward ratio.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      6. FOMO (Fear of Missing Out)
+    </h4>
+    <p>You see a stock up 15% and feel a <strong>desperate urge to jump in</strong> before it goes higher. FOMO causes you to chase extended moves, buy at the worst possible prices, and abandon your trading plan. The stocks that "got away" haunt you more than they should.</p>
+    <p style="margin-top:0.5rem;"><span class="tag-gold">Antidote:</span> There will always be another trade. A missed trade costs you nothing; a bad trade costs you real money. The best traders let opportunities pass without regret.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      7. Sunk Cost Fallacy
+    </h4>
+    <p>Holding a losing trade because <strong>"I have already lost so much, I might as well wait for it to come back."</strong> The money you have lost is gone regardless of what you do next. Every moment you stay in a bad trade is a new decision. Past losses should never influence present decisions.</p>
+    <p style="margin-top:0.5rem;"><span class="tag-red">Reality Check:</span> The stock does not know or care what you paid for it. Your entry price is irrelevant to where it will go next.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      8. Overconfidence Bias
+    </h4>
+    <p>After a winning streak, traders begin to believe they have <strong>"figured out the market."</strong> They increase position sizes, abandon risk rules, and take lower-quality setups. This is almost always followed by a devastating loss that gives back all their gains and then some.</p>
+    <p style="margin-top:0.5rem;"><span class="tag-purple">Remember:</span> Winning streaks are largely the result of favorable market conditions, not personal genius. The market humbles overconfident traders with brutal efficiency.</p>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>You Cannot Eliminate Biases</strong>
+      <p>These biases are hardwired into human cognition. You cannot think them away. The only defense is <strong>systems and rules</strong> that make your decisions for you before emotions take over. That is why trading plans, stop losses, and position sizing rules exist &mdash; they are your protection against yourself.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     6.3 Discipline Frameworks
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">6.3</span> Discipline Frameworks</h2>
+
+  <p>Discipline is not about willpower. It is about building <strong>systems</strong> that remove decision-making from the heat of the moment. Here are three frameworks that professional traders use to stay disciplined.</p>
+
+  <h3>Rules-Based Trading</h3>
+  <p>Define your strategy as a set of <em>if/then</em> rules <strong>before</strong> the market opens. Every trade decision should already be made. Examples:</p>
+  <ul class="feature-list">
+    <li><strong>IF</strong> the stock breaks above resistance with volume 1.5x average, <strong>THEN</strong> I enter long.</li>
+    <li><strong>IF</strong> my stop loss is hit, <strong>THEN</strong> I exit immediately. No exceptions.</li>
+    <li><strong>IF</strong> the price reaches my target, <strong>THEN</strong> I take at least partial profits.</li>
+    <li><strong>IF</strong> I hit my daily loss limit, <strong>THEN</strong> I close all positions and shut down.</li>
+    <li><strong>IF</strong> there is no clear setup, <strong>THEN</strong> I do not trade. Sitting out is a position.</li>
+  </ul>
+
+  <h3>Pre-Trade Checklist</h3>
+  <p>Before entering <em>any</em> trade, run through this checklist. If any item is unchecked, do not take the trade.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      Pre-Trade Discipline Checklist
+    </h4>
+    <ul class="feature-list">
+      <li>Does this trade match one of my defined setups? <span class="tag-blue">Setup Validation</span></li>
+      <li>Have I identified the exact entry, stop loss, and target before clicking buy? <span class="tag-blue">Planning</span></li>
+      <li>Is my position size calculated using the formula? <span class="tag-green">Risk Control</span></li>
+      <li>Is the risk/reward ratio at least 1:2? <span class="tag-green">R:R Check</span></li>
+      <li>Am I within my daily loss limit? <span class="tag-gold">Daily Budget</span></li>
+      <li>Am I trading based on my plan, or based on emotion/FOMO? <span class="tag-red">Emotional Check</span></li>
+      <li>Is the overall market environment favorable for my setup? <span class="tag-purple">Context</span></li>
+      <li>Would I take this same trade if I were already up 5% today? Down 2% today? <span class="tag-purple">Objectivity</span></li>
+    </ul>
+  </div>
+
+  <h3>If/Then Planning (Implementation Intentions)</h3>
+  <p>Research in behavioral psychology shows that <strong>pre-deciding your response to specific scenarios</strong> dramatically increases follow-through. Write down your if/then plans before the market opens each day.</p>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>The Power of Pre-Commitment</strong>
+      <p>When you plan your responses in advance, you shift the decision from your emotional brain (amygdala) to your rational brain (prefrontal cortex). The decision is already made. In the moment, you are simply executing a plan &mdash; not making a new decision under stress.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     6.4 Interactive: Trading Scenario Decision Maker
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">6.4</span> Trading Scenarios</h2>
+  <p>Test your psychological discipline with these real-world scenarios. There is a best answer for each &mdash; see if you can identify it.</p>
+
+  <!-- Scenario 1 -->
+  <div class="scenario-card" id="scenario-1">
+    <h3 style="margin-bottom:0.75rem;font-size:1rem;">
+      <span class="tag-purple">Scenario 1</span> Taking Profits vs. Holding
+    </h3>
+    <div class="scenario-situation">
+      You bought a stock at $100 with a stop at $98 and a target at $106 (1:3 R:R). The stock has risen to $102 &mdash; you are up 2%. However, the candles are starting to show upper wicks, volume is declining, and the stock just printed a bearish engulfing pattern near a minor resistance level. Your target is still $4 away.
+    </div>
+    <div class="scenario-choices">
+      <button class="scenario-choice" onclick="handleScenario('s1', 0)">
+        <span class="tag-blue" style="flex-shrink:0">A</span>
+        <span>Hold the full position. My target is $106 and I should stick to my plan no matter what.</span>
+      </button>
+      <button class="scenario-choice" onclick="handleScenario('s1', 1)">
+        <span class="tag-blue" style="flex-shrink:0">B</span>
+        <span>Sell half the position to lock in some profit, move stop to breakeven on the rest.</span>
+      </button>
+      <button class="scenario-choice" onclick="handleScenario('s1', 2)">
+        <span class="tag-blue" style="flex-shrink:0">C</span>
+        <span>Close the entire position immediately &mdash; the reversal signs are too strong.</span>
+      </button>
+      <button class="scenario-choice" onclick="handleScenario('s1', 3)">
+        <span class="tag-blue" style="flex-shrink:0">D</span>
+        <span>Add to the position while it is still trending up to maximize profits.</span>
+      </button>
+    </div>
+    <div class="scenario-feedback" id="feedback-s1" style="display:none;margin-top:1rem;padding:1rem;border-radius:var(--radius-md);font-size:0.9rem;line-height:1.6;"></div>
+  </div>
+
+  <!-- Scenario 2 -->
+  <div class="scenario-card" id="scenario-2">
+    <h3 style="margin-bottom:0.75rem;font-size:1rem;">
+      <span class="tag-purple">Scenario 2</span> Losing Streak Recovery
+    </h3>
+    <div class="scenario-situation">
+      You have just had 3 consecutive losing trades this morning, totaling a 2.5% account loss. Your daily loss limit is 3%. You now spot what looks like a "perfect" setup &mdash; a textbook bull flag with volume confirmation on a stock you know well. It matches all your criteria. Your hands are slightly shaky and you feel an urgent need to make back your losses.
+    </div>
+    <div class="scenario-choices">
+      <button class="scenario-choice" onclick="handleScenario('s2', 0)">
+        <span class="tag-blue" style="flex-shrink:0">A</span>
+        <span>Take the trade at double the normal position size to recover losses faster.</span>
+      </button>
+      <button class="scenario-choice" onclick="handleScenario('s2', 1)">
+        <span class="tag-blue" style="flex-shrink:0">B</span>
+        <span>Take the trade with normal position sizing &mdash; if the setup is valid, it is valid.</span>
+      </button>
+      <button class="scenario-choice" onclick="handleScenario('s2', 2)">
+        <span class="tag-blue" style="flex-shrink:0">C</span>
+        <span>Take the trade but with a smaller-than-normal position size given the losing streak.</span>
+      </button>
+      <button class="scenario-choice" onclick="handleScenario('s2', 3)">
+        <span class="tag-blue" style="flex-shrink:0">D</span>
+        <span>Stop trading for the day. You are too close to your daily limit and your emotional state is compromised.</span>
+      </button>
+    </div>
+    <div class="scenario-feedback" id="feedback-s2" style="display:none;margin-top:1rem;padding:1rem;border-radius:var(--radius-md);font-size:0.9rem;line-height:1.6;"></div>
+  </div>
+
+  <!-- Scenario 3 -->
+  <div class="scenario-card" id="scenario-3">
+    <h3 style="margin-bottom:0.75rem;font-size:1rem;">
+      <span class="tag-purple">Scenario 3</span> FOMO and Chasing
+    </h3>
+    <div class="scenario-situation">
+      You had NVDA on your watchlist with a planned entry at $800 on a breakout above resistance. You stepped away for 10 minutes and the stock broke out without you, running from $800 to $820 in a surge. It is now at $818, pulling back slightly. Your original stop would have been at $795, but from $818 the stop distance would be much wider. The stock is still above VWAP and showing strength.
+    </div>
+    <div class="scenario-choices">
+      <button class="scenario-choice" onclick="handleScenario('s3', 0)">
+        <span class="tag-blue" style="flex-shrink:0">A</span>
+        <span>Buy at $818. The trend is clearly strong and it could keep running. Use a tight stop at $812.</span>
+      </button>
+      <button class="scenario-choice" onclick="handleScenario('s3', 1)">
+        <span class="tag-blue" style="flex-shrink:0">B</span>
+        <span>Wait for a pullback to a logical level (e.g., $805-$808 near the original breakout zone) before entering with proper risk/reward.</span>
+      </button>
+      <button class="scenario-choice" onclick="handleScenario('s3', 2)">
+        <span class="tag-blue" style="flex-shrink:0">C</span>
+        <span>Immediately buy at market. Every second you wait costs you money.</span>
+      </button>
+      <button class="scenario-choice" onclick="handleScenario('s3', 3)">
+        <span class="tag-blue" style="flex-shrink:0">D</span>
+        <span>Skip this trade entirely and look for the next setup on your watchlist.</span>
+      </button>
+    </div>
+    <div class="scenario-feedback" id="feedback-s3" style="display:none;margin-top:1rem;padding:1rem;border-radius:var(--radius-md);font-size:0.9rem;line-height:1.6;"></div>
+  </div>
+
+  <script>
+    function handleScenario(scenarioId, choiceIndex) {
+      var answers = {
+        s1: {
+          best: 1,
+          explanations: [
+            "Rigidly holding despite clear reversal signals is stubbornness, not discipline. Plans should account for changing conditions. A bearish engulfing at resistance is a genuine warning sign.",
+            "Excellent choice. Selling half locks in a guaranteed profit while giving the rest room to reach your target with a risk-free stop at breakeven. This balances discipline with adaptability. A trading plan should include rules for what to do when conditions change.",
+            "This is defensible but potentially premature. The reversal signs are concerning, but closing entirely might mean missing a move to $106. Partial profit-taking is a more balanced approach.",
+            "Adding to a position showing reversal signals is reckless. You would be increasing risk at the worst possible moment, right when the evidence suggests the move may be ending."
+          ]
+        },
+        s2: {
+          best: 3,
+          explanations: [
+            "Doubling position size after losses is 'revenge trading' — the single most destructive behavior in trading. It turns manageable losses into account-destroying ones. This is how traders blow up.",
+            "The logic seems sound, but the physical signs (shaky hands, urgency) tell the truth: you are emotionally compromised. Even a valid setup executed from an emotional state leads to poor management — early exits, moved stops, panic decisions.",
+            "Better than options A or B because it acknowledges your impaired state, but you are still dangerously close to your daily limit. One more loss pushes you over.",
+            "The best choice. Your body is telling you that you are on tilt — shaky hands and urgency are classic signs. You are 0.5% from your daily limit. The 'perfect setup' will come again tomorrow when you can execute it with a clear mind. Recognizing when NOT to trade is a professional skill."
+          ]
+        },
+        s3: {
+          best: 1,
+          explanations: [
+            "Buying $18 above your planned entry with a tight stop at $812 means you have a $6 stop on a stock that just moved $20 in minutes. The volatility alone is likely to stop you out. Your risk/reward is terrible compared to the original plan.",
+            "The best approach. The original breakout zone ($800-$805) often acts as support on a pullback. Waiting for a pullback gives you a logical entry, a meaningful stop loss, and restores your risk/reward ratio. Patience turns a FOMO situation back into a quality trade.",
+            "This is pure FOMO. Buying 'at market' with urgency is the hallmark of emotional trading. Extended stocks that have run 2.5% in minutes frequently pull back sharply, trapping late buyers.",
+            "This is a valid choice. Missing a trade costs nothing, and there is no shame in it. However, if the stock does pull back to a logical level, you could still get a quality entry. Skipping entirely is better than chasing, but waiting for a pullback is optimal."
+          ]
+        }
+      };
+
+      var scenario = answers[scenarioId];
+      if (!scenario) return;
+
+      var feedbackEl = document.getElementById('feedback-' + scenarioId);
+      if (!feedbackEl) return;
+
+      var isBest = choiceIndex === scenario.best;
+      feedbackEl.style.display = 'block';
+      feedbackEl.style.background = isBest ? 'rgba(16,185,129,0.1)' : 'rgba(245,158,11,0.1)';
+      feedbackEl.style.border = '1px solid ' + (isBest ? 'rgba(16,185,129,0.3)' : 'rgba(245,158,11,0.3)');
+      feedbackEl.innerHTML = '<strong style="color:' + (isBest ? 'var(--bull-green)' : 'var(--accent-gold)') + '">' +
+        (isBest ? 'Correct!' : 'Not the best choice.') + '</strong><br>' + scenario.explanations[choiceIndex];
+
+      // Disable all choices in this scenario
+      var card = document.getElementById('scenario-' + scenarioId.charAt(1));
+      if (!card) card = feedbackEl.parentElement;
+      var choices = card.querySelectorAll('.scenario-choice');
+      choices.forEach(function(c, i) {
+        c.classList.add('disabled');
+        c.style.pointerEvents = 'none';
+        if (i === scenario.best) {
+          c.style.borderColor = 'var(--bull-green)';
+          c.style.background = 'rgba(16,185,129,0.08)';
+        } else if (i === choiceIndex && !isBest) {
+          c.style.borderColor = 'var(--accent-gold)';
+          c.style.background = 'rgba(245,158,11,0.05)';
+        } else {
+          c.style.opacity = '0.5';
+        }
+      });
+    }
+  </script>
+</div>
+
+<!-- =============================================
+     6.5 The Trading Journal
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">6.5</span> The Trading Journal</h2>
+
+  <p>A trading journal is the most powerful learning tool available to you. It transforms random experiences into structured data and accelerates your growth as a trader dramatically.</p>
+
+  <h3>What to Record</h3>
+  <p>Every trade should be documented with the following information:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Example</th>
+        <th>Why It Matters</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Date &amp; Time</strong></td>
+        <td>2026-03-18, 10:15 AM</td>
+        <td>Reveals patterns in timing (e.g., morning vs. afternoon performance)</td>
+      </tr>
+      <tr>
+        <td><strong>Ticker</strong></td>
+        <td>AAPL</td>
+        <td>Shows which stocks you trade best/worst</td>
+      </tr>
+      <tr>
+        <td><strong>Setup Type</strong></td>
+        <td>Bull flag breakout</td>
+        <td>Identifies which strategies work and which do not</td>
+      </tr>
+      <tr>
+        <td><strong>Entry / Exit Price</strong></td>
+        <td>$175.20 / $178.60</td>
+        <td>Calculates actual P&L and execution quality</td>
+      </tr>
+      <tr>
+        <td><strong>Stop Loss / Target</strong></td>
+        <td>$173.50 / $180.00</td>
+        <td>Tracks planned vs. actual R:R ratio</td>
+      </tr>
+      <tr>
+        <td><strong>Position Size</strong></td>
+        <td>125 shares</td>
+        <td>Verifies risk management compliance</td>
+      </tr>
+      <tr>
+        <td><strong>P&L ($)</strong></td>
+        <td>+$425.00</td>
+        <td>Bottom-line result</td>
+      </tr>
+      <tr>
+        <td><strong>Screenshot</strong></td>
+        <td>Chart at entry + exit</td>
+        <td>Visual record for pattern recognition review</td>
+      </tr>
+      <tr>
+        <td><strong>Emotional State</strong></td>
+        <td>Calm, focused</td>
+        <td>Correlates psychology with performance</td>
+      </tr>
+      <tr>
+        <td><strong>Notes / Lessons</strong></td>
+        <td>"Held through initial pullback, target almost reached"</td>
+        <td>Captures insights for future improvement</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Sample Journal Entry</h3>
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Trade #247 &mdash; March 18, 2026
+    </h4>
+    <p style="margin-bottom:0.5rem;"><strong>Ticker:</strong> MSFT &nbsp;|&nbsp; <strong>Direction:</strong> Long &nbsp;|&nbsp; <strong>Setup:</strong> VWAP bounce + bull flag</p>
+    <p style="margin-bottom:0.5rem;"><strong>Entry:</strong> $415.30 at 10:22 AM &nbsp;|&nbsp; <strong>Exit:</strong> $420.15 at 11:05 AM</p>
+    <p style="margin-bottom:0.5rem;"><strong>Stop:</strong> $413.50 &nbsp;|&nbsp; <strong>Target:</strong> $421.00 &nbsp;|&nbsp; <strong>Shares:</strong> 138</p>
+    <p style="margin-bottom:0.5rem;"><strong>P&L:</strong> <span style="color:var(--bull-green);font-weight:600;">+$669.90</span> &nbsp;|&nbsp; <strong>R:R Achieved:</strong> 1:2.7</p>
+    <p style="margin-bottom:0.5rem;"><strong>Emotional State:</strong> Calm and patient. Waited for the flag to confirm before entering.</p>
+    <p><strong>Lesson:</strong> Waiting for the pullback to VWAP instead of chasing the initial move gave me a much better entry and tighter stop. Exited slightly below target as momentum faded &mdash; good adaptation.</p>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>Weekly Reviews Are Mandatory</strong>
+      <p>Every weekend, review your journal entries. Look for patterns: Are you more profitable in the morning or afternoon? Which setups work best? When do you make emotional trades? The journal is only valuable if you actually review it. Schedule 30 minutes every weekend.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     6.6 Building Mental Resilience
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">6.6</span> Building Mental Resilience</h2>
+
+  <p>Trading is one of the most psychologically demanding professions. Building mental resilience is not optional &mdash; it is a core skill that separates long-term survivors from early washouts.</p>
+
+  <h3>1. Acceptance: Losses Are Business Expenses</h3>
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>Reframe Losses as the Cost of Doing Business</strong>
+      <p>A restaurant pays rent. A lawyer pays for office space. A trader pays for stop losses. Losing trades are not failures &mdash; they are the <em>cost of being in the game</em>. Just as a restaurant owner does not despair over each month's rent check, you should not despair over each losing trade. It is a predictable, expected business expense.</p>
+    </div>
+  </div>
+
+  <h3>2. Process Over Outcome</h3>
+  <p>Judge each trade on whether you <strong>followed your process</strong>, not on whether it made money. A perfect trade that loses money (because you followed all your rules and the market simply did not cooperate) is a <em>good</em> trade. A sloppy trade that makes money (because you broke your rules and got lucky) is a <em>bad</em> trade.</p>
+
+  <ul class="feature-list">
+    <li><strong>Good process + profit</strong> = ideal outcome &mdash; keep doing this</li>
+    <li><strong>Good process + loss</strong> = acceptable &mdash; this is the cost of trading</li>
+    <li><strong>Bad process + profit</strong> = dangerous &mdash; you learned the wrong lesson</li>
+    <li><strong>Bad process + loss</strong> = expected &mdash; this is what bad process leads to</li>
+  </ul>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>The Danger of Rewarded Bad Behavior</strong>
+      <p>The most insidious outcome in trading is <strong>making money from a bad trade</strong>. It reinforces terrible habits and gives you false confidence. Track your process adherence separately from your P&L. They are two different scorecards.</p>
+    </div>
+  </div>
+
+  <h3>3. The Power of Routine</h3>
+  <p>Build a structured daily routine that puts you in the right mental state before the market opens:</p>
+  <ul class="feature-list">
+    <li><strong>Pre-market (30 min before open):</strong> Review watchlist, set alerts, write if/then plans</li>
+    <li><strong>First 15 minutes:</strong> Observe the open. Do not trade impulsively on the opening volatility unless you have a specific strategy for it.</li>
+    <li><strong>During session:</strong> Execute your plan. Reference your checklist before every trade.</li>
+    <li><strong>Post-market (15 min after close):</strong> Journal your trades. Record your emotional state. Note what you did well and what you can improve.</li>
+  </ul>
+
+  <h3>4. Physical and Mental Reset Techniques</h3>
+  <p>When you notice stress building during a session:</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      The 60-Second Reset
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Step away from the screen.</strong> Stand up. Walk to a different room.</li>
+      <li><strong>Box breathing:</strong> Inhale 4 seconds, hold 4 seconds, exhale 4 seconds, hold 4 seconds. Repeat 3 times.</li>
+      <li><strong>Body scan:</strong> Notice tension in your jaw, shoulders, hands. Consciously relax each area.</li>
+      <li><strong>Restate your rules:</strong> Say aloud (or write) your daily loss limit, your risk per trade, and your criteria for the next trade.</li>
+      <li><strong>Return only when calm.</strong> If you are still agitated, extend the break. The market will wait.</li>
+    </ul>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Exercise and Sleep</strong>
+      <p>Studies show that regular exercise and adequate sleep (7-8 hours) significantly improve decision-making under pressure. Many professional traders consider physical fitness part of their trading edge. A tired, stressed brain makes poor risk decisions.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     6.7 Quiz: Psychology Self-Assessment
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">6.7</span> Psychology Self-Assessment</h2>
+  <p>Test your understanding of trading psychology. These questions combine conceptual knowledge with real scenario-based thinking.</p>
+
+  <div class="quiz-container" data-quiz="m6-psychology">
+    <div class="quiz-header">
+      <div class="quiz-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Quiz &mdash; Trading Psychology
+      </div>
+      <span class="quiz-score"></span>
+    </div>
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "On the emotional cycle of trading, at which point is a trader's financial risk typically highest?",
+          "options": ["During the Panic phase", "During the Euphoria phase", "During the Hope phase", "During the Fear phase"],
+          "correct": 1,
+          "explanation": "Euphoria represents peak confidence and peak risk. This is when traders are most overexposed, most leveraged, and least concerned about risk management — making it the most financially dangerous phase."
+        },
+        {
+          "question": "Which cognitive bias causes traders to hold losing positions too long and sell winning positions too early?",
+          "options": ["FOMO", "Recency Bias", "Disposition Effect", "Anchoring Bias"],
+          "correct": 2,
+          "explanation": "The Disposition Effect is the tendency to sell winners prematurely (to lock in pleasure) and hold losers too long (to avoid the pain of realizing a loss). It is driven by loss aversion and is one of the most documented biases in behavioral finance."
+        },
+        {
+          "question": "You followed your trading plan perfectly but still lost money on a trade. How should you evaluate this trade?",
+          "options": ["As a bad trade — you lost money", "As a good trade — you followed your process correctly", "As a neutral trade — it doesn't matter either way", "As a sign that your strategy needs to be changed immediately"],
+          "correct": 1,
+          "explanation": "A trade where you followed your process correctly is a GOOD trade regardless of the outcome. Individual outcomes are random; what matters is that your process has a positive expectancy over many trades. Judging quality by process, not outcome, is the hallmark of professional thinking."
+        },
+        {
+          "question": "After a 5-trade winning streak, you feel supremely confident and decide to triple your position size on the next trade. Which bias is driving this behavior?",
+          "options": ["Confirmation Bias", "Loss Aversion", "Overconfidence Bias", "Sunk Cost Fallacy"],
+          "correct": 2,
+          "explanation": "Overconfidence Bias leads traders to believe that a winning streak reflects superior skill rather than favorable conditions. Increasing position size based on recent success violates risk management rules and often leads to outsized losses that erase the entire winning streak."
+        },
+        {
+          "question": "Your stock dropped from your entry price of $50 to $42. You think: 'I have already lost so much, I might as well hold until it gets back to $50.' Which bias is this?",
+          "options": ["Anchoring Bias and Sunk Cost Fallacy", "FOMO and Recency Bias", "Confirmation Bias and Overconfidence", "Disposition Effect and Loss Aversion"],
+          "correct": 0,
+          "explanation": "This is Anchoring (fixating on the $50 entry price as a target) combined with the Sunk Cost Fallacy (continuing to hold because of what you have already lost). The correct question is: at $42, with current market conditions, would you buy this stock fresh? If not, you should sell."
+        },
+        {
+          "question": "What is the most effective way to combat cognitive biases in your trading?",
+          "options": ["Try harder to be rational and suppress your emotions", "Read more trading psychology books before each session", "Build rules-based systems and checklists that make decisions before emotions arise", "Only trade when you feel completely calm and confident"],
+          "correct": 2,
+          "explanation": "Cognitive biases cannot be eliminated through willpower or self-awareness alone. The most effective defense is to create systems, rules, and checklists that pre-commit you to specific actions. When the emotional moment arrives, you simply execute the plan rather than making a new decision under pressure."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- =============================================
+     Module Footer Navigation
+     ============================================= -->
+<div class="module-footer reveal">
+  <button class="module-footer-btn" onclick="navigateTo(5)">&larr; Previous: Risk Management</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(7)">Next: Day Trading Strategies &rarr;</button>
+</div>

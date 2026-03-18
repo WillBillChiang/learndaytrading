@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day Trading Mastery — Interactive Course</title>
+  <meta name="description" content="A comprehensive, interactive day trading course covering market mechanics, technical analysis, risk management, psychology, and live simulation.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Favicon (inline SVG as data URI) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%233b82f6'/><path d='M25 65 L40 45 L55 55 L75 30' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/><circle cx='75' cy='30' r='6' fill='%2300e676'/></svg>">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+            <polyline points="16 7 22 7 22 13"></polyline>
+          </svg>
+        </div>
+        <div>
+          <div class="sidebar-title">Day Trading Mastery</div>
+          <div class="sidebar-subtitle">Interactive Course</div>
+        </div>
+      </div>
+
+      <div class="sidebar-progress">
+        <div class="progress-label">
+          <span>Course Progress</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="module-nav" id="moduleNav">
+        <div class="module-nav-item" data-module="home" onclick="navigateTo('home')">
+          <div class="module-nav-number">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <span class="module-nav-text">Course Home</span>
+        </div>
+        <div class="module-nav-item" data-module="1" onclick="navigateTo(1)">
+          <div class="module-nav-number">1</div>
+          <span class="module-nav-text">How Markets Really Work</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+        <div class="module-nav-item" data-module="2" onclick="navigateTo(2)">
+          <div class="module-nav-number">2</div>
+          <span class="module-nav-text">Reading Candlesticks</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+        <div class="module-nav-item" data-module="3" onclick="navigateTo(3)">
+          <div class="module-nav-number">3</div>
+          <span class="module-nav-text">Chart Patterns & Structure</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+        <div class="module-nav-item" data-module="4" onclick="navigateTo(4)">
+          <div class="module-nav-number">4</div>
+          <span class="module-nav-text">Technical Indicators</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+        <div class="module-nav-item" data-module="5" onclick="navigateTo(5)">
+          <div class="module-nav-number">5</div>
+          <span class="module-nav-text">Risk Management</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+        <div class="module-nav-item" data-module="6" onclick="navigateTo(6)">
+          <div class="module-nav-number">6</div>
+          <span class="module-nav-text">Trading Psychology</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+        <div class="module-nav-item" data-module="7" onclick="navigateTo(7)">
+          <div class="module-nav-number">7</div>
+          <span class="module-nav-text">Day Trading Strategies</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+        <div class="module-nav-item" data-module="8" onclick="navigateTo(8)">
+          <div class="module-nav-number">8</div>
+          <span class="module-nav-text">Tools of the Trade</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+        <div class="module-nav-item" data-module="9" onclick="navigateTo(9)">
+          <div class="module-nav-number">9</div>
+          <span class="module-nav-text">Building Your Trading Plan</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+        <div class="module-nav-item" data-module="10" onclick="navigateTo(10)">
+          <div class="module-nav-number">10</div>
+          <span class="module-nav-text">Simulation & Final Exam</span>
+          <span class="module-nav-check">✓</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle" id="menuToggle" onclick="toggleSidebar()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="topbar-breadcrumb" id="breadcrumb">
+            <span>Course Home</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Modules: <span class="stat-value" id="completedCount">0</span>/10</span>
+          </div>
+          <div class="topbar-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Score: <span class="stat-value" id="totalScore">0</span></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dynamic Content Area -->
+      <div class="content-area page-enter" id="contentArea">
+        <!-- Content loaded dynamically -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <div class="toast-text" id="toastText"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/progress.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

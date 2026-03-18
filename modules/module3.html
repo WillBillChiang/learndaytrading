@@ -1,0 +1,771 @@
+<!-- ============================================
+     MODULE 3: Chart Patterns & Structure
+     ============================================ -->
+
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 20 8 14 13 17 21 7"/>
+      <line x1="17" y1="7" x2="21" y2="7"/>
+      <line x1="21" y1="7" x2="21" y2="11"/>
+    </svg>
+    MODULE 03
+  </div>
+  <h1>Chart Patterns & Structure</h1>
+  <p>Every price chart tells a story. Learning to read market structure through support, resistance, trendlines, and classic chart patterns is the foundation of technical analysis. These patterns repeat because they reflect the collective psychology of buyers and sellers&nbsp;&mdash; fear, greed, indecision, and conviction.</p>
+</div>
+
+<!-- ==========================================
+     3.1 — Support & Resistance
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">3.1</span> Support &amp; Resistance</h2>
+
+  <p>Support and resistance are the most fundamental concepts in chart analysis. They represent price levels where buying or selling pressure has historically been strong enough to halt or reverse price movement.</p>
+
+  <h3>What Is Support?</h3>
+  <p><strong>Support</strong> is a price level where demand is strong enough to prevent the price from declining further. Think of it as a "floor" that price bounces off. When price approaches support, buyers step in because they perceive the asset as cheap or undervalued at that level.</p>
+
+  <h3>What Is Resistance?</h3>
+  <p><strong>Resistance</strong> is a price level where selling pressure is strong enough to prevent the price from rising further. It acts as a "ceiling." Sellers emerge at resistance because they perceive the asset as expensive or they are taking profits from earlier entries.</p>
+
+  <div class="diagram-container reveal">
+    <svg viewBox="0 0 700 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sr-price-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#3b82f6"/>
+          <stop offset="100%" stop-color="#8b5cf6"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Grid lines -->
+      <g opacity="0.08" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="60" y1="40" x2="680" y2="40"/>
+        <line x1="60" y1="100" x2="680" y2="100"/>
+        <line x1="60" y1="160" x2="680" y2="160"/>
+        <line x1="60" y1="220" x2="680" y2="220"/>
+        <line x1="60" y1="280" x2="680" y2="280"/>
+      </g>
+
+      <!-- Resistance line -->
+      <line x1="60" y1="80" x2="680" y2="80" stroke="#ef4444" stroke-width="2" stroke-dasharray="8 4" opacity="0.7"/>
+      <text x="62" y="72" fill="#ef4444" font-size="12" font-weight="600" font-family="Inter">RESISTANCE — $185.50</text>
+
+      <!-- Support line -->
+      <line x1="60" y1="270" x2="680" y2="270" stroke="#10b981" stroke-width="2" stroke-dasharray="8 4" opacity="0.7"/>
+      <text x="62" y="296" fill="#10b981" font-size="12" font-weight="600" font-family="Inter">SUPPORT — $162.00</text>
+
+      <!-- Price action bouncing between S/R -->
+      <polyline points="80,200 120,160 150,230 190,100 220,85 250,140 290,265 320,250 350,268 390,180 420,100 455,88 480,130 520,260 550,268 580,200 620,110 650,90"
+        stroke="url(#sr-price-grad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Bounce arrows at support -->
+      <g fill="#10b981" opacity="0.9">
+        <!-- Bounce 1 -->
+        <polygon points="290,268 283,255 297,255"/>
+        <line x1="290" y1="280" x2="290" y2="258" stroke="#10b981" stroke-width="2"/>
+        <!-- Bounce 2 -->
+        <polygon points="350,268 343,255 357,255"/>
+        <line x1="350" y1="280" x2="350" y2="258" stroke="#10b981" stroke-width="2"/>
+        <!-- Bounce 3 -->
+        <polygon points="550,268 543,255 557,255"/>
+        <line x1="550" y1="280" x2="550" y2="258" stroke="#10b981" stroke-width="2"/>
+      </g>
+
+      <!-- Rejection arrows at resistance -->
+      <g fill="#ef4444" opacity="0.9">
+        <!-- Rejection 1 -->
+        <polygon points="220,85 213,98 227,98"/>
+        <line x1="220" y1="72" x2="220" y2="95" stroke="#ef4444" stroke-width="2"/>
+        <!-- Rejection 2 -->
+        <polygon points="455,88 448,101 462,101"/>
+        <line x1="455" y1="75" x2="455" y2="98" stroke="#ef4444" stroke-width="2"/>
+        <!-- Rejection 3 -->
+        <polygon points="650,90 643,103 657,103"/>
+        <line x1="650" y1="77" x2="650" y2="100" stroke="#ef4444" stroke-width="2"/>
+      </g>
+
+      <!-- Labels -->
+      <text x="290" y="310" fill="#10b981" font-size="10" font-family="Inter" text-anchor="middle">Bounce</text>
+      <text x="455" y="68" fill="#ef4444" font-size="10" font-family="Inter" text-anchor="middle">Rejection</text>
+    </svg>
+    <div class="diagram-label">Price repeatedly bounces off support (green) and rejects from resistance (red)</div>
+  </div>
+
+  <h3>What Makes a Strong S/R Level?</h3>
+
+  <div class="concept-card reveal">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Key Factors for S/R Strength
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Number of touches:</strong> The more times price bounces off a level, the stronger it becomes. Three or more touches confirm significance.</li>
+      <li><strong>Recency:</strong> Recent levels matter more than levels from months or years ago. Markets have short memories.</li>
+      <li><strong>Volume at the level:</strong> High volume at a support or resistance level indicates strong conviction from participants.</li>
+      <li><strong>Time frame:</strong> S/R on higher time frames (daily, weekly) is more significant than on lower time frames (1-min, 5-min).</li>
+      <li><strong>Round numbers:</strong> Psychological price levels like $100, $50, or $200 often act as natural support/resistance because traders place orders there.</li>
+      <li><strong>Role reversal:</strong> When support breaks, it often becomes resistance (and vice versa). This is one of the most powerful concepts in trading.</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Pro Tip: Think in Zones, Not Lines</strong>
+      <p>Support and resistance are rarely exact price points. They are zones or areas. A support zone at $50 might extend from $49.50 to $50.50. Drawing them as thin zones rather than precise lines will make your analysis more realistic and reduce false breakout frustration.</p>
+    </div>
+  </div>
+
+  <h3>How to Identify S/R Levels</h3>
+  <ul class="feature-list">
+    <li>Look for areas where price has reversed direction multiple times</li>
+    <li>Identify swing highs and swing lows&nbsp;&mdash; these naturally form resistance and support</li>
+    <li>Note where large volume clusters appear on a volume profile</li>
+    <li>Watch for gap zones&nbsp;&mdash; unfilled gaps often act as support or resistance</li>
+    <li>Use previous day&rsquo;s high, low, and close as intraday S/R levels</li>
+  </ul>
+</div>
+
+<!-- ==========================================
+     3.2 — Trendlines & Channels
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">3.2</span> Trendlines &amp; Channels</h2>
+
+  <p>While horizontal S/R captures where price stalls, <strong>trendlines</strong> capture the direction and pace of the current move. A trendline connects a series of higher lows (in an uptrend) or lower highs (in a downtrend), creating a diagonal line that guides price action.</p>
+
+  <h3>Uptrend Trendline</h3>
+  <p>An uptrend trendline is drawn by connecting two or more <strong>higher lows</strong>. The line slopes upward from left to right and acts as dynamic support. As long as price remains above the trendline, the uptrend is intact.</p>
+
+  <h3>Downtrend Trendline</h3>
+  <p>A downtrend trendline connects two or more <strong>lower highs</strong>. The line slopes downward and acts as dynamic resistance. Price breaking above a downtrend trendline signals a potential trend reversal.</p>
+
+  <div class="diagram-container reveal">
+    <svg viewBox="0 0 700 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Left half: Uptrend channel -->
+      <text x="170" y="24" fill="#10b981" font-size="13" font-weight="600" font-family="Inter" text-anchor="middle">Ascending Channel</text>
+
+      <!-- Uptrend channel lines -->
+      <line x1="40" y1="300" x2="320" y2="100" stroke="#10b981" stroke-width="2" stroke-dasharray="6 3" opacity="0.6"/>
+      <line x1="40" y1="240" x2="320" y2="40" stroke="#10b981" stroke-width="2" stroke-dasharray="6 3" opacity="0.6"/>
+
+      <!-- Uptrend price action -->
+      <polyline points="50,290 80,250 100,275 130,230 155,195 170,240 200,180 225,150 240,195 270,135 295,110 310,140"
+        stroke="#10b981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Touch labels for uptrend -->
+      <circle cx="50" cy="290" r="4" fill="#10b981" opacity="0.7"/>
+      <circle cx="100" cy="275" r="4" fill="#10b981" opacity="0.7"/>
+      <circle cx="170" cy="240" r="4" fill="#10b981" opacity="0.7"/>
+      <circle cx="240" cy="195" r="4" fill="#10b981" opacity="0.7"/>
+      <text x="50" y="315" fill="#94a3b8" font-size="9" font-family="Inter" text-anchor="middle">Touch 1</text>
+      <text x="100" y="295" fill="#94a3b8" font-size="9" font-family="Inter" text-anchor="middle">Touch 2</text>
+      <text x="170" y="260" fill="#94a3b8" font-size="9" font-family="Inter" text-anchor="middle">Touch 3</text>
+
+      <!-- Divider -->
+      <line x1="350" y1="10" x2="350" y2="370" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+
+      <!-- Right half: Downtrend channel -->
+      <text x="520" y="24" fill="#ef4444" font-size="13" font-weight="600" font-family="Inter" text-anchor="middle">Descending Channel</text>
+
+      <!-- Downtrend channel lines -->
+      <line x1="380" y1="60" x2="660" y2="260" stroke="#ef4444" stroke-width="2" stroke-dasharray="6 3" opacity="0.6"/>
+      <line x1="380" y1="120" x2="660" y2="320" stroke="#ef4444" stroke-width="2" stroke-dasharray="6 3" opacity="0.6"/>
+
+      <!-- Downtrend price action -->
+      <polyline points="390,75 415,110 435,80 460,130 485,165 500,125 530,185 555,210 565,180 595,240 620,260 640,230"
+        stroke="#ef4444" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Touch labels for downtrend -->
+      <circle cx="390" cy="75" r="4" fill="#ef4444" opacity="0.7"/>
+      <circle cx="435" cy="80" r="4" fill="#ef4444" opacity="0.7"/>
+      <circle cx="500" cy="125" r="4" fill="#ef4444" opacity="0.7"/>
+      <circle cx="565" cy="180" r="4" fill="#ef4444" opacity="0.7"/>
+      <text x="390" y="62" fill="#94a3b8" font-size="9" font-family="Inter" text-anchor="middle">Touch 1</text>
+      <text x="435" y="67" fill="#94a3b8" font-size="9" font-family="Inter" text-anchor="middle">Touch 2</text>
+      <text x="500" y="112" fill="#94a3b8" font-size="9" font-family="Inter" text-anchor="middle">Touch 3</text>
+
+      <!-- Legend -->
+      <text x="350" y="365" fill="#94a3b8" font-size="11" font-family="Inter" text-anchor="middle">Minimum 3 touches validate a trendline</text>
+    </svg>
+    <div class="diagram-label">Ascending channel (left) acts as dynamic support; Descending channel (right) acts as dynamic resistance</div>
+  </div>
+
+  <h3>Trendline Rules</h3>
+  <div class="concept-card reveal">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      Drawing Valid Trendlines
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Minimum 3 touches:</strong> Two points define a line; the third touch confirms it. More touches = stronger trendline.</li>
+      <li><strong>Steeper = weaker:</strong> Very steep trendlines (above 60&deg;) are unsustainable and break quickly. The most reliable trendlines have a moderate slope around 30&ndash;45&deg;.</li>
+      <li><strong>Respect the wicks:</strong> Generally, connect the wicks (highs/lows) rather than candle bodies for more accurate trendlines.</li>
+      <li><strong>Adjust, don&rsquo;t force:</strong> If price slightly violates a trendline but recovers, it may be worth redrawing rather than declaring it broken.</li>
+      <li><strong>Volume on break:</strong> A trendline break accompanied by above-average volume is far more significant than a low-volume violation.</li>
+    </ul>
+  </div>
+
+  <div class="info-box warning reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Common Mistake: Over-drawing Trendlines</strong>
+      <p>New traders often force trendlines onto charts to see what they want to see. If you have to "squint" to see the trendline, it probably does not exist. The best trendlines are obvious&nbsp;&mdash; anyone looking at the chart should see them.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     3.3 — Classic Chart Patterns: Reversal
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">3.3</span> Classic Chart Patterns &mdash; Reversal</h2>
+
+  <p>Reversal patterns signal that the current trend is losing momentum and is likely to reverse direction. These patterns develop over time and are most reliable when they appear after a sustained trend. Let us examine the major reversal patterns every day trader should know.</p>
+
+  <!-- Head and Shoulders -->
+  <div class="concept-card reveal">
+    <h4>Head &amp; Shoulders <span class="tag tag-red">Bearish</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 500 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Neckline -->
+        <line x1="60" y1="140" x2="440" y2="140" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.6"/>
+        <text x="450" y="144" fill="#f59e0b" font-size="10" font-family="Inter">Neckline</text>
+        <!-- H&S pattern -->
+        <polyline points="40,170 80,140 110,80 140,140 180,140 220,30 260,140 300,140 330,70 360,140 400,170 440,200"
+          stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Labels -->
+        <text x="110" y="72" fill="#94a3b8" font-size="10" font-family="Inter" text-anchor="middle">Left Shoulder</text>
+        <text x="220" y="22" fill="#f1f5f9" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Head</text>
+        <text x="330" y="62" fill="#94a3b8" font-size="10" font-family="Inter" text-anchor="middle">Right Shoulder</text>
+        <!-- Breakdown arrow -->
+        <line x1="420" y1="145" x2="420" y2="190" stroke="#ef4444" stroke-width="2"/>
+        <polygon points="420,195 414,183 426,183" fill="#ef4444"/>
+        <text x="440" y="195" fill="#ef4444" font-size="10" font-family="Inter">Breakdown</text>
+      </svg>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Structure:</strong> Three peaks&nbsp;&mdash; the middle (head) is the highest, flanked by two lower, roughly equal peaks (shoulders).</li>
+      <li><strong>Neckline:</strong> Connect the lows between the left shoulder/head and head/right shoulder. This is your trigger line.</li>
+      <li><strong>Entry:</strong> Short when price breaks below the neckline on increased volume.</li>
+      <li><strong>Stop loss:</strong> Above the right shoulder.</li>
+      <li><strong>Price target:</strong> Measure the distance from the head to the neckline; project that same distance downward from the breakout point.</li>
+      <li><strong>Volume:</strong> Volume typically decreases from left shoulder to head to right shoulder, then surges on the neckline break.</li>
+    </ul>
+  </div>
+
+  <!-- Inverse Head and Shoulders -->
+  <div class="concept-card reveal">
+    <h4>Inverse Head &amp; Shoulders <span class="tag tag-green">Bullish</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 500 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Neckline -->
+        <line x1="60" y1="60" x2="440" y2="60" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.6"/>
+        <text x="450" y="64" fill="#f59e0b" font-size="10" font-family="Inter">Neckline</text>
+        <!-- Pattern -->
+        <polyline points="40,30 80,60 110,120 140,60 180,60 220,175 260,60 300,60 330,130 360,60 400,30 440,10"
+          stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Labels -->
+        <text x="110" y="138" fill="#94a3b8" font-size="10" font-family="Inter" text-anchor="middle">Left Shoulder</text>
+        <text x="220" y="193" fill="#f1f5f9" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Head</text>
+        <text x="330" y="148" fill="#94a3b8" font-size="10" font-family="Inter" text-anchor="middle">Right Shoulder</text>
+        <!-- Breakout arrow -->
+        <line x1="420" y1="55" x2="420" y2="15" stroke="#10b981" stroke-width="2"/>
+        <polygon points="420,10 414,22 426,22" fill="#10b981"/>
+        <text x="440" y="18" fill="#10b981" font-size="10" font-family="Inter">Breakout</text>
+      </svg>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Structure:</strong> The mirror image&nbsp;&mdash; three troughs, with the middle (head) being the lowest.</li>
+      <li><strong>Entry:</strong> Go long when price breaks above the neckline.</li>
+      <li><strong>Stop loss:</strong> Below the right shoulder.</li>
+      <li><strong>Price target:</strong> Distance from head to neckline projected upward.</li>
+      <li><strong>Volume:</strong> Often increases dramatically on the breakout above the neckline.</li>
+    </ul>
+  </div>
+
+  <!-- Double Top -->
+  <div class="concept-card reveal">
+    <h4>Double Top <span class="tag tag-red">Bearish</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Neckline / support -->
+        <line x1="50" y1="130" x2="450" y2="130" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.6"/>
+        <text x="452" y="128" fill="#f59e0b" font-size="10" font-family="Inter">Support</text>
+        <!-- Pattern -->
+        <polyline points="40,160 80,130 140,35 200,130 260,130 320,40 380,130 420,155 450,175"
+          stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Peak labels -->
+        <text x="140" y="27" fill="#f1f5f9" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Peak 1</text>
+        <text x="320" y="32" fill="#f1f5f9" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Peak 2</text>
+        <!-- M shape indicator -->
+        <text x="230" y="105" fill="#94a3b8" font-size="22" font-weight="700" font-family="Inter" text-anchor="middle" opacity="0.2">M</text>
+        <!-- Breakdown arrow -->
+        <line x1="400" y1="135" x2="400" y2="170" stroke="#ef4444" stroke-width="2"/>
+        <polygon points="400,175 394,163 406,163" fill="#ef4444"/>
+      </svg>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Structure:</strong> Two peaks at roughly the same price level, forming an "M" shape.</li>
+      <li><strong>Signal:</strong> Bearish&nbsp;&mdash; indicates buyers could not push above resistance twice, and momentum is fading.</li>
+      <li><strong>Entry:</strong> Short on break below the neckline (the valley between the two peaks).</li>
+      <li><strong>Stop loss:</strong> Above the peaks.</li>
+      <li><strong>Price target:</strong> Height of the pattern (peak to valley) projected downward from the break.</li>
+    </ul>
+  </div>
+
+  <!-- Double Bottom -->
+  <div class="concept-card reveal">
+    <h4>Double Bottom <span class="tag tag-green">Bullish</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Neckline / resistance -->
+        <line x1="50" y1="50" x2="450" y2="50" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.6"/>
+        <text x="452" y="48" fill="#f59e0b" font-size="10" font-family="Inter">Resistance</text>
+        <!-- Pattern -->
+        <polyline points="40,20 80,50 140,150 200,50 260,50 320,145 380,50 420,25 450,10"
+          stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Trough labels -->
+        <text x="140" y="168" fill="#f1f5f9" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Trough 1</text>
+        <text x="320" y="163" fill="#f1f5f9" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Trough 2</text>
+        <!-- W shape indicator -->
+        <text x="230" y="90" fill="#94a3b8" font-size="22" font-weight="700" font-family="Inter" text-anchor="middle" opacity="0.2">W</text>
+        <!-- Breakout arrow -->
+        <line x1="400" y1="45" x2="400" y2="12" stroke="#10b981" stroke-width="2"/>
+        <polygon points="400,8 394,20 406,20" fill="#10b981"/>
+      </svg>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Structure:</strong> Two troughs at roughly the same price level, forming a "W" shape.</li>
+      <li><strong>Signal:</strong> Bullish&nbsp;&mdash; sellers could not push price below support twice, indicating a shift to buying.</li>
+      <li><strong>Entry:</strong> Long on break above the neckline (the peak between the troughs).</li>
+      <li><strong>Stop loss:</strong> Below the troughs.</li>
+      <li><strong>Price target:</strong> Height of the pattern projected upward from the breakout point.</li>
+    </ul>
+  </div>
+
+  <!-- Triple Top / Bottom -->
+  <div class="concept-card reveal">
+    <h4>Triple Top / Triple Bottom <span class="tag tag-purple">Reversal</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left: Triple Top -->
+        <text x="125" y="18" fill="#ef4444" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Triple Top</text>
+
+        <line x1="20" y1="45" x2="240" y2="45" stroke="#ef4444" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <line x1="20" y1="110" x2="240" y2="110" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <polyline points="25,140 50,110 80,50 110,110 140,50 170,110 200,48 230,110 245,150"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="240" y1="115" x2="240" y2="155" stroke="#ef4444" stroke-width="1.5"/>
+        <polygon points="240,158 235,148 245,148" fill="#ef4444"/>
+
+        <!-- Divider -->
+        <line x1="260" y1="10" x2="260" y2="175" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+
+        <!-- Right: Triple Bottom -->
+        <text x="380" y="18" fill="#10b981" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Triple Bottom</text>
+
+        <line x1="270" y1="135" x2="490" y2="135" stroke="#10b981" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <line x1="270" y1="70" x2="490" y2="70" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <polyline points="280,40 305,70 330,130 360,70 390,132 420,70 448,135 475,70 490,30"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="485" y1="65" x2="485" y2="25" stroke="#10b981" stroke-width="1.5"/>
+        <polygon points="485,22 480,32 490,32" fill="#10b981"/>
+      </svg>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Structure:</strong> Three peaks (triple top) or three troughs (triple bottom) at roughly the same level.</li>
+      <li><strong>Rarer but stronger:</strong> Triple tops/bottoms are less common than doubles but signal even stronger reversal conviction.</li>
+      <li><strong>Entry:</strong> Same as double top/bottom&nbsp;&mdash; on break of the neckline after the third touch.</li>
+      <li><strong>Volume:</strong> Typically diminishes on each successive peak/trough and surges on the breakout.</li>
+    </ul>
+  </div>
+
+  <div class="info-box info reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Context Matters</strong>
+      <p>Reversal patterns are only valid when they appear after a sustained trend. A head-and-shoulders that forms in a sideways range carries far less significance than one that caps a multi-week uptrend. Always consider the bigger picture.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     3.4 — Classic Chart Patterns: Continuation
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">3.4</span> Classic Chart Patterns &mdash; Continuation</h2>
+
+  <p>Continuation patterns form during a pause in the current trend, before price resumes in the same direction. Think of them as the market "catching its breath" before the next leg. These patterns are your opportunity to enter a trending move.</p>
+
+  <!-- Bull Flag -->
+  <div class="concept-card reveal">
+    <h4>Bull Flag <span class="tag tag-green">Bullish</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Flagpole -->
+        <polyline points="60,160 100,145 130,100 160,50 180,30"
+          stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Flag channel -->
+        <line x1="180" y1="30" x2="320" y2="70" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <line x1="180" y1="60" x2="320" y2="100" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <!-- Flag price action -->
+        <polyline points="180,30 200,55 220,40 240,65 260,50 280,75 300,60 320,85"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Breakout -->
+        <polyline points="320,85 340,70 360,40 390,15 420,5"
+          stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Labels -->
+        <text x="110" y="92" fill="#94a3b8" font-size="10" font-family="Inter" transform="rotate(-50,110,92)">Flagpole</text>
+        <text x="250" y="38" fill="#94a3b8" font-size="10" font-family="Inter" text-anchor="middle">Flag</text>
+        <text x="410" y="30" fill="#10b981" font-size="10" font-family="Inter">Breakout</text>
+      </svg>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Structure:</strong> A sharp upward move (flagpole) followed by a gentle downward-sloping consolidation channel (flag).</li>
+      <li><strong>Entry:</strong> Buy when price breaks above the upper boundary of the flag.</li>
+      <li><strong>Stop loss:</strong> Below the lowest point of the flag.</li>
+      <li><strong>Price target:</strong> Length of the flagpole projected upward from the breakout.</li>
+      <li><strong>Volume:</strong> High volume on the flagpole, declining during the flag, then surging on breakout.</li>
+    </ul>
+  </div>
+
+  <!-- Bear Flag -->
+  <div class="concept-card reveal">
+    <h4>Bear Flag <span class="tag tag-red">Bearish</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Flagpole down -->
+        <polyline points="60,20 100,35 130,80 160,130 180,150"
+          stroke="#ef4444" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Flag channel (upward drift) -->
+        <line x1="180" y1="150" x2="320" y2="110" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <line x1="180" y1="120" x2="320" y2="80" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <!-- Flag price -->
+        <polyline points="180,150 200,125 220,140 240,115 260,130 280,105 300,120 320,95"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Breakdown -->
+        <polyline points="320,95 340,110 360,140 390,160 420,175"
+          stroke="#ef4444" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="250" y="145" fill="#94a3b8" font-size="10" font-family="Inter" text-anchor="middle">Flag</text>
+        <text x="410" y="150" fill="#ef4444" font-size="10" font-family="Inter">Breakdown</text>
+      </svg>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Structure:</strong> A sharp drop (flagpole) followed by a gentle upward-drifting consolidation (flag).</li>
+      <li><strong>Entry:</strong> Short when price breaks below the lower boundary of the flag.</li>
+      <li><strong>Price target:</strong> Length of the flagpole projected downward.</li>
+    </ul>
+  </div>
+
+  <!-- Pennant -->
+  <div class="concept-card reveal">
+    <h4>Pennant <span class="tag tag-blue">Continuation</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Flagpole -->
+        <polyline points="60,160 100,130 130,80 160,40 180,25"
+          stroke="#10b981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Converging trendlines -->
+        <line x1="180" y1="25" x2="310" y2="70" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <line x1="180" y1="60" x2="310" y2="70" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+        <!-- Pennant price action -->
+        <polyline points="180,25 195,55 210,32 225,50 240,38 255,48 270,42 290,46 305,44 310,70"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Breakout -->
+        <polyline points="310,70 330,50 360,30 400,10"
+          stroke="#10b981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="245" y="24" fill="#94a3b8" font-size="10" font-family="Inter" text-anchor="middle">Pennant</text>
+        <text x="390" y="30" fill="#10b981" font-size="10" font-family="Inter">Breakout</text>
+      </svg>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Structure:</strong> Like a flag, but the consolidation forms a small symmetrical triangle (converging trendlines) instead of a channel.</li>
+      <li><strong>Duration:</strong> Typically short&nbsp;&mdash; a few days to two weeks. Longer formations become symmetrical triangles.</li>
+      <li><strong>Entry &amp; target:</strong> Same as a flag pattern&nbsp;&mdash; break of the pennant boundary with target based on the flagpole length.</li>
+    </ul>
+  </div>
+
+  <!-- Triangles -->
+  <div class="concept-card reveal">
+    <h4>Triangles <span class="tag tag-purple">Multiple Types</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 700 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ascending Triangle -->
+        <text x="110" y="18" fill="#10b981" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Ascending</text>
+        <line x1="20" y1="40" x2="210" y2="40" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+        <line x1="20" y1="170" x2="210" y2="40" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+        <polyline points="30,160 55,45 80,130 105,48 130,100 155,42 180,75 200,44 215,25"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <polygon points="215,20 209,30 221,30" fill="#10b981"/>
+
+        <!-- Descending Triangle -->
+        <text x="360" y="18" fill="#ef4444" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Descending</text>
+        <line x1="270" y1="155" x2="460" y2="155" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+        <line x1="270" y1="30" x2="460" y2="155" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+        <polyline points="280,35 305,150 330,65 355,148 380,95 405,152 430,125 455,153 465,175"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <polygon points="465,180 459,170 471,170" fill="#ef4444"/>
+
+        <!-- Symmetric Triangle -->
+        <text x="600" y="18" fill="#8b5cf6" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Symmetric</text>
+        <line x1="510" y1="30" x2="680" y2="95" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+        <line x1="510" y1="170" x2="680" y2="95" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+        <polyline points="520,40 540,160 560,55 580,145 600,70 620,130 640,85 660,105 675,80 690,60"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="690" y="56" fill="#94a3b8" font-size="9" font-family="Inter">?</text>
+      </svg>
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Triangle Type</th>
+          <th>Flat Side</th>
+          <th>Sloping Side</th>
+          <th>Bias</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Ascending</strong></td>
+          <td>Horizontal resistance (top)</td>
+          <td>Rising support (bottom)</td>
+          <td><span class="tag tag-green">Bullish</span></td>
+        </tr>
+        <tr>
+          <td><strong>Descending</strong></td>
+          <td>Horizontal support (bottom)</td>
+          <td>Declining resistance (top)</td>
+          <td><span class="tag tag-red">Bearish</span></td>
+        </tr>
+        <tr>
+          <td><strong>Symmetric</strong></td>
+          <td>Neither</td>
+          <td>Both converge equally</td>
+          <td><span class="tag tag-purple">Neutral</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Wedges -->
+  <div class="concept-card reveal">
+    <h4>Wedges <span class="tag tag-gold">Reversal / Continuation</span></h4>
+    <div class="diagram-container" style="margin:1rem 0;border:none;padding:1rem 0">
+      <svg viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Rising Wedge -->
+        <text x="120" y="18" fill="#ef4444" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Rising Wedge (Bearish)</text>
+        <line x1="30" y1="155" x2="220" y2="30" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+        <line x1="30" y1="120" x2="220" y2="50" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+        <polyline points="35,150 55,125 75,145 95,105 115,130 135,85 155,110 175,65 195,85 215,45"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="215,45 225,70 240,100 255,140"
+          stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 2"/>
+        <polygon points="255,145 249,133 261,133" fill="#ef4444"/>
+
+        <!-- Falling Wedge -->
+        <text x="380" y="18" fill="#10b981" font-size="11" font-weight="600" font-family="Inter" text-anchor="middle">Falling Wedge (Bullish)</text>
+        <line x1="280" y1="30" x2="470" y2="135" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+        <line x1="280" y1="60" x2="470" y2="115" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+        <polyline points="285,35 305,55 325,40 345,75 365,55 385,90 405,75 425,105 445,95 465,125"
+          stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="465,125 475,100 485,70 490,40"
+          stroke="#10b981" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 2"/>
+        <polygon points="490,35 484,47 496,47" fill="#10b981"/>
+      </svg>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Rising wedge:</strong> Both trendlines slope upward, but the lower line is steeper. Looks bullish but is actually <strong>bearish</strong>&nbsp;&mdash; it signals fading upward momentum. Price usually breaks down.</li>
+      <li><strong>Falling wedge:</strong> Both trendlines slope downward, but the upper line is steeper. Looks bearish but is actually <strong>bullish</strong>&nbsp;&mdash; selling pressure is exhausting. Price usually breaks up.</li>
+      <li><strong>Key difference from triangles:</strong> In wedges, both lines slope in the same direction. In triangles, at least one line is horizontal or they slope in opposite directions.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==========================================
+     3.5 — Volume Confirmation
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">3.5</span> Volume Confirmation</h2>
+
+  <p>Price tells you <em>what</em> happened; volume tells you <em>how strongly</em> the market feels about it. No chart pattern analysis is complete without examining volume. Volume acts as the lie detector of technical analysis&nbsp;&mdash; it validates or invalidates every pattern you see.</p>
+
+  <h3>Volume Rules for Chart Patterns</h3>
+
+  <table class="data-table reveal">
+    <thead>
+      <tr>
+        <th>Scenario</th>
+        <th>Volume Behavior</th>
+        <th>Interpretation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Breakout from resistance</td>
+        <td>High volume surge (1.5x+ average)</td>
+        <td><span class="tag tag-green">Strong</span> &mdash; Likely genuine breakout</td>
+      </tr>
+      <tr>
+        <td>Breakout on low volume</td>
+        <td>Below average</td>
+        <td><span class="tag tag-red">Weak</span> &mdash; High probability of a fakeout / false breakout</td>
+      </tr>
+      <tr>
+        <td>During consolidation pattern</td>
+        <td>Declining / contracting</td>
+        <td><span class="tag tag-blue">Normal</span> &mdash; Expected; coiling = potential energy building</td>
+      </tr>
+      <tr>
+        <td>Trend continuation</td>
+        <td>Volume in direction of trend</td>
+        <td><span class="tag tag-green">Healthy</span> &mdash; Trend has conviction</td>
+      </tr>
+      <tr>
+        <td>Price rising, volume falling</td>
+        <td>Divergence</td>
+        <td><span class="tag tag-gold">Caution</span> &mdash; Rally may be running out of steam</td>
+      </tr>
+      <tr>
+        <td>Support break with volume</td>
+        <td>High volume on breakdown</td>
+        <td><span class="tag tag-red">Bearish</span> &mdash; Serious breakdown, sellers in control</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box tip reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The Breakout Volume Rule</strong>
+      <p>When a chart pattern breaks out, volume should ideally be at least 1.5 to 2 times the recent average. This single confirmation filter can save you from dozens of false breakout trades per month. If volume is not there, sit on your hands and wait.</p>
+    </div>
+  </div>
+
+  <h3>Volume Divergence</h3>
+  <p>One of the most powerful warning signals is <strong>volume divergence</strong>&nbsp;&mdash; when price makes new highs but volume is declining. This suggests fewer participants are supporting the move, and a reversal may be imminent. Conversely, price making new lows on declining volume can signal a bottom is forming.</p>
+
+  <div class="info-box warning reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Don&rsquo;t Trade Patterns in Isolation</strong>
+      <p>A perfect-looking head and shoulders with declining volume on the breakdown is likely a false signal. Always combine chart patterns with volume analysis and, ideally, indicator confirmation (covered in Module 4) to increase your probability of success.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     3.6 — Quiz: Pattern Recognition
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">3.6</span> Quiz: Pattern Recognition</h2>
+
+  <p>Test your knowledge of chart patterns, support/resistance, and volume analysis.</p>
+
+  <div class="quiz-container" data-quiz="m3-patterns">
+    <div class="quiz-header">
+      <div class="quiz-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Pattern Recognition Quiz
+      </div>
+      <span class="quiz-score"></span>
+    </div>
+    <div class="quiz-dots"></div>
+    <div class="quiz-body"></div>
+
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "A stock has been in a strong uptrend for 3 weeks. You notice it has formed three peaks, with the middle peak being the highest and the two outer peaks at similar heights. What pattern is this?",
+          "options": [
+            "Triple Top",
+            "Head & Shoulders",
+            "Double Top",
+            "Ascending Triangle"
+          ],
+          "correct": 1,
+          "explanation": "Three peaks where the middle is highest and the outer two are at similar levels is the classic Head & Shoulders pattern — a bearish reversal formation."
+        },
+        {
+          "question": "A stock breaks out above a resistance level at $50, but the breakout candle has below-average volume. What should you do?",
+          "options": [
+            "Buy immediately — the breakout is confirmed",
+            "Wait for a volume confirmation or a retest of $50 as new support",
+            "Short the stock since it will reverse",
+            "Double your position size since breakouts are reliable"
+          ],
+          "correct": 1,
+          "explanation": "Low-volume breakouts have a high probability of being fakeouts. The smart move is to wait for volume confirmation or a pullback that holds the breakout level as new support."
+        },
+        {
+          "question": "After a sharp rally from $30 to $45, a stock consolidates in a slightly downward-sloping channel between $42 and $44 for several days on declining volume. What pattern is forming?",
+          "options": [
+            "Descending Triangle",
+            "Bear Flag",
+            "Bull Flag",
+            "Falling Wedge"
+          ],
+          "correct": 2,
+          "explanation": "A sharp upward move (flagpole) followed by a gentle downward-sloping consolidation on declining volume is a textbook Bull Flag — a bullish continuation pattern."
+        },
+        {
+          "question": "A price level at $100 has acted as resistance three times. On the fourth attempt, the stock breaks through $100 on heavy volume and pulls back. What should you expect $100 to become?",
+          "options": [
+            "Stronger resistance",
+            "Irrelevant — the level is broken",
+            "New support (role reversal)",
+            "A sell signal"
+          ],
+          "correct": 2,
+          "explanation": "One of the most powerful concepts in technical analysis is role reversal: when resistance is broken convincingly, it often becomes support, and vice versa."
+        },
+        {
+          "question": "Which triangle pattern has a flat horizontal resistance line on top and a rising support line on the bottom?",
+          "options": [
+            "Descending Triangle",
+            "Symmetric Triangle",
+            "Ascending Triangle",
+            "Rising Wedge"
+          ],
+          "correct": 2,
+          "explanation": "An Ascending Triangle has flat resistance on top and rising support on the bottom. It has a bullish bias because buyers are becoming more aggressive (making higher lows) while sellers defend at one level."
+        },
+        {
+          "question": "You observe price making higher highs, but volume is consistently declining with each new high. What does this volume divergence suggest?",
+          "options": [
+            "The trend is healthy and will accelerate",
+            "Volume does not matter for price direction",
+            "The uptrend may be losing momentum and could reverse",
+            "You should increase your position size"
+          ],
+          "correct": 2,
+          "explanation": "When price makes new highs on declining volume, it signals waning buying interest. Fewer participants are supporting the rally, which often precedes a reversal or significant pullback."
+        },
+        {
+          "question": "Both trendlines slope upward in a pattern, but the lower trendline is steeper than the upper one, causing them to converge. What pattern is this, and what is its bias?",
+          "options": [
+            "Ascending Triangle — Bullish",
+            "Pennant — Bullish",
+            "Rising Wedge — Bearish",
+            "Bull Flag — Bullish"
+          ],
+          "correct": 2,
+          "explanation": "A Rising Wedge has both lines sloping up with convergence. Despite looking bullish, it's actually bearish — the narrowing range shows fading momentum, and price typically breaks down."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- Module Footer -->
+<div class="module-footer reveal">
+  <button class="module-footer-btn" onclick="navigateTo(2)">← Previous: Reading Candlesticks</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(4)">Next: Technical Indicators →</button>
+</div>

@@ -1,0 +1,663 @@
+<!-- MODULE 10: Putting It All Together — Simulation & Final Exam -->
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+    MODULE 10
+  </div>
+  <h1>Putting It All Together</h1>
+  <p>Apply everything you have learned in a live trading simulation and comprehensive final exam. This is the culmination of your journey from complete beginner to prepared, plan-driven trader.</p>
+</div>
+
+<!-- ========== 10.1 CONGRATULATIONS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">10.1</span> Congratulations on Making It This Far</h2>
+  <p>Completing nine modules of in-depth trading education puts you ahead of the vast majority of aspiring traders who never invest in proper learning. Most people jump straight into live trading with real money and no plan &mdash; you have taken the disciplined path. That discipline will serve you well.</p>
+
+  <p>Let us take a moment to review the knowledge you have built, module by module.</p>
+
+  <div class="diagram-container reveal">
+    <h3>Your Learning Journey</h3>
+    <svg viewBox="0 0 900 180" width="100%" style="max-width:900px">
+      <!-- Connecting line -->
+      <line x1="50" y1="90" x2="850" y2="90" stroke="#475569" stroke-width="2"/>
+
+      <!-- Module 1 -->
+      <circle cx="50" cy="90" r="18" fill="#1e293b" stroke="#3b82f6" stroke-width="2.5"/>
+      <text x="50" y="95" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="700">1</text>
+      <text x="50" y="130" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="600">Markets</text>
+      <text x="50" y="142" text-anchor="middle" fill="#94a3b8" font-size="7">Mechanics</text>
+
+      <!-- Module 2 -->
+      <circle cx="150" cy="90" r="18" fill="#1e293b" stroke="#10b981" stroke-width="2.5"/>
+      <text x="150" y="95" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">2</text>
+      <text x="150" y="130" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="600">Candle-</text>
+      <text x="150" y="142" text-anchor="middle" fill="#94a3b8" font-size="7">sticks</text>
+
+      <!-- Module 3 -->
+      <circle cx="250" cy="90" r="18" fill="#1e293b" stroke="#f59e0b" stroke-width="2.5"/>
+      <text x="250" y="95" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">3</text>
+      <text x="250" y="130" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="600">Chart</text>
+      <text x="250" y="142" text-anchor="middle" fill="#94a3b8" font-size="7">Patterns</text>
+
+      <!-- Module 4 -->
+      <circle cx="350" cy="90" r="18" fill="#1e293b" stroke="#8b5cf6" stroke-width="2.5"/>
+      <text x="350" y="95" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="700">4</text>
+      <text x="350" y="130" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="600">Technical</text>
+      <text x="350" y="142" text-anchor="middle" fill="#94a3b8" font-size="7">Indicators</text>
+
+      <!-- Module 5 -->
+      <circle cx="450" cy="90" r="18" fill="#1e293b" stroke="#ef4444" stroke-width="2.5"/>
+      <text x="450" y="95" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">5</text>
+      <text x="450" y="130" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="600">Risk</text>
+      <text x="450" y="142" text-anchor="middle" fill="#94a3b8" font-size="7">Management</text>
+
+      <!-- Module 6 -->
+      <circle cx="550" cy="90" r="18" fill="#1e293b" stroke="#ec4899" stroke-width="2.5"/>
+      <text x="550" y="95" text-anchor="middle" fill="#ec4899" font-size="12" font-weight="700">6</text>
+      <text x="550" y="130" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="600">Trading</text>
+      <text x="550" y="142" text-anchor="middle" fill="#94a3b8" font-size="7">Psychology</text>
+
+      <!-- Module 7 -->
+      <circle cx="650" cy="90" r="18" fill="#1e293b" stroke="#06b6d4" stroke-width="2.5"/>
+      <text x="650" y="95" text-anchor="middle" fill="#06b6d4" font-size="12" font-weight="700">7</text>
+      <text x="650" y="130" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="600">Day Trading</text>
+      <text x="650" y="142" text-anchor="middle" fill="#94a3b8" font-size="7">Strategies</text>
+
+      <!-- Module 8 -->
+      <circle cx="750" cy="90" r="18" fill="#1e293b" stroke="#f97316" stroke-width="2.5"/>
+      <text x="750" y="95" text-anchor="middle" fill="#f97316" font-size="12" font-weight="700">8</text>
+      <text x="750" y="130" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="600">Tools of</text>
+      <text x="750" y="142" text-anchor="middle" fill="#94a3b8" font-size="7">the Trade</text>
+
+      <!-- Module 9 -->
+      <circle cx="850" cy="90" r="18" fill="#1e293b" stroke="#14b8a6" stroke-width="2.5"/>
+      <text x="850" y="95" text-anchor="middle" fill="#14b8a6" font-size="12" font-weight="700">9</text>
+      <text x="850" y="130" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="600">Trading</text>
+      <text x="850" y="142" text-anchor="middle" fill="#94a3b8" font-size="7">Plan</text>
+
+      <!-- Checkmarks -->
+      <text x="50" y="60" text-anchor="middle" fill="#10b981" font-size="14">&#10003;</text>
+      <text x="150" y="60" text-anchor="middle" fill="#10b981" font-size="14">&#10003;</text>
+      <text x="250" y="60" text-anchor="middle" fill="#10b981" font-size="14">&#10003;</text>
+      <text x="350" y="60" text-anchor="middle" fill="#10b981" font-size="14">&#10003;</text>
+      <text x="450" y="60" text-anchor="middle" fill="#10b981" font-size="14">&#10003;</text>
+      <text x="550" y="60" text-anchor="middle" fill="#10b981" font-size="14">&#10003;</text>
+      <text x="650" y="60" text-anchor="middle" fill="#10b981" font-size="14">&#10003;</text>
+      <text x="750" y="60" text-anchor="middle" fill="#10b981" font-size="14">&#10003;</text>
+      <text x="850" y="60" text-anchor="middle" fill="#10b981" font-size="14">&#10003;</text>
+    </svg>
+    <p style="text-align:center;color:#94a3b8;font-size:0.85rem;margin-top:0.5rem;">Nine modules of comprehensive trading education &mdash; completed.</p>
+  </div>
+
+  <div class="concept-card">
+    <h3>What You Have Learned</h3>
+    <ul class="feature-list">
+      <li><strong>Module 1: Market Mechanics</strong> &mdash; How exchanges work, order types, the bid-ask spread, and how your trades actually execute.</li>
+      <li><strong>Module 2: Candlestick Patterns</strong> &mdash; Reading price action through candles, single and multi-candle reversal and continuation patterns.</li>
+      <li><strong>Module 3: Chart Patterns</strong> &mdash; Support and resistance, trendlines, classic patterns like head &amp; shoulders, triangles, flags, and channels.</li>
+      <li><strong>Module 4: Technical Indicators</strong> &mdash; Moving averages, VWAP, RSI, MACD, Bollinger Bands, and how to combine indicators without redundancy.</li>
+      <li><strong>Module 5: Risk Management</strong> &mdash; Position sizing, the 1% rule, risk/reward ratios, drawdown protection, and why risk management is the foundation of survival.</li>
+      <li><strong>Module 6: Trading Psychology</strong> &mdash; Fear, greed, FOMO, revenge trading, tilt, and the mental frameworks that separate professionals from gamblers.</li>
+      <li><strong>Module 7: Day Trading Strategies</strong> &mdash; Breakout, VWAP, momentum, reversal, and gap strategies with complete entry/exit rules.</li>
+      <li><strong>Module 8: Tools of the Trade</strong> &mdash; Platforms, scanners, Level 2, time &amp; sales, hotkeys, and setting up your trading workspace.</li>
+      <li><strong>Module 9: Building Your Trading Plan</strong> &mdash; Defining your edge, pre-market routine, entry/exit templates, journaling, and review processes.</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Knowledge Is Not Enough</strong>
+      <p>You now have the knowledge. But knowledge without practice is just theory. The next step &mdash; the most important step &mdash; is applying everything you have learned through paper trading and simulation. That is exactly what this final module is about.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 10.2 PAPER TRADING GUIDELINES ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">10.2</span> Paper Trading Guidelines</h2>
+  <p>Paper trading (simulated trading with virtual money) is the bridge between education and live trading. It allows you to practice your setups, test your plan, and build confidence &mdash; all without risking a single dollar. Every professional trader you admire went through this phase. Do not skip it.</p>
+
+  <div class="concept-card">
+    <h3>Why Paper Trading Matters</h3>
+    <ul class="feature-list">
+      <li><strong>Risk-free repetitions</strong> &mdash; You need hundreds of trades to validate your strategy. Paper trading lets you get those reps without financial consequence.</li>
+      <li><strong>Platform mastery</strong> &mdash; Learn your platform's quirks, hotkeys, and order entry systems before real money is on the line. Execution errors cost real traders thousands.</li>
+      <li><strong>Plan validation</strong> &mdash; Your trading plan is a hypothesis until you test it. Paper trading provides the data to confirm or refine your approach.</li>
+      <li><strong>Emotional preparation</strong> &mdash; While paper trading will never fully replicate the emotions of real trading, it builds the mechanical habits that anchor you when emotions run high.</li>
+    </ul>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Treat It Like Real Money</strong>
+      <p>The biggest mistake paper traders make is treating it like a game. They take oversized positions, ignore their stops, and YOLO into trades they would never take with real money. If you do this, you learn nothing. Paper trade with your actual planned account size, follow your actual rules, and journal every trade as if real dollars were at stake.</p>
+    </div>
+  </div>
+
+  <h3>Paper Trading Rules Checklist</h3>
+  <ul class="checklist">
+    <li class="checklist-item" onclick="this.classList.toggle('checked');this.querySelector('.checklist-box').classList.toggle('checked')">
+      <span class="checklist-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <span class="checklist-text"><strong>Paper trade for a minimum of 2&ndash;4 weeks</strong> before considering live trading. Ideally, aim for 100+ simulated trades.</span>
+    </li>
+    <li class="checklist-item" onclick="this.classList.toggle('checked');this.querySelector('.checklist-box').classList.toggle('checked')">
+      <span class="checklist-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <span class="checklist-text"><strong>Use realistic position sizes</strong> based on your planned starting capital. If you plan to start with $25K, paper trade with $25K.</span>
+    </li>
+    <li class="checklist-item" onclick="this.classList.toggle('checked');this.querySelector('.checklist-box').classList.toggle('checked')">
+      <span class="checklist-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <span class="checklist-text"><strong>Follow your complete trading plan</strong> &mdash; pre-market routine, entry templates, exit rules, position sizing. Every rule.</span>
+    </li>
+    <li class="checklist-item" onclick="this.classList.toggle('checked');this.querySelector('.checklist-box').classList.toggle('checked')">
+      <span class="checklist-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <span class="checklist-text"><strong>Journal every single trade</strong> using the journal structure from Module 9. Record mechanics, strategy, emotions, and plan compliance.</span>
+    </li>
+    <li class="checklist-item" onclick="this.classList.toggle('checked');this.querySelector('.checklist-box').classList.toggle('checked')">
+      <span class="checklist-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <span class="checklist-text"><strong>Conduct weekly reviews</strong> of your paper trading results. Track win rate, average R, and plan compliance.</span>
+    </li>
+    <li class="checklist-item" onclick="this.classList.toggle('checked');this.querySelector('.checklist-box').classList.toggle('checked')">
+      <span class="checklist-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <span class="checklist-text"><strong>Only go live when profitable</strong> for at least 2 consecutive weeks with 90%+ plan compliance. Profitability without discipline is luck.</span>
+    </li>
+    <li class="checklist-item" onclick="this.classList.toggle('checked');this.querySelector('.checklist-box').classList.toggle('checked')">
+      <span class="checklist-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <span class="checklist-text"><strong>When transitioning to live, start with small size</strong> &mdash; 25&ndash;50% of your planned position size. Scale up gradually as you prove consistency.</span>
+    </li>
+  </ul>
+
+  <div class="concept-card">
+    <h3>Readiness Criteria: When to Go Live</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Criteria</th>
+          <th>Minimum Threshold</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Paper trading duration</td>
+          <td>2&ndash;4 weeks minimum</td>
+        </tr>
+        <tr>
+          <td>Number of simulated trades</td>
+          <td>100+ trades</td>
+        </tr>
+        <tr>
+          <td>Consecutive profitable weeks</td>
+          <td>At least 2</td>
+        </tr>
+        <tr>
+          <td>Plan compliance rate</td>
+          <td>90%+ of trades followed the plan</td>
+        </tr>
+        <tr>
+          <td>Max daily loss respected</td>
+          <td>Never exceeded daily loss limit</td>
+        </tr>
+        <tr>
+          <td>Emotional readiness</td>
+          <td>Can take losses without revenge trading</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ========== 10.3 TRADING SIMULATOR ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">10.3</span> Interactive: Trading Simulator</h2>
+  <p>Put your skills to the test. This simulator generates realistic price action one candle at a time. Your job is to identify setups, manage risk, and make trading decisions using everything you have learned.</p>
+
+  <div class="simulator">
+    <div class="simulator-header">
+      <div class="simulator-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        Trading Simulator
+      </div>
+      <div class="simulator-stats">
+        <div class="sim-stat">
+          <div class="sim-stat-label">Price</div>
+          <div class="sim-stat-value" id="sim-price" style="color:var(--text-primary)">$175.00</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-label">P&amp;L</div>
+          <div class="sim-stat-value" id="sim-pnl" style="color:var(--text-muted)">$0.00</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-label">Cash</div>
+          <div class="sim-stat-value" id="sim-cash" style="color:var(--accent-blue)">$25,000</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-label">Trades</div>
+          <div class="sim-stat-value" id="sim-trades" style="color:var(--text-secondary)">0</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-label">Position</div>
+          <div class="sim-stat-value" id="sim-position" style="color:var(--text-muted)">Flat</div>
+        </div>
+      </div>
+    </div>
+    <div class="simulator-chart">
+      <div class="chart-canvas-wrapper">
+        <canvas id="sim-canvas" data-height="350"></canvas>
+      </div>
+    </div>
+    <div class="simulator-controls">
+      <div style="display:flex;align-items:center;gap:0.5rem">
+        <button class="btn btn-sm btn-secondary" id="sim-play">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg> Play
+        </button>
+        <select id="sim-speed" style="background:var(--bg-elevated);border:1px solid var(--border-color);border-radius:var(--radius-sm);color:var(--text-secondary);padding:4px 8px;font-family:var(--font-sans);font-size:0.8rem">
+          <option value="800">Slow</option>
+          <option value="400" selected>Normal</option>
+          <option value="150">Fast</option>
+        </select>
+        <button class="btn btn-sm btn-ghost" id="sim-reset">Reset</button>
+      </div>
+      <div style="display:flex;gap:0.5rem">
+        <button class="sim-btn buy">Buy</button>
+        <button class="sim-btn sell" disabled>Sell</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box info" style="margin-top:1.5rem">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>How to Use the Simulator</strong>
+      <p>Press <strong>Play</strong> to advance the chart candle by candle. Watch the price action develop and look for the patterns and setups you learned in earlier modules. Click <strong>Buy</strong> to enter a long position at the current price. Click <strong>Sell</strong> to exit your position and lock in your profit or loss. Try to identify trends, breakouts, and reversals. Manage your risk &mdash; do not hold through large drawdowns!</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>Simulator Tips</h3>
+    <ul class="feature-list">
+      <li><strong>Be patient</strong> &mdash; Do not buy on the first candle. Wait for a setup to develop. Look for consolidation patterns, support bounces, or breakout setups.</li>
+      <li><strong>Manage risk</strong> &mdash; If the trade goes against you, sell and cut your loss. Do not hope for a recovery. Small losses are part of the game.</li>
+      <li><strong>Track your performance</strong> &mdash; The P&amp;L display shows your running total. Try to end the simulation in profit.</li>
+      <li><strong>Adjust speed</strong> &mdash; Use Slow mode when you are learning to read the candles, Normal for practice, and Fast to test pattern recognition under pressure.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 10.4 KEY TAKEAWAYS ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">10.4</span> Key Takeaways From the Entire Course</h2>
+  <p>Here are the most important lessons from each module &mdash; the principles that, if internalized, will form the bedrock of your trading career.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-dot" style="background:var(--accent-blue)">1</div>
+      <div class="step-line"></div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Markets Are a Mechanism, Not a Mystery</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">Every price movement is driven by supply and demand expressed through order flow. Understanding market microstructure gives you an edge over traders who treat the market like a black box.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot" style="background:var(--accent-green)">2</div>
+      <div class="step-line"></div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Candlesticks Tell a Story</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">Each candle represents a battle between buyers and sellers. Reading the wicks, bodies, and context gives you insight into who is winning &mdash; and who is about to lose.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot" style="background:var(--accent-yellow)">3</div>
+      <div class="step-line"></div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Patterns Repeat Because Human Psychology Does Not Change</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">Chart patterns work because they reflect crowd behavior &mdash; fear, greed, hope, and panic. The same patterns have been profitable for over a century, and they will continue to work.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot" style="background:#8b5cf6">4</div>
+      <div class="step-line"></div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Indicators Confirm, They Do Not Predict</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">Use indicators as confirmation tools, not crystal balls. Price action leads, indicators follow. Avoid using multiple indicators that measure the same thing.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot" style="background:var(--accent-red)">5</div>
+      <div class="step-line"></div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Risk Management Is the Only Edge You Fully Control</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">You cannot control whether a trade wins or loses. You can control how much you lose when you are wrong. Position sizing and the 1% rule are non-negotiable foundations.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot" style="background:#ec4899">6</div>
+      <div class="step-line"></div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Your Biggest Enemy Is in the Mirror</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">Psychology accounts for 80% of trading success. Master your emotions, eliminate revenge trading, and treat every trade as just one in a series of thousands.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot" style="background:#06b6d4">7</div>
+      <div class="step-line"></div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Master 2&ndash;3 Strategies, Not 20</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">The best traders are specialists. Pick 2&ndash;3 setups that align with your personality and market conditions, and execute them with precision. Depth beats breadth.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot" style="background:#f97316">8</div>
+      <div class="step-line"></div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Your Tools Should Amplify Your Edge, Not Create It</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">The best platform in the world will not make a bad strategy profitable. Choose reliable tools, learn them deeply, and focus on execution rather than flashy features.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot" style="background:#14b8a6">9</div>
+      <div class="step-line"></div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Plan Your Trade, Trade Your Plan</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">A written trading plan, consistently followed and regularly reviewed, is the single greatest differentiator between profitable traders and everyone else. No plan, no trade.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot" style="background:var(--accent-blue)">10</div>
+      <div>
+        <h4 style="color:var(--text-primary);margin:0 0 0.25rem">This Is a Marathon, Not a Sprint</h4>
+        <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">Consistent profitability takes 1&ndash;2 years of dedicated practice. Be patient with yourself, focus on the process over profits, and never stop learning.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 10.5 FINAL COMPREHENSIVE EXAM ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">10.5</span> Final Comprehensive Exam</h2>
+  <p>This is the final test. Fifteen questions covering every module in the course. Take your time, think through each question carefully, and apply what you have learned. Aim for at least 12 out of 15 correct to demonstrate mastery.</p>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Read Each Question Carefully</strong>
+      <p>These questions are designed to test application, not just memorization. Many have answers that seem plausible but are subtly wrong. Think about the underlying principles before selecting your answer.</p>
+    </div>
+  </div>
+
+  <div class="quiz-container" data-quiz="m10-final">
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "You place a limit buy order at $50.00. The stock is currently trading at $50.50. Under what condition will your order be filled?",
+          "options": [
+            "Immediately, because you placed a buy order",
+            "Only if the stock price drops to $50.00 or below",
+            "At $50.50 since the market is above your limit",
+            "At the end of the trading day at whatever price is available"
+          ],
+          "correct": 1,
+          "explanation": "A limit buy order only fills at your specified price or lower. Since the stock is trading at $50.50 and your limit is $50.00, the order will remain unfilled until the price drops to $50.00 or below. This gives you price certainty but not execution certainty."
+        },
+        {
+          "question": "A stock has a bid of $25.10 (500 shares) and an ask of $25.15 (200 shares). You submit a market order to buy 300 shares. What approximately happens?",
+          "options": [
+            "You buy all 300 shares at $25.15",
+            "You buy 200 shares at $25.15 and 100 shares at the next ask level above",
+            "You buy 300 shares at $25.10",
+            "Your order is rejected because there are only 200 shares at the ask"
+          ],
+          "correct": 1,
+          "explanation": "A market order fills at the best available prices. You get 200 shares at the ask price of $25.15 (clearing that level), then the remaining 100 shares fill at the next available ask price above $25.15. This is called 'walking the book' and results in slippage."
+        },
+        {
+          "question": "You see a candle with a very long lower wick, a small body near the top, and almost no upper wick, appearing after a downtrend. What pattern is this and what does it suggest?",
+          "options": [
+            "Shooting star — bearish continuation",
+            "Hammer — potential bullish reversal",
+            "Doji — indecision in the market",
+            "Inverted hammer — bearish reversal"
+          ],
+          "correct": 1,
+          "explanation": "A hammer has a long lower wick (at least 2x the body), a small body near the top, and appears after a downtrend. It signals that sellers pushed the price down during the period but buyers stepped in and drove it back up near the open — suggesting a potential reversal of the downtrend."
+        },
+        {
+          "question": "A stock forms three consecutive candles: a large red candle, a small-bodied candle that gaps below, then a large green candle that closes above the midpoint of the first red candle. What is this pattern?",
+          "options": [
+            "Three black crows",
+            "Evening star",
+            "Morning star — bullish reversal",
+            "Bullish engulfing"
+          ],
+          "correct": 2,
+          "explanation": "This is a morning star pattern — a three-candle bullish reversal signal. The first candle confirms the downtrend, the small middle candle shows indecision (the sellers are exhausted), and the third large green candle confirms the reversal as buyers take control."
+        },
+        {
+          "question": "A stock breaks out above a flat top resistance level but volume on the breakout candle is only 0.5x the average volume. What should you do?",
+          "options": [
+            "Enter immediately — breakouts above resistance are always bullish",
+            "Skip the trade — low volume breakouts have a high failure rate",
+            "Enter with double your normal position size to average into the move",
+            "Short the stock because it will reverse"
+          ],
+          "correct": 1,
+          "explanation": "Volume is the confirmation tool for breakouts. A breakout on low volume (below average) suggests a lack of institutional participation and has a high probability of failure — often resulting in a 'false breakout' that reverses back into the range. Always require above-average volume for breakout entries."
+        },
+        {
+          "question": "You identify a symmetrical triangle pattern. Which of the following is the correct way to trade it?",
+          "options": [
+            "Buy at the center of the triangle where the price is cheapest",
+            "Wait for a breakout above the upper trendline or below the lower trendline with volume confirmation, then enter in the direction of the breakout",
+            "Always buy because symmetrical triangles are bullish",
+            "Place a buy order at the apex of the triangle"
+          ],
+          "correct": 1,
+          "explanation": "Symmetrical triangles are neutral patterns — they can break in either direction. The correct approach is to wait for a confirmed breakout above or below the triangle with strong volume, then trade in the direction of the breakout. Trading inside the pattern or assuming direction is gambling."
+        },
+        {
+          "question": "VWAP is $150.00 and a stock is currently trading at $148.50. An intraday swing trader using VWAP strategy would most likely:",
+          "options": [
+            "Go long because the stock is below VWAP and will revert",
+            "Look for short entries because price below VWAP indicates institutional selling pressure",
+            "Ignore VWAP because it only works on daily charts",
+            "Buy at VWAP because it always acts as support"
+          ],
+          "correct": 1,
+          "explanation": "When price is below VWAP, it indicates that the average buyer for the day is underwater — this creates selling pressure as traders look to exit positions at breakeven. Short-biased strategies are favored below VWAP, while long-biased strategies are favored above VWAP."
+        },
+        {
+          "question": "A stock's RSI has been above 70 for three consecutive days. What is the correct interpretation?",
+          "options": [
+            "You should short immediately because it is overbought",
+            "The stock is showing strong momentum; RSI above 70 in a strong trend can persist for extended periods",
+            "RSI above 70 always means the stock will crash",
+            "RSI is broken and should be ignored"
+          ],
+          "correct": 1,
+          "explanation": "Overbought does not mean 'sell.' In strong uptrends, RSI can remain above 70 for weeks. RSI above 70 indicates strong momentum. The correct approach is to use RSI divergence (price making new highs while RSI makes lower highs) as a warning sign, not to blindly short overbought readings."
+        },
+        {
+          "question": "You have a $25,000 account and follow the 1% rule. Your trade setup has a stop loss $0.40 away from your entry. How many shares should you trade?",
+          "options": [
+            "250 shares",
+            "625 shares",
+            "1,000 shares",
+            "2,500 shares"
+          ],
+          "correct": 1,
+          "explanation": "The 1% rule means risking a maximum of $250 (1% of $25,000) per trade. Position size = Max Risk / Stop Distance = $250 / $0.40 = 625 shares. This ensures that if you are stopped out, you lose no more than 1% of your account."
+        },
+        {
+          "question": "After three consecutive losing trades, you feel angry and want to take a larger position to 'make it all back.' What is the correct course of action?",
+          "options": [
+            "Double your position size on the next trade to recover faster",
+            "Take the trade but use a wider stop loss to give it more room",
+            "Step away from the screen, follow your psychology rules, and only return when calm",
+            "Switch to a different strategy that might work better today"
+          ],
+          "correct": 2,
+          "explanation": "This is textbook revenge trading — one of the most destructive behaviors in trading. The correct response is to step away. Your trading plan should have a rule for consecutive losses (e.g., 'After 3 losses, take a mandatory 30-minute break'). Returning to trade while emotional guarantees more losses."
+        },
+        {
+          "question": "You are profitable on a trade and move your stop loss to breakeven after reaching your first profit target. The stock dips and hits your breakeven stop, then rallies sharply without you. What is the correct assessment?",
+          "options": [
+            "You made a mistake by moving your stop to breakeven too early",
+            "You executed your plan correctly — protecting capital is the priority, and you cannot predict every move",
+            "You should re-enter immediately to catch the rest of the move",
+            "This proves that stop losses do not work"
+          ],
+          "correct": 1,
+          "explanation": "This is a textbook example of correct execution even though the outcome feels bad. You followed your plan: you took partial profit at T1, moved your stop to breakeven (making the remainder a free trade), and your stop was hit. The subsequent rally is irrelevant — you cannot predict it. A good process sometimes has frustrating individual outcomes, but over hundreds of trades, this approach protects your capital."
+        },
+        {
+          "question": "A gap-and-go strategy requires all of the following EXCEPT:",
+          "options": [
+            "A stock gapping up significantly on a catalyst",
+            "Above-average pre-market volume",
+            "A gap fill back to the previous close before entry",
+            "Relative volume (RVOL) above 2.0"
+          ],
+          "correct": 2,
+          "explanation": "A gap-and-go strategy involves buying stocks that gap up and continue moving higher — the trade relies on momentum, NOT on the gap filling. A gap fill back to the previous close would be the basis for a different strategy (gap fill reversal). The gap-and-go requires a strong catalyst, high relative volume, and continuation after the open."
+        },
+        {
+          "question": "You are using a VWAP reversal strategy. The stock drops sharply below VWAP, then bounces and reclaims VWAP with strong volume. What is the typical trade?",
+          "options": [
+            "Short the stock because it was below VWAP",
+            "Go long with a stop below the recent low, targeting a move to the previous high of the day",
+            "Wait for the stock to go back below VWAP and then short",
+            "Buy at VWAP with no stop loss since VWAP always holds"
+          ],
+          "correct": 1,
+          "explanation": "When a stock reclaims VWAP with volume, it signals that buyers have regained control and the average holder for the day is now profitable again (reducing selling pressure). The long entry is made on the VWAP reclaim with a stop below the recent low. VWAP is never a guarantee — always use a stop loss."
+        },
+        {
+          "question": "In your trading journal, you discover that over the past month, trades where you followed your plan have a +$1,200 P&L, while trades where you deviated from the plan have a -$900 P&L. What does this data tell you?",
+          "options": [
+            "Your plan needs to be changed because you are not making enough money",
+            "You should trade more aggressively on planned setups",
+            "Your plan works — the primary issue is discipline, not strategy",
+            "The sample size is too small to draw any conclusions"
+          ],
+          "correct": 2,
+          "explanation": "This is the exact insight the 'Followed Plan' column in your journal is designed to reveal. Your planned trades are profitable (+$1,200) and your unplanned trades are losing (-$900). The strategy is working — the problem is that undisciplined trades are eroding your profits. The fix is discipline, not a new strategy."
+        },
+        {
+          "question": "What is the minimum recommended paper trading period before transitioning to live trading with real money?",
+          "options": [
+            "1-2 days of testing is sufficient",
+            "One week of positive results",
+            "2-4 weeks with at least 100 simulated trades and consistent profitability",
+            "Paper trading is unnecessary if you have studied the material"
+          ],
+          "correct": 2,
+          "explanation": "The minimum recommended paper trading period is 2-4 weeks with at least 100 simulated trades. You need a statistically meaningful sample size to validate your strategy. Additionally, you should demonstrate at least 2 consecutive profitable weeks with 90%+ plan compliance before risking real money."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- ========== 10.6 WHAT'S NEXT ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">10.6</span> What&rsquo;s Next</h2>
+  <p>Completing this course is a significant achievement, but it is just the beginning of your trading journey. Education gives you the map &mdash; now you need to walk the territory. Here is your roadmap for the weeks and months ahead.</p>
+
+  <div class="concept-card">
+    <h3>Your Next Steps</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-dot" style="background:var(--accent-blue)">1</div>
+        <div class="step-line"></div>
+        <div>
+          <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Paper Trade (Weeks 1&ndash;4)</h4>
+          <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">Open a paper trading account and execute your plan daily. Journal every trade. Aim for 100+ trades and 2 consecutive profitable weeks with 90%+ plan compliance.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot" style="background:var(--accent-green)">2</div>
+        <div class="step-line"></div>
+        <div>
+          <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Review &amp; Refine (Ongoing)</h4>
+          <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">Conduct weekly and monthly reviews. Use journal data to identify your best setups, optimal trading hours, and areas for improvement. Update your plan based on data, not feelings.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot" style="background:var(--accent-yellow)">3</div>
+        <div class="step-line"></div>
+        <div>
+          <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Transition to Small Live (Week 5+)</h4>
+          <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">When paper trading criteria are met, go live with 25&ndash;50% of your planned position size. The emotional difference between paper and real money is enormous &mdash; ease into it.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot" style="background:#8b5cf6">4</div>
+        <div class="step-line"></div>
+        <div>
+          <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Scale Up Gradually (Months 2&ndash;6)</h4>
+          <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">As you prove consistency with small size, gradually increase to full position sizes. Never increase size after a winning streak &mdash; increase after a period of consistent, disciplined execution.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot" style="background:var(--accent-red)">5</div>
+        <div>
+          <h4 style="color:var(--text-primary);margin:0 0 0.25rem">Never Stop Learning</h4>
+          <p style="color:var(--text-secondary);margin:0;font-size:0.9rem">Markets evolve. Strategies that work today may need adaptation tomorrow. Continue reading, studying, and most importantly &mdash; reviewing your own data. Your trading journal is the best teacher you will ever have.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>Recommended Continued Learning</h3>
+    <ul class="feature-list">
+      <li><strong>Study market replays</strong> &mdash; Many platforms let you replay historical trading days. Use this to practice pattern recognition in a low-pressure environment.</li>
+      <li><strong>Join a trading community</strong> &mdash; Find a community of serious, process-focused traders (not "stock tip" groups). Accountability and shared learning accelerate your growth.</li>
+      <li><strong>Read foundational books</strong> &mdash; <em>Trading in the Zone</em> by Mark Douglas, <em>Reminiscences of a Stock Operator</em> by Edwin Lef&egrave;vre, and <em>The New Market Wizards</em> by Jack Schwager are essential reading.</li>
+      <li><strong>Review this course</strong> &mdash; Come back to specific modules when you need a refresher. Your understanding will deepen with experience.</li>
+    </ul>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>Never Risk Money You Cannot Afford to Lose</strong>
+      <p>This is the most important rule in all of trading. Day trading is inherently risky. Even with the best education, the best plan, and the best discipline, there is no guarantee of profit. Only trade with capital that, if lost completely, would not affect your ability to pay rent, buy food, or live your life. Trading should be funded with risk capital &mdash; never with your emergency fund, retirement savings, or borrowed money. If you follow this rule, you give yourself the psychological freedom to trade properly without the desperation that destroys accounts.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip" style="margin-top:1.5rem">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>A Final Word</strong>
+      <p>The fact that you completed this entire course already sets you apart. Most aspiring traders never invest in their education &mdash; they learn through expensive losses instead. You have the knowledge, the plan, and the framework. Now go apply it with patience, discipline, and relentless self-improvement. The market rewards those who respect it. Good luck, and trade well.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="module-footer">
+  <button class="module-footer-btn" onclick="navigateTo(9)">← Previous: Building Your Trading Plan</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo('home')">Back to Course Home →</button>
+</div>

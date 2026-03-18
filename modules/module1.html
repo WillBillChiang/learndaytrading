@@ -1,0 +1,476 @@
+<!-- MODULE 1: How Markets Really Work -->
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+    MODULE 01
+  </div>
+  <h1>How Markets Really Work</h1>
+  <p>Before you place a single trade, you need to understand the machinery behind every transaction. This module pulls back the curtain on market microstructure &mdash; the exchanges, intermediaries, and order mechanics that determine whether you get filled at the price you want or get quietly fleeced by the spread.</p>
+</div>
+
+<!-- ========== 1.1 THE ECOSYSTEM ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">1.1</span> The Ecosystem</h2>
+  <p>Financial markets are not a single monolithic entity. They are a network of competing venues, intermediaries, and electronic systems, all racing to match buyers with sellers in fractions of a second. Understanding who the players are &mdash; and how they profit &mdash; gives you an edge most retail traders never develop.</p>
+
+  <div class="concept-card">
+    <h3>Exchanges</h3>
+    <p>Exchanges are the regulated marketplaces where securities are listed and traded. The two dominant U.S. equity exchanges are:</p>
+    <ul class="feature-list">
+      <li><strong>NYSE (New York Stock Exchange)</strong> &mdash; The world's largest exchange by market capitalization. Uses a hybrid model with designated market makers (DMMs) on a physical trading floor alongside electronic matching.</li>
+      <li><strong>NASDAQ</strong> &mdash; A fully electronic exchange and the birthplace of tech-stock trading. Operates a dealer-based system with multiple competing market makers per security.</li>
+      <li><strong>CBOE, IEX, ARCA, BATS</strong> &mdash; Additional exchanges that compete for order flow by offering speed advantages or investor-protection mechanisms (IEX's famous "speed bump").</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>Market Makers</h3>
+    <p>Market makers are firms that commit to providing liquidity by continuously posting both a bid (buy) and an ask (sell) price. They profit from the spread between these two prices. Without market makers, you might wait minutes or hours for someone to take the other side of your trade.</p>
+    <ul class="feature-list">
+      <li>Obligated to maintain two-sided quotes during market hours</li>
+      <li>Profit from the bid-ask spread, not from directional bets</li>
+      <li>Major firms: Citadel Securities, Virtu Financial, GTS</li>
+      <li>Manage risk by hedging positions in real-time</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <h3>ECNs (Electronic Communication Networks)</h3>
+    <p>ECNs are automated systems that match buy and sell orders outside traditional exchanges. They allow trading during extended hours and often provide price improvement for large institutional orders. Examples include Instinet and SelectNet.</p>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Pro Tip</strong>
+      <p>When you "buy Apple stock," your order may be routed through 3-4 different venues before being filled. Your broker's routing algorithm (or payment-for-order-flow arrangement) determines where it goes. This matters more than most retail traders realize.</p>
+    </div>
+  </div>
+
+  <div class="diagram-container reveal">
+    <h3>How Your Order Travels</h3>
+    <svg viewBox="0 0 800 220" width="100%" style="max-width:800px">
+      <!-- Background connecting lines -->
+      <line x1="130" y1="110" x2="270" y2="110" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="370" y1="110" x2="480" y2="70" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="370" y1="110" x2="480" y2="110" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="370" y1="110" x2="480" y2="150" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="580" y1="70" x2="670" y2="110" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="580" y1="110" x2="670" y2="110" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="580" y1="150" x2="670" y2="110" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+
+      <!-- Arrows -->
+      <polygon points="265,105 275,110 265,115" fill="#475569"/>
+      <polygon points="475,65 485,70 475,75" fill="#475569"/>
+      <polygon points="475,105 485,110 475,115" fill="#475569"/>
+      <polygon points="475,145 485,150 475,155" fill="#475569"/>
+      <polygon points="665,105 675,110 665,115" fill="#475569"/>
+
+      <!-- Retail Trader -->
+      <rect x="20" y="80" width="110" height="60" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+      <text x="75" y="105" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">Retail Trader</text>
+      <text x="75" y="122" text-anchor="middle" fill="#94a3b8" font-size="10">(You)</text>
+
+      <!-- Broker -->
+      <rect x="270" y="80" width="110" height="60" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="325" y="105" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">Broker</text>
+      <text x="325" y="122" text-anchor="middle" fill="#94a3b8" font-size="10">TD / Schwab / IBKR</text>
+
+      <!-- Exchange -->
+      <rect x="480" y="40" width="110" height="60" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+      <text x="535" y="65" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">Exchange</text>
+      <text x="535" y="82" text-anchor="middle" fill="#94a3b8" font-size="10">NYSE / NASDAQ</text>
+
+      <!-- ECN -->
+      <rect x="480" y="80" width="110" height="60" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+      <text x="535" y="105" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">ECN</text>
+      <text x="535" y="122" text-anchor="middle" fill="#94a3b8" font-size="10">Electronic Network</text>
+
+      <!-- Dark Pool -->
+      <rect x="480" y="120" width="110" height="60" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+      <text x="535" y="145" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">Dark Pool</text>
+      <text x="535" y="162" text-anchor="middle" fill="#94a3b8" font-size="10">Off-exchange</text>
+
+      <!-- Market Maker -->
+      <rect x="670" y="80" width="110" height="60" rx="10" fill="#1e293b" stroke="#ec4899" stroke-width="2"/>
+      <text x="725" y="105" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">Market Maker</text>
+      <text x="725" y="122" text-anchor="middle" fill="#94a3b8" font-size="10">Provides Liquidity</text>
+    </svg>
+    <p style="text-align:center;color:#94a3b8;font-size:0.85rem;margin-top:0.5rem;">Your order may be routed to any of these venues depending on your broker's smart order router.</p>
+  </div>
+</div>
+
+<!-- ========== 1.2 ORDER TYPES ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">1.2</span> Order Types</h2>
+  <p>Choosing the right order type is one of the most overlooked skills in trading. Each type gives you a different blend of speed, price control, and certainty. Here is every order type you need to master.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Order Type</th>
+        <th>Execution</th>
+        <th>Price Guarantee</th>
+        <th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Market Order</strong></td>
+        <td>Immediate &mdash; fills at best available price</td>
+        <td>None. You accept whatever the market gives you.</td>
+        <td>Getting in/out fast when speed > price</td>
+      </tr>
+      <tr>
+        <td><strong>Limit Order</strong></td>
+        <td>Only at your specified price or better</td>
+        <td>Yes &mdash; guaranteed price or better (if filled)</td>
+        <td>Controlling entry/exit price precisely</td>
+      </tr>
+      <tr>
+        <td><strong>Stop Order</strong></td>
+        <td>Becomes a market order when stop price is reached</td>
+        <td>None once triggered &mdash; fills at market</td>
+        <td>Protecting profits or cutting losses</td>
+      </tr>
+      <tr>
+        <td><strong>Stop-Limit Order</strong></td>
+        <td>Becomes a limit order when stop price is reached</td>
+        <td>Yes &mdash; but may not fill if price gaps through</td>
+        <td>Protecting against gaps with price control</td>
+      </tr>
+      <tr>
+        <td><strong>Trailing Stop</strong></td>
+        <td>Stop price trails the market by a set amount</td>
+        <td>None once triggered</td>
+        <td>Locking in gains while letting winners run</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="diagram-container reveal">
+    <h3>Visual: Limit Order vs. Stop Order</h3>
+    <svg viewBox="0 0 700 260" width="100%" style="max-width:700px">
+      <!-- Left: Limit Buy -->
+      <text x="175" y="20" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="600">Limit Buy Order</text>
+      <!-- Price axis -->
+      <line x1="50" y1="40" x2="50" y2="230" stroke="#475569" stroke-width="1"/>
+      <text x="40" y="80" text-anchor="end" fill="#94a3b8" font-size="10">$152</text>
+      <text x="40" y="130" text-anchor="end" fill="#94a3b8" font-size="10">$150</text>
+      <text x="40" y="180" text-anchor="end" fill="#94a3b8" font-size="10">$148</text>
+
+      <!-- Current price line -->
+      <line x1="55" y1="80" x2="300" y2="80" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="305" y="84" fill="#3b82f6" font-size="10">Current: $152</text>
+
+      <!-- Limit price line -->
+      <line x1="55" y1="130" x2="300" y2="130" stroke="#10b981" stroke-width="2"/>
+      <text x="305" y="134" fill="#10b981" font-size="10">Limit: $150</text>
+      <text x="305" y="148" fill="#94a3b8" font-size="9">"Buy at $150 or lower"</text>
+
+      <!-- Price path -->
+      <polyline points="70,80 100,90 130,100 160,120 190,130 220,125 250,135" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+      <circle cx="190" cy="130" r="5" fill="#10b981" stroke="#10b981" stroke-width="2"/>
+      <text x="190" y="155" text-anchor="middle" fill="#10b981" font-size="9" font-weight="600">FILLED</text>
+
+      <!-- Right: Stop Loss -->
+      <text x="525" y="20" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="600">Stop Loss Order</text>
+      <line x1="400" y1="40" x2="400" y2="230" stroke="#475569" stroke-width="1"/>
+      <text x="390" y="80" text-anchor="end" fill="#94a3b8" font-size="10">$152</text>
+      <text x="390" y="130" text-anchor="end" fill="#94a3b8" font-size="10">$150</text>
+      <text x="390" y="180" text-anchor="end" fill="#94a3b8" font-size="10">$148</text>
+
+      <!-- Current price line -->
+      <line x1="405" y1="80" x2="650" y2="80" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="655" y="84" fill="#3b82f6" font-size="10">Current: $152</text>
+
+      <!-- Stop price line -->
+      <line x1="405" y1="180" x2="650" y2="180" stroke="#ef4444" stroke-width="2"/>
+      <text x="655" y="184" fill="#ef4444" font-size="10">Stop: $148</text>
+      <text x="655" y="198" fill="#94a3b8" font-size="9">"Sell if price hits $148"</text>
+
+      <!-- Price path -->
+      <polyline points="420,80 450,100 480,120 510,150 540,170 570,180 600,190" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+      <circle cx="570" cy="180" r="5" fill="#ef4444" stroke="#ef4444" stroke-width="2"/>
+      <text x="570" y="205" text-anchor="middle" fill="#ef4444" font-size="9" font-weight="600">TRIGGERED</text>
+    </svg>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Warning: Market Orders in Low Liquidity</strong>
+      <p>Never use market orders on low-volume stocks or during pre/post-market hours. With thin order books, a market order can fill 2-5% away from the last traded price. This is called <em>slippage</em>, and it can destroy an otherwise good trade.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 1.3 THE BID-ASK SPREAD ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">1.3</span> The Bid-Ask Spread</h2>
+  <p>The spread is the silent tax on every trade you make. Understanding it is the difference between a profitable strategy on paper and a losing one in practice.</p>
+
+  <div class="concept-card">
+    <h3>Definitions</h3>
+    <ul class="feature-list">
+      <li><strong>Bid Price</strong> &mdash; The highest price a buyer is currently willing to pay. If you sell with a market order, you get the bid.</li>
+      <li><strong>Ask Price</strong> &mdash; The lowest price a seller is currently willing to accept. If you buy with a market order, you pay the ask.</li>
+      <li><strong>Spread</strong> &mdash; The difference between ask and bid. This is the market maker's profit and your cost of doing business.</li>
+      <li><strong>Mid Price</strong> &mdash; (Bid + Ask) / 2. The theoretical "fair value" of the security at that moment.</li>
+    </ul>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Factor</th>
+        <th>Tight Spread (Good)</th>
+        <th>Wide Spread (Costly)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Volume</td>
+        <td>High daily volume (millions of shares)</td>
+        <td>Low daily volume (under 500K shares)</td>
+      </tr>
+      <tr>
+        <td>Market Cap</td>
+        <td>Large-cap (AAPL, MSFT, TSLA)</td>
+        <td>Micro/nano-cap penny stocks</td>
+      </tr>
+      <tr>
+        <td>Volatility</td>
+        <td>Normal, stable conditions</td>
+        <td>During earnings, news events, market panics</td>
+      </tr>
+      <tr>
+        <td>Time of Day</td>
+        <td>Mid-day (10:30 AM - 3:00 PM ET)</td>
+        <td>Pre-market, after-hours, first 15 min</td>
+      </tr>
+      <tr>
+        <td>Typical Spread</td>
+        <td>$0.01 (1 cent)</td>
+        <td>$0.10 - $1.00+</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="diagram-container reveal">
+    <h3>Visualizing the Spread</h3>
+    <svg viewBox="0 0 600 200" width="100%" style="max-width:600px">
+      <!-- Bid zone -->
+      <rect x="40" y="60" width="220" height="80" rx="8" fill="rgba(16,185,129,0.1)" stroke="#10b981" stroke-width="1"/>
+      <text x="150" y="50" text-anchor="middle" fill="#10b981" font-size="12" font-weight="600">BIDS (Buyers)</text>
+      <text x="150" y="90" text-anchor="middle" fill="#10b981" font-size="22" font-weight="700">$150.02</text>
+      <text x="150" y="115" text-anchor="middle" fill="#94a3b8" font-size="11">Highest buyer willing to pay</text>
+      <text x="150" y="132" text-anchor="middle" fill="#94a3b8" font-size="10">You SELL at this price</text>
+
+      <!-- Spread zone -->
+      <rect x="270" y="60" width="60" height="80" rx="4" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="300" y="95" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="600">SPREAD</text>
+      <text x="300" y="112" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="700">$0.03</text>
+
+      <!-- Ask zone -->
+      <rect x="340" y="60" width="220" height="80" rx="8" fill="rgba(239,68,68,0.1)" stroke="#ef4444" stroke-width="1"/>
+      <text x="450" y="50" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="600">ASKS (Sellers)</text>
+      <text x="450" y="90" text-anchor="middle" fill="#ef4444" font-size="22" font-weight="700">$150.05</text>
+      <text x="450" y="115" text-anchor="middle" fill="#94a3b8" font-size="11">Lowest seller willing to accept</text>
+      <text x="450" y="132" text-anchor="middle" fill="#94a3b8" font-size="10">You BUY at this price</text>
+
+      <!-- Arrows -->
+      <text x="300" y="170" text-anchor="middle" fill="#94a3b8" font-size="10">Every round-trip trade costs you at least the spread.</text>
+    </svg>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Why the Spread Matters for Day Traders</strong>
+      <p>If you trade a stock with a $0.05 spread and target $0.20 profit, you are already giving up 25% of your potential gain just to enter and exit. Scalpers should only trade stocks with penny-wide spreads and massive volume. Always check the Level 2 quotes before entering a trade.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 1.4 HOW A TRADE ACTUALLY EXECUTES ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">1.4</span> How a Trade Actually Executes</h2>
+  <p>Every time you click "Buy" or "Sell," a cascade of events happens in milliseconds. Here is exactly what occurs from click to fill.</p>
+
+  <div class="concept-card">
+    <h3>Step-by-Step: Anatomy of a Trade</h3>
+    <ol class="feature-list" style="list-style:none;counter-reset:step-counter">
+      <li><strong>Step 1: Order Submission</strong> &mdash; You place a buy order for 100 shares of AAPL at market through your broker's platform. The order is encrypted and sent to your broker's order management system (OMS).</li>
+      <li><strong>Step 2: Order Routing</strong> &mdash; Your broker's Smart Order Router (SOR) evaluates available venues &mdash; NYSE, NASDAQ, ARCA, BATS, dark pools &mdash; and selects the venue offering the best available price and fastest fill probability.</li>
+      <li><strong>Step 3: Venue Matching</strong> &mdash; The order arrives at the exchange's matching engine. If there is a resting sell order at or below your limit (or at the best ask for a market order), the engine pairs the two orders.</li>
+      <li><strong>Step 4: Execution</strong> &mdash; The trade is executed. Both the buyer's and seller's brokers receive an execution report confirming the price, quantity, and timestamp.</li>
+      <li><strong>Step 5: Clearing</strong> &mdash; The National Securities Clearing Corporation (NSCC) steps in as the central counterparty, guaranteeing the trade. It nets all trades for the day to minimize the actual shares and cash that need to move.</li>
+      <li><strong>Step 6: Settlement (T+1)</strong> &mdash; One business day after the trade, actual ownership of the shares is transferred and cash is debited/credited via the Depository Trust Company (DTC).</li>
+    </ol>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>Settlement Risk: Why It Matters</strong>
+      <p>If you sell a stock and immediately try to use those funds to buy another stock, you are trading with unsettled cash. Do this repeatedly in a cash account and you will trigger a <em>good faith violation</em>. Three violations in 12 months and your broker restricts your account. Margin accounts avoid this, but come with their own risks.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 1.5 INTERACTIVE: ORDER BOOK SIMULATOR ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">1.5</span> Interactive: Order Book Simulator</h2>
+  <p>Below is a snapshot of a Level 2 order book. The bids (buyers) are on the left in green, and the asks (sellers) are on the right in red. Notice how the sizes vary at each price level &mdash; large sizes indicate strong support or resistance zones.</p>
+
+  <div class="interactive-container">
+    <div class="interactive-header">
+      <div class="interactive-label">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="9" x2="12" y2="21"/></svg>
+        Order Book &mdash; AAPL
+      </div>
+      <span class="pattern-name tag tag-blue">Live Snapshot</span>
+    </div>
+    <div class="interactive-body">
+      <div class="order-book">
+        <div class="order-book-side bids">
+          <table>
+            <thead>
+              <tr><th>Shares</th><th>Bid Price</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>200</td><td>$150.10</td></tr>
+              <tr><td>450</td><td>$150.09</td></tr>
+              <tr><td>1,200</td><td>$150.08</td></tr>
+              <tr><td>800</td><td>$150.07</td></tr>
+              <tr><td>3,500</td><td>$150.06</td></tr>
+              <tr><td>600</td><td>$150.05</td></tr>
+              <tr><td>1,800</td><td>$150.04</td></tr>
+              <tr><td>2,100</td><td>$150.03</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="order-book-side asks">
+          <table>
+            <thead>
+              <tr><th>Ask Price</th><th>Shares</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>$150.11</td><td>350</td></tr>
+              <tr><td>$150.12</td><td>500</td></tr>
+              <tr><td>$150.13</td><td>900</td></tr>
+              <tr><td>$150.14</td><td>2,200</td></tr>
+              <tr><td>$150.15</td><td>1,100</td></tr>
+              <tr><td>$150.16</td><td>750</td></tr>
+              <tr><td>$150.17</td><td>4,000</td></tr>
+              <tr><td>$150.18</td><td>1,600</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p style="text-align:center;color:#94a3b8;font-size:0.85rem;margin-top:1rem;"><strong>Spread:</strong> $0.01 &nbsp;|&nbsp; <strong>Best Bid:</strong> $150.10 &nbsp;|&nbsp; <strong>Best Ask:</strong> $150.11 &nbsp;|&nbsp; <strong>Mid:</strong> $150.105</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>Reading the Book</h3>
+    <ul class="feature-list">
+      <li><strong>Stacked size at $150.06 (3,500 shares)</strong> &mdash; This is a potential support level. Large resting bid orders suggest buyers are willing to absorb selling pressure here.</li>
+      <li><strong>Stacked size at $150.17 (4,000 shares)</strong> &mdash; This is a potential resistance level. A large resting ask means sellers are stacked up, ready to dump shares at this price.</li>
+      <li><strong>Thin levels</strong> &mdash; The $150.10 bid (200 shares) and $150.11 ask (350 shares) are the inner market. Because they are thin, a single large order could blow through them, causing the price to jump.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 1.6 QUIZ ========== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">1.6</span> Knowledge Check</h2>
+  <p>Test your understanding of market mechanics. You need to get at least 5 out of 6 correct to demonstrate mastery of this module.</p>
+
+  <div class="quiz-container" data-quiz="m1-markets">
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "You place a market order to buy 500 shares of a stock. The best ask is $45.20 for 200 shares, and the next ask is $45.25 for 1,000 shares. Approximately what average price will you pay?",
+          "options": [
+            "$45.20 for all 500 shares",
+            "$45.22 (weighted average across both levels)",
+            "$45.25 for all 500 shares",
+            "It depends on your limit price"
+          ],
+          "correct": 1,
+          "explanation": "Your market order eats through the book. You buy 200 shares at $45.20 and 300 shares at $45.25, giving a weighted average of approximately $45.22. This is called 'walking the book' and demonstrates why large market orders cause slippage."
+        },
+        {
+          "question": "What is the primary way market makers generate profit?",
+          "options": [
+            "Buying stocks that go up in value",
+            "Charging commissions to retail traders",
+            "Collecting the bid-ask spread on each transaction",
+            "Front-running institutional orders"
+          ],
+          "correct": 2,
+          "explanation": "Market makers profit from the spread. They continuously buy at the bid and sell at the ask, pocketing the difference. They do not profit from directional moves; in fact, they actively hedge to remain market-neutral."
+        },
+        {
+          "question": "Which order type gives you price certainty but NOT execution certainty?",
+          "options": [
+            "Market order",
+            "Limit order",
+            "Stop order",
+            "Trailing stop order"
+          ],
+          "correct": 1,
+          "explanation": "A limit order guarantees you will not pay more (or sell for less) than your specified price, but there is no guarantee the market will reach your price. A market order gives execution certainty but no price guarantee."
+        },
+        {
+          "question": "A stock has a bid of $98.50 and an ask of $98.75. What is the spread as a percentage of the mid price?",
+          "options": [
+            "0.13%",
+            "0.25%",
+            "0.50%",
+            "2.50%"
+          ],
+          "correct": 1,
+          "explanation": "The spread is $0.25. The mid price is $98.625. The percentage is $0.25 / $98.625 = approximately 0.25%. Wide spreads like this are common in lower-volume stocks and cost you money on every entry and exit."
+        },
+        {
+          "question": "What happens when a stop order is triggered?",
+          "options": [
+            "It executes immediately at the stop price",
+            "It becomes a limit order at the stop price",
+            "It becomes a market order and fills at the best available price",
+            "It is canceled and you must resubmit it"
+          ],
+          "correct": 2,
+          "explanation": "Once the stop price is reached, a stop order converts into a market order and fills at whatever the current best price is. In fast-moving markets, this can result in significant slippage from your intended stop price."
+        },
+        {
+          "question": "Settlement for U.S. equities currently occurs on what schedule?",
+          "options": [
+            "T+0 (same day)",
+            "T+1 (next business day)",
+            "T+2 (two business days)",
+            "T+3 (three business days)"
+          ],
+          "correct": 1,
+          "explanation": "As of May 2024, U.S. equities settle on T+1. This means that after you execute a trade, the actual transfer of shares and cash occurs on the next business day. Previously it was T+2."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="module-footer">
+  <button class="module-footer-btn" onclick="navigateTo(0)">← Home</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(2)">Next: Reading Price Action →</button>
+</div>

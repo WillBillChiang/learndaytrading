@@ -1,0 +1,797 @@
+<!-- Module 8: Tools of the Trade -->
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    MODULE 08
+  </div>
+  <h1>Tools of the Trade</h1>
+  <p>The essential tools every day trader needs to compete. From your platform and Level 2 data to scanners and hotkeys, the right setup can mean the difference between capturing and missing a move.</p>
+</div>
+
+<!-- 8.1 Your Trading Platform -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.1</span> Your Trading Platform</h2>
+  <p>Your trading platform is your primary tool. It is where you analyze charts, read the tape, and execute trades. Choosing the right platform and configuring it properly is foundational to your success.</p>
+
+  <h3>What to Look For</h3>
+  <ul class="feature-list">
+    <li><strong>Execution speed</strong> &mdash; Milliseconds matter. Direct access routing sends orders straight to the exchange, bypassing the broker's internal matching</li>
+    <li><strong>Hotkey support</strong> &mdash; The ability to map buy, sell, cancel, and flatten to keyboard shortcuts</li>
+    <li><strong>Customizable layouts</strong> &mdash; Multi-monitor support with draggable, resizable windows for charts, Level 2, time &amp; sales</li>
+    <li><strong>Direct access routing</strong> &mdash; Choose which exchange or ECN receives your order (ARCA, BATS, NYSE, NASDAQ)</li>
+    <li><strong>Real-time Level 2 data</strong> &mdash; Full market depth, not just top-of-book quotes</li>
+    <li><strong>Built-in scanners</strong> &mdash; Pre-market and intraday scanning for gappers, movers, and volume surges</li>
+    <li><strong>Paper trading mode</strong> &mdash; Practice without risking real money while learning the platform</li>
+  </ul>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Platform Feature Checklist
+    </h4>
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Why It Matters</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Direct Access Routing</strong></td>
+            <td>Faster fills, price improvement, ECN rebates</td>
+            <td><span class="tag tag-red">Critical</span></td>
+          </tr>
+          <tr>
+            <td><strong>Hotkey Mapping</strong></td>
+            <td>Execute in milliseconds instead of clicking through menus</td>
+            <td><span class="tag tag-red">Critical</span></td>
+          </tr>
+          <tr>
+            <td><strong>Level 2 Market Depth</strong></td>
+            <td>See all bids and asks, not just the best price</td>
+            <td><span class="tag tag-red">Critical</span></td>
+          </tr>
+          <tr>
+            <td><strong>Time &amp; Sales</strong></td>
+            <td>Real-time tape reading for order flow analysis</td>
+            <td><span class="tag tag-gold">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Chart Layouts</strong></td>
+            <td>View multiple timeframes and symbols simultaneously</td>
+            <td><span class="tag tag-gold">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Built-in Scanner</strong></td>
+            <td>Find setups in real time without a separate tool</td>
+            <td><span class="tag tag-blue">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Paper Trading</strong></td>
+            <td>Risk-free practice environment for learning</td>
+            <td><span class="tag tag-blue">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Replay Mode</strong></td>
+            <td>Review past trading days bar-by-bar for practice</td>
+            <td><span class="tag tag-green">Nice to Have</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Start With Paper Trading</strong>
+      <p>Spend at least 2&ndash;4 weeks on a paper trading account to learn your platform's interface, test your hotkeys, and build muscle memory. The cost of learning on a live account is paid in real losses.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8.2 Level 2 / Market Depth -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.2</span> Level 2 / Market Depth</h2>
+  <p>Level 2 data shows you the full order book &mdash; every visible bid and ask at every price level, not just the best bid and ask (Level 1). This is where you see the supply and demand dynamics in real time.</p>
+
+  <h3>What Level 2 Shows</h3>
+  <ul class="feature-list">
+    <li><strong>Bid side (buyers)</strong> &mdash; All limit buy orders waiting below the current price</li>
+    <li><strong>Ask side (sellers)</strong> &mdash; All limit sell orders waiting above the current price</li>
+    <li><strong>Order sizes</strong> &mdash; How many shares are waiting at each price level</li>
+    <li><strong>Market maker IDs</strong> &mdash; Which participants are providing liquidity</li>
+    <li><strong>Depth imbalances</strong> &mdash; When one side is much larger than the other, suggesting directional pressure</li>
+  </ul>
+
+  <div class="interactive-container">
+    <div class="interactive-header">
+      <div class="interactive-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Live Order Book (Simulated)
+      </div>
+      <span style="font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono)">AAPL &middot; $185.42</span>
+    </div>
+    <div class="interactive-body">
+      <div class="order-book" id="live-order-book">
+        <div class="order-book-side bids">
+          <div class="order-book-title">Bids (Buyers)</div>
+          <div class="order-book-row">
+            <span class="ob-price">185.42</span>
+            <span class="ob-size" data-base="850">850</span>
+            <span class="ob-bar" style="width:85%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.41</span>
+            <span class="ob-size" data-base="1200">1,200</span>
+            <span class="ob-bar" style="width:100%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.40</span>
+            <span class="ob-size" data-base="2400">2,400</span>
+            <span class="ob-bar" style="width:100%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.39</span>
+            <span class="ob-size" data-base="600">600</span>
+            <span class="ob-bar" style="width:50%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.38</span>
+            <span class="ob-size" data-base="450">450</span>
+            <span class="ob-bar" style="width:38%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.37</span>
+            <span class="ob-size" data-base="900">900</span>
+            <span class="ob-bar" style="width:75%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.36</span>
+            <span class="ob-size" data-base="350">350</span>
+            <span class="ob-bar" style="width:29%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.35</span>
+            <span class="ob-size" data-base="1500">1,500</span>
+            <span class="ob-bar" style="width:100%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.34</span>
+            <span class="ob-size" data-base="700">700</span>
+            <span class="ob-bar" style="width:58%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.33</span>
+            <span class="ob-size" data-base="500">500</span>
+            <span class="ob-bar" style="width:42%"></span>
+          </div>
+        </div>
+        <div class="order-book-side asks">
+          <div class="order-book-title">Asks (Sellers)</div>
+          <div class="order-book-row">
+            <span class="ob-price">185.43</span>
+            <span class="ob-size" data-base="650">650</span>
+            <span class="ob-bar" style="width:54%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.44</span>
+            <span class="ob-size" data-base="400">400</span>
+            <span class="ob-bar" style="width:33%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.45</span>
+            <span class="ob-size" data-base="1100">1,100</span>
+            <span class="ob-bar" style="width:92%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.46</span>
+            <span class="ob-size" data-base="300">300</span>
+            <span class="ob-bar" style="width:25%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.47</span>
+            <span class="ob-size" data-base="800">800</span>
+            <span class="ob-bar" style="width:67%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.48</span>
+            <span class="ob-size" data-base="550">550</span>
+            <span class="ob-bar" style="width:46%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.49</span>
+            <span class="ob-size" data-base="1800">1,800</span>
+            <span class="ob-bar" style="width:100%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.50</span>
+            <span class="ob-size" data-base="3200">3,200</span>
+            <span class="ob-bar" style="width:100%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.51</span>
+            <span class="ob-size" data-base="420">420</span>
+            <span class="ob-bar" style="width:35%"></span>
+          </div>
+          <div class="order-book-row">
+            <span class="ob-price">185.52</span>
+            <span class="ob-size" data-base="750">750</span>
+            <span class="ob-bar" style="width:63%"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    const book = document.getElementById('live-order-book');
+    if (!book) return;
+    setInterval(() => {
+      book.querySelectorAll('.ob-size').forEach(el => {
+        const base = parseInt(el.dataset.base) || 100;
+        const variation = Math.floor(Math.random() * base * 0.4 - base * 0.2);
+        el.textContent = Math.max(10, base + variation).toLocaleString();
+      });
+    }, 1500);
+  })();
+  </script>
+
+  <h3>Reading the Order Book</h3>
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      Key Order Book Patterns
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Large bid wall</strong> &mdash; A massive order on the bid side (e.g., 10,000+ shares) acts as a support level. Buyers feel confident knowing there is a floor.</li>
+      <li><strong>Large ask wall</strong> &mdash; A huge order on the ask side acts as resistance. Price may stall until the order is absorbed or pulled.</li>
+      <li><strong>Bid/ask imbalance</strong> &mdash; When total bid size vastly exceeds total ask size, it suggests bullish pressure (and vice versa).</li>
+      <li><strong>Spoofing</strong> &mdash; Large orders placed with the intent to cancel before execution, designed to fake supply or demand. Watch for orders that appear and disappear rapidly.</li>
+      <li><strong>Hidden (iceberg) orders</strong> &mdash; Large orders that only show a small portion on the book. They refill after being partially filled. Spot them by watching Time &amp; Sales for large prints at a single price.</li>
+    </ul>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>The Book Can Lie</strong>
+      <p>Never base a trade solely on what you see in Level 2. Spoofing and iceberg orders mean the visible book is an incomplete picture. Use Level 2 as one input alongside price action, volume, and the tape.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8.3 Time & Sales (The Tape) -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.3</span> Time &amp; Sales (The Tape)</h2>
+  <p>The Time &amp; Sales window shows every executed trade in real time. Unlike Level 2, which shows pending orders, the tape shows what actually happened &mdash; the truth. Learning to read it reveals institutional activity, urgency, and momentum.</p>
+
+  <h3>What the Tape Shows</h3>
+  <ul class="feature-list">
+    <li><strong>Time</strong> &mdash; The exact timestamp of each trade execution</li>
+    <li><strong>Price</strong> &mdash; The price at which the trade occurred</li>
+    <li><strong>Size</strong> &mdash; The number of shares traded</li>
+    <li><strong>Side</strong> &mdash; Whether the trade hit the bid (seller-initiated) or the ask (buyer-initiated)</li>
+  </ul>
+
+  <div class="interactive-container">
+    <div class="interactive-header">
+      <div class="interactive-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        Time &amp; Sales Tape (Simulated)
+      </div>
+      <span style="font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono)">AAPL</span>
+    </div>
+    <div class="interactive-body" style="padding:0">
+      <div style="overflow-x:auto">
+        <table class="data-table" style="margin:0;font-family:var(--font-mono);font-size:0.82rem">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Price</th>
+              <th>Size</th>
+              <th>Side</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10:32:47.102</td>
+              <td>185.44</td>
+              <td style="font-weight:700">5,200</td>
+              <td style="color:var(--bull-green);font-weight:600">BUY</td>
+            </tr>
+            <tr>
+              <td>10:32:46.891</td>
+              <td>185.43</td>
+              <td>300</td>
+              <td style="color:var(--bull-green)">BUY</td>
+            </tr>
+            <tr>
+              <td>10:32:46.554</td>
+              <td>185.43</td>
+              <td>150</td>
+              <td style="color:var(--bull-green)">BUY</td>
+            </tr>
+            <tr>
+              <td>10:32:45.998</td>
+              <td>185.42</td>
+              <td>400</td>
+              <td style="color:var(--bear-red)">SELL</td>
+            </tr>
+            <tr>
+              <td>10:32:45.443</td>
+              <td>185.42</td>
+              <td>200</td>
+              <td style="color:var(--bear-red)">SELL</td>
+            </tr>
+            <tr>
+              <td>10:32:44.887</td>
+              <td>185.43</td>
+              <td style="font-weight:700">8,100</td>
+              <td style="color:var(--bull-green);font-weight:600">BUY</td>
+            </tr>
+            <tr>
+              <td>10:32:44.210</td>
+              <td>185.42</td>
+              <td>500</td>
+              <td style="color:var(--bear-red)">SELL</td>
+            </tr>
+            <tr>
+              <td>10:32:43.776</td>
+              <td>185.43</td>
+              <td>100</td>
+              <td style="color:var(--bull-green)">BUY</td>
+            </tr>
+            <tr>
+              <td>10:32:42.115</td>
+              <td>185.41</td>
+              <td>350</td>
+              <td style="color:var(--bear-red)">SELL</td>
+            </tr>
+            <tr>
+              <td>10:32:41.667</td>
+              <td>185.42</td>
+              <td style="font-weight:700">12,500</td>
+              <td style="color:var(--bull-green);font-weight:600">BUY</td>
+            </tr>
+            <tr>
+              <td>10:32:40.990</td>
+              <td>185.41</td>
+              <td>250</td>
+              <td style="color:var(--bear-red)">SELL</td>
+            </tr>
+            <tr>
+              <td>10:32:40.334</td>
+              <td>185.41</td>
+              <td>600</td>
+              <td style="color:var(--bear-red)">SELL</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Spotting Institutional Activity</strong>
+      <p>Look for large block prints (5,000+ shares) hitting the ask. In the tape above, notice the 5,200-share, 8,100-share, and 12,500-share buy prints &mdash; these are likely institutional buyers accumulating a position. When large prints cluster at one price, it signals strong conviction.</p>
+    </div>
+  </div>
+
+  <h3>Tape Reading Signals</h3>
+  <ul class="feature-list">
+    <li><strong>Fast tape speed</strong> &mdash; Prints flying by rapidly means high interest and potential breakout</li>
+    <li><strong>Large prints on the ask</strong> &mdash; Aggressive buying (bullish &mdash; someone is paying the offer)</li>
+    <li><strong>Large prints on the bid</strong> &mdash; Aggressive selling (bearish &mdash; someone is hitting the bid)</li>
+    <li><strong>Price sweeps</strong> &mdash; A single order taking out multiple price levels at once indicates urgency</li>
+    <li><strong>Stalling tape</strong> &mdash; Large orders on the ask keep getting filled but price does not rise &mdash; hidden seller absorbing demand</li>
+  </ul>
+</div>
+
+<!-- 8.4 Pre-Market Scanners -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.4</span> Pre-Market Scanners</h2>
+  <p>Before the market opens, you need to find the stocks most likely to have big moves. Scanners filter thousands of stocks down to a shortlist of candidates based on criteria you define. Your scanner is your daily starting point.</p>
+
+  <h3>Common Scanner Criteria</h3>
+  <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Filter</th>
+          <th>Typical Value</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Gap %</strong></td>
+          <td>+3% or -3% from prior close</td>
+          <td>Gaps create momentum and ORB opportunities</td>
+        </tr>
+        <tr>
+          <td><strong>Pre-Market Volume</strong></td>
+          <td>&gt; 100,000 shares</td>
+          <td>Confirms interest and participation before open</td>
+        </tr>
+        <tr>
+          <td><strong>Relative Volume</strong></td>
+          <td>&gt; 2x average</td>
+          <td>Volume far above normal signals unusual activity</td>
+        </tr>
+        <tr>
+          <td><strong>Float</strong></td>
+          <td>10M &ndash; 100M shares</td>
+          <td>Low float = more volatility; too low = illiquid</td>
+        </tr>
+        <tr>
+          <td><strong>Price Range</strong></td>
+          <td>$5 &ndash; $200</td>
+          <td>Avoids penny stocks and ultra-expensive names</td>
+        </tr>
+        <tr>
+          <td><strong>Average Volume</strong></td>
+          <td>&gt; 500,000/day</td>
+          <td>Ensures liquidity for clean entries and exits</td>
+        </tr>
+        <tr>
+          <td><strong>News/Catalyst</strong></td>
+          <td>Earnings, FDA, contracts</td>
+          <td>A catalyst gives the move a reason to continue</td>
+        </tr>
+        <tr>
+          <td><strong>ATR (Avg True Range)</strong></td>
+          <td>&gt; $1.50</td>
+          <td>Ensures enough daily range to capture meaningful moves</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Run Your Scanner at 8:00 AM ET</strong>
+      <p>Check your scanner results an hour before the open to identify gappers and build your watchlist. Then check again at 9:15 AM as more pre-market volume comes in. By 9:30, you should have 3&ndash;5 stocks on your primary watchlist with chart levels already marked.</p>
+    </div>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Quality Over Quantity</strong>
+      <p>Your scanner will return dozens of results. Narrow your watchlist to the top 3&ndash;5 names that have the cleanest setups. Trying to watch too many stocks leads to missed entries and decision fatigue.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8.5 Hotkeys -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.5</span> Hotkeys</h2>
+  <p>Hotkeys let you execute trades in milliseconds with a single keystroke instead of navigating menus and clicking buttons. In a fast-moving market, the difference between a hotkey and a mouse click can be hundreds of dollars.</p>
+
+  <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>Common Hotkey</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Buy Market</strong></td>
+          <td><code>Shift + B</code></td>
+          <td>Instant entry at the current ask price &mdash; no delay</td>
+        </tr>
+        <tr>
+          <td><strong>Sell Market</strong></td>
+          <td><code>Shift + S</code></td>
+          <td>Instant exit at the current bid price for urgent stops</td>
+        </tr>
+        <tr>
+          <td><strong>Buy Limit (Ask)</strong></td>
+          <td><code>B</code></td>
+          <td>Place a buy order at the current ask for a cleaner fill</td>
+        </tr>
+        <tr>
+          <td><strong>Sell Limit (Bid)</strong></td>
+          <td><code>S</code></td>
+          <td>Place a sell order at the current bid for a cleaner exit</td>
+        </tr>
+        <tr>
+          <td><strong>Flatten Position</strong></td>
+          <td><code>F</code> or <code>Esc</code></td>
+          <td>Close everything immediately &mdash; your panic button</td>
+        </tr>
+        <tr>
+          <td><strong>Cancel All Orders</strong></td>
+          <td><code>C</code></td>
+          <td>Remove all pending orders when the setup invalidates</td>
+        </tr>
+        <tr>
+          <td><strong>Double Position</strong></td>
+          <td><code>D</code></td>
+          <td>Add to a winning trade quickly when momentum confirms</td>
+        </tr>
+        <tr>
+          <td><strong>Sell Half</strong></td>
+          <td><code>H</code></td>
+          <td>Take partial profit and let the rest ride</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Test Hotkeys on Paper First</strong>
+      <p>A mistyped hotkey on a live account can open an unintended position or accidentally double your size. Practice on a paper trading account until every keystroke is muscle memory. Fat-finger errors can be devastating.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The Flatten Key Saves Accounts</strong>
+      <p>Map your "flatten all" key to something easy to hit instantly. When a trade goes against you faster than expected, your flatten key closes everything in one keystroke. It is your emergency brake. Know where it is before you need it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8.6 Chart Setup -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.6</span> Chart Setup</h2>
+  <p>Your chart layout is your cockpit. Day traders typically use multiple timeframes on multiple monitors to get both the big picture and the precise entry timing. Here is how to set up your charts for maximum clarity.</p>
+
+  <h3>Timeframes for Day Trading</h3>
+  <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Timeframe</th>
+          <th>Purpose</th>
+          <th>What to Overlay</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Daily</strong></td>
+          <td>Identify key support/resistance, overall trend, gap levels</td>
+          <td>50 &amp; 200 SMA, volume, key levels</td>
+        </tr>
+        <tr>
+          <td><strong>15-minute</strong></td>
+          <td>Intraday trend direction and structure</td>
+          <td>9 &amp; 20 EMA, VWAP, volume</td>
+        </tr>
+        <tr>
+          <td><strong>5-minute</strong></td>
+          <td>Primary trading chart &mdash; entries and exits</td>
+          <td>9 &amp; 20 EMA, VWAP, volume, key levels</td>
+        </tr>
+        <tr>
+          <td><strong>1-minute</strong></td>
+          <td>Precision entries, scalping, timing the exact trigger</td>
+          <td>VWAP, volume</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-container">
+    <svg viewBox="0 0 700 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="m8-screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1e293b" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#111827" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <!-- Monitor 1 -->
+      <rect x="20" y="20" width="320" height="200" rx="8" fill="url(#m8-screenGrad)" stroke="#334155" stroke-width="1.5"/>
+      <text x="30" y="40" fill="#3b82f6" font-size="10" font-weight="600">DAILY CHART</text>
+      <!-- Daily chart content -->
+      <g opacity="0.12" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="30" y1="60" x2="330" y2="60"/><line x1="30" y1="100" x2="330" y2="100"/>
+        <line x1="30" y1="140" x2="330" y2="140"/><line x1="30" y1="180" x2="330" y2="180"/>
+      </g>
+      <polyline points="40,160 70,145 100,150 130,130 160,120 190,125 220,105 250,95 280,100 310,80" stroke="#10b981" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      <polyline points="40,165 70,158 100,155 130,148 160,140 190,138 220,130 250,125 280,120 310,115" stroke="#f59e0b" stroke-width="1" fill="none" stroke-dasharray="4,3" opacity="0.6"/>
+      <text x="250" y="205" fill="#475569" font-size="8">50 SMA / 200 SMA</text>
+
+      <!-- Monitor 2 -->
+      <rect x="360" y="20" width="320" height="200" rx="8" fill="url(#m8-screenGrad)" stroke="#334155" stroke-width="1.5"/>
+      <text x="370" y="40" fill="#8b5cf6" font-size="10" font-weight="600">5-MIN CHART (PRIMARY)</text>
+      <!-- 5-min chart content -->
+      <g opacity="0.12" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="370" y1="60" x2="670" y2="60"/><line x1="370" y1="100" x2="670" y2="100"/>
+        <line x1="370" y1="140" x2="670" y2="140"/><line x1="370" y1="180" x2="670" y2="180"/>
+      </g>
+      <!-- Candlesticks -->
+      <g>
+        <line x1="390" y1="145" x2="390" y2="170" stroke="#10b981" stroke-width="1"/><rect x="386" y="150" width="8" height="14" rx="1" fill="#10b981" opacity="0.8"/>
+        <line x1="415" y1="135" x2="415" y2="158" stroke="#10b981" stroke-width="1"/><rect x="411" y="138" width="8" height="15" rx="1" fill="#10b981" opacity="0.8"/>
+        <line x1="440" y1="130" x2="440" y2="155" stroke="#ef4444" stroke-width="1"/><rect x="436" y="132" width="8" height="18" rx="1" fill="#ef4444" opacity="0.8"/>
+        <line x1="465" y1="128" x2="465" y2="148" stroke="#10b981" stroke-width="1"/><rect x="461" y="130" width="8" height="12" rx="1" fill="#10b981" opacity="0.8"/>
+        <line x1="490" y1="115" x2="490" y2="140" stroke="#10b981" stroke-width="1"/><rect x="486" y="118" width="8" height="16" rx="1" fill="#10b981" opacity="0.8"/>
+        <line x1="515" y1="110" x2="515" y2="130" stroke="#ef4444" stroke-width="1"/><rect x="511" y="112" width="8" height="14" rx="1" fill="#ef4444" opacity="0.8"/>
+        <line x1="540" y1="105" x2="540" y2="125" stroke="#10b981" stroke-width="1"/><rect x="536" y="107" width="8" height="12" rx="1" fill="#10b981" opacity="0.8"/>
+        <line x1="565" y1="95" x2="565" y2="118" stroke="#10b981" stroke-width="1"/><rect x="561" y="98" width="8" height="14" rx="1" fill="#10b981" opacity="0.8"/>
+        <line x1="590" y1="88" x2="590" y2="110" stroke="#10b981" stroke-width="1"/><rect x="586" y="90" width="8" height="14" rx="1" fill="#10b981" opacity="0.8"/>
+        <line x1="615" y1="82" x2="615" y2="100" stroke="#ef4444" stroke-width="1"/><rect x="611" y="84" width="8" height="12" rx="1" fill="#ef4444" opacity="0.8"/>
+        <line x1="640" y1="78" x2="640" y2="95" stroke="#10b981" stroke-width="1"/><rect x="636" y="80" width="8" height="10" rx="1" fill="#10b981" opacity="0.8"/>
+      </g>
+      <!-- VWAP -->
+      <path d="M380 155 Q450 140 520 125 Q580 110 660 95" stroke="#8b5cf6" stroke-width="1" fill="none" stroke-dasharray="4,2" opacity="0.7"/>
+      <text x="600" y="205" fill="#475569" font-size="8">VWAP / 9&20 EMA</text>
+
+      <!-- Monitor 3 (bottom left) -->
+      <rect x="20" y="240" width="220" height="130" rx="8" fill="url(#m8-screenGrad)" stroke="#334155" stroke-width="1.5"/>
+      <text x="30" y="258" fill="#10b981" font-size="10" font-weight="600">1-MIN CHART</text>
+      <g opacity="0.12" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="30" y1="275" x2="230" y2="275"/><line x1="30" y1="310" x2="230" y2="310"/>
+        <line x1="30" y1="345" x2="230" y2="345"/>
+      </g>
+      <polyline points="35,340 50,330 65,335 80,320 95,310 110,315 125,300 140,295 155,300 170,285 185,290 200,275 215,280 225,270" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+
+      <!-- Monitor 4 (bottom middle) - Level 2 -->
+      <rect x="260" y="240" width="200" height="130" rx="8" fill="url(#m8-screenGrad)" stroke="#334155" stroke-width="1.5"/>
+      <text x="270" y="258" fill="#f59e0b" font-size="10" font-weight="600">LEVEL 2</text>
+      <!-- Bid side -->
+      <rect x="270" y="268" width="85" height="10" rx="2" fill="#10b981" opacity="0.15"/>
+      <rect x="270" y="282" width="65" height="10" rx="2" fill="#10b981" opacity="0.12"/>
+      <rect x="270" y="296" width="78" height="10" rx="2" fill="#10b981" opacity="0.1"/>
+      <rect x="270" y="310" width="50" height="10" rx="2" fill="#10b981" opacity="0.08"/>
+      <rect x="270" y="324" width="70" height="10" rx="2" fill="#10b981" opacity="0.06"/>
+      <text x="275" y="276" fill="#10b981" font-size="7" font-family="JetBrains Mono">185.42  850</text>
+      <text x="275" y="290" fill="#10b981" font-size="7" font-family="JetBrains Mono">185.41  600</text>
+      <text x="275" y="304" fill="#10b981" font-size="7" font-family="JetBrains Mono">185.40  720</text>
+      <text x="275" y="318" fill="#10b981" font-size="7" font-family="JetBrains Mono">185.39  400</text>
+      <text x="275" y="332" fill="#10b981" font-size="7" font-family="JetBrains Mono">185.38  550</text>
+      <!-- Ask side -->
+      <rect x="365" y="268" width="75" height="10" rx="2" fill="#ef4444" opacity="0.15"/>
+      <rect x="365" y="282" width="55" height="10" rx="2" fill="#ef4444" opacity="0.12"/>
+      <rect x="365" y="296" width="88" height="10" rx="2" fill="#ef4444" opacity="0.1"/>
+      <rect x="365" y="310" width="40" height="10" rx="2" fill="#ef4444" opacity="0.08"/>
+      <rect x="365" y="324" width="60" height="10" rx="2" fill="#ef4444" opacity="0.06"/>
+      <text x="370" y="276" fill="#ef4444" font-size="7" font-family="JetBrains Mono">185.43  650</text>
+      <text x="370" y="290" fill="#ef4444" font-size="7" font-family="JetBrains Mono">185.44  400</text>
+      <text x="370" y="304" fill="#ef4444" font-size="7" font-family="JetBrains Mono">185.45 1100</text>
+      <text x="370" y="318" fill="#ef4444" font-size="7" font-family="JetBrains Mono">185.46  300</text>
+      <text x="370" y="332" fill="#ef4444" font-size="7" font-family="JetBrains Mono">185.47  800</text>
+
+      <!-- Monitor 5 (bottom right) - Time & Sales -->
+      <rect x="480" y="240" width="200" height="130" rx="8" fill="url(#m8-screenGrad)" stroke="#334155" stroke-width="1.5"/>
+      <text x="490" y="258" fill="#ef4444" font-size="10" font-weight="600">TIME &amp; SALES</text>
+      <text x="490" y="276" fill="#10b981" font-size="7" font-family="JetBrains Mono">10:32:47  185.44  5200</text>
+      <text x="490" y="289" fill="#10b981" font-size="7" font-family="JetBrains Mono">10:32:46  185.43   300</text>
+      <text x="490" y="302" fill="#ef4444" font-size="7" font-family="JetBrains Mono">10:32:45  185.42   400</text>
+      <text x="490" y="315" fill="#10b981" font-size="7" font-family="JetBrains Mono">10:32:44  185.43  8100</text>
+      <text x="490" y="328" fill="#ef4444" font-size="7" font-family="JetBrains Mono">10:32:43  185.42   500</text>
+      <text x="490" y="341" fill="#10b981" font-size="7" font-family="JetBrains Mono">10:32:41  185.42 12500</text>
+      <text x="490" y="354" fill="#ef4444" font-size="7" font-family="JetBrains Mono">10:32:40  185.41   250</text>
+    </svg>
+    <div class="diagram-label">Multi-monitor layout: Daily chart (context), 5-min chart (primary), 1-min chart (timing), Level 2 (order flow), Time &amp; Sales (tape)</div>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      Chart Setup Guidelines
+    </h4>
+    <ul class="feature-list">
+      <li><strong>One monitor minimum, two ideal</strong> &mdash; Monitor 1 for the primary 5-min chart with Level 2; Monitor 2 for daily, 1-min, and scanners</li>
+      <li><strong>Keep it clean</strong> &mdash; Too many indicators create noise. Stick to VWAP, two EMAs, and volume</li>
+      <li><strong>Mark key levels before the open</strong> &mdash; Pre-market high/low, prior day close, major support/resistance from the daily chart</li>
+      <li><strong>Use alerts, not staring</strong> &mdash; Set price alerts at key levels so you can focus on your primary setup</li>
+    </ul>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Indicator Overload</strong>
+      <p>If you cannot see the candles on your chart because of all the indicators, you have too many. Every additional indicator adds noise and slows your decision-making. The best traders use 2&ndash;3 indicators, not 12.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8.7 Quiz -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">8.7</span> Knowledge Check</h2>
+  <p>Test your understanding of the tools every day trader needs.</p>
+
+  <div class="quiz-container" data-quiz="m8-tools">
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "In the Level 2 order book, you see a 50,000-share bid at $185.40 that suddenly disappears before being filled. What is this most likely an example of?",
+          "options": [
+            "An iceberg order being executed",
+            "A spoofing attempt to fake demand",
+            "A market order being filled",
+            "Normal market making activity"
+          ],
+          "correct": 1,
+          "explanation": "Spoofing involves placing large orders with the intent to cancel them before execution. The purpose is to create the illusion of strong demand (or supply) to manipulate other traders into acting. This is illegal but still occurs."
+        },
+        {
+          "question": "On the Time & Sales tape, you see repeated large buy prints (5,000+ shares) all hitting the ask price. What does this indicate?",
+          "options": [
+            "Sellers are in control and pushing price down",
+            "The stock is about to close for the day",
+            "Aggressive institutional buying - a bullish signal",
+            "The spread is too wide to trade"
+          ],
+          "correct": 2,
+          "explanation": "Large prints hitting the ask (paying the offer) indicate aggressive buying. The buyer is willing to pay the higher price to get filled immediately rather than waiting on the bid. Repeated large ask prints suggest institutional accumulation."
+        },
+        {
+          "question": "Which scanner filter is most important for identifying Opening Range Breakout candidates?",
+          "options": [
+            "Average True Range > $1.50",
+            "Float under 10 million shares",
+            "Gap % > 3% with high relative volume",
+            "Price under $10"
+          ],
+          "correct": 2,
+          "explanation": "ORB works best on gap days with high relative volume. The gap creates directional momentum, and the high volume confirms broad participation. These two filters together identify the best ORB candidates each morning."
+        },
+        {
+          "question": "Why is the 'Flatten All Positions' hotkey considered the most important hotkey for a day trader?",
+          "options": [
+            "It saves time when entering new trades",
+            "It lets you double your position size quickly",
+            "It serves as an emergency exit when a trade moves against you faster than expected",
+            "It automatically sets stop loss orders"
+          ],
+          "correct": 2,
+          "explanation": "The flatten key is your emergency brake. When a trade goes wrong fast - a news headline, a flash crash, or a stop that doesn't trigger - the flatten key closes everything instantly with a single keystroke. It can save your account from catastrophic loss."
+        },
+        {
+          "question": "What is the primary purpose of the daily chart in a day trader's multi-timeframe setup?",
+          "options": [
+            "Precise entry timing for scalps",
+            "Identifying key support/resistance levels and the overall trend context",
+            "Reading the order book flow",
+            "Setting scanner filters"
+          ],
+          "correct": 1,
+          "explanation": "The daily chart provides the big picture: where are the major support and resistance levels, what is the overall trend direction, and where did yesterday's session end. This context helps you decide which direction to trade on the intraday charts."
+        },
+        {
+          "question": "You see a large ask order at $185.50 in Level 2 that keeps getting partially filled but immediately refills to the same size. What is this most likely?",
+          "options": [
+            "A spoofing order designed to fake supply",
+            "An iceberg (hidden) order from an institutional seller",
+            "A normal retail limit order",
+            "A market order being routed"
+          ],
+          "correct": 1,
+          "explanation": "An iceberg order displays only a fraction of its total size. When the displayed portion gets filled, it automatically refills from the hidden reserve. This is a sign of institutional activity - the seller has a large position to unload but does not want to reveal the full size and scare buyers away."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- Module Footer -->
+<div class="module-footer">
+  <button class="module-footer-btn" onclick="navigateTo(7)">&larr; Previous: Day Trading Strategies</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(9)">Next: Building Your Trading Plan &rarr;</button>
+</div>

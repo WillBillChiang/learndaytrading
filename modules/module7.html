@@ -1,0 +1,708 @@
+<!-- Module 7: Day Trading Strategies -->
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+    MODULE 07
+  </div>
+  <h1>Day Trading Strategies</h1>
+  <p>Proven approaches to finding and executing profitable setups. Learn when to deploy each strategy, how to manage risk within it, and which market conditions give you the highest edge.</p>
+</div>
+
+<!-- 7.1 Strategy Overview -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.1</span> Strategy Overview</h2>
+  <p>No single strategy works in all market conditions. The best traders maintain a toolkit of approaches and deploy the right one for the current environment. This module covers six core strategies every day trader should understand.</p>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Start With One</strong>
+      <p>Master a single strategy before adding others. It is far better to be an expert in one setup than mediocre in five. Once you are consistently profitable, branch out.</p>
+    </div>
+  </div>
+
+  <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Strategy</th>
+          <th>Timeframe</th>
+          <th>Typical Win Rate</th>
+          <th>R:R</th>
+          <th>Difficulty</th>
+          <th>Best Conditions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Momentum / Trend</strong></td>
+          <td>5m &ndash; 15m</td>
+          <td>45 &ndash; 55%</td>
+          <td>2:1 &ndash; 3:1</td>
+          <td><span class="tag tag-green">Moderate</span></td>
+          <td>Strong trending days</td>
+        </tr>
+        <tr>
+          <td><strong>Breakout</strong></td>
+          <td>5m &ndash; 15m</td>
+          <td>40 &ndash; 50%</td>
+          <td>2:1 &ndash; 4:1</td>
+          <td><span class="tag tag-green">Moderate</span></td>
+          <td>After tight consolidation</td>
+        </tr>
+        <tr>
+          <td><strong>ORB</strong></td>
+          <td>1m &ndash; 5m</td>
+          <td>50 &ndash; 60%</td>
+          <td>1.5:1 &ndash; 3:1</td>
+          <td><span class="tag tag-blue">Beginner</span></td>
+          <td>High-gap, high-volume opens</td>
+        </tr>
+        <tr>
+          <td><strong>VWAP</strong></td>
+          <td>1m &ndash; 5m</td>
+          <td>55 &ndash; 65%</td>
+          <td>1.5:1 &ndash; 2:1</td>
+          <td><span class="tag tag-blue">Beginner</span></td>
+          <td>Range-bound or mean-reverting</td>
+        </tr>
+        <tr>
+          <td><strong>Scalping</strong></td>
+          <td>1m &ndash; tick</td>
+          <td>60 &ndash; 75%</td>
+          <td>1:1 &ndash; 1.5:1</td>
+          <td><span class="tag tag-red">Advanced</span></td>
+          <td>High liquidity, tight spreads</td>
+        </tr>
+        <tr>
+          <td><strong>Mean Reversion</strong></td>
+          <td>5m &ndash; 15m</td>
+          <td>55 &ndash; 65%</td>
+          <td>1:1 &ndash; 2:1</td>
+          <td><span class="tag tag-gold">Intermediate</span></td>
+          <td>Overextended moves, range days</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 7.2 Momentum / Trend Following -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.2</span> Momentum / Trend Following</h2>
+  <p>Momentum trading is the art of riding strong directional moves. You identify stocks or instruments that are moving with above-average volume and enter on pullbacks within the trend, rather than chasing the initial move.</p>
+
+  <h3>How to Identify Momentum</h3>
+  <ul class="feature-list">
+    <li><strong>Volume surge</strong> &mdash; Current volume is 2&ndash;5x the average for that time of day</li>
+    <li><strong>Price breaking out of a range</strong> &mdash; New intraday highs or lows with conviction</li>
+    <li><strong>Stacked moving averages</strong> &mdash; 9 EMA above 20 EMA above VWAP in an uptrend</li>
+    <li><strong>Higher highs and higher lows</strong> on the 5-minute chart</li>
+    <li><strong>Catalyst</strong> &mdash; News, earnings, or sector rotation driving the move</li>
+  </ul>
+
+  <div class="diagram-container">
+    <svg viewBox="0 0 700 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="m7-trendGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#10b981" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#10b981" stop-opacity="0.02"/>
+        </linearGradient>
+      </defs>
+      <!-- Grid -->
+      <g opacity="0.08" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="60" y1="20" x2="60" y2="280"/><line x1="60" y1="280" x2="680" y2="280"/>
+        <line x1="60" y1="220" x2="680" y2="220" stroke-dasharray="4,4"/>
+        <line x1="60" y1="160" x2="680" y2="160" stroke-dasharray="4,4"/>
+        <line x1="60" y1="100" x2="680" y2="100" stroke-dasharray="4,4"/>
+      </g>
+      <!-- Price axis labels -->
+      <text x="20" y="284" fill="#475569" font-size="10" font-family="JetBrains Mono">$48</text>
+      <text x="20" y="224" fill="#475569" font-size="10" font-family="JetBrains Mono">$50</text>
+      <text x="20" y="164" fill="#475569" font-size="10" font-family="JetBrains Mono">$52</text>
+      <text x="20" y="104" fill="#475569" font-size="10" font-family="JetBrains Mono">$54</text>
+      <!-- Area under trend -->
+      <path d="M80 260 L160 230 L200 250 L260 200 L310 210 L370 150 L420 170 L480 120 L540 135 L600 80 L650 90 L650 280 L80 280Z" fill="url(#m7-trendGrad)"/>
+      <!-- Trend line (price) -->
+      <polyline points="80,260 160,230 200,250 260,200 310,210 370,150 420,170 480,120 540,135 600,80 650,90" stroke="#10b981" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- 20 EMA -->
+      <polyline points="80,265 160,245 200,238 260,215 310,205 370,175 420,165 480,145 540,130 600,105 650,100" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+      <!-- Pullback entry arrows -->
+      <g>
+        <circle cx="200" cy="250" r="8" fill="none" stroke="#f59e0b" stroke-width="2"/>
+        <line x1="200" y1="270" x2="200" y2="255" stroke="#f59e0b" stroke-width="2" marker-end="url(#m7-arrowUp)"/>
+        <text x="185" y="290" fill="#f59e0b" font-size="9" font-weight="600">ENTRY 1</text>
+      </g>
+      <g>
+        <circle cx="310" cy="210" r="8" fill="none" stroke="#f59e0b" stroke-width="2"/>
+        <line x1="310" y1="230" x2="310" y2="215" stroke="#f59e0b" stroke-width="2"/>
+        <text x="295" y="248" fill="#f59e0b" font-size="9" font-weight="600">ENTRY 2</text>
+      </g>
+      <g>
+        <circle cx="420" cy="170" r="8" fill="none" stroke="#f59e0b" stroke-width="2"/>
+        <line x1="420" y1="190" x2="420" y2="175" stroke="#f59e0b" stroke-width="2"/>
+        <text x="405" y="208" fill="#f59e0b" font-size="9" font-weight="600">ENTRY 3</text>
+      </g>
+      <g>
+        <circle cx="540" cy="135" r="8" fill="none" stroke="#f59e0b" stroke-width="2"/>
+        <line x1="540" y1="155" x2="540" y2="140" stroke="#f59e0b" stroke-width="2"/>
+        <text x="525" y="173" fill="#f59e0b" font-size="9" font-weight="600">ENTRY 4</text>
+      </g>
+      <!-- Legend -->
+      <line x1="100" y1="305" x2="130" y2="305" stroke="#10b981" stroke-width="2"/>
+      <text x="135" y="309" fill="#94a3b8" font-size="10">Price</text>
+      <line x1="200" y1="305" x2="230" y2="305" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="235" y="309" fill="#94a3b8" font-size="10">20 EMA</text>
+      <circle cx="320" cy="305" r="5" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="330" y="309" fill="#94a3b8" font-size="10">Pullback Entry</text>
+    </svg>
+    <div class="diagram-label">Momentum trend with pullback entries near the moving average</div>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Key Rules for Momentum Trading
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Always trade with the trend</strong> &mdash; Never try to pick tops or bottoms in a strong move</li>
+      <li><strong>Wait for pullbacks</strong> &mdash; Enter when price retraces to the 9 or 20 EMA, not on the extension</li>
+      <li><strong>Use trailing stops</strong> &mdash; Move your stop to the low of the prior pullback as the trend progresses</li>
+      <li><strong>Confirm with volume</strong> &mdash; Pullbacks should be on lighter volume; the resume should see volume increase</li>
+      <li><strong>Know when the trend is over</strong> &mdash; A break below the most recent higher low signals a shift</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Pro Tip: The First Pullback Is the Best</strong>
+      <p>The first pullback in a new trend has the highest probability of continuing. By the third or fourth pullback, the trend is often exhausted and the risk of reversal increases dramatically.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.3 Breakout Trading -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.3</span> Breakout Trading</h2>
+  <p>Breakout trading involves entering a position when price moves decisively beyond a defined level of support or resistance, usually after a period of consolidation. The key is distinguishing real breakouts from false ones.</p>
+
+  <h3>Identifying Consolidation Patterns</h3>
+  <ul class="feature-list">
+    <li><strong>Triangles</strong> &mdash; Ascending, descending, or symmetrical patterns with converging trendlines</li>
+    <li><strong>Flags &amp; Pennants</strong> &mdash; Brief pauses after a strong move, with a slight counter-trend drift</li>
+    <li><strong>Flat-top breakouts</strong> &mdash; A horizontal resistance level tested 2&ndash;3 times with higher lows forming below it</li>
+    <li><strong>Tight range days</strong> &mdash; When the daily range compresses to less than half its average</li>
+  </ul>
+
+  <div class="diagram-container">
+    <svg viewBox="0 0 700 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="m7-breakoutGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.05"/>
+          <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.15"/>
+        </linearGradient>
+      </defs>
+      <!-- Grid -->
+      <g opacity="0.08" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="60" y1="20" x2="60" y2="290"/><line x1="60" y1="290" x2="680" y2="290"/>
+      </g>
+      <!-- Resistance line -->
+      <line x1="100" y1="100" x2="520" y2="100" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="8,4"/>
+      <text x="525" y="97" fill="#ef4444" font-size="10" font-weight="600">RESISTANCE</text>
+      <!-- Triangle pattern - ascending lows -->
+      <line x1="100" y1="240" x2="470" y2="110" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="250" y="200" fill="#3b82f6" font-size="9" opacity="0.7">Ascending Support</text>
+      <!-- Triangle fill -->
+      <path d="M100 240 L100 100 L470 100 Z" fill="url(#m7-breakoutGrad)"/>
+      <!-- Price action inside triangle -->
+      <polyline points="100,230 130,110 160,200 195,115 230,180 270,108 310,160 350,105 390,140 430,103 460,120 475,102" stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      <!-- Breakout move -->
+      <polyline points="475,102 500,85 520,90 550,60 580,65 620,35 650,42" stroke="#10b981" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- Breakout arrow -->
+      <path d="M480 95 L495 70" stroke="#10b981" stroke-width="2"/>
+      <polygon points="498,65 490,72 495,78" fill="#10b981"/>
+      <text x="500" y="60" fill="#10b981" font-size="11" font-weight="700">BREAKOUT</text>
+      <!-- Volume bars -->
+      <g opacity="0.5">
+        <rect x="100" y="268" width="18" height="20" rx="2" fill="#475569"/>
+        <rect x="135" y="270" width="18" height="18" rx="2" fill="#475569"/>
+        <rect x="170" y="265" width="18" height="23" rx="2" fill="#475569"/>
+        <rect x="205" y="272" width="18" height="16" rx="2" fill="#475569"/>
+        <rect x="240" y="275" width="18" height="13" rx="2" fill="#475569"/>
+        <rect x="275" y="273" width="18" height="15" rx="2" fill="#475569"/>
+        <rect x="310" y="276" width="18" height="12" rx="2" fill="#475569"/>
+        <rect x="345" y="278" width="18" height="10" rx="2" fill="#475569"/>
+        <rect x="380" y="276" width="18" height="12" rx="2" fill="#475569"/>
+        <rect x="415" y="279" width="18" height="9" rx="2" fill="#475569"/>
+        <rect x="450" y="274" width="18" height="14" rx="2" fill="#475569"/>
+        <!-- Volume surge on breakout -->
+        <rect x="485" y="250" width="18" height="38" rx="2" fill="#10b981"/>
+        <rect x="520" y="255" width="18" height="33" rx="2" fill="#10b981"/>
+        <rect x="555" y="258" width="18" height="30" rx="2" fill="#10b981"/>
+        <rect x="590" y="260" width="18" height="28" rx="2" fill="#10b981"/>
+      </g>
+      <text x="490" y="310" fill="#10b981" font-size="9" font-weight="600">VOLUME SURGE</text>
+      <!-- Labels -->
+      <text x="200" y="340" fill="#475569" font-size="9">Decreasing volume in consolidation</text>
+      <text x="490" y="340" fill="#10b981" font-size="9">Increasing volume on breakout</text>
+    </svg>
+    <div class="diagram-label">Ascending triangle breakout with volume confirmation</div>
+  </div>
+
+  <h3>Avoiding False Breakouts</h3>
+  <div class="comparison-grid">
+    <div class="comparison-card bullish">
+      <h4>Real Breakout Signs</h4>
+      <ul class="feature-list">
+        <li>Volume 2x+ the average at the breakout bar</li>
+        <li>Strong close near the high of the breakout candle</li>
+        <li>Price holds above the breakout level on a retest</li>
+        <li>Occurs in the direction of the larger trend</li>
+      </ul>
+    </div>
+    <div class="comparison-card bearish">
+      <h4>False Breakout Signs</h4>
+      <ul class="feature-list">
+        <li>Low or average volume on the break</li>
+        <li>Long upper wick &mdash; sellers immediately reject the move</li>
+        <li>Price quickly falls back into the range</li>
+        <li>Occurs against the larger trend or at end of day</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>The #1 Breakout Mistake</strong>
+      <p>Entering the moment price touches resistance. Wait for the candle to close above the level. Many "breakouts" are just upper wicks that get immediately sold. Patience pays.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.4 Opening Range Breakout (ORB) -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.4</span> Opening Range Breakout (ORB)</h2>
+  <p>The Opening Range Breakout is one of the most popular and beginner-friendly day trading strategies. You define the high and low of the first 15 or 30 minutes of trading, then enter when price breaks above or below that range.</p>
+
+  <h3>Step-by-Step ORB Process</h3>
+  <div class="steps" style="flex-wrap:wrap; justify-content:center;">
+    <div class="step active"><div class="step-dot">1</div></div>
+    <div class="step-line" style="min-width:30px;flex:1;height:2px;background:var(--border-color)"></div>
+    <div class="step"><div class="step-dot">2</div></div>
+    <div class="step-line" style="min-width:30px;flex:1;height:2px;background:var(--border-color)"></div>
+    <div class="step"><div class="step-dot">3</div></div>
+    <div class="step-line" style="min-width:30px;flex:1;height:2px;background:var(--border-color)"></div>
+    <div class="step"><div class="step-dot">4</div></div>
+    <div class="step-line" style="min-width:30px;flex:1;height:2px;background:var(--border-color)"></div>
+    <div class="step"><div class="step-dot">5</div></div>
+  </div>
+  <div class="concept-card">
+    <h4>ORB Execution Steps</h4>
+    <ul class="feature-list">
+      <li><strong>Step 1: Wait</strong> &mdash; Let the first 15&ndash;30 minutes play out. Do not trade during this period.</li>
+      <li><strong>Step 2: Mark the range</strong> &mdash; Identify the high and low of the opening range on your chart.</li>
+      <li><strong>Step 3: Set alerts</strong> &mdash; Place alerts at the ORB high and ORB low levels.</li>
+      <li><strong>Step 4: Enter on break</strong> &mdash; Go long on a break above the ORB high (or short below the ORB low) with volume confirmation.</li>
+      <li><strong>Step 5: Manage the trade</strong> &mdash; Stop loss inside the range (typically the opposite end or the midpoint). Target 1:1 to 2:1 R:R.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container">
+    <svg viewBox="0 0 700 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid -->
+      <g opacity="0.06" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="60" y1="20" x2="60" y2="270"/><line x1="60" y1="270" x2="680" y2="270"/>
+      </g>
+      <!-- Time labels -->
+      <text x="80" y="285" fill="#475569" font-size="9">9:30</text>
+      <text x="250" y="285" fill="#475569" font-size="9">10:00</text>
+      <text x="400" y="285" fill="#475569" font-size="9">10:30</text>
+      <text x="550" y="285" fill="#475569" font-size="9">11:00</text>
+      <!-- Opening range shaded rectangle -->
+      <rect x="80" y="100" width="180" height="100" rx="4" fill="#3b82f6" opacity="0.1" stroke="#3b82f6" stroke-width="1" stroke-dasharray="6,3"/>
+      <text x="120" y="90" fill="#3b82f6" font-size="11" font-weight="700">OPENING RANGE</text>
+      <!-- ORB High line -->
+      <line x1="80" y1="100" x2="680" y2="100" stroke="#10b981" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+      <text x="630" y="95" fill="#10b981" font-size="9">ORB HIGH</text>
+      <!-- ORB Low line -->
+      <line x1="80" y1="200" x2="680" y2="200" stroke="#ef4444" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+      <text x="630" y="215" fill="#ef4444" font-size="9">ORB LOW</text>
+      <!-- Price action inside opening range -->
+      <polyline points="85,170 100,130 115,160 130,110 145,140 160,105 175,135 190,120 205,150 220,115 235,145 250,125" stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      <!-- Breakout above ORB high -->
+      <polyline points="250,125 270,110 285,105 300,95 320,90 340,80 360,85 380,70 400,75 420,55 450,60 480,45 510,50 540,40" stroke="#10b981" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- Entry marker -->
+      <circle cx="285" cy="98" r="6" fill="none" stroke="#f59e0b" stroke-width="2"/>
+      <text x="270" y="120" fill="#f59e0b" font-size="10" font-weight="600">ENTRY</text>
+      <!-- Stop loss marker -->
+      <line x1="285" y1="150" x2="330" y2="150" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="335" y="154" fill="#ef4444" font-size="9">STOP (mid-range)</text>
+      <!-- Target -->
+      <line x1="400" y1="45" x2="540" y2="45" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="545" y="49" fill="#10b981" font-size="9">TARGET (2R)</text>
+    </svg>
+    <div class="diagram-label">Opening Range Breakout &mdash; long entry on break above the 30-minute opening range high</div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>ORB Works Best on Gap Days</strong>
+      <p>The ORB strategy has the highest win rate when a stock gaps up or down significantly at the open. The gap creates directional momentum, and the opening range breakout aligns with that momentum.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.5 VWAP Strategies -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.5</span> VWAP Strategies</h2>
+  <p>VWAP (Volume Weighted Average Price) is the single most important indicator for intraday traders. It represents the average price weighted by volume and acts as a magnet for price. Institutional traders benchmark their executions against VWAP, making it a self-fulfilling support/resistance level.</p>
+
+  <h3>Three Core VWAP Setups</h3>
+
+  <div class="comparison-grid">
+    <div class="comparison-card bullish">
+      <h4>VWAP Bounce (Long)</h4>
+      <ul class="feature-list">
+        <li>Price is above VWAP (bullish bias)</li>
+        <li>Price pulls back to test VWAP</li>
+        <li>Look for a bullish candle at VWAP</li>
+        <li>Enter long with stop below VWAP</li>
+      </ul>
+    </div>
+    <div class="comparison-card bearish">
+      <h4>VWAP Rejection (Short)</h4>
+      <ul class="feature-list">
+        <li>Price is below VWAP (bearish bias)</li>
+        <li>Price rallies up to test VWAP</li>
+        <li>Look for a bearish candle at VWAP</li>
+        <li>Enter short with stop above VWAP</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      VWAP Reclaim
+    </h4>
+    <p>A powerful setup occurs when price breaks below VWAP, trades underneath it for a period, then reclaims it with volume. This signals that sellers have been exhausted and buyers are taking control. Enter long on the reclaim candle with a stop below the recent low under VWAP.</p>
+  </div>
+
+  <div class="diagram-container">
+    <svg viewBox="0 0 700 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid -->
+      <g opacity="0.06" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="60" y1="20" x2="60" y2="250"/><line x1="60" y1="250" x2="680" y2="250"/>
+      </g>
+      <!-- VWAP line -->
+      <path d="M80 140 Q200 135 320 140 Q440 145 560 138 Q620 135 670 140" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+      <text x="672" y="135" fill="#8b5cf6" font-size="10" font-weight="600">VWAP</text>
+      <!-- Price action - VWAP Bounce -->
+      <polyline points="80,100 110,115 140,105 170,120 200,135 220,138" stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      <!-- Bounce off VWAP -->
+      <polyline points="220,138 240,130 260,110 280,105 300,95 320,100" stroke="#10b981" stroke-width="2" fill="none" stroke-linejoin="round"/>
+      <circle cx="220" cy="138" r="6" fill="none" stroke="#f59e0b" stroke-width="2"/>
+      <text x="200" y="165" fill="#f59e0b" font-size="10" font-weight="600">BOUNCE</text>
+      <!-- Price drops below VWAP -->
+      <polyline points="320,100 340,120 360,145 380,160 400,170 420,165 440,155 460,148" stroke="#ef4444" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      <!-- VWAP reclaim -->
+      <polyline points="460,148 470,142 480,138 490,130 510,120 530,110 550,105 570,100 590,95 610,90 640,85" stroke="#10b981" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="480" cy="138" r="6" fill="none" stroke="#f59e0b" stroke-width="2"/>
+      <text x="458" y="165" fill="#f59e0b" font-size="10" font-weight="600">RECLAIM</text>
+      <!-- Below VWAP label -->
+      <text x="370" y="190" fill="#ef4444" font-size="9" opacity="0.7">Below VWAP &mdash; Bearish</text>
+      <!-- Above VWAP label -->
+      <text x="100" y="85" fill="#10b981" font-size="9" opacity="0.7">Above VWAP &mdash; Bullish</text>
+      <text x="540" y="80" fill="#10b981" font-size="9" opacity="0.7">Above VWAP &mdash; Bullish</text>
+    </svg>
+    <div class="diagram-label">VWAP Bounce and VWAP Reclaim setups on an intraday chart</div>
+  </div>
+
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>VWAP Resets Daily</strong>
+      <p>Unlike moving averages, VWAP resets at the start of each trading session. This makes it uniquely suited for intraday decisions. Never use yesterday's VWAP for today's trades.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.6 Scalping -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.6</span> Scalping</h2>
+  <p>Scalping is the fastest form of day trading, aiming to capture small price movements over very short timeframes &mdash; often just a few cents per share. Scalpers may take dozens of trades per day, relying on a high win rate and rapid execution.</p>
+
+  <h3>Scalping Essentials</h3>
+  <ul class="feature-list">
+    <li><strong>Speed is everything</strong> &mdash; Hotkeys and direct-access routing are non-negotiable</li>
+    <li><strong>Level 2 mastery</strong> &mdash; You must read the order book in real time to see where liquidity sits</li>
+    <li><strong>Small position sizes</strong> &mdash; Risk must be tiny per trade because your edge comes from many small wins</li>
+    <li><strong>High win rate required</strong> &mdash; You need 60%+ win rate because your risk/reward is close to 1:1</li>
+    <li><strong>Tight spreads only</strong> &mdash; Trade liquid stocks with penny-wide spreads; wide spreads destroy scalping profits</li>
+    <li><strong>Commission awareness</strong> &mdash; With dozens of trades, commissions add up fast</li>
+  </ul>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Commissions Will Eat Your Profits</strong>
+      <p>If you scalp 50 trades per day at $5 per round-trip commission, that is $250/day in costs before you make a single dollar. Scalping only makes sense with commission-free or per-share pricing from a direct-access broker. Do the math before committing to this strategy.</p>
+    </div>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Not for Beginners</strong>
+      <p>Scalping requires the fastest reflexes, deepest market understanding, and most expensive tools. It is the last strategy you should attempt, not the first. Build your foundation with ORB or VWAP strategies before considering scalping.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.7 Mean Reversion -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.7</span> Mean Reversion</h2>
+  <p>Mean reversion is based on the idea that price tends to return to its average after extreme moves. When a stock becomes overextended &mdash; too far from VWAP, with RSI at extremes &mdash; there is a statistical tendency for it to snap back.</p>
+
+  <h3>Identifying Mean Reversion Setups</h3>
+  <ul class="feature-list">
+    <li><strong>RSI at extremes</strong> &mdash; Above 80 or below 20 on the 5-minute chart</li>
+    <li><strong>Far from VWAP</strong> &mdash; Price is 2+ standard deviations away from VWAP</li>
+    <li><strong>Parabolic move</strong> &mdash; Nearly vertical price action on heavy volume, often from a news catalyst</li>
+    <li><strong>Exhaustion candles</strong> &mdash; Long wicks showing rejection at the extreme</li>
+    <li><strong>Volume climax</strong> &mdash; A massive volume spike at the peak, often the "blow-off top"</li>
+  </ul>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Mean Reversion Trade Plan
+    </h4>
+    <ul class="feature-list">
+      <li><strong>Entry:</strong> Fade the extended move once you see exhaustion (rejection candle, volume climax)</li>
+      <li><strong>Stop:</strong> Just beyond the extreme &mdash; above the high for shorts, below the low for longs</li>
+      <li><strong>Target:</strong> VWAP or the 20 EMA &mdash; the "mean" you expect price to revert to</li>
+      <li><strong>Size:</strong> Smaller than your momentum trades, because you are trading against the current move</li>
+    </ul>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Beware of Catching Falling Knives</strong>
+      <p>Not every overextended move reverses. Some stocks are overextended because the move is real &mdash; a buyout, FDA approval, or short squeeze. Always wait for confirmation of exhaustion before entering. "Cheap" can always get cheaper.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Combine With Time of Day</strong>
+      <p>Mean reversion works best during the midday session (11:30 AM &ndash; 2:00 PM ET) when momentum traders have finished and stocks tend to range and revert. Avoid fading moves during the opening hour, when momentum is strongest.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7.8 Strategy Selection Guide -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.8</span> Strategy Selection Guide</h2>
+  <p>Use this guide to match the right strategy to current market conditions. Click each strategy to see its ideal setup, required tools, and risk profile.</p>
+
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="const item=this.parentElement;const content=item.querySelector('.accordion-content');if(item.classList.contains('open')){item.classList.remove('open');content.style.maxHeight='0'}else{item.classList.add('open');content.style.maxHeight=content.scrollHeight+'px'}">
+        <span><span class="tag tag-green" style="margin-right:8px">Moderate</span> Momentum / Trend Following</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
+        <div class="accordion-content-inner">
+          <p><strong>Best Conditions:</strong> Strong trending days with clear direction. Works best in the first and last hour of trading when volume is highest.</p>
+          <p><strong>Required Tools:</strong> 5-minute chart, 9 EMA, 20 EMA, VWAP, volume indicator.</p>
+          <p><strong>Typical Setup:</strong> Stock breaking out on news/catalyst, pulling back to the 9 or 20 EMA on declining volume, then resuming the trend on increasing volume.</p>
+          <p><strong>Risk Level:</strong> Moderate. Stop losses are well-defined (below the pullback low). Risk/reward of 2:1 or better.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="const item=this.parentElement;const content=item.querySelector('.accordion-content');if(item.classList.contains('open')){item.classList.remove('open');content.style.maxHeight='0'}else{item.classList.add('open');content.style.maxHeight=content.scrollHeight+'px'}">
+        <span><span class="tag tag-green" style="margin-right:8px">Moderate</span> Breakout Trading</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
+        <div class="accordion-content-inner">
+          <p><strong>Best Conditions:</strong> After a period of tight consolidation (flags, triangles, flat ranges). Works across all market types.</p>
+          <p><strong>Required Tools:</strong> 5 &amp; 15-minute charts, support/resistance levels, volume indicator, price alerts.</p>
+          <p><strong>Typical Setup:</strong> Stock consolidating near a key resistance level for 30+ minutes with contracting range, then breaking above on 2x+ average volume.</p>
+          <p><strong>Risk Level:</strong> Moderate. Lower win rate (~40-50%) offset by excellent risk/reward (2:1 to 4:1). Must accept frequent small losses.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="const item=this.parentElement;const content=item.querySelector('.accordion-content');if(item.classList.contains('open')){item.classList.remove('open');content.style.maxHeight='0'}else{item.classList.add('open');content.style.maxHeight=content.scrollHeight+'px'}">
+        <span><span class="tag tag-blue" style="margin-right:8px">Beginner</span> Opening Range Breakout (ORB)</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
+        <div class="accordion-content-inner">
+          <p><strong>Best Conditions:</strong> Gap days with high relative volume. Works best on stocks with a clear catalyst driving directional movement.</p>
+          <p><strong>Required Tools:</strong> 1 or 5-minute chart, price alerts, volume indicator, VWAP.</p>
+          <p><strong>Typical Setup:</strong> Stock gaps 3%+ at the open, forms a 15-30 minute range, then breaks above the opening range high on volume. Enter on the break, stop at mid-range.</p>
+          <p><strong>Risk Level:</strong> Low-Moderate. Very clear rules make it easy to follow. Excellent for building discipline. One of the best strategies for new day traders.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="const item=this.parentElement;const content=item.querySelector('.accordion-content');if(item.classList.contains('open')){item.classList.remove('open');content.style.maxHeight='0'}else{item.classList.add('open');content.style.maxHeight=content.scrollHeight+'px'}">
+        <span><span class="tag tag-blue" style="margin-right:8px">Beginner</span> VWAP Strategies</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
+        <div class="accordion-content-inner">
+          <p><strong>Best Conditions:</strong> Range-bound days where price oscillates around VWAP. Also works well during midday hours when momentum fades.</p>
+          <p><strong>Required Tools:</strong> 1 or 5-minute chart, VWAP indicator, volume, Level 2 for confirmation.</p>
+          <p><strong>Typical Setup:</strong> Price pulls back to VWAP and shows a rejection candle (long lower wick for longs). Volume decreases on the pullback and increases on the bounce.</p>
+          <p><strong>Risk Level:</strong> Low. VWAP provides a very clear reference point for entries and stops. High win rate makes it psychologically easy to trade.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="const item=this.parentElement;const content=item.querySelector('.accordion-content');if(item.classList.contains('open')){item.classList.remove('open');content.style.maxHeight='0'}else{item.classList.add('open');content.style.maxHeight=content.scrollHeight+'px'}">
+        <span><span class="tag tag-red" style="margin-right:8px">Advanced</span> Scalping</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
+        <div class="accordion-content-inner">
+          <p><strong>Best Conditions:</strong> High-liquidity stocks with penny-wide spreads. Best during the open (9:30-10:30 AM) and close (3:00-4:00 PM) when volume peaks.</p>
+          <p><strong>Required Tools:</strong> Level 2 / Market Depth, Time &amp; Sales, 1-minute and tick charts, hotkeys, direct-access routing.</p>
+          <p><strong>Typical Setup:</strong> Identify large orders on the bid/ask, enter ahead of institutional flow, capture 5-20 cents per share, exit within seconds to minutes.</p>
+          <p><strong>Risk Level:</strong> High. Requires expensive tools, low commissions, and extraordinary focus. Small mistakes compound quickly over dozens of trades.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="const item=this.parentElement;const content=item.querySelector('.accordion-content');if(item.classList.contains('open')){item.classList.remove('open');content.style.maxHeight='0'}else{item.classList.add('open');content.style.maxHeight=content.scrollHeight+'px'}">
+        <span><span class="tag tag-gold" style="margin-right:8px">Intermediate</span> Mean Reversion</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-content" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
+        <div class="accordion-content-inner">
+          <p><strong>Best Conditions:</strong> Overextended moves during midday (11:30 AM &ndash; 2:00 PM). Range days. Stocks that have spiked on hype without real catalyst.</p>
+          <p><strong>Required Tools:</strong> 5-minute chart, RSI, VWAP, Bollinger Bands, volume indicator.</p>
+          <p><strong>Typical Setup:</strong> Stock spikes 15%+ in the morning on heavy volume, goes parabolic, then prints an exhaustion candle (topping tail). Enter short with stop above the high, target VWAP.</p>
+          <p><strong>Risk Level:</strong> Moderate-High. Trading against the trend is inherently riskier. Stops can be wide if the move continues. Smaller position sizes are mandatory.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7.9 Quiz -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">7.9</span> Knowledge Check</h2>
+  <p>Test your understanding of day trading strategies with these scenario-based questions.</p>
+
+  <div class="quiz-container" data-quiz="m7-strategies">
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "A stock has been making higher highs and higher lows all morning on heavy volume. It just pulled back to the 20 EMA on lighter volume. Which strategy best fits this setup?",
+          "options": [
+            "Mean reversion (short the pullback)",
+            "Momentum / Trend following (buy the pullback)",
+            "Opening Range Breakout",
+            "Scalping"
+          ],
+          "correct": 1,
+          "explanation": "This is a textbook momentum/trend following setup: a clear uptrend with a pullback to a key moving average on declining volume. You buy the pullback expecting the trend to continue."
+        },
+        {
+          "question": "A stock has been consolidating in a tight range near resistance for 45 minutes with declining volume. What should you watch for?",
+          "options": [
+            "A mean reversion short below VWAP",
+            "A scalping entry on the bid",
+            "A breakout above resistance on a volume surge",
+            "An ORB entry at the opening range low"
+          ],
+          "correct": 2,
+          "explanation": "Tight consolidation near resistance with declining volume is the classic pre-breakout setup. You wait for price to break above resistance on significantly above-average volume to confirm the move is real."
+        },
+        {
+          "question": "It is 10:05 AM and a stock that gapped up 5% just broke above its first 30-minute high with strong volume. What strategy is this?",
+          "options": [
+            "VWAP bounce",
+            "Mean reversion",
+            "Opening Range Breakout (ORB)",
+            "Breakout trading"
+          ],
+          "correct": 2,
+          "explanation": "Breaking above the first 30-minute high (the opening range) on a gap-up day is the Opening Range Breakout strategy. The gap creates directional bias and the ORB confirms it."
+        },
+        {
+          "question": "A stock is trading below VWAP and rallies up to test it, printing a bearish engulfing candle right at the VWAP level. What is the setup?",
+          "options": [
+            "Momentum long entry",
+            "VWAP rejection (short)",
+            "Breakout above VWAP",
+            "ORB long entry"
+          ],
+          "correct": 1,
+          "explanation": "When price is below VWAP and rallies to test it but gets rejected with a bearish candle, this is a VWAP rejection short. VWAP acts as resistance when price is below it."
+        },
+        {
+          "question": "Which strategy requires the highest win rate to be profitable?",
+          "options": [
+            "Breakout trading",
+            "Momentum trading",
+            "Scalping",
+            "Mean reversion"
+          ],
+          "correct": 2,
+          "explanation": "Scalping targets very small gains with a risk/reward close to 1:1, so you need a win rate of 60%+ just to break even after commissions. Other strategies can survive on lower win rates because they target larger R:R."
+        },
+        {
+          "question": "A stock spiked 20% in the first hour, is now far above VWAP with RSI at 85, and just printed a long upper wick candle on a huge volume spike. What setup is forming?",
+          "options": [
+            "Momentum continuation long",
+            "Breakout entry",
+            "Mean reversion short",
+            "VWAP bounce long"
+          ],
+          "correct": 2,
+          "explanation": "This is a mean reversion setup: extreme RSI, far from VWAP, parabolic move, and an exhaustion candle (long upper wick) on a volume climax. The setup is to fade the move and target a reversion back toward VWAP."
+        },
+        {
+          "question": "Why is the first pullback in a new trend considered the highest-probability entry?",
+          "options": [
+            "Because volume is always highest on the first pullback",
+            "Because the trend is freshest and most participants have not yet entered",
+            "Because the opening range is still in play",
+            "Because RSI is always below 30 on the first pullback"
+          ],
+          "correct": 1,
+          "explanation": "The first pullback occurs when the trend is young and most traders have not yet positioned. There is still plenty of fuel (uncommitted buyers/sellers) to drive the trend further. By the third or fourth pullback, the trend is often exhausted."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- Module Footer -->
+<div class="module-footer">
+  <button class="module-footer-btn" onclick="navigateTo(6)">&larr; Previous: Trading Psychology</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(8)">Next: Tools of the Trade &rarr;</button>
+</div>

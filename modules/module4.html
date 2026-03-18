@@ -1,0 +1,795 @@
+<!-- ============================================
+     MODULE 4: Technical Indicators
+     ============================================ -->
+
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M3 12h2l3-8 4 16 3-8h6"/>
+    </svg>
+    MODULE 04
+  </div>
+  <h1>Technical Indicators</h1>
+  <p>Technical indicators are mathematical calculations based on price, volume, or open interest. They help traders quantify trends, measure momentum, identify overbought/oversold conditions, and spot potential reversals. Used correctly, they add a powerful analytical layer to your chart reading&nbsp;&mdash; but they are tools, not crystal balls.</p>
+</div>
+
+<!-- ==========================================
+     4.1 — Why Use Indicators
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">4.1</span> Why Use Indicators</h2>
+
+  <p>Before diving into specific indicators, it is critical to understand their role and limitations. Indicators are derived from price and volume data&nbsp;&mdash; they do not predict the future. They <em>process</em> information that is already on the chart to make patterns and trends more visible.</p>
+
+  <div class="concept-card reveal">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      Indicators Are Tools, Not Crystal Balls
+    </h4>
+    <p>No indicator is right 100% of the time. Every indicator will produce false signals. The value lies in combining indicators with price action, volume, and market context to build a higher-probability trading thesis. Treat indicators as one piece of evidence, not as a verdict.</p>
+  </div>
+
+  <h3>Leading vs. Lagging Indicators</h3>
+  <p>This is one of the most important distinctions in technical analysis. Understanding the difference will help you choose the right tool for the right situation.</p>
+
+  <table class="data-table reveal">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Behavior</th>
+        <th>Best For</th>
+        <th>Examples</th>
+        <th>Weakness</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Leading (Oscillators)</strong></td>
+        <td>Signal before a move happens</td>
+        <td>Anticipating reversals</td>
+        <td>RSI, Stochastic, CCI</td>
+        <td>Frequent false signals in trending markets</td>
+      </tr>
+      <tr>
+        <td><strong>Lagging (Trend-Following)</strong></td>
+        <td>Confirm after a move begins</td>
+        <td>Riding established trends</td>
+        <td>Moving Averages, MACD</td>
+        <td>Late entries; miss the early portion of moves</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box warning reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Indicator Overload</strong>
+      <p>A common beginner mistake is loading 8&ndash;10 indicators on a chart, creating confusion and conflicting signals. Stick to 2&ndash;3 complementary indicators maximum. For example, one trend indicator (moving average) plus one momentum oscillator (RSI) plus volume is a solid combination.</p>
+    </div>
+  </div>
+
+  <h3>Choosing Your Indicator Mix</h3>
+  <p>The best approach is to combine indicators from different categories so they provide different types of information:</p>
+  <ul class="feature-list">
+    <li><strong>Trend identification:</strong> Moving averages or MACD tell you the direction</li>
+    <li><strong>Momentum / timing:</strong> RSI or Stochastic tell you when a move may be exhausted</li>
+    <li><strong>Volatility:</strong> Bollinger Bands tell you how much movement to expect</li>
+    <li><strong>Confirmation:</strong> Volume or VWAP validates whether the move is genuine</li>
+  </ul>
+</div>
+
+<!-- ==========================================
+     4.2 — Moving Averages
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">4.2</span> Moving Averages</h2>
+
+  <p>Moving averages are the most widely used technical indicators. They smooth out price data to create a single flowing line that makes trend direction easier to identify. Every professional trader watches at least one or two moving averages.</p>
+
+  <h3>Simple Moving Average (SMA)</h3>
+  <p>The SMA calculates the arithmetic mean of the last <em>n</em> closing prices.</p>
+  <div class="concept-card reveal">
+    <h4>SMA Formula</h4>
+    <p style="text-align:center;font-family:var(--font-mono);font-size:1.1rem;color:var(--accent-gold);margin:1rem 0">
+      <code>SMA = (P₁ + P₂ + P₃ + ... + Pₙ) / n</code>
+    </p>
+    <p>For example, a 20-period SMA adds the last 20 closing prices and divides by 20. Each new bar, the oldest price drops off and the newest one is added.</p>
+  </div>
+
+  <h3>Exponential Moving Average (EMA)</h3>
+  <p>The EMA gives more weight to recent prices, making it more responsive to new information.</p>
+  <div class="concept-card reveal">
+    <h4>EMA Formula</h4>
+    <p style="text-align:center;font-family:var(--font-mono);font-size:1rem;color:var(--accent-gold);margin:1rem 0">
+      <code>EMA = Price × k + EMA_prev × (1 - k)</code><br>
+      <span style="font-size:0.85rem;color:var(--text-muted)">where <code>k = 2 / (n + 1)</code></span>
+    </p>
+    <p>Because of the weighting, EMAs react faster to price changes than SMAs of the same period. This makes EMAs better for fast-moving intraday trading, while SMAs are better for identifying longer-term trends.</p>
+  </div>
+
+  <h3>Key Moving Average Periods</h3>
+  <table class="data-table reveal">
+    <thead>
+      <tr>
+        <th>Period</th>
+        <th>Common Use</th>
+        <th>Time Horizon</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>9 EMA</code></td>
+        <td>Very short-term momentum, scalping</td>
+        <td>Intraday</td>
+      </tr>
+      <tr>
+        <td><code>20 SMA/EMA</code></td>
+        <td>Short-term trend, pullback entries</td>
+        <td>Swing / Intraday</td>
+      </tr>
+      <tr>
+        <td><code>50 SMA</code></td>
+        <td>Intermediate trend, institutional level</td>
+        <td>Swing</td>
+      </tr>
+      <tr>
+        <td><code>200 SMA</code></td>
+        <td>Long-term trend, bull/bear market divider</td>
+        <td>Position / Macro</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Crossover Strategies</h3>
+  <p>When a shorter-period moving average crosses above or below a longer-period one, it generates a signal. These are some of the most widely watched events in all of trading:</p>
+
+  <div class="comparison-grid reveal">
+    <div class="comparison-card bullish">
+      <h4>Golden Cross</h4>
+      <p style="color:var(--text-secondary);font-size:0.9rem">The <strong>50 SMA</strong> crosses <strong>above</strong> the <strong>200 SMA</strong>. This is a major bullish signal that indicates the intermediate trend is now stronger than the long-term trend was. Institutions watch this closely.</p>
+      <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem"><em>Example: After a bear market bottom, the 50 SMA catching up and crossing above the 200 SMA often signals the beginning of a new bull phase.</em></p>
+    </div>
+    <div class="comparison-card bearish">
+      <h4>Death Cross</h4>
+      <p style="color:var(--text-secondary);font-size:0.9rem">The <strong>50 SMA</strong> crosses <strong>below</strong> the <strong>200 SMA</strong>. This is a major bearish signal. It indicates that the intermediate trend has turned negative relative to the long-term trend, suggesting further downside.</p>
+      <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem"><em>Example: A death cross in a major index like the S&amp;P 500 can trigger widespread selling as algorithmic systems react to the signal.</em></p>
+    </div>
+  </div>
+
+  <div class="diagram-container reveal">
+    <svg viewBox="0 0 700 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ma-area" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Grid -->
+      <g opacity="0.06" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="60" y1="30" x2="680" y2="30"/>
+        <line x1="60" y1="90" x2="680" y2="90"/>
+        <line x1="60" y1="150" x2="680" y2="150"/>
+        <line x1="60" y1="210" x2="680" y2="210"/>
+        <line x1="60" y1="270" x2="680" y2="270"/>
+      </g>
+
+      <!-- Price line (choppy, trending up after crossover) -->
+      <polyline points="70,220 95,230 115,215 135,225 155,210 175,200 195,215 215,195 235,190 255,205 275,180 295,165 315,175 335,155 355,145 375,160 395,135 415,120 435,130 455,115 475,105 495,95 515,110 535,90 555,80 575,95 595,70 615,60 635,55 660,50"
+        stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+
+      <!-- 50 SMA (faster, orange) -->
+      <polyline points="70,200 115,205 155,200 195,195 235,188 275,175 315,168 355,155 395,145 435,135 475,122 515,112 555,100 595,88 635,75 660,68"
+        stroke="#f59e0b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- 200 SMA (slower, red/purple) -->
+      <polyline points="70,185 115,188 155,190 195,192 235,192 275,190 315,188 355,183 395,175 435,168 475,158 515,148 555,138 595,128 635,118 660,110"
+        stroke="#8b5cf6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Golden cross marker -->
+      <circle cx="255" cy="192" r="8" fill="none" stroke="#10b981" stroke-width="2"/>
+      <circle cx="255" cy="192" r="3" fill="#10b981"/>
+      <line x1="255" y1="192" x2="255" y2="240" stroke="#10b981" stroke-width="1" stroke-dasharray="3 2"/>
+      <text x="255" y="256" fill="#10b981" font-size="12" font-weight="600" font-family="Inter" text-anchor="middle">Golden Cross</text>
+      <text x="255" y="270" fill="#94a3b8" font-size="9" font-family="Inter" text-anchor="middle">50 SMA crosses above 200 SMA</text>
+
+      <!-- Legend -->
+      <rect x="490" y="240" width="180" height="50" rx="6" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+      <line x1="502" y1="255" x2="530" y2="255" stroke="#f59e0b" stroke-width="2"/>
+      <text x="536" y="259" fill="#94a3b8" font-size="10" font-family="Inter">50 SMA</text>
+      <line x1="502" y1="275" x2="530" y2="275" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="536" y="279" fill="#94a3b8" font-size="10" font-family="Inter">200 SMA</text>
+      <line x1="600" y1="255" x2="628" y2="255" stroke="#3b82f6" stroke-width="1.5" opacity="0.6"/>
+      <text x="634" y="259" fill="#94a3b8" font-size="10" font-family="Inter">Price</text>
+    </svg>
+    <div class="diagram-label">Golden Cross: the 50 SMA crossing above the 200 SMA is a major bullish signal</div>
+  </div>
+
+  <div class="info-box tip reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Day Trading Moving Average Strategy</strong>
+      <p>Many day traders use the 9 EMA and 20 EMA on a 5-minute chart. When the 9 EMA crosses above the 20 EMA, they look for long entries on pullbacks to the 9 EMA. When the 9 EMA crosses below the 20 EMA, they look for short entries. Simple, but effective when combined with volume and price action.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     4.3 — RSI (Relative Strength Index)
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">4.3</span> RSI (Relative Strength Index)</h2>
+
+  <p>Developed by J. Welles Wilder in 1978, the RSI is a momentum oscillator that measures the speed and magnitude of price changes. It oscillates between 0 and 100, giving you a quick read on whether an asset is overbought or oversold.</p>
+
+  <div class="concept-card reveal">
+    <h4>RSI Formula Concept</h4>
+    <p style="text-align:center;font-family:var(--font-mono);font-size:1rem;color:var(--accent-gold);margin:1rem 0">
+      <code>RSI = 100 - (100 / (1 + RS))</code><br>
+      <span style="font-size:0.85rem;color:var(--text-muted)">where <code>RS = Average Gain / Average Loss</code> over <code>n</code> periods (default 14)</span>
+    </p>
+  </div>
+
+  <h3>Key RSI Levels</h3>
+  <table class="data-table reveal">
+    <thead>
+      <tr>
+        <th>Level</th>
+        <th>Reading</th>
+        <th>Interpretation</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Above 70</strong></td>
+        <td><span class="tag tag-red">Overbought</span></td>
+        <td>Price has risen aggressively; may be due for a pullback</td>
+        <td>Watch for reversal signals; consider taking profits on longs</td>
+      </tr>
+      <tr>
+        <td><strong>50 (midline)</strong></td>
+        <td><span class="tag tag-blue">Neutral</span></td>
+        <td>Equilibrium point; acts as support in uptrends, resistance in downtrends</td>
+        <td>Use as trend confirmation tool</td>
+      </tr>
+      <tr>
+        <td><strong>Below 30</strong></td>
+        <td><span class="tag tag-green">Oversold</span></td>
+        <td>Price has dropped aggressively; may be due for a bounce</td>
+        <td>Watch for reversal signals; look for buying opportunities</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="diagram-container reveal">
+    <svg viewBox="0 0 700 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Price chart area (top) -->
+      <rect x="60" y="10" width="620" height="180" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+      <text x="70" y="28" fill="#94a3b8" font-size="10" font-weight="600" font-family="Inter">PRICE</text>
+
+      <!-- Grid for price -->
+      <g opacity="0.05" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="60" y1="60" x2="680" y2="60"/>
+        <line x1="60" y1="100" x2="680" y2="100"/>
+        <line x1="60" y1="140" x2="680" y2="140"/>
+      </g>
+
+      <!-- Price line -->
+      <polyline points="80,150 110,140 140,130 170,120 200,100 230,90 260,80 290,75 320,85 350,70 380,60 410,50 440,55 470,45 500,50 530,60 560,55 590,65 620,75 650,70 670,80"
+        stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- RSI subpanel (bottom) -->
+      <rect x="60" y="210" width="620" height="155" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+      <text x="70" y="228" fill="#94a3b8" font-size="10" font-weight="600" font-family="Inter">RSI (14)</text>
+
+      <!-- RSI overbought zone -->
+      <rect x="60" y="218" width="620" height="37" fill="#ef4444" opacity="0.06"/>
+      <line x1="60" y1="255" x2="680" y2="255" stroke="#ef4444" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
+      <text x="682" y="258" fill="#ef4444" font-size="9" font-family="Inter">70</text>
+
+      <!-- RSI midline -->
+      <line x1="60" y1="290" x2="680" y2="290" stroke="#475569" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4"/>
+      <text x="682" y="294" fill="#475569" font-size="9" font-family="Inter">50</text>
+
+      <!-- RSI oversold zone -->
+      <rect x="60" y="325" width="620" height="37" fill="#10b981" opacity="0.06"/>
+      <line x1="60" y1="325" x2="680" y2="325" stroke="#10b981" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
+      <text x="682" y="328" fill="#10b981" font-size="9" font-family="Inter">30</text>
+
+      <!-- RSI line -->
+      <polyline points="80,310 110,300 140,285 170,270 200,255 230,245 260,238 290,240 320,260 350,235 380,225 410,218 440,230 470,222 500,240 530,265 560,260 590,280 620,290 650,285 670,295"
+        stroke="#f59e0b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Overbought label arrow -->
+      <circle cx="410" cy="218" r="5" fill="none" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="410" y="213" fill="#ef4444" font-size="9" font-weight="600" font-family="Inter" text-anchor="middle">Overbought</text>
+
+      <!-- Oversold zone indicator -->
+      <text x="110" y="350" fill="#10b981" font-size="9" font-weight="600" font-family="Inter" text-anchor="middle">Oversold Zone</text>
+      <text x="410" y="213" fill="#ef4444" font-size="9" font-weight="600" font-family="Inter" text-anchor="middle"></text>
+
+      <!-- Price labels -->
+      <text x="56" y="258" fill="#ef4444" font-size="9" font-family="JetBrains Mono" text-anchor="end">70</text>
+      <text x="56" y="328" fill="#10b981" font-size="9" font-family="JetBrains Mono" text-anchor="end">30</text>
+    </svg>
+    <div class="diagram-label">RSI oscillating between oversold (below 30) and overbought (above 70) zones, shown below the price chart</div>
+  </div>
+
+  <h3>RSI Divergence</h3>
+  <p>Divergence is when the RSI disagrees with price, and it is one of the most powerful signals RSI produces:</p>
+  <div class="comparison-grid reveal">
+    <div class="comparison-card bullish">
+      <h4>Bullish Divergence</h4>
+      <p style="color:var(--text-secondary);font-size:0.9rem">Price makes a <strong>lower low</strong>, but RSI makes a <strong>higher low</strong>. This signals that selling momentum is weakening even though price is still falling. Often precedes a reversal upward.</p>
+    </div>
+    <div class="comparison-card bearish">
+      <h4>Bearish Divergence</h4>
+      <p style="color:var(--text-secondary);font-size:0.9rem">Price makes a <strong>higher high</strong>, but RSI makes a <strong>lower high</strong>. This signals that buying momentum is fading even though price keeps rising. Often precedes a reversal downward.</p>
+    </div>
+  </div>
+
+  <div class="info-box warning reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Overbought Does Not Mean &ldquo;Sell&rdquo;</strong>
+      <p>A common mistake is treating RSI above 70 as an automatic sell signal. In strong uptrends, RSI can stay overbought for extended periods while price continues to climb. Overbought means stretched, not finished. Wait for a confirming signal like a bearish candle pattern or a break of support before acting.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     4.4 — MACD
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">4.4</span> MACD (Moving Average Convergence Divergence)</h2>
+
+  <p>Developed by Gerald Appel, the MACD is a trend-following momentum indicator. It shows the relationship between two exponential moving averages and is one of the most versatile indicators available to traders.</p>
+
+  <div class="concept-card reveal">
+    <h4>MACD Components</h4>
+    <ul class="feature-list">
+      <li><strong>MACD Line:</strong> <code>12 EMA - 26 EMA</code> &mdash; The difference between the fast and slow EMA. When the MACD line is positive, the short-term trend is above the long-term trend (bullish).</li>
+      <li><strong>Signal Line:</strong> <code>9 EMA of MACD Line</code> &mdash; A smoothed version of the MACD line. Crossovers between the MACD line and signal line generate trade signals.</li>
+      <li><strong>Histogram:</strong> <code>MACD Line - Signal Line</code> &mdash; Visualizes the gap between the two lines. Growing histogram bars indicate increasing momentum; shrinking bars indicate fading momentum.</li>
+      <li><strong>Zero Line:</strong> When MACD crosses above zero, the short-term EMA has crossed above the long-term EMA (bullish). Below zero is bearish.</li>
+    </ul>
+  </div>
+
+  <div class="diagram-container reveal">
+    <svg viewBox="0 0 700 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Price panel -->
+      <rect x="60" y="10" width="620" height="160" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+      <text x="70" y="28" fill="#94a3b8" font-size="10" font-weight="600" font-family="Inter">PRICE</text>
+
+      <!-- Price line -->
+      <polyline points="80,140 110,130 140,125 170,115 200,100 230,95 260,85 290,90 320,80 350,70 380,65 410,60 440,70 470,75 500,85 530,80 560,90 590,100 620,95 650,105 670,110"
+        stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- MACD panel -->
+      <rect x="60" y="190" width="620" height="170" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+      <text x="70" y="208" fill="#94a3b8" font-size="10" font-weight="600" font-family="Inter">MACD (12, 26, 9)</text>
+
+      <!-- Zero line -->
+      <line x1="60" y1="290" x2="680" y2="290" stroke="#475569" stroke-width="1" stroke-dasharray="4 4" opacity="0.3"/>
+      <text x="682" y="294" fill="#475569" font-size="9" font-family="Inter">0</text>
+
+      <!-- Histogram bars -->
+      <g opacity="0.7">
+        <!-- Negative bars (start) -->
+        <rect x="82" y="290" width="8" height="18" rx="1" fill="#ef4444"/>
+        <rect x="96" y="290" width="8" height="14" rx="1" fill="#ef4444"/>
+        <rect x="110" y="290" width="8" height="8" rx="1" fill="#ef4444"/>
+        <!-- Positive bars (momentum building) -->
+        <rect x="138" y="285" width="8" height="5" rx="1" fill="#10b981"/>
+        <rect x="152" y="280" width="8" height="10" rx="1" fill="#10b981"/>
+        <rect x="166" y="274" width="8" height="16" rx="1" fill="#10b981"/>
+        <rect x="180" y="268" width="8" height="22" rx="1" fill="#10b981"/>
+        <rect x="194" y="264" width="8" height="26" rx="1" fill="#10b981"/>
+        <rect x="208" y="258" width="8" height="32" rx="1" fill="#10b981"/>
+        <rect x="222" y="255" width="8" height="35" rx="1" fill="#10b981"/>
+        <rect x="236" y="256" width="8" height="34" rx="1" fill="#10b981"/>
+        <rect x="250" y="260" width="8" height="30" rx="1" fill="#10b981"/>
+        <rect x="264" y="262" width="8" height="28" rx="1" fill="#10b981"/>
+        <rect x="278" y="265" width="8" height="25" rx="1" fill="#10b981"/>
+        <rect x="292" y="268" width="8" height="22" rx="1" fill="#10b981"/>
+        <rect x="306" y="272" width="8" height="18" rx="1" fill="#10b981"/>
+        <rect x="320" y="275" width="8" height="15" rx="1" fill="#10b981"/>
+        <rect x="334" y="278" width="8" height="12" rx="1" fill="#10b981"/>
+        <rect x="348" y="280" width="8" height="10" rx="1" fill="#10b981"/>
+        <rect x="362" y="283" width="8" height="7" rx="1" fill="#10b981"/>
+        <rect x="376" y="286" width="8" height="4" rx="1" fill="#10b981"/>
+        <!-- Negative bars (bearish crossover) -->
+        <rect x="404" y="290" width="8" height="4" rx="1" fill="#ef4444"/>
+        <rect x="418" y="290" width="8" height="8" rx="1" fill="#ef4444"/>
+        <rect x="432" y="290" width="8" height="12" rx="1" fill="#ef4444"/>
+        <rect x="446" y="290" width="8" height="16" rx="1" fill="#ef4444"/>
+        <rect x="460" y="290" width="8" height="14" rx="1" fill="#ef4444"/>
+        <rect x="474" y="290" width="8" height="12" rx="1" fill="#ef4444"/>
+        <rect x="488" y="290" width="8" height="10" rx="1" fill="#ef4444"/>
+        <rect x="502" y="290" width="8" height="15" rx="1" fill="#ef4444"/>
+        <rect x="516" y="290" width="8" height="11" rx="1" fill="#ef4444"/>
+        <rect x="530" y="290" width="8" height="8" rx="1" fill="#ef4444"/>
+        <rect x="544" y="290" width="8" height="5" rx="1" fill="#ef4444"/>
+      </g>
+
+      <!-- MACD Line (blue) -->
+      <polyline points="80,308 110,304 140,296 170,280 200,268 230,258 260,254 290,256 320,262 350,270 380,278 410,290 440,298 470,306 500,304 530,300 560,295 590,290 620,297 650,304"
+        stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Signal Line (orange) -->
+      <polyline points="80,310 110,308 140,302 170,290 200,278 230,268 260,262 290,260 320,264 350,270 380,276 410,284 440,292 470,298 500,302 530,302 560,300 590,298 620,298 650,300"
+        stroke="#f59e0b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 2"/>
+
+      <!-- Bullish crossover marker -->
+      <circle cx="128" cy="298" r="6" fill="none" stroke="#10b981" stroke-width="2"/>
+      <text x="128" y="340" fill="#10b981" font-size="10" font-weight="600" font-family="Inter" text-anchor="middle">Bullish</text>
+      <text x="128" y="352" fill="#10b981" font-size="9" font-family="Inter" text-anchor="middle">Crossover</text>
+
+      <!-- Bearish crossover marker -->
+      <circle cx="396" cy="290" r="6" fill="none" stroke="#ef4444" stroke-width="2"/>
+      <text x="396" y="340" fill="#ef4444" font-size="10" font-weight="600" font-family="Inter" text-anchor="middle">Bearish</text>
+      <text x="396" y="352" fill="#ef4444" font-size="9" font-family="Inter" text-anchor="middle">Crossover</text>
+
+      <!-- Legend -->
+      <rect x="540" y="210" width="135" height="50" rx="6" fill="#0a0e17" stroke="#1e293b" stroke-width="1"/>
+      <line x1="550" y1="225" x2="575" y2="225" stroke="#3b82f6" stroke-width="2"/>
+      <text x="580" y="229" fill="#94a3b8" font-size="9" font-family="Inter">MACD Line</text>
+      <line x1="550" y1="245" x2="575" y2="245" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 2"/>
+      <text x="580" y="249" fill="#94a3b8" font-size="9" font-family="Inter">Signal Line</text>
+    </svg>
+    <div class="diagram-label">MACD with bullish and bearish crossovers; histogram shows momentum strength</div>
+  </div>
+
+  <h3>MACD Trading Signals</h3>
+  <ul class="feature-list reveal">
+    <li><strong>Bullish crossover:</strong> MACD line crosses above the signal line&nbsp;&mdash; momentum is shifting bullish. Strongest when it occurs below the zero line.</li>
+    <li><strong>Bearish crossover:</strong> MACD line crosses below the signal line&nbsp;&mdash; momentum is shifting bearish. Strongest when it occurs above the zero line.</li>
+    <li><strong>Zero line crossover:</strong> MACD crossing above zero confirms bullish trend; below zero confirms bearish trend.</li>
+    <li><strong>Divergence:</strong> Just like RSI, price making new highs while MACD makes lower highs (bearish divergence) or price making new lows while MACD makes higher lows (bullish divergence) are powerful reversal signals.</li>
+    <li><strong>Histogram expansion:</strong> Histogram bars growing taller indicate accelerating momentum. Shrinking bars suggest the move is slowing.</li>
+  </ul>
+
+  <div class="info-box info reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>MACD for Day Trading</strong>
+      <p>On intraday charts (1-min, 5-min), the standard MACD settings (12, 26, 9) work well. Some traders tighten the settings to (5, 13, 1) for faster signals on shorter time frames, but this increases noise. Start with the defaults and adjust only after gaining experience.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     4.5 — Bollinger Bands
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">4.5</span> Bollinger Bands</h2>
+
+  <p>Created by John Bollinger in the 1980s, Bollinger Bands are a volatility indicator that consists of three lines plotted around a moving average. They dynamically expand and contract based on market volatility, giving you a visual envelope around price.</p>
+
+  <div class="concept-card reveal">
+    <h4>Bollinger Band Components</h4>
+    <ul class="feature-list">
+      <li><strong>Middle Band:</strong> <code>20-period SMA</code> &mdash; The baseline trend line.</li>
+      <li><strong>Upper Band:</strong> <code>Middle Band + (2 &times; Standard Deviation)</code> &mdash; Upper volatility boundary.</li>
+      <li><strong>Lower Band:</strong> <code>Middle Band - (2 &times; Standard Deviation)</code> &mdash; Lower volatility boundary.</li>
+    </ul>
+    <p style="margin-top:1rem">Statistically, about 95% of price action falls within the bands (2 standard deviations). When price moves outside the bands, it is a statistically significant event.</p>
+  </div>
+
+  <div class="diagram-container reveal">
+    <svg viewBox="0 0 700 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bb-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.08"/>
+          <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.03"/>
+          <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.08"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Grid -->
+      <g opacity="0.06" stroke="#94a3b8" stroke-width="0.5">
+        <line x1="40" y1="50" x2="680" y2="50"/>
+        <line x1="40" y1="110" x2="680" y2="110"/>
+        <line x1="40" y1="170" x2="680" y2="170"/>
+        <line x1="40" y1="230" x2="680" y2="230"/>
+      </g>
+
+      <!-- Band fill area -->
+      <path d="M60,80 C120,75 180,60 240,55 C300,50 330,95 360,100 C390,105 420,40 480,30 C540,20 600,45 660,50
+               L660,220 C600,230 540,250 480,240 C420,230 390,185 360,180 C330,175 300,210 240,220 C180,230 120,220 60,215 Z"
+        fill="url(#bb-fill)"/>
+
+      <!-- Upper band -->
+      <path d="M60,80 C120,75 180,60 240,55 C300,50 330,95 360,100 C390,105 420,40 480,30 C540,20 600,45 660,50"
+        stroke="#06b6d4" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 3"/>
+
+      <!-- Middle band (SMA) -->
+      <path d="M60,148 C120,145 180,140 240,138 C300,135 330,140 360,142 C390,144 420,130 480,128 C540,125 600,132 660,135"
+        stroke="#06b6d4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Lower band -->
+      <path d="M60,215 C120,220 180,230 240,220 C300,210 330,175 360,180 C390,185 420,230 480,240 C540,250 600,230 660,220"
+        stroke="#06b6d4" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 3"/>
+
+      <!-- Price line -->
+      <polyline points="60,160 90,155 120,145 150,130 180,125 210,140 240,135 270,120 300,150 330,155 360,148 390,135 420,115 450,100 480,90 510,105 540,125 570,140 600,130 630,145 660,150"
+        stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Squeeze annotation -->
+      <rect x="275" y="130" width="80" height="60" rx="4" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.6"/>
+      <text x="315" y="126" fill="#f59e0b" font-size="10" font-weight="600" font-family="Inter" text-anchor="middle">Squeeze</text>
+
+      <!-- Expansion annotation -->
+      <line x1="480" y1="30" x2="480" y2="240" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+      <text x="480" y="260" fill="#8b5cf6" font-size="10" font-weight="600" font-family="Inter" text-anchor="middle">Expansion</text>
+
+      <!-- Labels -->
+      <text x="665" y="46" fill="#06b6d4" font-size="9" font-family="Inter">Upper Band</text>
+      <text x="665" y="132" fill="#06b6d4" font-size="9" font-family="Inter">Middle (SMA)</text>
+      <text x="665" y="218" fill="#06b6d4" font-size="9" font-family="Inter">Lower Band</text>
+    </svg>
+    <div class="diagram-label">Bollinger Bands: bands contract during low-volatility squeezes and expand during high-volatility breakouts</div>
+  </div>
+
+  <h3>Key Bollinger Band Concepts</h3>
+
+  <div class="concept-card reveal">
+    <h4>The Bollinger Squeeze</h4>
+    <p>When the bands narrow significantly (a "squeeze"), it indicates low volatility and typically precedes a strong directional move. The squeeze itself does not tell you which direction price will break, but it tells you that a big move is coming. Watch for the breakout direction and trade with it.</p>
+  </div>
+
+  <ul class="feature-list reveal">
+    <li><strong>Walking the bands:</strong> In strong trends, price can "walk" along the upper band (uptrend) or lower band (downtrend) for extended periods. This is not a signal to fade the move.</li>
+    <li><strong>Mean reversion:</strong> In ranging markets, price tends to oscillate between the upper and lower bands, reverting to the middle band (SMA). Touches of the outer bands can be entry signals.</li>
+    <li><strong>Band width:</strong> The distance between the bands tells you about current volatility. Unusually wide bands suggest volatility may contract soon; unusually narrow bands suggest an imminent breakout.</li>
+    <li><strong>Fake breakouts:</strong> Price briefly poking outside a band, then immediately reversing back inside, is often a reversal signal. This is the "Bollinger Bounce."</li>
+  </ul>
+
+  <div class="info-box tip reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>Bollinger + RSI Combination</strong>
+      <p>A powerful setup: when price touches the lower Bollinger Band and RSI is oversold (below 30), it is a strong potential buy signal. Conversely, price at the upper band with RSI overbought (above 70) is a strong potential sell signal. This combination reduces false signals significantly.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     4.6 — VWAP
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">4.6</span> VWAP (Volume Weighted Average Price)</h2>
+
+  <p>VWAP is the single most important indicator for day traders. It represents the average price a security has traded at throughout the day, weighted by volume. Unlike a simple moving average, VWAP accounts for <em>how much</em> was traded at each price, giving it a gravity-like pull on intraday price action.</p>
+
+  <div class="concept-card reveal">
+    <h4>VWAP Formula</h4>
+    <p style="text-align:center;font-family:var(--font-mono);font-size:1rem;color:var(--accent-gold);margin:1rem 0">
+      <code>VWAP = Cumulative(Price &times; Volume) / Cumulative(Volume)</code>
+    </p>
+    <p>VWAP resets at the beginning of each trading day. It starts at the opening price and evolves as trades occur throughout the session.</p>
+  </div>
+
+  <h3>Why Day Traders Use VWAP</h3>
+  <ul class="feature-list reveal">
+    <li><strong>Institutional benchmark:</strong> Large institutions judge their execution quality against VWAP. If they bought below VWAP, they got a "good" fill. This creates real buying/selling pressure around the VWAP line.</li>
+    <li><strong>Fair value reference:</strong> VWAP represents the "fair price" at any point during the day. Price trading above VWAP means buyers have been more aggressive; below means sellers dominate.</li>
+    <li><strong>Trend filter:</strong> Above VWAP = bullish bias (look for longs). Below VWAP = bearish bias (look for shorts). This simple filter eliminates many bad trades.</li>
+    <li><strong>Dynamic support/resistance:</strong> Price will frequently bounce off or reject from the VWAP line, especially in the first few hours of trading.</li>
+  </ul>
+
+  <h3>VWAP Trading Strategies</h3>
+
+  <table class="data-table reveal">
+    <thead>
+      <tr>
+        <th>Strategy</th>
+        <th>Setup</th>
+        <th>Entry</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>VWAP Bounce</strong></td>
+        <td>Price pulls back to VWAP in an uptrend</td>
+        <td>Buy when price touches VWAP and shows a bullish candle</td>
+        <td>Best in the first 2 hours of the session</td>
+      </tr>
+      <tr>
+        <td><strong>VWAP Rejection</strong></td>
+        <td>Price rallies to VWAP from below in a downtrend</td>
+        <td>Short when price reaches VWAP and shows a bearish candle</td>
+        <td>Strongest after a clear opening drive lower</td>
+      </tr>
+      <tr>
+        <td><strong>VWAP Reclaim</strong></td>
+        <td>Price trades below VWAP, then breaks back above</td>
+        <td>Buy the reclaim and hold of VWAP</td>
+        <td>Watch for volume surge on the reclaim</td>
+      </tr>
+      <tr>
+        <td><strong>VWAP Extension</strong></td>
+        <td>Price extends far from VWAP</td>
+        <td>Fade the extreme when price is 2+ standard deviations from VWAP</td>
+        <td>Mean-reversion play; use tight stops</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box warning reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>VWAP is an Intraday-Only Indicator</strong>
+      <p>Because VWAP resets daily, it is meaningless on daily or weekly charts. It is strictly a day trading tool. Do not carry VWAP analysis into swing trade decisions. For multi-day analysis, use anchored VWAP or standard moving averages instead.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="info-box-content">
+      <strong>The &ldquo;VWAP or Nothing&rdquo; Rule</strong>
+      <p>Many professional day traders will not take a trade unless they know where price is relative to VWAP. If you had to pick only one indicator for day trading, VWAP should be it. Add it to your charts before anything else.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     4.7 — Interactive: Indicator Playground
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">4.7</span> Interactive: Indicator Playground</h2>
+
+  <p>Toggle different indicators on and off to see how they overlay on a candlestick chart. Adjust the periods to understand how faster and slower settings change the indicator&rsquo;s sensitivity.</p>
+
+  <div class="interactive-container indicator-playground">
+    <div class="interactive-header">
+      <div class="interactive-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M3 12h2l3-8 4 16 3-8h6"/>
+        </svg>
+        Interactive: Indicator Playground
+      </div>
+    </div>
+    <div class="interactive-body">
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem">
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text-secondary);cursor:pointer">
+          <input type="checkbox" id="show-sma" checked> <span style="color:#f59e0b">&#9632;</span> SMA <input type="range" id="sma-period" min="5" max="50" value="20" style="width:80px"> <span class="sma-period-val" style="font-family:var(--font-mono);font-size:0.8rem">20</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text-secondary);cursor:pointer">
+          <input type="checkbox" id="show-ema"> <span style="color:#8b5cf6">&#9632;</span> EMA <input type="range" id="ema-period" min="5" max="50" value="9" style="width:80px"> <span class="ema-period-val" style="font-family:var(--font-mono);font-size:0.8rem">9</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text-secondary);cursor:pointer">
+          <input type="checkbox" id="show-bb"> <span style="color:#06b6d4">&#9632;</span> Bollinger Bands
+        </label>
+      </div>
+      <div class="chart-canvas-wrapper">
+        <canvas id="indicator-chart" data-chart="indicator" data-height="350"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box info reveal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Experiment with Settings</strong>
+      <p>Try setting the SMA to 50 and notice how it smooths more compared to 20. Toggle on the EMA at 9 and see how it reacts faster to price changes. Enable Bollinger Bands to see the volatility envelope. Each combination tells you something different about the market.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     4.8 — Quiz: Technical Indicators
+     ========================================== -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">4.8</span> Quiz: Technical Indicators</h2>
+
+  <p>Test your understanding of moving averages, RSI, MACD, Bollinger Bands, and VWAP.</p>
+
+  <div class="quiz-container" data-quiz="m4-indicators">
+    <div class="quiz-header">
+      <div class="quiz-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Technical Indicators Quiz
+      </div>
+      <span class="quiz-score"></span>
+    </div>
+    <div class="quiz-dots"></div>
+    <div class="quiz-body"></div>
+
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "The 50-period SMA crosses above the 200-period SMA on a daily chart. What is this crossover called?",
+          "options": [
+            "Death Cross",
+            "Bullish Divergence",
+            "Golden Cross",
+            "MACD Crossover"
+          ],
+          "correct": 2,
+          "explanation": "When the 50 SMA crosses above the 200 SMA, it's called a Golden Cross — one of the most widely watched bullish signals. The opposite (50 crossing below 200) is the Death Cross."
+        },
+        {
+          "question": "RSI is reading 75 and price is in a strong uptrend that started 3 days ago. What is the best interpretation?",
+          "options": [
+            "Immediately sell — overbought means the stock will reverse",
+            "RSI is overbought, but in strong trends it can stay overbought; wait for a confirming reversal signal",
+            "RSI is broken and should be ignored",
+            "Buy more since the stock is showing strength"
+          ],
+          "correct": 1,
+          "explanation": "In strong trends, RSI can remain overbought for extended periods. An overbought reading alone is not a sell signal. Wait for price action confirmation (e.g., bearish candlestick pattern or support break) before acting."
+        },
+        {
+          "question": "What does the MACD histogram represent?",
+          "options": [
+            "The current stock price minus the opening price",
+            "The distance between the upper and lower Bollinger Bands",
+            "The difference between the MACD line and the signal line",
+            "The daily trading volume"
+          ],
+          "correct": 2,
+          "explanation": "The MACD histogram plots the difference between the MACD line and its signal line. Growing bars indicate increasing momentum, while shrinking bars suggest the current move is losing steam."
+        },
+        {
+          "question": "Bollinger Bands have been very narrow for several days (a 'squeeze'). What does this typically indicate?",
+          "options": [
+            "The stock is dead and will not move",
+            "A large directional move is likely coming — low volatility precedes high volatility",
+            "You should sell immediately",
+            "The bands are broken and need to be recalculated"
+          ],
+          "correct": 1,
+          "explanation": "A Bollinger Squeeze indicates an extended period of low volatility. Volatility is cyclical — low volatility is always followed by high volatility. Prepare for a significant breakout, though the direction is not yet determined."
+        },
+        {
+          "question": "A day trader is looking at a stock trading below VWAP in the afternoon session. What is the general bias?",
+          "options": [
+            "Bullish — look for long entries",
+            "No bias — VWAP is irrelevant in the afternoon",
+            "Bearish — look for short entries or avoid longs",
+            "Buy on every dip below VWAP"
+          ],
+          "correct": 2,
+          "explanation": "Price below VWAP indicates that sellers have been more aggressive than buyers during the session. The general bias is bearish — look for short setups or avoid taking longs until price reclaims VWAP."
+        },
+        {
+          "question": "Which of the following correctly describes the difference between SMA and EMA?",
+          "options": [
+            "SMA uses volume weighting; EMA uses price weighting",
+            "SMA reacts faster because it weights recent prices more",
+            "EMA gives more weight to recent prices, making it more responsive than SMA",
+            "There is no practical difference between SMA and EMA"
+          ],
+          "correct": 2,
+          "explanation": "The EMA (Exponential Moving Average) applies a greater weight to recent prices through an exponential multiplier, making it react faster to new price data compared to the SMA, which weights all prices equally."
+        },
+        {
+          "question": "Price makes a new high on the chart, but the MACD line makes a lower high compared to the previous peak. What is this called?",
+          "options": [
+            "Bullish convergence",
+            "Bearish divergence",
+            "Golden cross signal",
+            "Bollinger expansion"
+          ],
+          "correct": 1,
+          "explanation": "When price makes a higher high but the MACD makes a lower high, it's bearish divergence. This indicates that upward momentum is weakening despite the new price high, often preceding a reversal or pullback."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- Module Footer -->
+<div class="module-footer reveal">
+  <button class="module-footer-btn" onclick="navigateTo(3)">&larr; Previous: Chart Patterns &amp; Structure</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(5)">Next: Risk Management &rarr;</button>
+</div>

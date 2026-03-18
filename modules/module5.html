@@ -1,0 +1,654 @@
+<!-- ============================================
+     MODULE 5: Risk Management
+     ============================================ -->
+
+<div class="module-header reveal">
+  <div class="module-label">
+    <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <polyline points="9 12 11 14 15 10"/>
+    </svg>
+    MODULE 05
+  </div>
+  <h1>Risk Management</h1>
+  <p>The most critical skill in trading &mdash; protecting your capital so you survive long enough to profit.</p>
+</div>
+
+<!-- =============================================
+     5.1 Why Risk Management Is Everything
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.1</span> Why Risk Management Is Everything</h2>
+
+  <p>Here is a sobering reality: <strong>roughly 90% of day traders lose money</strong>. The number one reason? Not bad strategies or poor timing &mdash; it is catastrophic, unmanaged losses that wipe them out before they ever get a chance to learn.</p>
+
+  <p>Risk management is not the sexy part of trading. It is the part that keeps you alive. A mediocre strategy with excellent risk management will outperform a brilliant strategy with no risk management every single time.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      The Math of Ruin
+    </h4>
+    <p>Losses and gains are <strong>not symmetrical</strong>. A 50% loss does not require a 50% gain to recover &mdash; it requires a 100% gain. The deeper you dig the hole, the exponentially harder it becomes to climb out. This asymmetry is the single most important concept in trading.</p>
+  </div>
+
+  <h3>The Drawdown Recovery Table</h3>
+  <p>Study this table carefully. It should change how you think about every single trade:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>% Loss of Capital</th>
+        <th>% Gain Needed to Recover</th>
+        <th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>5%</td>
+        <td>5.3%</td>
+        <td><span class="tag-green">Easy</span></td>
+      </tr>
+      <tr>
+        <td>10%</td>
+        <td>11.1%</td>
+        <td><span class="tag-green">Manageable</span></td>
+      </tr>
+      <tr>
+        <td>20%</td>
+        <td>25.0%</td>
+        <td><span class="tag-gold">Challenging</span></td>
+      </tr>
+      <tr>
+        <td>25%</td>
+        <td>33.3%</td>
+        <td><span class="tag-gold">Difficult</span></td>
+      </tr>
+      <tr>
+        <td>33%</td>
+        <td>50.0%</td>
+        <td><span class="tag-red">Very Difficult</span></td>
+      </tr>
+      <tr>
+        <td>50%</td>
+        <td>100.0%</td>
+        <td><span class="tag-red">Extremely Hard</span></td>
+      </tr>
+      <tr>
+        <td>75%</td>
+        <td>300.0%</td>
+        <td><span class="tag-red">Nearly Impossible</span></td>
+      </tr>
+      <tr>
+        <td>90%</td>
+        <td>900.0%</td>
+        <td><span class="tag-red">Game Over</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>The Point of No Return</strong>
+      <p>Once you lose 50% of your account, you need to <em>double</em> your remaining money just to break even. At a 75% drawdown, you need a 300% return. Most traders who reach this point never recover. This is why preventing large drawdowns is the absolute foundation of professional trading.</p>
+    </div>
+  </div>
+
+  <p>The message is clear: <strong>small losses are recoverable; large losses are career-ending</strong>. Every rule in this module exists to keep your losses small.</p>
+</div>
+
+<!-- =============================================
+     5.2 The 1% Rule
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.2</span> The 1% Rule</h2>
+
+  <p>The 1% Rule is the cornerstone of professional risk management. It is elegant in its simplicity:</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      The 1% Rule
+    </h4>
+    <p><strong>Never risk more than 1-2% of your total account on any single trade.</strong></p>
+    <p style="margin-top:0.75rem; font-family:var(--font-mono); font-size:0.95rem; color:var(--accent-blue);">
+      Risk Amount = Account Size &times; Risk Percentage
+    </p>
+  </div>
+
+  <h3>Why 1-2%?</h3>
+  <ul class="feature-list">
+    <li>A streak of 10 consecutive losses (which <em>will</em> happen) only costs you 10-20% of your account &mdash; painful but recoverable.</li>
+    <li>It prevents emotional decision-making because no single trade can seriously damage you.</li>
+    <li>It gives you hundreds of "at bats" to learn and improve before running out of capital.</li>
+    <li>Professional hedge funds and prop firms use similar or even stricter limits.</li>
+  </ul>
+
+  <h3>Math Examples</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Account Size</th>
+        <th>Risk %</th>
+        <th>Max Risk Per Trade</th>
+        <th>10-Loss Streak Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>$10,000</td>
+        <td>1%</td>
+        <td>$100</td>
+        <td>-$1,000 (10%)</td>
+      </tr>
+      <tr>
+        <td>$25,000</td>
+        <td>1%</td>
+        <td>$250</td>
+        <td>-$2,500 (10%)</td>
+      </tr>
+      <tr>
+        <td>$25,000</td>
+        <td>2%</td>
+        <td>$500</td>
+        <td>-$5,000 (20%)</td>
+      </tr>
+      <tr>
+        <td>$50,000</td>
+        <td>1%</td>
+        <td>$500</td>
+        <td>-$5,000 (10%)</td>
+      </tr>
+      <tr>
+        <td>$100,000</td>
+        <td>0.5%</td>
+        <td>$500</td>
+        <td>-$5,000 (5%)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>Pro Tip: Start with 0.5%</strong>
+      <p>When you are just starting out, consider risking only 0.5% per trade. This gives you a much larger margin of safety while you are still learning. You can always increase your risk percentage as your skills and confidence develop.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     5.3 Position Sizing
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.3</span> Position Sizing</h2>
+
+  <p>Position sizing is the bridge between your risk rule and the actual trade. It tells you <strong>exactly how many shares to buy</strong> based on your risk tolerance and your stop loss distance.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+      The Position Sizing Formula
+    </h4>
+    <p style="font-family:var(--font-mono); font-size:1rem; color:var(--accent-blue); margin-bottom:0.75rem;">
+      Shares = Risk Amount &divide; (Entry Price &minus; Stop Loss Price)
+    </p>
+    <p>This formula guarantees that if your stop loss is hit, you lose <em>exactly</em> your predetermined risk amount &mdash; no more, no less.</p>
+  </div>
+
+  <h3>Example 1: Standard Setup</h3>
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Scenario: Buying AAPL at $175</strong>
+      <p>Account: $25,000 | Risk: 1% ($250) | Entry: $175.00 | Stop: $173.00<br>
+      Risk per share: $175 - $173 = $2.00<br>
+      <strong>Shares = $250 &divide; $2.00 = 125 shares</strong><br>
+      Position value: 125 &times; $175 = $21,875 | If stopped out, you lose exactly $250.</p>
+    </div>
+  </div>
+
+  <h3>Example 2: Tight Stop</h3>
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Scenario: Buying TSLA at $250</strong>
+      <p>Account: $25,000 | Risk: 1% ($250) | Entry: $250.00 | Stop: $249.00<br>
+      Risk per share: $250 - $249 = $1.00<br>
+      <strong>Shares = $250 &divide; $1.00 = 250 shares</strong><br>
+      Position value: 250 &times; $250 = $62,500 (requires margin). The tighter the stop, the larger the position.</p>
+    </div>
+  </div>
+
+  <h3>Example 3: Wide Stop</h3>
+  <div class="info-box info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div class="info-box-content">
+      <strong>Scenario: Buying NVDA at $800</strong>
+      <p>Account: $25,000 | Risk: 1% ($250) | Entry: $800.00 | Stop: $790.00<br>
+      Risk per share: $800 - $790 = $10.00<br>
+      <strong>Shares = $250 &divide; $10.00 = 25 shares</strong><br>
+      Position value: 25 &times; $800 = $20,000. A wider stop means a smaller position to keep risk constant.</p>
+    </div>
+  </div>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>Never Adjust the Stop to Fit the Position</strong>
+      <p>A common beginner mistake: wanting a bigger position so they move the stop closer. This defeats the entire purpose. Your stop loss should be placed at a technically meaningful level. Then your position size adjusts to accommodate the stop &mdash; never the other way around.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     5.4 Interactive: Position Size Calculator
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.4</span> Position Size Calculator</h2>
+  <p>Use this calculator to practice position sizing for any trade setup. Change the values and see how risk percentage, entry, and stop loss affect your position size.</p>
+
+  <div class="calculator position-calc">
+    <div class="calculator-header">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+      Position Size Calculator
+    </div>
+    <div class="calculator-body">
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label for="pc-account">Account Size ($)</label>
+          <input type="number" id="pc-account" value="25000" min="0" step="1000">
+        </div>
+        <div class="calc-field">
+          <label for="pc-risk">Risk Per Trade (%)</label>
+          <input type="range" id="pc-risk" min="0.5" max="5" step="0.5" value="1">
+          <span class="risk-percent-val" style="font-family:var(--font-mono);font-size:0.85rem;color:var(--accent-blue)">1.0%</span>
+        </div>
+        <div class="calc-field">
+          <label for="pc-entry">Entry Price ($)</label>
+          <input type="number" id="pc-entry" value="150.00" min="0" step="0.01">
+        </div>
+        <div class="calc-field">
+          <label for="pc-stop">Stop Loss Price ($)</label>
+          <input type="number" id="pc-stop" value="148.50" min="0" step="0.01">
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="calc-result-item">
+          <div class="calc-result-label">Shares to Buy</div>
+          <div class="calc-result-value" id="pc-shares">166</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="calc-result-label">Risk Amount</div>
+          <div class="calc-result-value gold" id="pc-risk-amount">$250.00</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="calc-result-label">Position Value</div>
+          <div class="calc-result-value" id="pc-position-value">$24,900.00</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="calc-result-label">Actual Risk</div>
+          <div class="calc-result-value red" id="pc-actual-risk">$249.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     5.5 Stop Loss Strategies
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.5</span> Stop Loss Strategies</h2>
+
+  <p>A stop loss is your emergency exit &mdash; a predetermined price at which you close a losing trade. There are several approaches, each with trade-offs. Understanding them lets you choose the right tool for each setup.</p>
+
+  <div class="comparison-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="comparison-card" style="border-top:3px solid var(--accent-blue);">
+      <h4 style="color:var(--accent-blue);">Fixed Dollar Stop</h4>
+      <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:0.75rem;">Set a fixed dollar amount you are willing to lose (e.g., always risk $200).</p>
+      <ul class="feature-list">
+        <li><strong>Pros:</strong> Simple, consistent, easy to track</li>
+        <li><strong>Cons:</strong> Ignores chart structure; stop may land at an illogical price</li>
+        <li><strong>Best for:</strong> Beginners who need a hard rule</li>
+      </ul>
+    </div>
+    <div class="comparison-card" style="border-top:3px solid var(--accent-purple);">
+      <h4 style="color:var(--accent-purple);">Percentage Stop</h4>
+      <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:0.75rem;">Place the stop a fixed percentage below entry (e.g., 2% below entry).</p>
+      <ul class="feature-list">
+        <li><strong>Pros:</strong> Scales with price, straightforward calculation</li>
+        <li><strong>Cons:</strong> Still arbitrary; does not account for volatility or support levels</li>
+        <li><strong>Best for:</strong> Swing traders, position traders</li>
+      </ul>
+    </div>
+    <div class="comparison-card" style="border-top:3px solid var(--accent-gold);">
+      <h4 style="color:var(--accent-gold);">ATR-Based Stop</h4>
+      <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:0.75rem;">Use Average True Range to set stops based on actual volatility (e.g., 1.5&times; ATR below entry).</p>
+      <ul class="feature-list">
+        <li><strong>Pros:</strong> Adapts to volatility; avoids getting stopped out by normal noise</li>
+        <li><strong>Cons:</strong> Requires ATR calculation; can be wide in volatile stocks</li>
+        <li><strong>Best for:</strong> Experienced traders, volatile stocks</li>
+      </ul>
+    </div>
+    <div class="comparison-card" style="border-top:3px solid var(--bull-green);">
+      <h4 style="color:var(--bull-green);">Technical / Structure Stop</h4>
+      <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:0.75rem;">Place the stop below a key support level, moving average, or chart structure.</p>
+      <ul class="feature-list">
+        <li><strong>Pros:</strong> Most logical placement; based on where the trade idea is invalid</li>
+        <li><strong>Cons:</strong> Requires chart reading skill; stop distance varies</li>
+        <li><strong>Best for:</strong> Day traders, technical traders (recommended)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>The Best Approach: Combine Methods</strong>
+      <p>Professional traders typically place stops at technical levels and then use position sizing to ensure the dollar risk stays within their 1-2% rule. This gives you the best of both worlds: a logically placed stop <em>and</em> controlled risk.</p>
+    </div>
+  </div>
+
+  <div class="info-box danger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="info-box-content">
+      <strong>Never Trade Without a Stop Loss</strong>
+      <p>"I will just watch it and exit manually" is a plan that fails under emotional pressure. Always have your stop entered in the market <em>before</em> the trade moves. Hope is not a risk management strategy.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     5.6 Risk/Reward Ratios
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.6</span> Risk/Reward Ratios</h2>
+
+  <p>The risk/reward ratio (R:R) compares how much you stand to lose versus how much you stand to gain on a trade. It is the second pillar of risk management, alongside position sizing.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+      Risk/Reward Ratio
+    </h4>
+    <p style="font-family:var(--font-mono); font-size:0.95rem; color:var(--accent-blue);">
+      R:R = (Target Price &minus; Entry Price) &divide; (Entry Price &minus; Stop Loss Price)
+    </p>
+    <p style="margin-top:0.75rem;">A 1:2 R:R means you risk $1 to make $2. A 1:3 R:R means you risk $1 to make $3. Always aim for a <strong>minimum</strong> of 1:2.</p>
+  </div>
+
+  <h3>Why R:R Trumps Win Rate</h3>
+  <p>Most beginners obsess over win rate. But the math shows that a trader with a modest win rate and a high R:R ratio <strong>crushes</strong> a trader with a high win rate and poor R:R. Here is the proof:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Win Rate</th>
+        <th>R:R Ratio</th>
+        <th>Result per 100 Trades ($100 risk each)</th>
+        <th>Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>60%</td>
+        <td>1:1</td>
+        <td>60 &times; $100 &minus; 40 &times; $100 = <strong>+$2,000</strong></td>
+        <td><span class="tag-green">Profitable</span></td>
+      </tr>
+      <tr>
+        <td>50%</td>
+        <td>1:2</td>
+        <td>50 &times; $200 &minus; 50 &times; $100 = <strong>+$5,000</strong></td>
+        <td><span class="tag-green">Very Profitable</span></td>
+      </tr>
+      <tr>
+        <td>40%</td>
+        <td>1:3</td>
+        <td>40 &times; $300 &minus; 60 &times; $100 = <strong>+$6,000</strong></td>
+        <td><span class="tag-green">Highly Profitable</span></td>
+      </tr>
+      <tr>
+        <td>30%</td>
+        <td>1:4</td>
+        <td>30 &times; $400 &minus; 70 &times; $100 = <strong>+$5,000</strong></td>
+        <td><span class="tag-green">Very Profitable</span></td>
+      </tr>
+      <tr>
+        <td>70%</td>
+        <td>1:0.5</td>
+        <td>70 &times; $50 &minus; 30 &times; $100 = <strong>+$500</strong></td>
+        <td><span class="tag-gold">Barely Profitable</span></td>
+      </tr>
+      <tr>
+        <td>50%</td>
+        <td>1:1</td>
+        <td>50 &times; $100 &minus; 50 &times; $100 = <strong>$0</strong></td>
+        <td><span class="tag-red">Break Even</span></td>
+      </tr>
+      <tr>
+        <td>40%</td>
+        <td>1:1</td>
+        <td>40 &times; $100 &minus; 60 &times; $100 = <strong>&minus;$2,000</strong></td>
+        <td><span class="tag-red">Losing</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>The 40% Winner</strong>
+      <p>Look at the 40% win rate with 1:3 R:R. This trader loses more often than they win, yet they make $6,000 per 100 trades. <strong>You do not need to be right most of the time to be very profitable.</strong> You just need your winners to be significantly bigger than your losers.</p>
+    </div>
+  </div>
+
+  <h3>The Expectancy Formula</h3>
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Trade Expectancy
+    </h4>
+    <p style="font-family:var(--font-mono); font-size:0.9rem; color:var(--accent-blue);">
+      Expectancy = (Win Rate &times; Avg Win) &minus; (Loss Rate &times; Avg Loss)
+    </p>
+    <p style="margin-top:0.75rem;">If your expectancy is positive, you have an edge. Every trade you take moves you closer to long-term profitability, regardless of individual outcomes.</p>
+  </div>
+</div>
+
+<!-- =============================================
+     5.7 Interactive: Risk/Reward Visualizer
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.7</span> Risk/Reward Visualizer</h2>
+  <p>Enter your entry, stop, and target prices to instantly see the risk/reward profile of any trade. The chart visualizes the risk (red) and reward (green) zones.</p>
+
+  <div class="calculator rr-calc">
+    <div class="calculator-header">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+      Risk/Reward Visualizer
+    </div>
+    <div class="calculator-body">
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label for="rr-entry">Entry Price ($)</label>
+          <input type="number" id="rr-entry" value="150.00" step="0.01">
+        </div>
+        <div class="calc-field">
+          <label for="rr-stop">Stop Loss ($)</label>
+          <input type="number" id="rr-stop" value="148.00" step="0.01">
+        </div>
+        <div class="calc-field">
+          <label for="rr-target">Target ($)</label>
+          <input type="number" id="rr-target" value="156.00" step="0.01">
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="calc-result-item">
+          <div class="calc-result-label">Risk</div>
+          <div class="calc-result-value red" id="rr-risk">$2.00</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="calc-result-label">Reward</div>
+          <div class="calc-result-value green" id="rr-reward">$6.00</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="calc-result-label">R:R Ratio</div>
+          <div class="calc-result-value green" id="rr-ratio">1:3.00</div>
+        </div>
+      </div>
+      <div style="margin-top:1rem">
+        <canvas id="rr-chart" data-height="180" style="width:100%;height:180px"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     5.8 Maximum Daily Loss Rules
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.8</span> Maximum Daily Loss Rules</h2>
+
+  <p>Individual trade risk limits are necessary but not sufficient. You also need a <strong>circuit breaker</strong> for the entire trading day. This is your maximum daily loss rule.</p>
+
+  <div class="concept-card">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      The Daily Loss Limit
+    </h4>
+    <p>Set a maximum daily loss of <strong>2-3% of your account</strong>. When you hit this limit, you stop trading for the day. No exceptions. No "one more trade to make it back."</p>
+  </div>
+
+  <h3>Why This Rule Exists</h3>
+  <ul class="feature-list">
+    <li><strong>Tilt prevention:</strong> After multiple losses, your judgment deteriorates. Emotional trading leads to bigger losses, which leads to more emotional trading &mdash; a destructive spiral.</li>
+    <li><strong>Capital preservation:</strong> A 3% daily loss limit means even five terrible days in a row only costs you 15% &mdash; still very recoverable.</li>
+    <li><strong>Forced objectivity:</strong> Stepping away gives you time to review what went wrong with a clear head.</li>
+    <li><strong>Consistency:</strong> It prevents catastrophic "blow-up" days that can erase weeks of profits.</li>
+  </ul>
+
+  <h3>Implementing the Rule</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Account Size</th>
+        <th>Daily Loss Limit (3%)</th>
+        <th>Max Individual Trades (at 1% risk)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>$10,000</td>
+        <td>$300</td>
+        <td>3 full losses before stopping</td>
+      </tr>
+      <tr>
+        <td>$25,000</td>
+        <td>$750</td>
+        <td>3 full losses before stopping</td>
+      </tr>
+      <tr>
+        <td>$50,000</td>
+        <td>$1,500</td>
+        <td>3 full losses before stopping</td>
+      </tr>
+      <tr>
+        <td>$100,000</td>
+        <td>$3,000</td>
+        <td>3 full losses before stopping</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box warning">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="info-box-content">
+      <strong>The Hardest Rule to Follow</strong>
+      <p>This is arguably the hardest discipline in trading. After hitting your daily limit, every fiber of your being will scream "just one more trade to make it back." That impulse is exactly why the rule exists. The market will be there tomorrow. Your capital might not be if you keep trading on tilt.</p>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="info-box-content">
+      <strong>What to Do After Hitting Your Limit</strong>
+      <p>Step away from the screen. Go for a walk. Journal your trades. Review your decisions. Ask yourself: were the setups good and you were just unlucky? Or were you forcing trades? This reflection is often more valuable than the trading itself.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     5.9 Quiz: Risk Management
+     ============================================= -->
+<div class="lesson-section reveal">
+  <h2><span class="section-number">5.9</span> Knowledge Check</h2>
+  <p>Test your understanding of risk management principles. These concepts are non-negotiable for any successful trader.</p>
+
+  <div class="quiz-container" data-quiz="m5-risk">
+    <div class="quiz-header">
+      <div class="quiz-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Quiz &mdash; Risk Management
+      </div>
+      <span class="quiz-score"></span>
+    </div>
+    <div class="quiz-body"></div>
+    <script type="application/json">
+    {
+      "questions": [
+        {
+          "question": "If you lose 50% of your trading account, what percentage gain do you need to get back to break even?",
+          "options": ["50%", "75%", "100%", "150%"],
+          "correct": 2,
+          "explanation": "A 50% loss requires a 100% gain to recover. If your $10,000 account drops to $5,000, you need to double that $5,000 back to $10,000 — a 100% return. This asymmetry is why preventing large drawdowns is paramount."
+        },
+        {
+          "question": "You have a $30,000 account and follow the 1% rule. What is the maximum you should risk on any single trade?",
+          "options": ["$100", "$300", "$500", "$3,000"],
+          "correct": 1,
+          "explanation": "$30,000 × 1% = $300. This means if your stop loss is hit, you should lose no more than $300. This keeps individual losses small and survivable."
+        },
+        {
+          "question": "Your account is $25,000, you risk 1%, your entry is $100, and your stop loss is $98. How many shares should you buy?",
+          "options": ["25 shares", "100 shares", "125 shares", "250 shares"],
+          "correct": 2,
+          "explanation": "Risk amount = $25,000 × 1% = $250. Risk per share = $100 − $98 = $2. Shares = $250 ÷ $2 = 125 shares."
+        },
+        {
+          "question": "A trader has a 40% win rate but a 1:3 risk/reward ratio (risks $100 to make $300). Over 100 trades, what is their expected profit?",
+          "options": ["They lose $2,000", "They break even", "They profit $2,000", "They profit $6,000"],
+          "correct": 3,
+          "explanation": "Wins: 40 × $300 = $12,000. Losses: 60 × $100 = $6,000. Net profit: $12,000 − $6,000 = $6,000. A strong R:R ratio makes even a low win rate highly profitable."
+        },
+        {
+          "question": "You have hit your maximum daily loss limit of 3% after three consecutive losing trades. What should you do?",
+          "options": ["Take one more trade to try to recover some losses", "Double your position size on the next trade to get back to even faster", "Stop trading for the day, review your trades, and come back tomorrow", "Switch to a different strategy and keep trading"],
+          "correct": 2,
+          "explanation": "When you hit your daily loss limit, stop trading immediately. Continuing to trade after consecutive losses leads to emotional 'revenge trading' which almost always makes things worse. The market will be there tomorrow."
+        },
+        {
+          "question": "Which stop loss strategy is generally considered the most logical for day traders?",
+          "options": ["Fixed dollar stop — always risk the same dollar amount", "Percentage stop — always set stop 2% below entry", "Technical/structure stop — placed below key support levels", "No stop — just watch the trade and exit manually"],
+          "correct": 2,
+          "explanation": "Technical/structure stops are placed at levels where the trade idea is invalidated (e.g., below a support level). This is the most logical because if price breaks below support, there is a real reason to exit. The stop has meaning beyond an arbitrary number."
+        }
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<!-- =============================================
+     Module Footer Navigation
+     ============================================= -->
+<div class="module-footer reveal">
+  <button class="module-footer-btn" onclick="navigateTo(4)">&larr; Previous: Technical Indicators</button>
+  <button class="module-footer-btn complete-btn" id="completeModuleBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    Mark Complete
+  </button>
+  <button class="module-footer-btn primary" onclick="navigateTo(6)">Next: Trading Psychology &rarr;</button>
+</div>
