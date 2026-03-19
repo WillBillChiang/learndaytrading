@@ -29,26 +29,26 @@ const TradingTest = {
   ],
 
   NEWS_MESSAGES: [
-    'BREAKING: Fed Chair hints at potential rate cut in upcoming meeting',
-    'ALERT: Sector ETF seeing unusual volume, institutional rotation detected',
-    'UPDATE: Large block trade executed on dark pool — 2M shares',
-    'BREAKING: Trade policy announcement rattles markets',
-    'ALERT: Options sweep detected — $5M in calls bought at ask',
-    'UPDATE: Short interest data shows 15% increase in borrowing',
-    'BREAKING: Competitor announces surprise product launch',
-    'ALERT: Bond yields spike, rotation out of growth stocks',
-    'UPDATE: Whale alert — 10,000 call contracts purchased',
-    'BREAKING: SEC announces investigation into sector practices',
-    'ALERT: Analyst raises price target by 40%',
-    'UPDATE: Insider buying cluster detected this week',
-    'BREAKING: Supply chain disruption reported in key market',
-    'ALERT: VIX spike signals increased market uncertainty',
-    'UPDATE: Unusual dark pool activity detected, large prints',
-    'BREAKING: Macro data comes in hotter than expected',
-    'ALERT: Market maker repositioning detected on Level 2',
-    'UPDATE: Sector peer announces guidance cut, sympathy move likely',
-    'BREAKING: Government contract awarded, revenue impact expected',
-    'ALERT: Short squeeze conditions forming — high SI% + low float'
+    {text: 'BREAKING: Fed Chair hints at potential rate cut in upcoming meeting', sentiment: 1},
+    {text: 'ALERT: Sector ETF seeing unusual volume, institutional rotation detected', sentiment: 0},
+    {text: 'UPDATE: Large block trade executed on dark pool — 2M shares', sentiment: 0},
+    {text: 'BREAKING: Trade policy announcement rattles markets', sentiment: -1},
+    {text: 'ALERT: Options sweep detected — $5M in calls bought at ask', sentiment: 1},
+    {text: 'UPDATE: Short interest data shows 15% increase in borrowing', sentiment: -1},
+    {text: 'BREAKING: Competitor announces surprise product launch', sentiment: -1},
+    {text: 'ALERT: Bond yields spike, rotation out of growth stocks', sentiment: -1},
+    {text: 'UPDATE: Whale alert — 10,000 call contracts purchased', sentiment: 1},
+    {text: 'BREAKING: SEC announces investigation into sector practices', sentiment: -1},
+    {text: 'ALERT: Analyst raises price target by 40%', sentiment: 1},
+    {text: 'UPDATE: Insider buying cluster detected this week', sentiment: 1},
+    {text: 'BREAKING: Supply chain disruption reported in key market', sentiment: -1},
+    {text: 'ALERT: VIX spike signals increased market uncertainty', sentiment: -1},
+    {text: 'UPDATE: Unusual dark pool activity detected, large prints', sentiment: 0},
+    {text: 'BREAKING: Macro data comes in hotter than expected', sentiment: -1},
+    {text: 'ALERT: Market maker repositioning detected on Level 2', sentiment: 0},
+    {text: 'UPDATE: Sector peer announces guidance cut, sympathy move likely', sentiment: -1},
+    {text: 'BREAKING: Government contract awarded, revenue impact expected', sentiment: 1},
+    {text: 'ALERT: Short squeeze conditions forming — high SI% + low float', sentiment: 1}
   ],
 
   // ─── STATE ─────────────────────────────────────────────
@@ -150,9 +150,15 @@ const TradingTest = {
         } while (usedMessages.has(msgIdx) && usedMessages.size < newsMessages.length);
         usedMessages.add(msgIdx);
 
-        const direction = Math.random() > 0.5 ? 1 : -1;
+        const sentiment = newsMessages[msgIdx].sentiment;
+        let direction;
+        if (sentiment === 0) {
+          direction = Math.random() > 0.5 ? 1 : -1;
+        } else {
+          direction = Math.random() < 0.8 ? sentiment : -sentiment;
+        }
         const magnitude = 0.01 + Math.random() * 0.02; // 1-3%
-        schedule.push({ candleIndex, message: newsMessages[msgIdx], direction, magnitude });
+        schedule.push({ candleIndex, message: newsMessages[msgIdx].text, direction, magnitude });
       }
       return schedule.sort((a, b) => a.candleIndex - b.candleIndex);
     },
@@ -441,7 +447,7 @@ const TradingTest = {
 
       if (side === 'buy') {
         const cost = shares * state.currentAsk;
-        const commission = Math.max(1, shares * 0.005);
+        const commission = Math.max(1, Math.round(shares * 0.005 * 100) / 100);
         if (cost + commission > state.cash) {
           const affordableShares = Math.floor((state.cash - 1) / state.currentAsk);
           if (affordableShares <= 0) {
@@ -590,8 +596,9 @@ const TradingTest = {
         const order = state.pendingOrders[i];
         const age = candle.index - order.placedAt;
 
-        // Auto-cancel after 20 candles
-        if (age > 20) {
+        // Auto-cancel after scaled candle count (~13% of session)
+        const expiryCandles = Math.round(20 * state.totalCandles / 150);
+        if (age > expiryCandles) {
           toRemove.push(i);
           showToast(`Limit order expired: ${order.side.toUpperCase()} ${order.shares} @ $${order.limitPrice.toFixed(2)}`, 'error');
           continue;
@@ -600,8 +607,7 @@ const TradingTest = {
         let filled = false;
         if (order.side === 'buy' && candle.low <= order.limitPrice) {
           // Fill buy limit
-          const fillRate = 0.5 + Math.random() * 0.5;
-          const fillShares = Math.max(1, Math.floor(order.shares * fillRate));
+          const fillShares = order.shares;
           const commission = Math.max(1, Math.round(fillShares * 0.005 * 100) / 100);
           const cost = fillShares * order.limitPrice + commission;
 
@@ -620,6 +626,14 @@ const TradingTest = {
                 entryIndex: candle.index,
                 stopLoss: null
               };
+              // Apply stop loss from input
+              const stopInput = document.getElementById('ttStopLoss');
+              if (stopInput && stopInput.value) {
+                const stopPrice = parseFloat(stopInput.value);
+                if (!isNaN(stopPrice) && stopPrice > 0 && stopPrice < order.limitPrice) {
+                  state.position.stopLoss = stopPrice;
+                }
+              }
             }
             showToast(`Limit BUY filled: ${fillShares} @ $${order.limitPrice.toFixed(2)}`, 'success');
             filled = true;
@@ -628,8 +642,7 @@ const TradingTest = {
         } else if (order.side === 'sell' && candle.high >= order.limitPrice) {
           // Fill sell limit
           if (state.position && state.position.side === 'long') {
-            const fillRate = 0.5 + Math.random() * 0.5;
-            const fillShares = Math.max(1, Math.min(Math.floor(order.shares * fillRate), state.position.shares));
+            const fillShares = Math.min(order.shares, state.position.shares);
             const commission = Math.max(1, Math.round(fillShares * 0.005 * 100) / 100);
             const proceeds = fillShares * order.limitPrice - commission;
             state.cash += proceeds;
@@ -1524,18 +1537,18 @@ const TradingTest = {
     const closeBtn = document.getElementById('ttCloseBtn');
     if (buyBtn) {
       buyBtn.disabled = disabled;
-      buyBtn.textContent = disabled ? 'Order Pending...' : 'Buy';
+      buyBtn.textContent = disabled ? 'Order Pending...' : 'BUY';
     }
     if (sellBtn) {
       sellBtn.disabled = disabled;
-      sellBtn.textContent = disabled ? 'Order Pending...' : 'Sell';
+      sellBtn.textContent = disabled ? 'Order Pending...' : 'SELL';
     }
     if (closeBtn) closeBtn.disabled = disabled;
   },
 
   showStartScreen() {
     const screen = document.getElementById('ttStartScreen');
-    if (screen) screen.style.display = 'flex';
+    if (screen) screen.style.display = 'block';
     const tradingUi = document.getElementById('ttTradingUi');
     if (tradingUi) tradingUi.style.display = 'none';
     const results = document.getElementById('ttResultsScreen');
@@ -1605,6 +1618,7 @@ const TradingTest = {
     if (prevCloseEl) prevCloseEl.textContent = '$' + firstPrevClose.toFixed(2);
 
     this.hideStartScreen();
+    this.resize();
     this.state.running = true;
     this.state.startTime = Date.now();
 
@@ -1751,6 +1765,12 @@ const TradingTest = {
     const changePct = ((currentPrice - s.previousClose) / s.previousClose * 100).toFixed(2);
     const changeSign = changePct >= 0 ? '+' : '';
     this.setStat('ttChange', changeSign + changePct + '%', changePct >= 0 ? '#10b981' : '#ef4444');
+    const changeEl = document.getElementById('ttChange');
+    if (changeEl) {
+      const isUp = parseFloat(changePct) >= 0;
+      changeEl.classList.toggle('up', isUp);
+      changeEl.classList.toggle('down', !isUp);
+    }
 
     // Session clock: map candle index to simulated market time (9:30 AM - 4:00 PM)
     const sessionMinutes = 390; // 6.5 hours
