@@ -179,6 +179,35 @@
     <div class="toast-text" id="toastText"></div>
   </div>
 
+  <!-- TOS / Privacy Banner -->
+  <div id="tos-banner">
+    <div id="tos-banner-content">
+      <p>
+        By continuing to use this site, you agree to our
+        <a href="#" onclick="navigateTo('tos'); return false;">Terms of Service</a> and
+        <a href="#" onclick="navigateTo('privacy'); return false;">Privacy Policy</a>.
+        This site is for <strong>educational purposes only</strong> and does not constitute financial advice.
+        The owner of this site is <strong>not liable</strong> for any losses, damages, or outcomes
+        resulting from the use of this site. Content is <strong>not guaranteed to be accurate</strong>. Use at your own risk.
+      </p>
+      <button id="tos-accept-btn" onclick="acceptTOS()">I Understand &amp; Accept</button>
+    </div>
+  </div>
+  <script>
+    (function() {
+      if (localStorage.getItem('tos-accepted') === '1') {
+        document.getElementById('tos-banner').style.display = 'none';
+      }
+    })();
+    function acceptTOS() {
+      localStorage.setItem('tos-accepted', '1');
+      var b = document.getElementById('tos-banner');
+      b.style.transition = 'opacity 0.4s';
+      b.style.opacity = '0';
+      setTimeout(function(){ b.style.display = 'none'; }, 400);
+    }
+  </script>
+
   <!-- Scripts -->
   <script src="js/progress.js"></script>
   <script src="js/animations.js"></script>

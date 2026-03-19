@@ -7,7 +7,9 @@ let currentModule = 'home';
 // --- Navigation ---
 function navigateTo(module) {
   currentModule = module;
-  Progress.setCurrentModule(module);
+  if (module !== 'tos' && module !== 'privacy') {
+    Progress.setCurrentModule(module);
+  }
   updateActiveNav(module);
   updateBreadcrumb(module);
   loadModule(module);
@@ -27,7 +29,8 @@ function loadModule(module) {
     return;
   }
 
-  const path = `modules/module${module}.html`;
+  const isLegal = (module === 'tos' || module === 'privacy');
+  const path = isLegal ? `modules/${module}.html` : `modules/module${module}.html`;
   fetch(path)
     .then(r => {
       if (!r.ok) throw new Error('Module not found');
@@ -111,6 +114,10 @@ function updateBreadcrumb(module) {
   const bc = document.getElementById('breadcrumb');
   if (module === 'home') {
     bc.innerHTML = '<span>Course Home</span>';
+  } else if (module === 'tos') {
+    bc.innerHTML = '<span>Terms of Service</span>';
+  } else if (module === 'privacy') {
+    bc.innerHTML = '<span>Privacy Policy</span>';
   } else {
     const names = {
       1: 'How Markets Really Work',

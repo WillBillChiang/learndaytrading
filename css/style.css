@@ -1073,3 +1073,52 @@ code {
     flex-wrap: wrap;
   }
 }
+
+/* ---- TOS / Privacy Banner ---- */
+#tos-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border-light);
+  padding: 1rem 1.5rem;
+}
+#tos-banner-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+#tos-banner-content p {
+  flex: 1;
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+#tos-accept-btn {
+  flex-shrink: 0;
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+#tos-accept-btn:hover {
+  opacity: 0.85;
+}
+#tos-banner-content a {
+  color: var(--accent-blue);
+  text-decoration: underline;
+}
+#tos-banner-content a:hover {
+  opacity: 0.85;
+}
