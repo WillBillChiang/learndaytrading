@@ -15,7 +15,8 @@ const Progress = {
       totalScore: 0,
       lastVisit: null,
       streak: 0,
-      checklistItems: {}
+      checklistItems: {},
+      testBestScores: {}
     };
   },
 
@@ -117,6 +118,23 @@ const Progress = {
 
   isChecklistChecked(key) {
     return !!this.getData().checklistItems[key];
+  },
+
+  // Trading test best scores (per duration)
+  setTestBestScore(duration, score) {
+    const data = this.getData();
+    if (!data.testBestScores) data.testBestScores = {};
+    if (!data.testBestScores[duration] || score > data.testBestScores[duration]) {
+      data.testBestScores[duration] = score;
+      this.save();
+      return true; // new best
+    }
+    return false;
+  },
+
+  getTestBestScore(duration) {
+    const data = this.getData();
+    return (data.testBestScores && data.testBestScores[duration]) || 0;
   },
 
   // Reset

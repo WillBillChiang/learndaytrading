@@ -1,0 +1,223 @@
+<!-- TRADING TEST: Simulated Trading Test -->
+<div class="tt-container">
+
+  <!-- ========== STATE 1: START SCREEN ========== -->
+  <div class="tt-start-screen" id="ttStartScreen">
+
+    <!-- Header -->
+    <div class="module-header reveal">
+      <div class="module-label">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/><polyline points="2 4 6 2 12 6 18 2 22 4"/></svg>
+        TRADING TEST
+      </div>
+      <h1>Simulated Trading Test</h1>
+      <span style="display:inline-block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#f59e0b;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25);padding:3px 10px;border-radius:4px;margin-bottom:0.5rem">Beta</span>
+      <p>Put your skills to the test in a realistic simulated trading environment. You'll trade a dynamically generated stock with real-world mechanics &mdash; including bid-ask spreads, slippage, commissions, and breaking news events. Your performance is scored across multiple dimensions to identify your strengths and areas for improvement.</p>
+    </div>
+
+    <!-- Rules Card -->
+    <div class="concept-card reveal">
+      <h3>Test Rules &amp; Parameters</h3>
+      <ul class="feature-list">
+        <li><strong>Starting Cash:</strong> $25,000</li>
+        <li><strong>Commission:</strong> $0.005/share ($1 minimum)</li>
+        <li><strong>Market &amp; Limit orders</strong> available</li>
+        <li><strong>Stop-loss orders</strong> available</li>
+        <li><strong>Slippage and spread</strong> simulated</li>
+        <li><strong>Score based on</strong> risk management, trade quality, discipline, and P&amp;L</li>
+      </ul>
+    </div>
+
+    <!-- Duration Selector -->
+    <div class="tt-duration-section reveal">
+      <label class="tt-duration-label" for="ttDuration">Session Duration</label>
+      <select id="ttDuration" class="tt-input">
+        <option value="5" selected>5 min &mdash; Morning Session: 9:30&ndash;12:00</option>
+        <option value="10">10 min &mdash; Extended Morning: 9:30&ndash;2:30</option>
+        <option value="15">15 min &mdash; Full Trading Day</option>
+        <option value="30">30 min &mdash; Full Day, Slower Pace</option>
+        <option value="60">1 hour &mdash; Multi-Day Simulation</option>
+        <option value="120">2 hours &mdash; 4-Day Simulation</option>
+        <option value="240">4 hours &mdash; Extended Simulation</option>
+        <option value="480">8 hours &mdash; Marathon Session</option>
+      </select>
+    </div>
+
+    <!-- Best Score -->
+    <div class="tt-best-score reveal">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 22V8a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v14"/><path d="M6 2v4"/><path d="M18 2v4"/><path d="M10 2h4"/></svg>
+      <span class="tt-best-label">Best Score</span>
+      <span class="tt-best-value" id="ttBestScore">--</span>
+    </div>
+
+    <!-- Start Button -->
+    <div class="tt-start-action reveal">
+      <button class="btn btn-primary btn-lg" id="ttStartBtn">Start Trading Test</button>
+    </div>
+
+  </div><!-- /.tt-start-screen -->
+
+
+  <!-- ========== STATE 2: TRADING INTERFACE ========== -->
+  <div class="tt-trading-ui" id="ttTradingUi" style="display:none">
+
+    <!-- Top Bar -->
+    <div class="tt-topbar">
+      <div class="tt-timer-group">
+        <div class="tt-timer" id="ttTimer">5:00</div>
+        <div class="tt-session-clock" id="ttSessionClock">9:30 AM</div>
+      </div>
+      <div class="tt-account-stats">
+        <div class="tt-stat"><span class="tt-stat-label">Cash</span><span class="tt-stat-value" id="ttCash">$25,000</span></div>
+        <div class="tt-stat"><span class="tt-stat-label">Equity</span><span class="tt-stat-value" id="ttEquity">$25,000</span></div>
+        <div class="tt-stat"><span class="tt-stat-label">P&amp;L</span><span class="tt-stat-value" id="ttPnl">$0.00</span></div>
+      </div>
+      <div class="tt-live-badge"><span class="pulse-dot"></span>LIVE</div>
+    </div>
+
+    <!-- News Ticker -->
+    <div class="tt-news-ticker" id="ttNewsTicker" style="display:none">
+      <span class="tt-news-label">ALERT</span>
+      <span class="tt-news-text" id="ttNewsText"></span>
+    </div>
+
+    <!-- Main Trading Area -->
+    <div class="tt-main">
+
+      <!-- Left: Chart Panel -->
+      <div class="tt-chart-panel">
+        <div class="tt-chart-header">
+          <div class="tt-ticker-info">
+            <span class="tt-ticker-symbol" id="ttTicker">ACME</span>
+            <span class="tt-ticker-price" id="ttPrice">$0.00</span>
+            <span class="tt-ticker-change" id="ttChange">0.00%</span>
+          </div>
+          <div class="tt-bid-ask">
+            <span class="tt-bid">Bid: <span id="ttBid">$0.00</span></span>
+            <span class="tt-spread-indicator">|</span>
+            <span class="tt-ask">Ask: <span id="ttAsk">$0.00</span></span>
+            <span class="tt-spread-val">Spread: <span id="ttSpread">$0.00</span></span>
+          </div>
+        </div>
+        <div class="tt-chart-context">
+          <span class="tt-context-item">Catalyst: <span id="ttCatalyst">--</span></span>
+          <span class="tt-context-item">Prev Close: <span id="ttPrevClose">$0.00</span></span>
+          <span class="tt-context-item">VWAP: <span id="ttVWAP">$0.00</span></span>
+          <span class="tt-context-item">Volume: <span id="ttVolume">0</span></span>
+          <span class="tt-context-item">Trades: <span id="ttTradeCount">0</span></span>
+        </div>
+        <div class="tt-chart-wrap">
+          <canvas id="ttChart" data-height="400"></canvas>
+        </div>
+      </div><!-- /.tt-chart-panel -->
+
+      <!-- Right: Control Panel -->
+      <div class="tt-control-panel">
+
+        <!-- Order Section -->
+        <div class="tt-order-section">
+          <div class="tt-order-tabs">
+            <button class="tt-order-tab active" data-type="market">Market</button>
+            <button class="tt-order-tab" data-type="limit">Limit</button>
+          </div>
+          <div class="tt-order-form">
+            <div class="tt-form-group">
+              <label>Shares</label>
+              <input type="number" id="ttShares" min="1" value="100" class="tt-input">
+            </div>
+            <div class="tt-quick-size">
+              <button class="tt-size-btn" data-pct="25">25%</button>
+              <button class="tt-size-btn" data-pct="50">50%</button>
+              <button class="tt-size-btn" data-pct="75">75%</button>
+              <button class="tt-size-btn" data-pct="100">100%</button>
+            </div>
+            <div class="tt-form-group tt-limit-group" style="display:none">
+              <label>Limit Price</label>
+              <input type="number" id="ttLimitPrice" step="0.01" class="tt-input">
+            </div>
+            <div class="tt-form-group">
+              <label>Stop-Loss (optional)</label>
+              <input type="number" id="ttStopLoss" step="0.01" placeholder="None" class="tt-input">
+            </div>
+            <div class="tt-order-buttons">
+              <button class="btn btn-success tt-buy-btn" id="ttBuyBtn">BUY</button>
+              <button class="btn btn-danger tt-sell-btn" id="ttSellBtn">SELL</button>
+            </div>
+          </div>
+        </div><!-- /.tt-order-section -->
+
+        <!-- Position Section -->
+        <div class="tt-position-section" id="ttPositionSection" style="display:none">
+          <div class="tt-section-title">Position</div>
+          <div class="tt-position-info">
+            <div class="tt-pos-row"><span>Shares</span><span id="ttPosShares">0</span></div>
+            <div class="tt-pos-row"><span>Avg Price</span><span id="ttPosAvg">$0.00</span></div>
+            <div class="tt-pos-row"><span>Per Share</span><span id="ttPosPerShare">$0.00</span></div>
+            <div class="tt-pos-row tt-pos-pnl-row"><span>Unrealized P&amp;L</span><span id="ttPosPnl">$0.00</span></div>
+          </div>
+          <button class="btn btn-secondary tt-close-btn" id="ttCloseBtn">Close Position</button>
+        </div><!-- /.tt-position-section -->
+
+        <!-- Pending Orders Section -->
+        <div class="tt-pending-section" id="ttPendingSection" style="display:none">
+          <div class="tt-section-title">Pending Orders</div>
+          <div id="ttPendingOrders"></div>
+        </div><!-- /.tt-pending-section -->
+
+        <!-- Trade Log Section -->
+        <div class="tt-log-section">
+          <div class="tt-section-title">Trade Log</div>
+          <div class="tt-trade-log" id="ttTradeLog">
+            <div class="tt-log-empty">No trades yet</div>
+          </div>
+        </div><!-- /.tt-log-section -->
+
+      </div><!-- /.tt-control-panel -->
+
+    </div><!-- /.tt-main -->
+
+  </div><!-- /.tt-trading-ui -->
+
+
+  <!-- ========== STATE 3: RESULTS SCREEN ========== -->
+  <div class="tt-results-screen" id="ttResultsScreen" style="display:none">
+    <div class="tt-results-content">
+
+      <!-- Results Header & Score -->
+      <div class="tt-results-header">
+        <h2>Trading Test Results</h2>
+        <div class="tt-score-circle" id="ttScoreCircle">
+          <!-- SVG circle will be rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Key Stats Grid -->
+      <div class="tt-results-stats" id="ttResultsStats">
+        <!-- Grid of key stats rendered by JS -->
+      </div>
+
+      <!-- Category Score Bars -->
+      <div class="tt-results-categories" id="ttResultsCategories">
+        <!-- 4 category bars rendered by JS -->
+      </div>
+
+      <!-- Feedback Section -->
+      <div class="tt-results-feedback" id="ttResultsFeedback">
+        <!-- "What you could improve" section rendered by JS -->
+      </div>
+
+      <!-- Trade History Table -->
+      <div class="tt-results-trades" id="ttResultsTrades">
+        <!-- Trade log table rendered by JS -->
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="tt-results-actions">
+        <button class="btn btn-primary btn-lg" id="ttRetryBtn">Try Again</button>
+        <button class="btn btn-secondary btn-lg" onclick="navigateTo('home')">Back to Course</button>
+      </div>
+
+    </div><!-- /.tt-results-content -->
+  </div><!-- /.tt-results-screen -->
+
+</div><!-- /.tt-container -->

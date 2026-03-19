@@ -7,9 +7,11 @@ let currentModule = 'home';
 // --- Navigation ---
 function navigateTo(module) {
   currentModule = module;
-  if (module !== 'tos' && module !== 'privacy') {
+  if (module !== 'tos' && module !== 'privacy' && module !== 'test') {
     Progress.setCurrentModule(module);
   }
+  // Clean up trading test if navigating away
+  if (typeof TradingTest !== 'undefined' && TradingTest.destroy) TradingTest.destroy();
   updateActiveNav(module);
   updateBreadcrumb(module);
   loadModule(module);
@@ -30,7 +32,8 @@ function loadModule(module) {
   }
 
   const isLegal = (module === 'tos' || module === 'privacy');
-  const path = isLegal ? `modules/${module}.html` : `modules/module${module}.html`;
+  const isTest = (module === 'test');
+  const path = isTest ? 'modules/test.html' : isLegal ? `modules/${module}.html` : `modules/module${module}.html`;
   fetch(path)
     .then(r => {
       if (!r.ok) throw new Error('Module not found');
@@ -69,6 +72,9 @@ function initModuleInteractives(module) {
 
   // Initialize simulator
   if (typeof Simulator !== 'undefined' && module == 10) Simulator.init();
+
+  // Initialize trading test
+  if (typeof TradingTest !== 'undefined' && module === 'test') TradingTest.init();
 
   // Module completion button
   setupCompleteButton(module);
@@ -118,6 +124,8 @@ function updateBreadcrumb(module) {
     bc.innerHTML = '<span>Terms of Service</span>';
   } else if (module === 'privacy') {
     bc.innerHTML = '<span>Privacy Policy</span>';
+  } else if (module === 'test') {
+    bc.innerHTML = '<span>Trading Test</span>';
   } else {
     const names = {
       1: 'How Markets Really Work',
