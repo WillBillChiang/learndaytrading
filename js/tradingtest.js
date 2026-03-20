@@ -12,6 +12,18 @@ const TradingTest = {
   resizeHandler: null,
   debounceTimers: {},
 
+  // ─── CHART VIEW STATE ──────────────────────────────────
+  chartVisibleCount: 60,
+  chartScrollOffset: 0,
+  chartAutoScroll: true,
+  chartDragging: false,
+  chartDragStartX: null,
+  chartDragStartOffset: null,
+  _chartMouseMove: null,
+  _chartMouseUp: null,
+  _goToLatestBtn: null,
+  _chartAbort: null,
+
   // ─── TICKERS & CATALYSTS ───────────────────────────────
   TICKERS: ['NVAX','MSTR','PLTR','RIVN','SOFI','DKNG','AFRM','UPST','HOOD','SMCI'],
 
@@ -431,27 +443,37 @@ const TradingTest = {
       if (shares <= 0) return;
       shares = Math.floor(shares);
 
-      if (side === 'sell' && !state.position) {
-        showToast('No position to sell', 'error');
-        return;
-      }
-
-      if (side === 'buy' && state.position && state.position.side === 'short') {
-        showToast('Cannot buy while short — close position first', 'error');
-        return;
-      }
-
-      if (side === 'sell' && state.position) {
+      // Prevent selling more than long position size (close long)
+      if (side === 'sell' && state.position && state.position.side === 'long') {
         shares = Math.min(shares, state.position.shares);
       }
 
-      if (side === 'buy') {
+      // Prevent buying more than short position size (cover short)
+      if (side === 'buy' && state.position && state.position.side === 'short') {
+        shares = Math.min(shares, state.position.shares);
+      }
+
+      if (side === 'buy' && (!state.position || state.position.side === 'long')) {
         const cost = shares * state.currentAsk;
         const commission = Math.max(1, Math.round(shares * 0.005 * 100) / 100);
         if (cost + commission > state.cash) {
           const affordableShares = Math.floor((state.cash - 1) / state.currentAsk);
           if (affordableShares <= 0) {
             showToast('Insufficient buying power', 'error');
+            return;
+          }
+          shares = affordableShares;
+        }
+      }
+
+      // Margin check for opening/adding to short
+      if (side === 'sell' && (!state.position || state.position.side === 'short')) {
+        const cost = shares * state.currentBid;
+        const commission = Math.max(1, Math.round(shares * 0.005 * 100) / 100);
+        if (cost + commission > state.cash) {
+          const affordableShares = Math.floor((state.cash - 1) / state.currentBid);
+          if (affordableShares <= 0) {
+            showToast('Insufficient margin for short', 'error');
             return;
           }
           shares = affordableShares;
@@ -493,74 +515,146 @@ const TradingTest = {
 
       if (side === 'buy') {
         fillPrice = Math.round((state.currentAsk + slippage) * 100) / 100;
-        const totalCost = shares * fillPrice + commission;
 
-        if (totalCost > state.cash) {
-          shares = Math.max(1, Math.floor((state.cash - commission) / fillPrice));
-          if (shares <= 0) {
-            showToast('Insufficient buying power after slippage', 'error');
-            return;
+        if (state.position && state.position.side === 'short') {
+          // Buy to cover short
+          const coverShares = Math.min(shares, state.position.shares);
+          const cost = coverShares * fillPrice + commission;
+          state.cash -= cost;
+
+          const tradePnL = (state.position.avgPrice - fillPrice) * coverShares - commission;
+          state.trades.push({
+            side: 'short',
+            entry: state.position.avgPrice,
+            exit: fillPrice,
+            shares: coverShares,
+            pnl: Math.round(tradePnL * 100) / 100,
+            entryIndex: state.position.entryIndex,
+            exitIndex: state.candles.length - 1,
+            commission,
+            holdingCandles: (state.candles.length - 1) - state.position.entryIndex
+          });
+
+          if (coverShares >= state.position.shares) {
+            state.position = null;
+          } else {
+            state.position.shares -= coverShares;
           }
-        }
 
-        state.cash -= shares * fillPrice + commission;
-
-        if (state.position && state.position.side === 'long') {
-          // Average up/down
-          const totalShares = state.position.shares + shares;
-          const totalCostBasis = state.position.avgPrice * state.position.shares + fillPrice * shares;
-          state.position.avgPrice = Math.round((totalCostBasis / totalShares) * 100) / 100;
-          state.position.shares = totalShares;
+          const sign = tradePnL >= 0 ? '+' : '';
+          showToast(`Filled: COVER ${coverShares} @ $${fillPrice.toFixed(2)} (${sign}$${tradePnL.toFixed(2)})`, tradePnL >= 0 ? 'success' : 'error');
         } else {
-          state.position = {
-            side: 'long',
-            shares,
-            avgPrice: fillPrice,
-            entryIndex: state.candles.length - 1,
-            stopLoss: null
-          };
-          // Apply stop loss from input
-          const stopInput = document.getElementById('ttStopLoss');
-          if (stopInput && stopInput.value) {
-            const stopPrice = parseFloat(stopInput.value);
-            if (!isNaN(stopPrice) && stopPrice > 0 && stopPrice < fillPrice) {
-              state.position.stopLoss = stopPrice;
+          // Buy to open/add to long
+          const totalCost = shares * fillPrice + commission;
+
+          if (totalCost > state.cash) {
+            shares = Math.max(1, Math.floor((state.cash - commission) / fillPrice));
+            if (shares <= 0) {
+              showToast('Insufficient buying power after slippage', 'error');
+              return;
             }
           }
-        }
 
-        showToast(`Filled: BUY ${shares} @ $${fillPrice.toFixed(2)} (comm: $${commission.toFixed(2)})`, 'success');
+          state.cash -= shares * fillPrice + commission;
+
+          if (state.position && state.position.side === 'long') {
+            // Average up/down
+            const totalShares = state.position.shares + shares;
+            const totalCostBasis = state.position.avgPrice * state.position.shares + fillPrice * shares;
+            state.position.avgPrice = Math.round((totalCostBasis / totalShares) * 100) / 100;
+            state.position.shares = totalShares;
+          } else {
+            state.position = {
+              side: 'long',
+              shares,
+              avgPrice: fillPrice,
+              entryIndex: state.candles.length - 1,
+              stopLoss: null
+            };
+            // Apply stop loss from input
+            const stopInput = document.getElementById('ttStopLoss');
+            if (stopInput && stopInput.value) {
+              const stopPrice = parseFloat(stopInput.value);
+              if (!isNaN(stopPrice) && stopPrice > 0 && stopPrice < fillPrice) {
+                state.position.stopLoss = stopPrice;
+              }
+            }
+          }
+
+          showToast(`Filled: BUY ${shares} @ $${fillPrice.toFixed(2)} (comm: $${commission.toFixed(2)})`, 'success');
+        }
       } else {
         // Sell
         fillPrice = Math.round((state.currentBid - slippage) * 100) / 100;
 
-        if (!state.position) return;
+        if (state.position && state.position.side === 'long') {
+          // Sell to close long
+          const sellShares = Math.min(shares, state.position.shares);
+          const proceeds = sellShares * fillPrice - commission;
+          state.cash += proceeds;
 
-        const sellShares = Math.min(shares, state.position.shares);
-        const proceeds = sellShares * fillPrice - commission;
-        state.cash += proceeds;
+          const tradePnL = (fillPrice - state.position.avgPrice) * sellShares - commission;
+          state.trades.push({
+            side: 'long',
+            entry: state.position.avgPrice,
+            exit: fillPrice,
+            shares: sellShares,
+            pnl: Math.round(tradePnL * 100) / 100,
+            entryIndex: state.position.entryIndex,
+            exitIndex: state.candles.length - 1,
+            commission,
+            holdingCandles: (state.candles.length - 1) - state.position.entryIndex
+          });
 
-        const tradePnL = (fillPrice - state.position.avgPrice) * sellShares - commission;
-        state.trades.push({
-          side: 'long',
-          entry: state.position.avgPrice,
-          exit: fillPrice,
-          shares: sellShares,
-          pnl: Math.round(tradePnL * 100) / 100,
-          entryIndex: state.position.entryIndex,
-          exitIndex: state.candles.length - 1,
-          commission,
-          holdingCandles: (state.candles.length - 1) - state.position.entryIndex
-        });
+          if (sellShares >= state.position.shares) {
+            state.position = null;
+          } else {
+            state.position.shares -= sellShares;
+          }
 
-        if (sellShares >= state.position.shares) {
-          state.position = null;
+          const sign = tradePnL >= 0 ? '+' : '';
+          showToast(`Filled: SELL ${sellShares} @ $${fillPrice.toFixed(2)} (${sign}$${tradePnL.toFixed(2)})`, tradePnL >= 0 ? 'success' : 'error');
         } else {
-          state.position.shares -= sellShares;
-        }
+          // Sell to open/add to short
+          const marginCost = shares * fillPrice + commission;
+          if (marginCost > state.cash) {
+            shares = Math.max(1, Math.floor((state.cash - commission) / fillPrice));
+            if (shares <= 0) {
+              showToast('Insufficient margin after slippage', 'error');
+              return;
+            }
+          }
 
-        const sign = tradePnL >= 0 ? '+' : '';
-        showToast(`Filled: SELL ${sellShares} @ $${fillPrice.toFixed(2)} (${sign}$${tradePnL.toFixed(2)})`, tradePnL >= 0 ? 'success' : 'error');
+          // Credit short sale proceeds minus commission
+          state.cash += shares * fillPrice - commission;
+
+          if (state.position && state.position.side === 'short') {
+            // Add to short — average entry
+            const totalShares = state.position.shares + shares;
+            const totalCostBasis = state.position.avgPrice * state.position.shares + fillPrice * shares;
+            state.position.avgPrice = Math.round((totalCostBasis / totalShares) * 100) / 100;
+            state.position.shares = totalShares;
+            showToast(`Filled: SHORT +${shares} @ $${fillPrice.toFixed(2)} (comm: $${commission.toFixed(2)})`, 'success');
+          } else {
+            // Open new short
+            state.position = {
+              side: 'short',
+              shares,
+              avgPrice: fillPrice,
+              entryIndex: state.candles.length - 1,
+              stopLoss: null
+            };
+            // Apply stop loss from input (for shorts, stop must be ABOVE entry)
+            const stopInput = document.getElementById('ttStopLoss');
+            if (stopInput && stopInput.value) {
+              const stopPrice = parseFloat(stopInput.value);
+              if (!isNaN(stopPrice) && stopPrice > 0 && stopPrice > fillPrice) {
+                state.position.stopLoss = stopPrice;
+              }
+            }
+            showToast(`Filled: SHORT ${shares} @ $${fillPrice.toFixed(2)} (comm: $${commission.toFixed(2)})`, 'success');
+          }
+        }
       }
 
       tt.updateStats();
@@ -606,53 +700,21 @@ const TradingTest = {
 
         let filled = false;
         if (order.side === 'buy' && candle.low <= order.limitPrice) {
-          // Fill buy limit
           const fillShares = order.shares;
           const commission = Math.max(1, Math.round(fillShares * 0.005 * 100) / 100);
-          const cost = fillShares * order.limitPrice + commission;
 
-          if (cost <= state.cash) {
+          if (state.position && state.position.side === 'short') {
+            // Buy limit to cover short
+            const coverShares = Math.min(fillShares, state.position.shares);
+            const cost = coverShares * order.limitPrice + commission;
             state.cash -= cost;
-            if (state.position && state.position.side === 'long') {
-              const totalShares = state.position.shares + fillShares;
-              const totalCostBasis = state.position.avgPrice * state.position.shares + order.limitPrice * fillShares;
-              state.position.avgPrice = Math.round((totalCostBasis / totalShares) * 100) / 100;
-              state.position.shares = totalShares;
-            } else {
-              state.position = {
-                side: 'long',
-                shares: fillShares,
-                avgPrice: order.limitPrice,
-                entryIndex: candle.index,
-                stopLoss: null
-              };
-              // Apply stop loss from input
-              const stopInput = document.getElementById('ttStopLoss');
-              if (stopInput && stopInput.value) {
-                const stopPrice = parseFloat(stopInput.value);
-                if (!isNaN(stopPrice) && stopPrice > 0 && stopPrice < order.limitPrice) {
-                  state.position.stopLoss = stopPrice;
-                }
-              }
-            }
-            showToast(`Limit BUY filled: ${fillShares} @ $${order.limitPrice.toFixed(2)}`, 'success');
-            filled = true;
-          }
-          toRemove.push(i);
-        } else if (order.side === 'sell' && candle.high >= order.limitPrice) {
-          // Fill sell limit
-          if (state.position && state.position.side === 'long') {
-            const fillShares = Math.min(order.shares, state.position.shares);
-            const commission = Math.max(1, Math.round(fillShares * 0.005 * 100) / 100);
-            const proceeds = fillShares * order.limitPrice - commission;
-            state.cash += proceeds;
 
-            const tradePnL = (order.limitPrice - state.position.avgPrice) * fillShares - commission;
+            const tradePnL = (state.position.avgPrice - order.limitPrice) * coverShares - commission;
             state.trades.push({
-              side: 'long',
+              side: 'short',
               entry: state.position.avgPrice,
               exit: order.limitPrice,
-              shares: fillShares,
+              shares: coverShares,
               pnl: Math.round(tradePnL * 100) / 100,
               entryIndex: state.position.entryIndex,
               exitIndex: candle.index,
@@ -660,14 +722,107 @@ const TradingTest = {
               holdingCandles: candle.index - state.position.entryIndex
             });
 
-            if (fillShares >= state.position.shares) {
+            if (coverShares >= state.position.shares) {
               state.position = null;
             } else {
-              state.position.shares -= fillShares;
+              state.position.shares -= coverShares;
             }
 
-            showToast(`Limit SELL filled: ${fillShares} @ $${order.limitPrice.toFixed(2)}`, 'success');
+            showToast(`Limit COVER filled: ${coverShares} @ $${order.limitPrice.toFixed(2)}`, 'success');
             filled = true;
+          } else {
+            // Buy limit to open/add to long
+            const cost = fillShares * order.limitPrice + commission;
+            if (cost <= state.cash) {
+              state.cash -= cost;
+              if (state.position && state.position.side === 'long') {
+                const totalShares = state.position.shares + fillShares;
+                const totalCostBasis = state.position.avgPrice * state.position.shares + order.limitPrice * fillShares;
+                state.position.avgPrice = Math.round((totalCostBasis / totalShares) * 100) / 100;
+                state.position.shares = totalShares;
+              } else {
+                state.position = {
+                  side: 'long',
+                  shares: fillShares,
+                  avgPrice: order.limitPrice,
+                  entryIndex: candle.index,
+                  stopLoss: null
+                };
+                const stopInput = document.getElementById('ttStopLoss');
+                if (stopInput && stopInput.value) {
+                  const stopPrice = parseFloat(stopInput.value);
+                  if (!isNaN(stopPrice) && stopPrice > 0 && stopPrice < order.limitPrice) {
+                    state.position.stopLoss = stopPrice;
+                  }
+                }
+              }
+              showToast(`Limit BUY filled: ${fillShares} @ $${order.limitPrice.toFixed(2)}`, 'success');
+              filled = true;
+            }
+          }
+          toRemove.push(i);
+        } else if (order.side === 'sell' && candle.high >= order.limitPrice) {
+          const fillShares = order.shares;
+          const commission = Math.max(1, Math.round(fillShares * 0.005 * 100) / 100);
+
+          if (state.position && state.position.side === 'long') {
+            // Sell limit to close long
+            const sellShares = Math.min(fillShares, state.position.shares);
+            const commissionAdj = Math.max(1, Math.round(sellShares * 0.005 * 100) / 100);
+            const proceeds = sellShares * order.limitPrice - commissionAdj;
+            state.cash += proceeds;
+
+            const tradePnL = (order.limitPrice - state.position.avgPrice) * sellShares - commissionAdj;
+            state.trades.push({
+              side: 'long',
+              entry: state.position.avgPrice,
+              exit: order.limitPrice,
+              shares: sellShares,
+              pnl: Math.round(tradePnL * 100) / 100,
+              entryIndex: state.position.entryIndex,
+              exitIndex: candle.index,
+              commission: commissionAdj,
+              holdingCandles: candle.index - state.position.entryIndex
+            });
+
+            if (sellShares >= state.position.shares) {
+              state.position = null;
+            } else {
+              state.position.shares -= sellShares;
+            }
+
+            showToast(`Limit SELL filled: ${sellShares} @ $${order.limitPrice.toFixed(2)}`, 'success');
+            filled = true;
+          } else {
+            // Sell limit to open/add to short
+            const marginCost = fillShares * order.limitPrice + commission;
+            if (marginCost <= state.cash) {
+              state.cash += fillShares * order.limitPrice - commission;
+
+              if (state.position && state.position.side === 'short') {
+                const totalShares = state.position.shares + fillShares;
+                const totalCostBasis = state.position.avgPrice * state.position.shares + order.limitPrice * fillShares;
+                state.position.avgPrice = Math.round((totalCostBasis / totalShares) * 100) / 100;
+                state.position.shares = totalShares;
+              } else {
+                state.position = {
+                  side: 'short',
+                  shares: fillShares,
+                  avgPrice: order.limitPrice,
+                  entryIndex: candle.index,
+                  stopLoss: null
+                };
+                const stopInput = document.getElementById('ttStopLoss');
+                if (stopInput && stopInput.value) {
+                  const stopPrice = parseFloat(stopInput.value);
+                  if (!isNaN(stopPrice) && stopPrice > 0 && stopPrice > order.limitPrice) {
+                    state.position.stopLoss = stopPrice;
+                  }
+                }
+              }
+              showToast(`Limit SHORT filled: ${fillShares} @ $${order.limitPrice.toFixed(2)}`, 'success');
+              filled = true;
+            }
           }
           toRemove.push(i);
         }
@@ -710,6 +865,32 @@ const TradingTest = {
         showToast(`STOP LOSS hit: Sold ${shares} @ $${fillPrice.toFixed(2)} (slippage: $${slippage.toFixed(2)})`, 'error');
         tt.updateStats();
         tt.draw();
+      } else if (state.position.side === 'short' && candle.high >= state.position.stopLoss) {
+        const slippage = this.getSlippage(state, state.position.shares, true);
+        const fillPrice = Math.round((state.position.stopLoss + slippage) * 100) / 100;
+        const shares = state.position.shares;
+        const commission = Math.max(1, Math.round(shares * 0.005 * 100) / 100);
+        const cost = shares * fillPrice + commission;
+        state.cash -= cost;
+
+        const tradePnL = (state.position.avgPrice - fillPrice) * shares - commission;
+        state.trades.push({
+          side: 'short',
+          entry: state.position.avgPrice,
+          exit: fillPrice,
+          shares,
+          pnl: Math.round(tradePnL * 100) / 100,
+          entryIndex: state.position.entryIndex,
+          exitIndex: candle.index,
+          commission,
+          holdingCandles: candle.index - state.position.entryIndex,
+          stoppedOut: true
+        });
+
+        state.position = null;
+        showToast(`STOP LOSS hit: Covered ${shares} @ $${fillPrice.toFixed(2)} (slippage: $${slippage.toFixed(2)})`, 'error');
+        tt.updateStats();
+        tt.draw();
       }
     },
 
@@ -719,7 +900,8 @@ const TradingTest = {
         showToast('No position to close', 'error');
         return;
       }
-      this.executeMarketOrder('sell', state.position.shares, tt);
+      const closeSide = state.position.side === 'long' ? 'sell' : 'buy';
+      this.executeMarketOrder(closeSide, state.position.shares, tt);
     },
 
     cancelPendingOrder(orderId, tt) {
@@ -883,6 +1065,9 @@ const TradingTest = {
             if (t.side === 'long' && state.candles[i].close > t.entry) {
               favorable = true;
               break;
+            } else if (t.side === 'short' && state.candles[i].close < t.entry) {
+              favorable = true;
+              break;
             }
           }
         }
@@ -896,27 +1081,26 @@ const TradingTest = {
         details.push(`Entry timing: ${(entryQuality * 100).toFixed(0)}% showed favorable movement within 3 candles`);
       }
 
-      // "Bought the top" detection
-      let boughtTopCount = 0;
+      // "Bought the top" / "Shorted the bottom" detection
+      let badEntryCount = 0;
       for (const t of trades) {
         const lookBack = Math.max(0, t.entryIndex - 5);
         if (t.entryIndex >= 5 && state.candles[lookBack] && state.candles[t.entryIndex]) {
-          const moveRange = state.candles[t.entryIndex].close - state.candles[lookBack].close;
-          const direction = moveRange > 0 ? 1 : -1;
-          if (direction === 1 && Math.abs(moveRange) > 0) {
-            // Check if entered after 80% of the move
-            const highInRange = Math.max(...state.candles.slice(lookBack, t.entryIndex + 1).map(c => c.high));
-            const lowInRange = Math.min(...state.candles.slice(lookBack, t.entryIndex + 1).map(c => c.low));
-            const totalMove = highInRange - lowInRange;
-            if (totalMove > 0 && (t.entry - lowInRange) / totalMove > 0.8) {
-              boughtTopCount++;
+          const highInRange = Math.max(...state.candles.slice(lookBack, t.entryIndex + 1).map(c => c.high));
+          const lowInRange = Math.min(...state.candles.slice(lookBack, t.entryIndex + 1).map(c => c.low));
+          const totalMove = highInRange - lowInRange;
+          if (totalMove > 0) {
+            if (t.side === 'long' && (t.entry - lowInRange) / totalMove > 0.8) {
+              badEntryCount++;
+            } else if (t.side === 'short' && (highInRange - t.entry) / totalMove > 0.8) {
+              badEntryCount++;
             }
           }
         }
       }
-      if (boughtTopCount > 0) {
-        details.push(`Bought the top ${boughtTopCount} time(s) — entered after 80%+ of a directional move`);
-        score -= Math.min(5, boughtTopCount * 2);
+      if (badEntryCount > 0) {
+        details.push(`Chased the move ${badEntryCount} time(s) — entered after 80%+ of a directional move`);
+        score -= Math.min(5, badEntryCount * 2);
       }
 
       score = Math.max(0, Math.min(25, score));
@@ -980,13 +1164,19 @@ const TradingTest = {
       let earlyProfitCount = 0;
       for (const t of trades) {
         if (t.pnl > 0) {
-          const gainPct = (t.exit - t.entry) / t.entry;
+          const gainPct = t.side === 'long'
+            ? (t.exit - t.entry) / t.entry
+            : (t.entry - t.exit) / t.entry;
           if (gainPct < 0.005 && t.exitIndex < state.candles.length - 1) {
-            // Check if price continued > 1% after exit
             const lookAhead = Math.min(t.exitIndex + 5, state.candles.length - 1);
             for (let i = t.exitIndex + 1; i <= lookAhead; i++) {
               if (state.candles[i]) {
-                const continuedGain = (state.candles[i].high - t.exit) / t.exit;
+                let continuedGain;
+                if (t.side === 'long') {
+                  continuedGain = (state.candles[i].high - t.exit) / t.exit;
+                } else {
+                  continuedGain = (t.exit - state.candles[i].low) / t.exit;
+                }
                 if (continuedGain > 0.01) {
                   earlyProfitCount++;
                   break;
@@ -1011,7 +1201,14 @@ const TradingTest = {
       const trades = state.trades;
 
       // Calculate final equity
-      const equity = state.cash + (state.position ? state.position.shares * state.candles[state.candles.length - 1].close : 0);
+      let posFinalVal = 0;
+      if (state.position) {
+        const lastPrice = state.candles[state.candles.length - 1].close;
+        posFinalVal = state.position.side === 'long'
+          ? state.position.shares * lastPrice
+          : -state.position.shares * lastPrice;
+      }
+      const equity = state.cash + posFinalVal;
       const returnPct = (equity - state.startingCash) / state.startingCash;
 
       if (returnPct > 0.02) {
@@ -1077,7 +1274,14 @@ const TradingTest = {
 
       const tips = [];
       const trades = state.trades;
-      const equity = state.cash + (state.position ? state.position.shares * state.candles[state.candles.length - 1].close : 0);
+      let posFeedbackVal = 0;
+      if (state.position) {
+        const lastP = state.candles[state.candles.length - 1].close;
+        posFeedbackVal = state.position.side === 'long'
+          ? state.position.shares * lastP
+          : -state.position.shares * lastP;
+      }
+      const equity = state.cash + posFeedbackVal;
       const returnPct = ((equity - state.startingCash) / state.startingCash * 100).toFixed(2);
 
       for (const cat of categories) {
@@ -1140,9 +1344,12 @@ const TradingTest = {
     const s = this.state;
     if (s.candles.length === 0) return;
 
-    const visibleCount = 60;
-    const startIdx = Math.max(0, s.candles.length - visibleCount);
-    const endIdx = s.candles.length;
+    const visibleCount = this.chartVisibleCount;
+    const totalCandles = s.candles.length;
+    const maxOffset = Math.max(0, totalCandles - visibleCount);
+    this.chartScrollOffset = Math.max(0, Math.min(this.chartScrollOffset, maxOffset));
+    const endIdx = Math.max(visibleCount, totalCandles - this.chartScrollOffset);
+    const startIdx = Math.max(0, endIdx - visibleCount);
     const visible = s.candles.slice(startIdx, endIdx);
 
     const padding = { top: 15, right: 60, bottom: 35, left: 55 };
@@ -1257,16 +1464,25 @@ const TradingTest = {
       ctx.setLineDash([]);
     }
 
-    // Trade entry markers (blue up arrow) and exit markers (green/red down arrow)
+    // Trade entry/exit markers
     for (const trade of s.trades) {
       if (trade.entryIndex >= startIdx && trade.entryIndex < endIdx) {
         const i = trade.entryIndex - startIdx;
         const x = toX(i);
         const y = toY(trade.entry);
-        ctx.fillStyle = '#3b82f6';
-        ctx.font = '12px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('\u25B2', x, y + 16);
+        if (trade.side === 'short') {
+          // Short entry: orange down arrow
+          ctx.fillStyle = '#f97316';
+          ctx.font = '12px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('\u25BC', x, y - 8);
+        } else {
+          // Long entry: blue up arrow
+          ctx.fillStyle = '#3b82f6';
+          ctx.font = '12px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('\u25B2', x, y + 16);
+        }
       }
       if (trade.exitIndex >= startIdx && trade.exitIndex < endIdx) {
         const i = trade.exitIndex - startIdx;
@@ -1275,14 +1491,22 @@ const TradingTest = {
         ctx.fillStyle = trade.pnl >= 0 ? '#10b981' : '#ef4444';
         ctx.font = '12px sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText('\u25BC', x, y - 8);
+        if (trade.side === 'short') {
+          // Short exit (cover): up arrow
+          ctx.fillText('\u25B2', x, y + 16);
+        } else {
+          // Long exit (sell): down arrow
+          ctx.fillText('\u25BC', x, y - 8);
+        }
       }
     }
 
     // Entry price dashed line for open position
     if (s.position) {
       const entryY = toY(s.position.avgPrice);
-      ctx.strokeStyle = '#3b82f6';
+      const entryColor = s.position.side === 'short' ? '#f97316' : '#3b82f6';
+      const entryLabel = s.position.side === 'short' ? 'SHORT' : 'LONG';
+      ctx.strokeStyle = entryColor;
       ctx.lineWidth = 1;
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
@@ -1291,10 +1515,10 @@ const TradingTest = {
       ctx.stroke();
       ctx.setLineDash([]);
 
-      ctx.fillStyle = '#3b82f6';
+      ctx.fillStyle = entryColor;
       ctx.font = 'bold 9px sans-serif';
       ctx.textAlign = 'left';
-      ctx.fillText('ENTRY $' + s.position.avgPrice.toFixed(2), padding.left + 4, entryY - 5);
+      ctx.fillText(entryLabel + ' $' + s.position.avgPrice.toFixed(2), padding.left + 4, entryY - 5);
 
       // Stop-loss line (red dashed)
       if (s.position.stopLoss) {
@@ -1337,6 +1561,28 @@ const TradingTest = {
       ctx.font = 'bold 10px monospace';
       ctx.textAlign = 'left';
       ctx.fillText(lastCandle.close.toFixed(2), w - padding.right + 4, y + 4);
+    }
+
+    // "Go to latest" button when panned away
+    if (!this.chartAutoScroll) {
+      const btnW = 28, btnH = 22;
+      const btnX = w - padding.right - btnW - 6;
+      const btnY = padding.top + chartH + volumeHeight - btnH - 6;
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.85)';
+      ctx.beginPath();
+      if (ctx.roundRect) {
+        ctx.roundRect(btnX, btnY, btnW, btnH, 4);
+      } else {
+        ctx.rect(btnX, btnY, btnW, btnH);
+      }
+      ctx.fill();
+      ctx.fillStyle = '#0a0e17';
+      ctx.font = 'bold 14px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('\u25B6\u25B6', btnX + btnW / 2, btnY + 16);
+      this._goToLatestBtn = { x: btnX, y: btnY, w: btnW, h: btnH };
+    } else {
+      this._goToLatestBtn = null;
     }
   },
 
@@ -1401,6 +1647,15 @@ const TradingTest = {
       clearTimeout(this.debounceTimers[key]);
     }
     this.debounceTimers = {};
+    // Clean up all chart event listeners via AbortController
+    if (this._chartAbort) {
+      this._chartAbort.abort();
+      this._chartAbort = null;
+    }
+    this._chartMouseMove = null;
+    this._chartMouseUp = null;
+    this.chartDragging = false;
+    this._goToLatestBtn = null;
     this.state = null;
     this.OrderEngine.orderPending = false;
   },
@@ -1476,7 +1731,17 @@ const TradingTest = {
         const pct = parseInt(btn.dataset.pct) / 100;
         const lastCandle = this.state.candles[this.state.candles.length - 1];
         if (!lastCandle) return;
-        const maxShares = Math.floor((this.state.cash * pct) / lastCandle.close);
+        let maxShares;
+        if (this.state.position && this.state.position.side === 'short') {
+          // When short, size as % of position for covering
+          maxShares = Math.floor(this.state.position.shares * pct);
+        } else if (this.state.position && this.state.position.side === 'long') {
+          // When long, size as % of position for selling
+          maxShares = Math.floor(this.state.position.shares * pct);
+        } else {
+          // No position: size as % of buying power
+          maxShares = Math.floor((this.state.cash * pct) / lastCandle.close);
+        }
         const input = document.getElementById('ttShares');
         if (input) input.value = Math.max(1, maxShares);
       });
@@ -1493,6 +1758,97 @@ const TradingTest = {
     if (startBtn) {
       startBtn.addEventListener('click', () => this.startTest());
     }
+
+    // ─── Chart zoom, pan, and reset ───
+    this.bindChartEvents();
+  },
+
+  bindChartEvents() {
+    if (!this.canvas) return;
+
+    // Abort previous listeners to prevent stacking on restart
+    if (this._chartAbort) this._chartAbort.abort();
+    this._chartAbort = new AbortController();
+    const sig = { signal: this._chartAbort.signal };
+
+    // Mouse wheel — zoom in/out
+    this.canvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      if (!this.state || !this.state.running) return;
+
+      const oldCount = this.chartVisibleCount;
+      const zoomStep = Math.max(1, Math.round(oldCount * 0.1));
+
+      if (e.deltaY > 0) {
+        this.chartVisibleCount = Math.min(200, oldCount + zoomStep);
+      } else {
+        this.chartVisibleCount = Math.max(10, oldCount - zoomStep);
+      }
+
+      // Adjust offset proportionally to keep view centered
+      const ratio = this.chartVisibleCount / oldCount;
+      this.chartScrollOffset = Math.round(this.chartScrollOffset * ratio);
+
+      this.draw();
+    }, { passive: false, signal: this._chartAbort.signal });
+
+    // Mouse down — start drag pan
+    this.canvas.addEventListener('mousedown', (e) => {
+      if (!this.state || !this.state.running) return;
+      this.chartDragging = true;
+      this.chartDragStartX = e.clientX;
+      this.chartDragStartOffset = this.chartScrollOffset;
+      this.canvas.style.cursor = 'grabbing';
+    }, sig);
+
+    // Mouse move — drag pan (on window so dragging outside canvas works)
+    this._chartMouseMove = (e) => {
+      if (!this.chartDragging) return;
+      const dx = e.clientX - this.chartDragStartX;
+      const chartW = this.width - 55 - 60; // left + right padding
+      const gap = chartW / this.chartVisibleCount;
+      const candlesDragged = Math.round(dx / gap);
+
+      // Drag right = reveal newer candles (decrease offset)
+      this.chartScrollOffset = Math.max(0, this.chartDragStartOffset - candlesDragged);
+      this.chartAutoScroll = this.chartScrollOffset === 0;
+      this.draw();
+    };
+    window.addEventListener('mousemove', this._chartMouseMove, sig);
+
+    // Mouse up — end drag
+    this._chartMouseUp = () => {
+      if (this.chartDragging) {
+        this.chartDragging = false;
+        if (this.canvas) this.canvas.style.cursor = 'crosshair';
+      }
+    };
+    window.addEventListener('mouseup', this._chartMouseUp, sig);
+
+    // Double-click — reset to default view
+    this.canvas.addEventListener('dblclick', () => {
+      this.chartVisibleCount = 60;
+      this.chartScrollOffset = 0;
+      this.chartAutoScroll = true;
+      this.draw();
+    }, sig);
+
+    // Click — "go to latest" button
+    this.canvas.addEventListener('click', (e) => {
+      if (!this._goToLatestBtn) return;
+      const rect = this.canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const btn = this._goToLatestBtn;
+      if (x >= btn.x && x <= btn.x + btn.w && y >= btn.y && y <= btn.y + btn.h) {
+        this.chartScrollOffset = 0;
+        this.chartAutoScroll = true;
+        this.draw();
+      }
+    }, sig);
+
+    // Set default cursor
+    this.canvas.style.cursor = 'crosshair';
   },
 
   handleBuy() {
@@ -1535,15 +1891,31 @@ const TradingTest = {
     const buyBtn = document.getElementById('ttBuyBtn');
     const sellBtn = document.getElementById('ttSellBtn');
     const closeBtn = document.getElementById('ttCloseBtn');
-    if (buyBtn) {
-      buyBtn.disabled = disabled;
-      buyBtn.textContent = disabled ? 'Order Pending...' : 'BUY';
-    }
-    if (sellBtn) {
-      sellBtn.disabled = disabled;
-      sellBtn.textContent = disabled ? 'Order Pending...' : 'SELL';
+    if (disabled) {
+      if (buyBtn) { buyBtn.disabled = true; buyBtn.textContent = 'Order Pending...'; }
+      if (sellBtn) { sellBtn.disabled = true; sellBtn.textContent = 'Order Pending...'; }
+    } else {
+      if (buyBtn) { buyBtn.disabled = false; }
+      if (sellBtn) { sellBtn.disabled = false; }
+      this.updateButtonLabels();
     }
     if (closeBtn) closeBtn.disabled = disabled;
+  },
+
+  updateButtonLabels() {
+    const buyBtn = document.getElementById('ttBuyBtn');
+    const sellBtn = document.getElementById('ttSellBtn');
+    if (!this.state) return;
+    if (this.state.position && this.state.position.side === 'short') {
+      if (buyBtn) buyBtn.textContent = 'COVER';
+      if (sellBtn) sellBtn.textContent = 'ADD SHORT';
+    } else if (this.state.position && this.state.position.side === 'long') {
+      if (buyBtn) buyBtn.textContent = 'ADD';
+      if (sellBtn) sellBtn.textContent = 'SELL';
+    } else {
+      if (buyBtn) buyBtn.textContent = 'BUY';
+      if (sellBtn) sellBtn.textContent = 'SHORT';
+    }
   },
 
   showStartScreen() {
@@ -1622,6 +1994,11 @@ const TradingTest = {
     this.state.running = true;
     this.state.startTime = Date.now();
 
+    // Reset chart view state
+    this.chartVisibleCount = 60;
+    this.chartScrollOffset = 0;
+    this.chartAutoScroll = true;
+
     // Generate initial context candles (5 candles to give some visual)
     for (let i = 0; i < 5; i++) {
       const candle = this.MarketEngine.generateNextCandle(this.state, this);
@@ -1649,8 +2026,42 @@ const TradingTest = {
       this.OrderEngine.checkPendingOrders(candle, this);
       this.OrderEngine.checkStopLoss(candle, this);
 
+      // Margin call check for short positions
+      if (this.state.position && this.state.position.side === 'short') {
+        const shortEquity = this.state.cash - this.state.position.shares * candle.close;
+        const posNotional = this.state.position.shares * candle.close;
+        if (shortEquity < posNotional * 0.25) {
+          // Force close the short
+          const shares = this.state.position.shares;
+          const fillPrice = candle.close;
+          const commission = Math.max(1, Math.round(shares * 0.005 * 100) / 100);
+          const cost = shares * fillPrice + commission;
+          this.state.cash -= cost;
+          const tradePnL = (this.state.position.avgPrice - fillPrice) * shares - commission;
+          this.state.trades.push({
+            side: 'short',
+            entry: this.state.position.avgPrice,
+            exit: fillPrice,
+            shares,
+            pnl: Math.round(tradePnL * 100) / 100,
+            entryIndex: this.state.position.entryIndex,
+            exitIndex: candle.index,
+            commission,
+            holdingCandles: candle.index - this.state.position.entryIndex,
+            marginCall: true
+          });
+          this.state.position = null;
+          showToast('MARGIN CALL: Short position force-closed', 'error');
+          this.updateStats();
+          this.draw();
+        }
+      }
+
       // Update equity history
       this.updateEquityHistory();
+
+      // Keep view anchored to latest if auto-scroll is on
+      if (this.chartAutoScroll) this.chartScrollOffset = 0;
 
       this.draw();
       this.updateStats();
@@ -1660,8 +2071,16 @@ const TradingTest = {
   updateEquityHistory() {
     if (!this.state || this.state.candles.length === 0) return;
     const lastCandle = this.state.candles[this.state.candles.length - 1];
-    const equity = this.state.cash +
-      (this.state.position ? this.state.position.shares * lastCandle.close : 0);
+    let posValue = 0;
+    if (this.state.position) {
+      if (this.state.position.side === 'long') {
+        posValue = this.state.position.shares * lastCandle.close;
+      } else {
+        // Short: we owe shares at current market price
+        posValue = -this.state.position.shares * lastCandle.close;
+      }
+    }
+    const equity = this.state.cash + posValue;
 
     this.state.equityHistory.push(equity);
 
@@ -1691,23 +2110,32 @@ const TradingTest = {
     if (this.state.position) {
       const lastCandle = this.state.candles[this.state.candles.length - 1];
       if (lastCandle) {
-        const shares = this.state.position.shares;
+        const pos = this.state.position;
+        const shares = pos.shares;
         const fillPrice = lastCandle.close;
         const commission = Math.max(1, Math.round(shares * 0.005 * 100) / 100);
-        const proceeds = shares * fillPrice - commission;
-        this.state.cash += proceeds;
 
-        const tradePnL = (fillPrice - this.state.position.avgPrice) * shares - commission;
+        let tradePnL;
+        if (pos.side === 'long') {
+          const proceeds = shares * fillPrice - commission;
+          this.state.cash += proceeds;
+          tradePnL = (fillPrice - pos.avgPrice) * shares - commission;
+        } else {
+          const cost = shares * fillPrice + commission;
+          this.state.cash -= cost;
+          tradePnL = (pos.avgPrice - fillPrice) * shares - commission;
+        }
+
         this.state.trades.push({
-          side: 'long',
-          entry: this.state.position.avgPrice,
+          side: pos.side,
+          entry: pos.avgPrice,
           exit: fillPrice,
           shares,
           pnl: Math.round(tradePnL * 100) / 100,
-          entryIndex: this.state.position.entryIndex,
+          entryIndex: pos.entryIndex,
           exitIndex: lastCandle.index,
           commission,
-          holdingCandles: lastCandle.index - this.state.position.entryIndex
+          holdingCandles: lastCandle.index - pos.entryIndex
         });
         this.state.position = null;
       }
@@ -1726,7 +2154,13 @@ const TradingTest = {
     if (!lastCandle) return;
 
     const currentPrice = lastCandle.close;
-    const totalValue = s.position ? s.cash + s.position.shares * currentPrice : s.cash;
+    let posVal = 0;
+    if (s.position) {
+      posVal = s.position.side === 'long'
+        ? s.position.shares * currentPrice
+        : -s.position.shares * currentPrice;
+    }
+    const totalValue = s.cash + posVal;
     const totalPnL = totalValue - s.startingCash;
 
     this.setStat('ttPrice', '$' + currentPrice.toFixed(2));
@@ -1744,8 +2178,15 @@ const TradingTest = {
     if (posSection) {
       if (s.position) {
         posSection.style.display = '';
-        const unrealized = (currentPrice - s.position.avgPrice) * s.position.shares;
-        const perShare = currentPrice - s.position.avgPrice;
+        const unrealized = s.position.side === 'long'
+          ? (currentPrice - s.position.avgPrice) * s.position.shares
+          : (s.position.avgPrice - currentPrice) * s.position.shares;
+        const perShare = s.position.side === 'long'
+          ? currentPrice - s.position.avgPrice
+          : s.position.avgPrice - currentPrice;
+        const sideLabel = s.position.side === 'long' ? 'LONG' : 'SHORT';
+        const sideColor = s.position.side === 'long' ? '#10b981' : '#f97316';
+        this.setStat('ttPosSide', sideLabel, sideColor);
         this.setStat('ttPosShares', s.position.shares.toString());
         this.setStat('ttPosAvg', '$' + s.position.avgPrice.toFixed(2));
         this.setStat('ttPosPerShare', (perShare >= 0 ? '+' : '') + '$' + perShare.toFixed(2), perShare >= 0 ? '#10b981' : '#ef4444');
@@ -1787,6 +2228,9 @@ const TradingTest = {
 
     // Volume
     this.setStat('ttVolume', this.formatVolume(lastCandle.volume));
+
+    // Update button labels based on position state
+    if (!this.OrderEngine.orderPending) this.updateButtonLabels();
   },
 
   setStat(id, value, color) {
@@ -1978,12 +2422,12 @@ const TradingTest = {
                   const sign = t.pnl >= 0 ? '+' : '';
                   return `<tr style="border-bottom:1px solid #1e293b;color:#94a3b8">
                     <td style="padding:6px 8px">${i + 1}</td>
-                    <td style="padding:6px 8px;color:${t.side === 'long' ? '#10b981' : '#ef4444'}">${t.side.toUpperCase()}</td>
+                    <td style="padding:6px 8px;color:${t.side === 'long' ? '#10b981' : '#f97316'}">${t.side.toUpperCase()}</td>
                     <td style="padding:6px 8px">${t.shares}</td>
                     <td style="padding:6px 8px;font-family:monospace">$${t.entry.toFixed(2)}</td>
                     <td style="padding:6px 8px;font-family:monospace">$${t.exit.toFixed(2)}</td>
                     <td style="padding:6px 8px;color:${pnlColor};font-weight:600;font-family:monospace">${sign}$${t.pnl.toFixed(2)}</td>
-                    <td style="padding:6px 8px">${t.holdingCandles || 0}${t.stoppedOut ? ' (SL)' : ''}</td>
+                    <td style="padding:6px 8px">${t.holdingCandles || 0}${t.stoppedOut ? ' (SL)' : ''}${t.marginCall ? ' (MC)' : ''}</td>
                   </tr>`;
                 }).join('')}
               </tbody>
@@ -2023,6 +2467,11 @@ const TradingTest = {
       this.resizeHandler = () => this.resize();
       window.addEventListener('resize', this.resizeHandler);
     }
+    // Reset chart view state
+    this.chartVisibleCount = 60;
+    this.chartScrollOffset = 0;
+    this.chartAutoScroll = true;
+    this.bindChartEvents();
     this.showStartScreen();
   },
 
